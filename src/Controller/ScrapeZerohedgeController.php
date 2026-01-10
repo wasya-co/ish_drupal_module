@@ -36,8 +36,6 @@ class ScrapeZerohedgeController extends ControllerBase {
     $zhPath = $request->get('zhPath');
     // logg($zhPath, 'zhPath');
 
-    $outs = [];
-
     $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->one($zhPath);
     // logg($contents, '$contents');
 

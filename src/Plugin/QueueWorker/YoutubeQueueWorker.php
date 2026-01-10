@@ -51,7 +51,8 @@ class YoutubeQueueWorker extends QueueWorkerBase {
     if (!$last_polled_at || strtotime($last_polled_at) < time() - 24*60*60) { // daily
 
       $n_videos = 10;
-      $url = 'https://www.googleapis.com/youtube/v3/search?key='.$api_key.'&channelId='.$channel_id.'&part=snippet,id&order=date&maxResults='.$n_videos.'&videoDuration=long&type=video';
+      $includeShorts = $youtube_channel->get('field_include_shorts')->value ? '' : '&videoDuration=long';
+      $url = 'https://www.googleapis.com/youtube/v3/search?key='.$api_key.'&channelId='.$channel_id.'&part=snippet,id&order=date&maxResults='.$n_videos.$includeShorts.'&type=video';
       // logg($url, '$url');
 
       $json = file_get_contents($url);
