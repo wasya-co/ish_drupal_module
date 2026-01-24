@@ -1,5 +1,6 @@
 <?php
 
+// use Drupal\Core\Entity\Display\EntityFormDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -18,18 +19,27 @@ use Drupal\ish_drupal_module\Models\YoutubeChannel;
 **/
 function ish_drupal_module_update_9001() {
   $content_type = 'youtube_channel';
-  $field_name = 'field_last_polled_at';
+  if (!NodeType::load($content_type)) {
+    $type = NodeType::create([
+      'type' => $content_type,
+      'name' => $content_type,
+      'description' => $content_type,
+      'display_submitted' => TRUE,
+    ]);
+    $type->save();
+  }
 
+  $field_name = 'field_last_polled_at';
   if (!FieldStorageConfig::loadByName('node', $field_name)) {
     FieldStorageConfig::create([
       'field_name' => $field_name,
       'entity_type' => 'node',
       'type' => 'string',
       'settings' => [
-        'max_length' => 255,
+        'max_length' => 20,
       ],
       'cardinality' => 1,
-      'translatable' => TRUE,
+      'translatable' => FALSE,
     ])->save();
   }
   if (!FieldConfig::loadByName('node', $content_type, $field_name)) {
@@ -95,6 +105,9 @@ function ish_drupal_module_update_9004() {
     ]);
     $type->save();
   }
+  $repo = \Drupal::service('entity_display.repository');
+  $full_display = $repo->getViewDisplay('node', 'object3d', 'full');
+  $form_display = $repo->getFormDisplay('node', 'object3d', 'default');
 
   if (!FieldStorageConfig::loadByName('node', 'field_width')) {
     FieldStorageConfig::create([
@@ -112,10 +125,22 @@ function ish_drupal_module_update_9004() {
       'field_name' => 'field_width',
       'entity_type' => 'node',
       'bundle' => 'object3d',
-      'label' => 'Width',
+      'label' => 'width',
       'required' => TRUE,
     ])->save();
   }
+  $form_display->setComponent('field_width', [
+    'type' => 'string_textfield',
+    'weight' => 20,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $field = FieldConfig::loadByName('node', 'object3d', 'field_width');
+  $field->setDefaultValue([
+    [ 'value' => '500px' ],
+  ]);
+  $field->save();
+
 
   if (!FieldStorageConfig::loadByName('node', 'field_height')) {
     FieldStorageConfig::create([
@@ -133,10 +158,22 @@ function ish_drupal_module_update_9004() {
       'field_name' => 'field_height',
       'entity_type' => 'node',
       'bundle' => 'object3d',
-      'label' => 'Width',
+      'label' => 'height',
       'required' => TRUE,
     ])->save();
   }
+  $form_display->setComponent('field_height', [
+    'type' => 'string_textfield',
+    'weight' => 21,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $field = FieldConfig::loadByName('node', 'object3d', 'field_height');
+  $field->setDefaultValue([
+    [ 'value' => '400px' ],
+  ]);
+  $field->save();
+
 
   if (!FieldConfig::loadByName('node', 'object3d', 'field_vote_up_down')) {
     FieldConfig::create([
@@ -147,16 +184,45 @@ function ish_drupal_module_update_9004() {
       'required' => FALSE,
     ])->save();
   }
+  $full_display->setComponent('field_vote_up_down', [
+    'label' => 'hidden',
+    'settings' => [
+      'vote_up_down_formatter_type' => 'thumbs',
+    ],
+    'type' => 'vote_up_down_formatter_type',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
 
   if (!FieldConfig::loadByName('node', 'object3d', 'field_image_thumb')) {
     FieldConfig::create([
-      'field_name' => 'field_image_thumb',
-      'entity_type' => 'node',
       'bundle' => 'object3d',
+      'entity_type' => 'node',
+      'field_name' => 'field_image_thumb',
       'label' => 'Image Thumb',
       'required' => FALSE,
+      'settings' => [
+        'alt_field' => TRUE,
+        'alt_field_required' => FALSE,
+      ],
     ])->save();
   }
+  $form_display->setComponent('field_image_thumb', [
+    'type' => 'file_generic',
+    'weight' => 25,
+    'settings' => [
+      // 'alt_field' => TRUE,
+      // 'alt_field_required' => FALSE,
+    ],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_image_thumb', [
+    'label' => 'hidden',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
 
   if (!FieldConfig::loadByName('node', 'object3d', 'field_tags_contrib')) {
     FieldConfig::create([
@@ -167,6 +233,18 @@ function ish_drupal_module_update_9004() {
       'required' => FALSE,
     ])->save();
   }
+  $form_display->setComponent('field_tags_contrib', [
+    'type' => 'options_buttons',
+    'weight' => 23,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_tags_contrib', [
+    'label' => 'hidden',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
 
   if (!Vocabulary::load('tags_issue')) {
     Vocabulary::create([
@@ -204,18 +282,13 @@ function ish_drupal_module_update_9004() {
       ],
     ])->save();
   }
-  $form_display = EntityFormDisplay::load('node.object3d.default');
-  if ($form_display) {
-    $form_display->setComponent('field_tags_issue', [
-      'type' => 'options_select',
-      'weight' => 15,
-      'settings' => [
-        'match_operator' => 'CONTAINS',
-        'size' => 60,
-        'placeholder' => '',
-      ],
-    ])->save();
-  }
+  $form_display->setComponent('field_tags_issue', [
+    'type' => 'options_buttons',
+    'weight' => 24,
+    'settings' => [],
+  ]);
+  $form_display->save();
+
 
   if (!FieldStorageConfig::loadByName('node', 'field_model')) {
     FieldStorageConfig::create([
@@ -239,9 +312,24 @@ function ish_drupal_module_update_9004() {
       'required' => TRUE,
       'settings' => [
         'description_field' => TRUE,
+        'file_extensions' => 'glb obj',
       ],
     ])->save();
   }
+  $form_display->setComponent('field_model', [
+    'type' => 'file_generic',
+    'weight' => 25,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_model', [
+    'label' => 'hidden',
+    'type' => 'file_url_plain',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
 
 }
+
 
