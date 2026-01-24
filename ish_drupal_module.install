@@ -5,7 +5,9 @@ use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\Entity\Node;
+use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\Entity\Vocabulary;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\Models\YoutubeChannel;
@@ -80,4 +82,166 @@ function ish_drupal_module_update_9003() {
   \Drupal::messenger()->addMessage('created users for all youtube channels');
 }
 
+
+/*
+ * create object3d
+**/
+function ish_drupal_module_update_9004() {
+  if (!NodeType::load('object3d')) {
+    $type = NodeType::create([
+      'type' => 'object3d',
+      'name' => 'Object3d',
+      'description' => 'object3d',
+    ]);
+    $type->save();
+  }
+
+  if (!FieldStorageConfig::loadByName('node', 'field_width')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_width',
+      'entity_type' => 'node',
+      'type' => 'string',
+      'cardinality' => 1,
+      'settings' => [
+        'max_length' => 10,
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_width')) {
+    FieldConfig::create([
+      'field_name' => 'field_width',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Width',
+      'required' => TRUE,
+    ])->save();
+  }
+
+  if (!FieldStorageConfig::loadByName('node', 'field_height')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_height',
+      'entity_type' => 'node',
+      'type' => 'string',
+      'cardinality' => 1,
+      'settings' => [
+        'max_length' => 10,
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_height')) {
+    FieldConfig::create([
+      'field_name' => 'field_height',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Width',
+      'required' => TRUE,
+    ])->save();
+  }
+
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_vote_up_down')) {
+    FieldConfig::create([
+      'field_name' => 'field_vote_up_down',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Vote Up Down',
+      'required' => FALSE,
+    ])->save();
+  }
+
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_image_thumb')) {
+    FieldConfig::create([
+      'field_name' => 'field_image_thumb',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Image Thumb',
+      'required' => FALSE,
+    ])->save();
+  }
+
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_tags_contrib')) {
+    FieldConfig::create([
+      'field_name' => 'field_tags_contrib',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Tags Contrib',
+      'required' => FALSE,
+    ])->save();
+  }
+
+  if (!Vocabulary::load('tags_issue')) {
+    Vocabulary::create([
+      'vid' => 'tags_issue',
+      'description' => 'Tags Issue',
+      'name' => 'Tags Issue',
+    ])->save();
+  }
+  if (!FieldStorageConfig::loadByName('node', 'field_tags_issue')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_tags_issue',
+      'entity_type' => 'node',
+      'type' => 'entity_reference',
+      'cardinality' => -1,
+      'settings' => [
+        'target_type' => 'taxonomy_term',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_tags_issue')) {
+    FieldConfig::create([
+      'field_name' => 'field_tags_issue',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Tags Issue',
+      'required' => FALSE,
+      'settings' => [
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'tags_issue' => 'tags_issue',
+          ],
+          'auto_create' => FALSE,
+        ],
+      ],
+    ])->save();
+  }
+  $form_display = EntityFormDisplay::load('node.object3d.default');
+  if ($form_display) {
+    $form_display->setComponent('field_tags_issue', [
+      'type' => 'options_select',
+      'weight' => 15,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+        'placeholder' => '',
+      ],
+    ])->save();
+  }
+
+  if (!FieldStorageConfig::loadByName('node', 'field_model')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_model',
+      'entity_type' => 'node',
+      'type' => 'file',
+      'cardinality' => 1,
+      'settings' => [
+        'uri_scheme' => 'public',
+        'file_extensions' => 'glb obj',
+        'max_filesize' => '50 MB',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'object3d', 'field_model')) {
+    FieldConfig::create([
+      'field_name' => 'field_model',
+      'entity_type' => 'node',
+      'bundle' => 'object3d',
+      'label' => 'Model',
+      'required' => TRUE,
+      'settings' => [
+        'description_field' => TRUE,
+      ],
+    ])->save();
+  }
+
+}
 
