@@ -45,8 +45,9 @@ class ScrapeZerohedgeController extends ControllerBase {
     $new_item = $node_manager->create([
       'uid' => $uid,
       'body' => [
-        'value' => $contents['html'],
         'format' => 'full_html',
+        'summary' => ' ',
+        'value' => $contents['html'],
       ],
       // 'field_tags_contrib' => $tags_contrib_ids,
       'field_tags_issue' => $tags_issue_ids,
