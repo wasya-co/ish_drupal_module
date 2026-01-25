@@ -92,9 +92,9 @@ function ish_drupal_module_update_9003() {
   \Drupal::messenger()->addMessage('created users for all youtube channels');
 }
 
-
 /*
  * create object3d
+ * 2026-01-24
 **/
 function ish_drupal_module_update_9004() {
   if (!NodeType::load('object3d')) {
@@ -328,8 +328,254 @@ function ish_drupal_module_update_9004() {
     'weight' => -10,
   ]);
   $full_display->save();
-
-
 }
 
+/*
+ * create scene3d
+ * 2026-01-25
+**/
+function ish_drupal_module_update_9013() {
+  if (!NodeType::load('scene3d')) {
+    $type = NodeType::create([
+      'type' => 'scene3d',
+      'name' => 'scene3d',
+      'description' => 'scene3d',
+    ]);
+    $type->save();
+  }
+  $repo = \Drupal::service('entity_display.repository');
+  $full_display = $repo->getViewDisplay('node', 'scene3d', 'full');
+  $form_display = $repo->getFormDisplay('node', 'scene3d', 'default');
 
+  if (!FieldStorageConfig::loadByName('node', 'field_width')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_width',
+      'entity_type' => 'node',
+      'type' => 'string',
+      'cardinality' => 1,
+      'settings' => [
+        'max_length' => 10,
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_width')) {
+    FieldConfig::create([
+      'field_name' => 'field_width',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'width',
+      'required' => TRUE,
+    ])->save();
+  }
+  $form_display->setComponent('field_width', [
+    'type' => 'string_textfield',
+    'weight' => 20,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $field = FieldConfig::loadByName('node', 'scene3d', 'field_width');
+  $field->setDefaultValue([
+    [ 'value' => '500px' ],
+  ]);
+  $field->save();
+
+
+  if (!FieldStorageConfig::loadByName('node', 'field_height')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_height',
+      'entity_type' => 'node',
+      'type' => 'string',
+      'cardinality' => 1,
+      'settings' => [
+        'max_length' => 10,
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_height')) {
+    FieldConfig::create([
+      'field_name' => 'field_height',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'height',
+      'required' => TRUE,
+    ])->save();
+  }
+  $form_display->setComponent('field_height', [
+    'type' => 'string_textfield',
+    'weight' => 21,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $field = FieldConfig::loadByName('node', 'scene3d', 'field_height');
+  $field->setDefaultValue([
+    [ 'value' => '400px' ],
+  ]);
+  $field->save();
+
+
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_vote_up_down')) {
+    FieldConfig::create([
+      'field_name' => 'field_vote_up_down',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'Vote Up Down',
+      'required' => FALSE,
+    ])->save();
+  }
+  $full_display->setComponent('field_vote_up_down', [
+    'label' => 'hidden',
+    'settings' => [
+      'vote_up_down_formatter_type' => 'thumbs',
+    ],
+    'type' => 'vote_up_down_formatter_type',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
+
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_image_thumb')) {
+    FieldConfig::create([
+      'bundle' => 'scene3d',
+      'entity_type' => 'node',
+      'field_name' => 'field_image_thumb',
+      'label' => 'Image Thumb',
+      'required' => FALSE,
+      'settings' => [
+        'alt_field' => TRUE,
+        'alt_field_required' => FALSE,
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_image_thumb', [
+    'type' => 'file_generic',
+    'weight' => 25,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_image_thumb', [
+    'label' => 'hidden',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
+  if (!Vocabulary::load('tags_contrib')) {
+    Vocabulary::create([
+      'vid' => 'tags_contrib',
+      'description' => 'tags_contrib',
+      'name' => 'tags_contrib',
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_tags_contrib')) {
+    FieldConfig::create([
+      'field_name' => 'field_tags_contrib',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'Tags Contrib',
+      'required' => FALSE,
+      'settings' => [
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'tags_contrib' => 'tags_contrib',
+          ],
+          'auto_create' => FALSE,
+        ],
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_tags_contrib', [
+    'type' => 'options_buttons',
+    'weight' => 23,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_tags_contrib', [
+    'label' => 'hidden',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+
+
+  if (!Vocabulary::load('tags_issue')) {
+    Vocabulary::create([
+      'vid' => 'tags_issue',
+      'description' => 'tags_issue',
+      'name' => 'tags_issue',
+    ])->save();
+  }
+  if (!FieldStorageConfig::loadByName('node', 'field_tags_issue')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_tags_issue',
+      'entity_type' => 'node',
+      'type' => 'entity_reference',
+      'cardinality' => -1,
+      'settings' => [
+        'target_type' => 'taxonomy_term',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_tags_issue')) {
+    FieldConfig::create([
+      'field_name' => 'field_tags_issue',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'Tags Issue',
+      'required' => FALSE,
+      'settings' => [
+        'handler' => 'default:taxonomy_term',
+        'handler_settings' => [
+          'target_bundles' => [
+            'tags_issue' => 'tags_issue',
+          ],
+          'auto_create' => FALSE,
+        ],
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_tags_issue', [
+    'type' => 'options_buttons',
+    'weight' => 24,
+    'settings' => [],
+  ]);
+  $form_display->save();
+
+
+  if (!FieldStorageConfig::loadByName('node', 'field_model')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_model',
+      'entity_type' => 'node',
+      'type' => 'file',
+      'cardinality' => 1,
+      'settings' => [
+        'uri_scheme' => 'public',
+        'file_extensions' => 'glb obj',
+        'max_filesize' => '50 MB',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('node', 'scene3d', 'field_model')) {
+    FieldConfig::create([
+      'field_name' => 'field_model',
+      'entity_type' => 'node',
+      'bundle' => 'scene3d',
+      'label' => 'Model',
+      'required' => TRUE,
+      'settings' => [
+        'description_field' => TRUE,
+        'file_extensions' => 'glb obj',
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_model', [
+    'type' => 'file_generic',
+    'weight' => 25,
+    'settings' => [],
+  ]);
+  $form_display->save();
+  $full_display->setComponent('field_model', [
+    'label' => 'hidden',
+    'type' => 'file_url_plain',
+    'weight' => -10,
+  ]);
+  $full_display->save();
+}
