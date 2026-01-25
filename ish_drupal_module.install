@@ -1,6 +1,7 @@
 <?php
 
-// use Drupal\Core\Entity\Display\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -579,3 +580,29 @@ function ish_drupal_module_update_9013() {
   ]);
   $full_display->save();
 }
+
+/* Create view mode 'touch'
+ * Actually I think I don't need it?
+ * 2026-01-25
+**/
+/*
+function ish_drupal_module_update_9015() {
+  if (!EntityViewMode::load('node.touch')) {
+    EntityViewMode::create([
+      'id' => 'node.touch',
+      'label' => 'touch',
+      'targetEntityType' => 'node',
+      'status' => TRUE,
+    ])->save();
+  }
+  $display = EntityViewDisplay::load('node.scene3d.touch');
+  if (!$display) {
+    EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'scene3d',
+      'mode' => 'touch',
+      'status' => TRUE,
+    ])->save();
+  }
+}
+*/

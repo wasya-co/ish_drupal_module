@@ -138,6 +138,15 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
+    'scene3d_touch' => [
+      'render element' => 'children',
+      'template' => 'touch',
+      'path' => $path . '/templates/scene3d',
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+
     'scrape_zerohedge_all' => [
       'render element' => 'children',
       'template' => 'all',

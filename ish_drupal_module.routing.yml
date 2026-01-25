@@ -122,6 +122,17 @@ ish_drupal_module.hiring_manager_dashboard:
   requirements:
     _role: 'hiring_manager'
 
+ish_drupal_module.scene3d_touch:
+  path: '/node/{node}/touch'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\Scene3dController::touch'
+  requirements:
+    _entity_access: 'node.view'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
 ish_drupal_module.scrape_zerohedge_all:
   path: '/scrape/zerohedge/all'
   defaults:
