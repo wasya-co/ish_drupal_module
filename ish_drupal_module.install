@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\Core\Form\FormStateInterface;
@@ -581,6 +582,63 @@ function ish_drupal_module_update_9013() {
   $full_display->save();
 }
 
+/*
+ * create x, y, z fields for object3d
+**/
+function ish_drupal_module_update_9018() {
+  $form_display = EntityFormDisplay::load('node.object3d.default')
+    ?: EntityFormDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'object3d',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  $view_display = EntityViewDisplay::load('node.object3d.full')
+    ?: EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'object3d',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  $fields = ['x', 'y', 'z'];
+
+  foreach ($fields as $axis) {
+    if (!FieldStorageConfig::loadByName('node', 'field_' . $axis)) {
+      FieldStorageConfig::create([
+        'field_name' => 'field_' . $axis,
+        'entity_type' => 'node',
+        'type' => 'string',
+        'settings' => [
+          'max_length' => 20,
+        ],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', 'object3d', 'field_' . $axis)) {
+      FieldConfig::create([
+        'field_name' => 'field_' . $axis,
+        'entity_type' => 'node',
+        'bundle' => 'object3d',
+        'label' => strtoupper($axis),
+      ])->save();
+    }
+
+    $form_display->setComponent('field_' . $axis, [
+      'type' => 'string_textfield',
+      'weight' => 0,
+    ]);
+    $form_display->save();
+
+    $view_display->setComponent('field_' . $axis, [
+      'type' => 'string',
+      'label' => 'above',
+      'weight' => 0,
+    ]);
+    $view_display->save();
+  }
+
+
+}
 /* Create view mode 'touch'
  * Actually I think I don't need it?
  * 2026-01-25
