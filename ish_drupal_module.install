@@ -664,3 +664,15 @@ function ish_drupal_module_update_9015() {
   }
 }
 */
+
+/*
+ * allow anonymous to view user profiles
+**/
+function ish_drupal_module_update_9019() {
+  $role = \Drupal\user\Entity\Role::load('anonymous');
+  if ($role && !$role->hasPermission('access user profiles')) {
+    $role->grantPermission('access user profiles')->save();
+  }
+}
+
+
