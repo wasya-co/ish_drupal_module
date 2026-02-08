@@ -77,12 +77,32 @@ function ish_drupal_module_entity_type_build(array &$entity_types) {
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
   return [
+    'article_translate' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'translate',
+      'variables' => [
+        'item' => NULL,
+      ],
+    ],
+    'articles_index' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'index',
+      'variables' => [
+        'items' => [],
+        'pager' => NULL,
+      ],
+    ],
+
+
     'error_404' => [
       'render element' => 'children',
       'template' => 'error_404',
       'path' => $path . '/templates',
       'variables' => [],
     ],
+
     'ish_dance_instructor_dashboard' => [
       'template' => 'dance-instructor-dashboard',
       'path' => $path . '/templates/users',
@@ -95,6 +115,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
       ],
     ],
+
     'ish_users_dashboard' => [
       'template' => 'dashboard',
       'path' => $path . '/templates/users',
@@ -109,6 +130,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
       ],
     ],
+
     'ish_locations_show' => [
       // 'render element' => 'requirements',
       'template' => 'show',
