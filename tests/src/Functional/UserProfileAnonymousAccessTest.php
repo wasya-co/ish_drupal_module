@@ -11,6 +11,7 @@ use Drupal\user\Entity\User;
  * @group ish_drupal_module
  */
 class UserProfileAnonymousAccessTest extends BrowserTestBase {
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}
@@ -37,7 +38,7 @@ class UserProfileAnonymousAccessTest extends BrowserTestBase {
       ->getStorage('user_role')
       ->load('anonymous');
 
-    $anonymous_role->grantPermission('view user information');
+    $anonymous_role->grantPermission('access user profiles');
     $anonymous_role->save();
 
     // Clear caches so permission changes apply.
