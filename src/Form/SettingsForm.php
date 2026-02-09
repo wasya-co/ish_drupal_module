@@ -44,6 +44,13 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Zze libretranslate_api_key'),
     ];
 
+    $form['llm_api_key'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('llm_api_key'),
+      '#default_value' => $config->get('llm_api_key'),
+      '#description' => $this->t('Zze llm_api_key'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -54,6 +61,7 @@ class SettingsForm extends ConfigFormBase {
     $this->config('ish_drupal_module.settings')
       ->set('google_api_youtube_key', $form_state->getValue('google_api_youtube_key'))
       ->set('libretranslate_api_key', $form_state->getValue('libretranslate_api_key'))
+      ->set('llm_api_key',            $form_state->getValue('llm_api_key'))
       ->save();
 
     parent::submitForm($form, $form_state);

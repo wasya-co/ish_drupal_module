@@ -12,6 +12,15 @@ ish_drupal_module.aphorisms_new:
   options:
     parameters:
 
+
+ish_drupal_module.article_generate:
+  path: '/articles/generate'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\ArticleGenerateForm'
+    _title: 'Generate an Article'
+  requirements:
+    _role: 'administrator'
+
 ish_drupal_module.article_translate:
   path: '/articles/{id}/translate-to/{langcode}'
   defaults:

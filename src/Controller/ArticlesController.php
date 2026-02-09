@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class ArticlesController extends ControllerBase {
 
   /**
-   * list *all* with no spanish translation
+   * List *all* articles.
   **/
   public function missingTranslation() {
     $storage = $this->entityTypeManager()->getStorage('node');
@@ -86,6 +86,7 @@ class ArticlesController extends ControllerBase {
     }
     $tr_body = json_decode($response, true)['translatedText'];
 
+
     $data = [
       "q" => $item->get('title')->value,
       "source" => "en",
@@ -112,6 +113,7 @@ class ArticlesController extends ControllerBase {
       'body' => [
         'value' => $tr_body,
         'format' => 'basic_html',
+        'summary' => ' ',
       ],
     ]);
 
