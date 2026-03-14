@@ -135,10 +135,24 @@ class ZerohedgeScraper {
     if ($bodyNode->count() > 0) {
         $domNode = $bodyNode->getNode(0);
 
+        $xpath = new \DOMXPath($domNode->ownerDocument);
+        $imgs = $xpath->query('.//img', $domNode);
+        foreach ($imgs as $k) {
+          $k->parentNode->removeChild($k);
+        }
+        $pictures = $xpath->query('.//picture', $domNode);
+        foreach ($pictures as $k) {
+          $k->parentNode->removeChild($k);
+        }
+        $iframes = $xpath->query('.//iframe', $domNode);
+        foreach ($iframes as $k) {
+          $k->parentNode->removeChild($k);
+        }
+
         // Get innerHTML
         $innerHtml = '';
         foreach ($domNode->childNodes as $child) {
-            $innerHtml .= $domNode->ownerDocument->saveHTML($child);
+          $innerHtml .= $domNode->ownerDocument->saveHTML($child);
         }
         $contents['html'] = $innerHtml;
 
