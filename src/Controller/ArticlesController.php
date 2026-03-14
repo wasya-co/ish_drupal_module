@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /*
- * ltmanage keys add 1000
+ * libretranslate usage:
+ *   ltmanage keys add 1000
 **/
 class ArticlesController extends ControllerBase {
 

@@ -22,6 +22,7 @@ class ZerohedgeScraper {
     ]);
 
     $html = (string) $response->getBody();
+    // var_dump( $html );
 
     $crawler = new Crawler($html);
 
@@ -32,12 +33,12 @@ class ZerohedgeScraper {
 
     /* 3 top promoted articles */
     // $crawler
-    //   ->filter("div[class^='ContributorArticleFeatured_container__']")
+    //   ->filter("div[class*='ContributorArticleFeatured_container__']")
     //   ->each(function (Crawler $item) use (&$headlines) {
     //     $titleNode = $item->filter('h2');
     //     $linkNode  = $item->filter('h2 a');
-    //     $authorNode = $item->filter("[class^='ContributorArticleFeatured_author__']");
-    //     $subtitleNode = $item->filter("[class^='ContributorArticleFeatured_text__']");
+    //     $authorNode = $item->filter("[class*='ContributorArticleFeatured_author__']");
+    //     $subtitleNode = $item->filter("[class*='ContributorArticleFeatured_text__']");
     //     $headlines[] = [
     //       'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
     //       'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
@@ -49,8 +50,10 @@ class ZerohedgeScraper {
 
     /* sticky articles */
     $crawler
-      ->filter("div[class^='Article_stickyContainer__']")
+      ->filter("article[class*='NewArticle_sticky__']")
       ->each(function (Crawler $item) use (&$headlines) {
+        // var_dump($item);
+
         if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
           return;
         }
@@ -60,7 +63,7 @@ class ZerohedgeScraper {
 
         $titleNode = $item->filter('h2');
         $linkNode  = $item->filter('h2 a');
-        $subtitleNode = $item->filter("div[class^='Article_desktopLineClamp__']");
+        $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
         $headlines[] = [
           'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
           'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
@@ -70,7 +73,7 @@ class ZerohedgeScraper {
 
 
     $crawler
-      ->filter("div[class^='Article_nonStickyContainer__']")
+      ->filter("article[class*='NewArticle_teaser__']")
       ->each(function (Crawler $item) use (&$headlines) {
         if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
           return;
@@ -83,7 +86,7 @@ class ZerohedgeScraper {
 
         $titleNode = $item->filter('h2');
         $linkNode  = $item->filter('h2 a');
-        $subtitleNode = $item->filter("div[class^='Article_desktopLineClamp__']");
+        $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
         $headlines[] = [
           'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
           'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
@@ -105,18 +108,19 @@ class ZerohedgeScraper {
     $html = (string) $response->getBody();
 
     $crawler = new Crawler($html);
-    // $bodyHtml = $crawler->getNode(0)->ownerDocument->saveHTML($crawler->getNode(0));
+    $bodyHtml = $crawler->getNode(0)->ownerDocument->saveHTML($crawler->getNode(0));
     // logg($bodyHtml, 'bodyHtml');
 
     $contents = [];
 
-    $titleNode = $crawler->filter("[class^='ArticleFull_header__'] h1");
+    $titleNode = $crawler->filter("[class*='ArticleFull_header__'] h1");
     if ($titleNode->count() === 0) {
-        $titleNode = $crawler->filter("[class^='ContributorArticleFull_header__'] h1");
+        $titleNode = $crawler->filter("[class*='ContributorArticleFull_header__'] h1");
     }
     $contents['title'] = $titleNode->count() ? trim($titleNode->text()) : '';
+    // logg($contents['title'], "title");
 
-    $bodyNode = $crawler->filter("[class^='NodeContent_body__']");
+    $bodyNode = $crawler->filter("[class*='NodeContent_body__']");
     if ($bodyNode->count() > 0) {
         $domNode = $bodyNode->getNode(0);
 
@@ -133,6 +137,7 @@ class ZerohedgeScraper {
         $contents['html'] = '';
         $contents['text'] = '';
     }
+    // logg($contents, 'contents');
 
     return $contents;
   }

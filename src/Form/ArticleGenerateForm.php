@@ -9,6 +9,9 @@ use Drupal\taxonomy\Entity\Term;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * ArticleGenerateForm
+**/
 class ArticleGenerateForm extends FormBase {
   protected ClientInterface $httpClient;
   public function __construct(ClientInterface $http_client) {
@@ -77,10 +80,8 @@ class ArticleGenerateForm extends FormBase {
     $topic = $form_state->getValue('topic');
     $issue = array_filter($form_state->getValue('tags_issue'));
     $issue = array_values($issue);
-    $tags = array_filter($form_state->getValue('tags_contrib'));
-    $tags = array_values($tags);
-
-
+    $tags  = array_filter($form_state->getValue('tags_contrib'));
+    $tags  = array_values($tags);
 
     try {
       $response = $this->httpClient->post( $apiUrl,
