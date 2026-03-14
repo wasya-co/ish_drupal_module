@@ -14,6 +14,8 @@ class ScrapeZerohedgeController extends ControllerBase {
   **/
   public function all(Request $request) {
     $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->all();
+    // logg($contents, '$contents');
+
     $build = [
       '#theme' => 'scrape_zerohedge_all',
       '#contents' => $contents,
@@ -46,7 +48,7 @@ class ScrapeZerohedgeController extends ControllerBase {
       'uid' => $uid,
       'body' => [
         'format' => 'full_html',
-        'summary' => ' ',
+        'summary' => $contents['summary'],
         'value' => $contents['html'],
       ],
       // 'field_tags_contrib' => $tags_contrib_ids,
@@ -58,9 +60,11 @@ class ScrapeZerohedgeController extends ControllerBase {
     $new_item->save();
     \Drupal::messenger()->addMessage('Item From zerohedge has been saved.');
 
+    // logg($contents, '$contents');
+
     $build = [
       '#theme' => 'scrape_zerohedge_one',
-      '#contents' => 'nonez',
+      '#contents' => $contents,
       '#zhPath' => $zhPath,
     ];
     return $build;

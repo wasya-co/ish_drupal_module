@@ -61,13 +61,19 @@ class ZerohedgeScraper {
           return;
         }
 
-        $titleNode = $item->filter('h2');
-        $linkNode  = $item->filter('h2 a');
+        $titleNode    = $item->filter('h2');
+        $linkNode     = $item->filter('h2 a');
         $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
+        $summaryNode  = $item->filter('p');
+        $summaryText  = implode("\n", $item->filter('p')->each(function ($node) {
+          return trim($node->text());
+        }));
+        // logg($summaryNode->text(), '$summaryNode');
         $headlines[] = [
-          'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
-          'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
+          'title'    => $titleNode->count()    ? trim($titleNode->text())    : '',
+          'link'     => $linkNode->count()     ? $linkNode->attr('href')     : '',
           'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
+          'summary'  => $summaryText,
         ];
       });
 
@@ -87,10 +93,15 @@ class ZerohedgeScraper {
         $titleNode = $item->filter('h2');
         $linkNode  = $item->filter('h2 a');
         $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
+        $summaryNode  = $item->filter('p');
+        $summaryText = implode("\n", $item->filter('p')->each(function ($node) {
+          return trim($node->text());
+        }));
         $headlines[] = [
           'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
           'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
           'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
+          'summary'  => $summaryText,
         ];
       });
 
@@ -133,9 +144,12 @@ class ZerohedgeScraper {
 
         // Get text with double newlines
         $contents['text'] = trim(preg_replace("/\n/", "\n\n", $bodyNode->text()));
+
+        $contents['summary'] = $crawler->filter('meta[name="twitter:description"]')->attr('content');
     } else {
-        $contents['html'] = '';
-        $contents['text'] = '';
+        $contents['html']    = '';
+        $contents['text']    = '';
+        $contents['summary'] = '';
     }
     // logg($contents, 'contents');
 

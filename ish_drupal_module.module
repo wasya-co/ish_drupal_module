@@ -187,6 +187,8 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'template' => 'one',
       'path' => $path . '/templates/scrape_zerohedge',
       'variables' => [
+        'contents' => 'no contents',
+        'zhPath' => 'no zhPath',
       ],
     ],
 
