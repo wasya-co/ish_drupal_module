@@ -1,8 +1,8 @@
 name: ish_drupal_module
 type: module
 version: VERSION
-core_version_requirement: ^9
-description: Ish Locations and more.
+core_version_requirement: ^9.5 || ^10
+description: infiniteshelter base module.
 dependencies:
   - drupal:views
 
