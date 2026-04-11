@@ -159,6 +159,11 @@ class RtScraper {
           $domNode = $node->getNode(0);
           $domNode->parentNode->removeChild($domNode);
         });
+        $bodyNode->filter('.Read-more-text-only')->each(function(Crawler $node) {
+          $domNode = $node->getNode(0);
+          $domNode->parentNode->removeChild($domNode);
+        });
+
 
         // Get innerHTML
         $innerHtml = '';
