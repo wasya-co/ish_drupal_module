@@ -154,10 +154,11 @@ class RtScraper {
         foreach ($iframes as $k) {
           $k->parentNode->removeChild($k);
         }
-        $iframes = $xpath->query('.read-more', $domNode);
-        foreach ($iframes as $k) {
-          $k->parentNode->removeChild($k);
-        }
+
+        $bodyNode->filter('.read-more')->each(function(Crawler $node) {
+          $domNode = $node->getNode(0);
+          $domNode->parentNode->removeChild($domNode);
+        });
 
         // Get innerHTML
         $innerHtml = '';
