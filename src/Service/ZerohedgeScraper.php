@@ -49,7 +49,7 @@ class ZerohedgeScraper {
 
 
     /* sticky articles */
-    $crawler
+    /* $crawler
       ->filter("article[class*='NewArticle_sticky__']")
       ->each(function (Crawler $item) use (&$headlines) {
         // var_dump($item);
@@ -75,7 +75,7 @@ class ZerohedgeScraper {
           'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
           'summary'  => $summaryText,
         ];
-      });
+      }); */
 
 
     $crawler

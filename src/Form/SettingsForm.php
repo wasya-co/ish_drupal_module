@@ -51,6 +51,13 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Zze llm_api_key'),
     ];
 
+    $form['pexels_api_key'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('pexels_api_key'),
+      '#default_value' => $config->get('pexels_api_key'),
+      '#description' => $this->t('Zze pexels_api_key'),
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -62,6 +69,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('google_api_youtube_key', $form_state->getValue('google_api_youtube_key'))
       ->set('libretranslate_api_key', $form_state->getValue('libretranslate_api_key'))
       ->set('llm_api_key',            $form_state->getValue('llm_api_key'))
+      ->set('pexels_api_key',         $form_state->getValue('pexels_api_key'))
       ->save();
 
     parent::submitForm($form, $form_state);

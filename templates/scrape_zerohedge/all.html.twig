@@ -5,9 +5,9 @@
   {% for item in contents %}
     <li>
       <b>{{ item.title }}</b></br />
-      <b>subtitle:</b> {{ item.subtitle }}<br />
-      <b>summary:</b> {{ item.summary }}<br />
-      <b>link:</b> {{ item.link }}<br />
+      {# <b>subtitle:</b> {{ item.subtitle }}<br /> #}
+      {{ item.summary }}<br />
+      {{ item.link }}<br />
       <a href="/scrape/zerohedge/one?zhPath={{ item.link }}">Process</a>
     </li>
   {% endfor %}
