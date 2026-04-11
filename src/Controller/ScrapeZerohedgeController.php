@@ -4,6 +4,7 @@ namespace Drupal\ish_drupal_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,8 +54,9 @@ class ScrapeZerohedgeController extends ControllerBase {
     $imageUrl = \Drupal::service('ish_drupal_module.pexels')->imageUrlFromPrompt($contents['title']);
     $client = \Drupal::httpClient();
     $response = $client->get($imageUrl);
+    \Drupal::messenger()->addMessage($imageUrl);
     $imageData = $response->getBody()->getContents();
-    $file = file_save_data( $imageData, 'public://'. time() . '.jpg', FILE_EXISTS_RENAME );
+    $file = file_save_data( $imageData, 'public://'. time() . '.jpg', FileSystemInterface::EXISTS_RENAME );
 
     $node_manager = \Drupal::entityTypeManager()->getStorage('node');
     $new_item = $node_manager->create([

@@ -1,10 +1,15 @@
 
+
 services:
   ish_drupal_module.pexels:
     class: Drupal\ish_drupal_module\Service\Pexels
     arguments: ['@http_client']
+
+  ish_drupal_module.tmp:
+    class: Drupal\ish_drupal_module\Service\Tmp
+    arguments: []
+
   ish_drupal_module.zerohedge_scraper:
     class: Drupal\ish_drupal_module\Service\ZerohedgeScraper
     arguments: ['@http_client']
-
 
