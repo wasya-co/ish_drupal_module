@@ -5,6 +5,12 @@ services:
     class: Drupal\ish_drupal_module\Service\Pexels
     arguments: ['@http_client']
 
+  ish_drupal_module.rt_scraper:
+    class: Drupal\ish_drupal_module\Service\RtScraper
+    arguments: ['@http_client']
+
+
+
   ish_drupal_module.tmp:
     class: Drupal\ish_drupal_module\Service\Tmp
     arguments: []

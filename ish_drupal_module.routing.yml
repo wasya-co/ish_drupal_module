@@ -145,6 +145,23 @@ ish_drupal_module.scene3d_touch:
       node:
         type: entity:node
 
+
+ish_drupal_module.scrape_rt_all:
+  path: '/scrape/rt/all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::all'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.scrape_rt_one:
+  path: '/scrape/rt/one'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::one'
+  requirements:
+    _role: 'administrator'
+
+
 ish_drupal_module.scrape_zerohedge_all:
   path: '/scrape/zerohedge/all'
   defaults:
