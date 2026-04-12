@@ -36,17 +36,17 @@ class ScrapeZerohedgeController extends ControllerBase {
   public function one(Request $request) {
     // logg($request, 'request');
 
-    $uid = 138; // content-donor
+    $uid = 139; // zero-hedge
     // $user = User::load($uid);
 
-    $zhPath = $request->get('zhPath');
-    // logg($zhPath, 'zhPath');
+    $path = $request->get('path');
+    // logg($path, 'path');
 
-    preg_match('#^/([^/]+)/#', $zhPath, $matches);
+    preg_match('#^/([^/]+)/#', $path, $matches);
     $tag_slug = $matches[1];
     $tag = (new Taxonomy())->findOrCreateBySlug($tag_slug);
 
-    $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->one($zhPath);
+    $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->one($path);
     // logg($contents, '$contents');
 
     $tags_issue_ids = [ 304 ] ; // 2025q2-1ne
@@ -88,7 +88,7 @@ class ScrapeZerohedgeController extends ControllerBase {
     // $build = [
     //   '#theme' => 'scrape_zerohedge_one',
     //   '#contents' => $contents,
-    //   '#zhPath' => $zhPath,
+    //   '#path' => $path,
     // ];
     // return $build;
   }

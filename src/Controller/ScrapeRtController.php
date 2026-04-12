@@ -36,20 +36,19 @@ class ScrapeRtController extends ControllerBase {
   public function one(Request $request) {
     // logg($request, 'request');
 
-    $uid = 138; // content-donor
-    // $user = User::load($uid);
+    $uid = 253; // rt-news
 
-    $rtPath = $request->get('path');
-    // logg($rtPath, 'rtPath');
+    $path = $request->get('path');
+    // logg($path, 'path');
 
+    preg_match('#^/([^/]+)/#', $path, $matches);
+    $tag_slug = $matches[1];
+    $tag = (new Taxonomy())->findOrCreateBySlug($tag_slug);
 
-    $contents = \Drupal::service('ish_drupal_module.rt_scraper')->one($rtPath);
+    $contents = \Drupal::service('ish_drupal_module.rt_scraper')->one($path);
     // logg($contents, '$contents');
 
     $tags_issue_ids = [ 304 ] ; // 2025q2-1ne
-
-    $tag_slug = 'political';
-    $tag = (new Taxonomy())->findOrCreateBySlug($tag_slug);
 
     $imageUrl = \Drupal::service('ish_drupal_module.pexels')->imageUrlFromPrompt($contents['title']);
     $client = \Drupal::httpClient();
