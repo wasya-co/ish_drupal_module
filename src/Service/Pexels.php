@@ -19,7 +19,7 @@ class Pexels {
   /**
    * getImageFromPrompt
   **/
-  public function imageUrlFromPrompt(string $prompt, string $size = 'small') {
+  public function imageUrlFromPrompt(string $prompt, string $size = 'large') {
     $url = 'https://api.pexels.com/v1/search?query=' . urlencode($prompt) . '&per_page=1';
 
     try {

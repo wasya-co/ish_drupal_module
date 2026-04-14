@@ -82,29 +82,28 @@ class RtScraper {
 
 
     $crawler
-      ->filter("article[class*='NewArticle_teaser__']")
+      ->filter(".main-promobox .main-promobox__item")
       ->each(function (Crawler $item) use (&$headlines) {
-        if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
-          return;
-        }
-        if ($item->filter("div[class*='PremiumBadge_ns__']")->count() > 0) {
-          return;
-        }
-        // $itemHtml = $item->getNode(0)->ownerDocument->saveHTML($item->getNode(0));
-        // logg($itemHtml, 'itemHtml');
 
-        $titleNode = $item->filter('h2');
-        $linkNode  = $item->filter('h2 a');
-        $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
-        $summaryNode  = $item->filter('p');
-        $summaryText = implode("\n", $item->filter('p')->each(function ($node) {
-          return trim($node->text());
-        }));
+        // if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
+        //   return;
+        // }
+        // if ($item->filter("div[class*='PremiumBadge_ns__']")->count() > 0) {
+        //   return;
+        // }
+
+        $titleNode = $item->filter('.main-promobox__link');
+        $linkNode  = $item->filter('.main-promobox__heading');
+        // $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
+        // $summaryNode  = $item->filter('p');
+        // $summaryText = implode("\n", $item->filter('p')->each(function ($node) {
+        //   return trim($node->text());
+        // }));
         $headlines[] = [
           'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
           'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
-          'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
-          'summary'  => $summaryText,
+          // 'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
+          // 'summary'  => $summaryText,
         ];
       });
 
