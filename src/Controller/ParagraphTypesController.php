@@ -44,6 +44,11 @@ class ParagraphTypesController extends ControllerBase {
     }
 
     $build = [
+      '#attached' => [
+        'library' => [
+          'ish_drupal_module/main',
+        ],
+      ],
       '#type' => 'table',
       '#header' => [
         $this->t('Icon'),
