@@ -24,7 +24,7 @@ class ParagraphTypesController extends ControllerBase {
       $icon_cell = $icon_url
         ? [
           'data' => [
-            '#markup' => '<img src="' . Html::escape($icon_url) . '" alt="" style="border: 1px solid gray; max-width: 400px; max-height: 400px;" loading="lazy" />',
+            '#markup' => '<img class="bordered" src="' . Html::escape($icon_url) . '" alt="" loading="lazy" style="border: 1px solid #000;" />',
           ],
         ]
         : ['data' => ['#markup' => '—']];
