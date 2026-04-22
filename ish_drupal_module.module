@@ -138,14 +138,6 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
-    'paragraphs_list' => [
-      'variables' => [
-        'items' => NULL,
-      ],
-      'path' => $path . '/templates/paragraphs',
-      'template' => 'list',
-    ],
-
     'scrape_zerohedge_all' => [
       'render element' => 'children',
       'template' => 'all',
