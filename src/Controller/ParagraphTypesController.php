@@ -49,6 +49,11 @@ class ParagraphTypesController extends ControllerBase {
           'ish_drupal_module/main',
         ],
       ],
+      '#attributes' => [
+        'class' => [
+          'ish-paragraphs-list',
+        ],
+      ],
       '#type' => 'table',
       '#header' => [
         $this->t('Icon'),

@@ -2,3 +2,22 @@
 img.bordered {
   border: 1px solid black;
 }
+
+table.ish-paragraphs-list {
+  /* border-collapse: separate;
+  border-spacing: 0; */
+
+  thead th {
+    background: #ccc !important;
+    position: sticky;
+    top: 50px;
+    z-index: 2;
+    /* Match admin background so body rows don’t show through while scrolling */
+    background-color: var(--color-bg, #fff);
+    box-shadow: 0 1px 0 0 var(--color-border, #ccc);
+  }
+
+  thead th:first-child {
+    /* background-color: inherit; if you customize columns */
+  }
+}
