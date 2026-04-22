@@ -18,8 +18,6 @@ class ParagraphTypesController extends ControllerBase {
 
     $rows = [];
 
-    var_dump( $category );
-
     /** @var \Drupal\paragraphs\Entity\ParagraphsType $type */
     foreach ($types as $type) {
 
@@ -86,12 +84,25 @@ class ParagraphTypesController extends ControllerBase {
         });
 
         $items = [];
-        foreach ($categories as $category) {
-          $items[] = Link::fromTextAndUrl(
-            $category->label(),
-            Url::fromUserInput('/admin/paragraphs/' . rawurlencode($category->id()))
+        foreach ($categories as $paragraph_category) {
+          $item = Link::fromTextAndUrl(
+            $paragraph_category->label(),
+            Url::fromUserInput('/admin/paragraphs/' . rawurlencode($paragraph_category->id()))
           )->toRenderable();
+
+          if ($category && $paragraph_category->id() === $category) {
+            $item['#wrapper_attributes'] = [
+              'style' => 'background: lightblue;',
+            ];
+          }
+
+          $items[] = $item;
         }
+
+        $build['all_paragraphs'] = Link::fromTextAndUrl(
+          $this->t('all paragraphs'),
+          Url::fromUserInput('/admin/paragraphs')
+        )->toRenderable();
 
         $build['categories'] = [
           '#theme' => 'item_list',
