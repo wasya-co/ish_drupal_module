@@ -6,7 +6,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class ParagraphTypesController extends ControllerBase {
 
@@ -86,20 +85,12 @@ class ParagraphTypesController extends ControllerBase {
           return strnatcasecmp($a->label(), $b->label());
         });
 
-        $link_route = $this->paragraphTypesByCategoryRouteExists();
         $items = [];
         foreach ($categories as $category) {
-          if ($link_route) {
-            $items[] = Link::fromTextAndUrl(
-              $category->label(),
-              Url::fromRoute('ish_drupal_module.paragraph_types_by_category', [
-                'paragraphs_category' => $category->id(),
-              ])
-            )->toRenderable();
-          }
-          else {
-            $items[] = ['#markup' => Html::escape($category->label())];
-          }
+          $items[] = Link::fromTextAndUrl(
+            $category->label(),
+            Url::fromUserInput('/admin/paragraphs/' . rawurlencode($category->id()))
+          )->toRenderable();
         }
 
         $build['categories'] = [
@@ -132,22 +123,6 @@ class ParagraphTypesController extends ControllerBase {
     ];
 
     return $build;
-  }
-
-  /**
-   * Whether the dynamic per-category paragraph types route is registered.
-   *
-   * Avoids $this->container: ControllerBase may run with a null container.
-   */
-  private function paragraphTypesByCategoryRouteExists(): bool {
-    try {
-      \Drupal::service('router.route_provider')
-        ->getRouteByName('ish_drupal_module.paragraph_types_by_category');
-      return TRUE;
-    }
-    catch (RouteNotFoundException $e) {
-      return FALSE;
-    }
   }
 
 }
