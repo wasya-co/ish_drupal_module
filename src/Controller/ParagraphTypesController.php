@@ -13,14 +13,25 @@ class ParagraphTypesController extends ControllerBase {
   /**
    * Lists Paragraphs types at /admin/paragraphs (core table renderer).
    */
-  public function index() {
+  public function index($category = NULL) {
     $storage = $this->entityTypeManager()->getStorage('paragraphs_type');
     $types = $storage->loadMultiple();
 
     $rows = [];
 
+    var_dump( $category );
+
     /** @var \Drupal\paragraphs\Entity\ParagraphsType $type */
     foreach ($types as $type) {
+
+      if ($category) {
+        $categories = $type->getThirdPartySetting('paragraphs_ee', 'paragraphs_categories', []);
+        if (!isset($categories[$category])) {
+          continue;
+        }
+      }
+
+
       $icon_url = $type->getIconUrl();
       $icon_cell = $icon_url
         ? [
