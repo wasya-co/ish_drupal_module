@@ -1,0 +1,54 @@
+
+<style>
+.paragraph-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.paragraph-type-card {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.paragraph-type-icon img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.paragraph-type-label {
+  font-weight: 600;
+}
+</style>
+
+<div class="paragraph-type-grid">
+  {% for item in items %}
+    <div class="paragraph-type-card">
+
+      {% if item.icon %}
+        <div class="paragraph-type-icon">
+          <img src="{{ item.icon }}" alt="{{ item.label }}" />
+        </div>
+      {% endif %}
+
+      <div class="paragraph-type-label">
+        {{ item.label }}
+      </div>
+
+      {% if item.description %}
+        <div class="paragraph-type-description">
+          {{ item.description }}
+        </div>
+      {% endif %}
+
+      <div class="paragraph-type-id">
+        {{ item.id }}
+      </div>
+
+    </div>
+  {% endfor %}
+</div>

@@ -82,6 +82,13 @@ ish_drupal_module.my_feed:
   requirements:
     _permission: 'access content'
 
+ish_drupal_module.paragraph_types:
+  path: '/admin/paragraphs'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
 
 ish_drupal_module.settings:
   path: '/admin/config/ish_drupal_module/settings'
