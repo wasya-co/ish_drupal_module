@@ -6,6 +6,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class ParagraphTypesController extends ControllerBase {
 
@@ -43,18 +44,71 @@ class ParagraphTypesController extends ControllerBase {
       ];
     }
 
+    $entity_type_manager = $this->entityTypeManager();
+    $list_cache_tags = $entity_type_manager
+      ->getDefinition('paragraphs_type')
+      ->getListCacheTags();
+
     $build = [
       '#attached' => [
         'library' => [
           'ish_drupal_module/main',
         ],
       ],
+      '#cache' => [
+        'tags' => $list_cache_tags,
+      ],
+    ];
+
+    if ($entity_type_manager->hasDefinition('paragraphs_category')) {
+      $list_cache_tags = array_merge(
+        $list_cache_tags,
+        $entity_type_manager->getDefinition('paragraphs_category')->getListCacheTags()
+      );
+      $build['#cache']['tags'] = array_values(array_unique($list_cache_tags));
+
+      $categories = $entity_type_manager
+        ->getStorage('paragraphs_category')
+        ->loadMultiple();
+      if ($categories !== []) {
+        usort($categories, static function ($a, $b) {
+          return strnatcasecmp($a->label(), $b->label());
+        });
+
+        $link_route = $this->paragraphTypesByCategoryRouteExists();
+        $items = [];
+        foreach ($categories as $category) {
+          if ($link_route) {
+            $items[] = Link::fromTextAndUrl(
+              $category->label(),
+              Url::fromRoute('ish_drupal_module.paragraph_types_by_category', [
+                'paragraphs_category' => $category->id(),
+              ])
+            )->toRenderable();
+          }
+          else {
+            $items[] = ['#markup' => Html::escape($category->label())];
+          }
+        }
+
+        $build['categories'] = [
+          '#theme' => 'item_list',
+          '#list_type' => 'ul',
+          '#items' => $items,
+          '#attributes' => [
+            'class' => ['ish-paragraphs-categories'],
+          ],
+        ];
+      }
+    }
+
+    $build['table'] = [
+      '#type' => 'table',
       '#attributes' => [
         'class' => [
           'ish-paragraphs-list',
         ],
       ],
-      '#type' => 'table',
       '#header' => [
         $this->t('Icon'),
         $this->t('Machine name'),
@@ -66,11 +120,23 @@ class ParagraphTypesController extends ControllerBase {
       '#empty' => $this->t('No paragraph types found.'),
     ];
 
-    $build['#cache']['tags'] = $this->entityTypeManager()
-      ->getDefinition('paragraphs_type')
-      ->getListCacheTags();
-
     return $build;
+  }
+
+  /**
+   * Whether the dynamic per-category paragraph types route is registered.
+   *
+   * Avoids $this->container: ControllerBase may run with a null container.
+   */
+  private function paragraphTypesByCategoryRouteExists(): bool {
+    try {
+      \Drupal::service('router.route_provider')
+        ->getRouteByName('ish_drupal_module.paragraph_types_by_category');
+      return TRUE;
+    }
+    catch (RouteNotFoundException $e) {
+      return FALSE;
+    }
   }
 
 }
