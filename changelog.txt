@@ -8,3 +8,5 @@
 
 1.0.0 :: 2026-01-09 :: compatibility with drupal 10
                        removed bjjc from here - it will be separate
+1.1.0 :: 2026-04-21 :: better list of paragraph types at /admin/paragraphs
+
