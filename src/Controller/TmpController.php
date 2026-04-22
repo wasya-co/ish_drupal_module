@@ -36,6 +36,7 @@ class TmpController extends ControllerBase {
       ->condition('type', $youtube_channel)
       ->exists('field_tags_issue')
       ->condition('field_tags_issue', NULL, 'IS NOT NULL')
+      ->accessCheck(TRUE)
       ->condition('status', 1); // is published
     $nids = $query->execute();
     $nodes = Node::loadMultiple($nids);

@@ -64,7 +64,7 @@ class LocationsController extends ControllerBase {
     // @TODO: get locations that I subscribed to
 
     $nodes = \Drupal::entityTypeManager()->getStorage('node');
-    $nodes_query  = \Drupal::entityQuery('node');
+    $nodes_query  = \Drupal::entityQuery('node')->accessCheck(TRUE);
 
     $my_locations = $nodes_query->condition('type', 'location');
     $my_locations->condition('field_users', $cuId);

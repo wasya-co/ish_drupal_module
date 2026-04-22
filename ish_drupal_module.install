@@ -49,6 +49,7 @@ function ish_drupal_module_update_9001() {
 function ish_drupal_module_update_9002() {
   $nids = \Drupal::entityQuery('node')
     ->condition('type', 'article')
+    ->accessCheck(FALSE)
     ->execute();
 
   $nodes = Node::loadMultiple($nids);
@@ -71,6 +72,7 @@ function ish_drupal_module_update_9002() {
 function ish_drupal_module_update_9003() {
   $nids = \Drupal::entityQuery('node')
     ->condition('type', 'youtube_channel')
+    ->accessCheck(FALSE)
     ->execute();
 
   foreach ($nids as $nid) {

@@ -20,7 +20,9 @@ class BjjcHelper {
       foreach( $this_node->field_tags2 as $k => $v ) {
         array_push( $tags, $v->target_id );
       }
-      $nids = \Drupal::entityQuery('node')->condition('field_tags2', $tags, 'in')->execute();
+      $nids = \Drupal::entityQuery('node')->condition('field_tags2', $tags, 'in')
+        ->accessCheck(TRUE)
+        ->execute();
       if (($key = array_search($build['#node']->nid[0]->value, $nids)) !== false) { ## https://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
         unset($nids[$key]);
       }

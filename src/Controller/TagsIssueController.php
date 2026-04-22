@@ -31,7 +31,8 @@ class TagsIssueController extends ControllerBase {
     $query = \Drupal::entityQuery('taxonomy_term')
       ->condition('vid', $vocab)
       ->condition('name', $slug)
-      ->range(0, 1); // get only 1 term
+      ->range(0, 1) // get only 1 term
+      ->accessCheck(TRUE);
 
     $parent_tid = $query->execute();
 
@@ -41,6 +42,7 @@ class TagsIssueController extends ControllerBase {
       $child_tids = \Drupal::entityQuery('taxonomy_term')
         ->condition('vid', $vocab)
         ->condition('parent.target_id', $parent_tid)
+        ->accessCheck(TRUE)
         ->execute();
       $tags = \Drupal\taxonomy\Entity\Term::loadMultiple($child_tids);
     } else {

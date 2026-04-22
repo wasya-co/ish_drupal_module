@@ -25,6 +25,7 @@ class PageYoutube {
       ->condition('type', 'youtube_channel')
       ->exists('field_tags_issue')
       ->condition('field_tags_issue', NULL, 'IS NOT NULL')
+      ->accessCheck(FALSE)
       ->condition('status', 1); // is published
     $nids = $query->execute();
 

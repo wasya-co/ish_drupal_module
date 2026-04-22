@@ -41,6 +41,7 @@ class MainHelper {
             ->condition('field_tags_contrib.target_id', $tag_ids, 'IN')
             ->condition('langcode', $langcode)
             ->sort('created', 'DESC')
+            ->accessCheck(TRUE)
             ->range(0, 3);
 
           $nids = $query->execute();

@@ -13,6 +13,7 @@ class WorklogsController extends ControllerBase {
       ->condition('type', 'worklog')
       ->condition('field_datestr', $year)
       ->range(0, 1)
+      ->accessCheck(TRUE)
       ->execute();
 
     if (!empty($nids)) {

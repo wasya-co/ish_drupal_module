@@ -31,6 +31,7 @@ class YoutubeChannel {
 
     $uids = \Drupal::entityQuery('user')
       ->condition('field_channel_id', $this->channel_id)
+      ->accessCheck(FALSE)
       ->execute();
     if (empty($uids)) {
       $length = 16;
