@@ -4,7 +4,7 @@ namespace Drupal\ish_drupal_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,7 +55,11 @@ class ScrapeRtController extends ControllerBase {
     $response = $client->get($imageUrl);
     \Drupal::messenger()->addMessage($imageUrl);
     $imageData = $response->getBody()->getContents();
-    $file = file_save_data( $imageData, 'public://'. time() . '.jpg', FileSystemInterface::EXISTS_RENAME );
+    $file = \Drupal::service('file.repository')->writeData(
+      $imageData,
+      'public://' . time() . '.jpg',
+      FileExists::Rename
+    );
 
     $node_manager = \Drupal::entityTypeManager()->getStorage('node');
     $new_item = $node_manager->create([
