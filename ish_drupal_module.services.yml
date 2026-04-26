@@ -1,6 +1,10 @@
 
 
 services:
+  ish_drupal_module.modernity_scraper:
+    class: Drupal\ish_drupal_module\Service\ModernityScraper
+    arguments: ['@http_client']
+
   ish_drupal_module.pexels:
     class: Drupal\ish_drupal_module\Service\Pexels
     arguments: ['@http_client']
