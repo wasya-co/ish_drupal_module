@@ -2,26 +2,29 @@
 
 namespace Drupal\ish_drupal_module\Service;
 
+use GuzzleHttp\ClientInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ModernityScraper {
 
-  protected $client;
+  protected ClientInterface $httpClient;
 
-  public function __construct(HttpClientInterface $client) {
-    $this->client = $client;
+  public function __construct(ClientInterface $http_client) {
+    $this->httpClient = $http_client;
   }
 
-  public function getPosts(): array {
-    $response = $this->client->request(
-      'GET',
-      'https://modernity.news/wp-json/wp/v2/posts'
-    );
+  public function all() {
+    $response = $this->httpClient->request('GET', 'https://modernity.news/wp-json/wp/v2/posts');
 
     if ($response->getStatusCode() !== 200) {
       return [];
     }
-    $posts = $response->toArray();
+    // var_dump( $response );
+
+    $posts = $response->getBody()->getContents();
+    $posts = json_decode($posts, TRUE);
+    // var_dump( $posts );
+
     $contents = [];
 
     foreach ($posts as $post) {
