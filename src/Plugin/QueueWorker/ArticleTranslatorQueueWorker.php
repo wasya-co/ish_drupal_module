@@ -20,20 +20,19 @@ use Drupal\ish_drupal_module\Models\PageYoutube;
 use Drupal\ish_drupal_module\Models\YoutubeVideo;
 
 /**
- * Processes items in YoutubeQueue. processes within 120 seconds.
- * 2026-02-08 :: used via the name of the queue.
+ * Translate an article.
  *
  * @QueueWorker(
- *   id = "youtube_queue",
- *   title = @Translation("Youtube Queue Worker"),
- *   cron = {"time" = 120}
+ *   id = "translate_queue",
+ *   title = @Translation("Article Translate Queue Worker"),
+ *   cron = {"time" = 420}
  * )
- */
-class YoutubeQueueWorker extends QueueWorkerBase {
+**/
+class ArticleTranslatorQueueWorker extends QueueWorkerBase {
 
   /**
    * {@inheritdoc}
-   */
+  **/
   public function processItem($data) {
     $config = \Drupal::config('ish_drupal_module.settings');
     $api_key = $config->get('google_api_youtube_key');

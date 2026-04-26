@@ -11,17 +11,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Drupal\ish_drupal_module\Models\Taxonomy;
 
-class ScrapeZerohedgeController extends ControllerBase {
+class ScrapeRtController extends ControllerBase {
 
   /**
    * all
   **/
   public function all(Request $request) {
-    $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->all();
+    $contents = \Drupal::service('ish_drupal_module.rt_scraper')->all();
     // logg($contents, '$contents');
 
     $build = [
-      '#theme' => 'scrape_zerohedge_all',
+      '#theme' => 'scrape_rt_all',
       '#contents' => $contents,
       '#cache' => [
         'max-age' => 0, // no caching
@@ -36,8 +36,7 @@ class ScrapeZerohedgeController extends ControllerBase {
   public function one(Request $request) {
     // logg($request, 'request');
 
-    $uid = 139; // zero-hedge
-    // $user = User::load($uid);
+    $uid = 253; // rt-news
 
     $path = $request->get('path');
     // logg($path, 'path');
@@ -46,7 +45,7 @@ class ScrapeZerohedgeController extends ControllerBase {
     $tag_slug = $matches[1];
     $tag = (new Taxonomy())->findOrCreateBySlug($tag_slug);
 
-    $contents = \Drupal::service('ish_drupal_module.zerohedge_scraper')->one($path);
+    $contents = \Drupal::service('ish_drupal_module.rt_scraper')->one($path);
     // logg($contents, '$contents');
 
     $tags_issue_ids = [ 304 ] ; // 2025q2-1ne
@@ -78,19 +77,11 @@ class ScrapeZerohedgeController extends ControllerBase {
       'type' => 'article',
     ]);
     $new_item->save();
-    \Drupal::messenger()->addMessage('Item From zerohedge has been saved.');
+    \Drupal::messenger()->addMessage('Item From rt has been saved.');
 
     $url = Url::fromRoute('entity.node.canonical', ['node' => $new_item->id()]);
     return new RedirectResponse($url->toString());
 
-    // logg($contents, '$contents');
-
-    // $build = [
-    //   '#theme' => 'scrape_zerohedge_one',
-    //   '#contents' => $contents,
-    //   '#path' => $path,
-    // ];
-    // return $build;
   }
 
 }

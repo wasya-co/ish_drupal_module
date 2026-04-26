@@ -1,5 +1,5 @@
 
-<h1>ZH all</h1>
+<h1>RT all</h1>
 
 <ul>
   {% for item in contents %}
@@ -8,7 +8,7 @@
       {# <b>subtitle:</b> {{ item.subtitle }}<br /> #}
       {{ item.summary }}<br />
       {{ item.link }}<br />
-      <a href="/scrape/zerohedge/one?path={{ item.link }}">Process</a>
+      <a href="/scrape/rt/one?path={{ item.link }}">Process</a>
     </li>
   {% endfor %}
 </ul>

@@ -6,3 +6,9 @@ ish_drupal_module.settings:
     google_api_youtube_key:
       type: string
       label: 'Google Api Youtube Key'
+    libretranslate_api_key:
+      type: string
+      label: 'libretranslate_api_key'
+    llm_api_key:
+      type: string
+      label: 'llm_api_key'

@@ -1,0 +1,70 @@
+
+<div class='maxwidth'>
+  <h2 class='header center text-center mt-5 mb-3' >Articles Index</h2>
+  {% if items is empty %}
+    <p>No articles are missing a Spanish translation.</p>
+  {% else %}
+
+    {{ pager }}
+    <table class='bordered' >
+      <thead>
+        <tr>
+          <th>NID</th>
+          <th>Title</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for article in items %}
+          <tr>
+            <td>{{ article.nid }}</td>
+            <td>{{ article.title }}</td>
+            <td style="width: 180px;" >
+              <a href="{{ path('entity.node.canonical', {'node': article.nid}) }}">View</a><br />
+
+              {% if 'es' in article.trs %}
+                es-exists<br />
+              {% else %}
+                <form method="post" action="{{ path('ish_drupal_module.article_translate', {
+                  'id': article.nid,
+                  'langcode': 'es',
+                }) }}">
+                  {# <input type="hidden" name="csrf_token" value="{{ csrf_token('mymodule.my_post_route') }}"> #}
+                  <button type="submit" class="button button--primary">[+ai to: es]</button>
+                </form>
+              {% endif %}
+
+              {% if 'pt-br' in article.trs %}
+                pt-br-exists<br />
+              {% else %}
+                <form method="post" action="{{ path('ish_drupal_module.article_translate', {
+                  'id': article.nid,
+                  'langcode': 'pt-br',
+                }) }}">
+                  {# <input type="hidden" name="csrf_token" value="{{ csrf_token('mymodule.my_post_route') }}"> #}
+                  <button type="submit" class="button button--primary">[+ai to: pt-br]</button>
+                </form>
+              {% endif %}
+
+
+              {% if 'ru' in article.trs %}
+                ru-exists<br />
+              {% else %}
+                <form method="post" action="{{ path('ish_drupal_module.article_translate', {
+                  'id': article.nid,
+                  'langcode': 'ru',
+                }) }}">
+                  {# <input type="hidden" name="csrf_token" value="{{ csrf_token('mymodule.my_post_route') }}"> #}
+                  <button type="submit" class="button button--primary">[+ai to: ru]</button>
+                </form>
+              {% endif %}
+
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ pager }}
+
+  {% endif %}
+</div>

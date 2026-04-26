@@ -22,7 +22,7 @@ class YoutubeChannelCtrl {
   }
 
   /*
-   * @TODO: NOT USED.
+   * _TODO: NOT USED.
   **/
   public function check() {
     $user = \Drupal\user\Entity\User::load( 138 ); // content-donor

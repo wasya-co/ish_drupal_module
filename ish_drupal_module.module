@@ -13,7 +13,9 @@ use Drupal\ish_drupal_module\Helpers\BjjcHelper;
 use Drupal\ish_drupal_module\Helpers\MainHelper;
 use Drupal\ish_drupal_module\Controllers\YoutubeChannelCtrl;
 use Drupal\ish_drupal_module\Models\PageYoutube;
+// use Drupal\ish_drupal_module\Models\ArticleTranslator;
 use Drupal\ish_drupal_module\Models\YoutubeVideo;
+
 
 function logg($object, $label=null) {
   print($label . ":");
@@ -37,6 +39,9 @@ function ish_drupal_module_cron() {
   // for piousbox_com as a magazine
   $service = new PageYoutube();
   $service->run_cron();
+
+  // $service = new ArticleTranslator();
+  // $service->run_cron();
 }
 
 /*
@@ -77,12 +82,32 @@ function ish_drupal_module_entity_type_build(array &$entity_types) {
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
   return [
+    'article_translate' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'translate',
+      'variables' => [
+        'item' => NULL,
+      ],
+    ],
+    'articles_index' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'index',
+      'variables' => [
+        'items' => [],
+        'pager' => NULL,
+      ],
+    ],
+
+
     'error_404' => [
       'render element' => 'children',
       'template' => 'error_404',
       'path' => $path . '/templates',
       'variables' => [],
     ],
+
     'ish_dance_instructor_dashboard' => [
       'template' => 'dance-instructor-dashboard',
       'path' => $path . '/templates/users',
@@ -95,6 +120,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
       ],
     ],
+
     'ish_users_dashboard' => [
       'template' => 'dashboard',
       'path' => $path . '/templates/users',
@@ -109,6 +135,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
       ],
     ],
+
     'ish_locations_show' => [
       // 'render element' => 'requirements',
       'template' => 'show',
@@ -138,6 +165,23 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
+    'scene3d_touch' => [
+      'render element' => 'children',
+      'template' => 'touch',
+      'path' => $path . '/templates/scene3d',
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+
+    'scrape_rt_all' => [
+      'render element' => 'children',
+      'template' => 'all',
+      'path' => $path . '/templates/scrape_rt',
+      'variables' => [
+        'contents' => 'no contents',
+      ],
+    ],
     'scrape_zerohedge_all' => [
       'render element' => 'children',
       'template' => 'all',
@@ -151,6 +195,8 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'template' => 'one',
       'path' => $path . '/templates/scrape_zerohedge',
       'variables' => [
+        'contents' => 'no contents',
+        'zhPath' => 'no zhPath',
       ],
     ],
 

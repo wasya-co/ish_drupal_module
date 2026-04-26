@@ -1,29 +1,41 @@
 
 
-## This will be a view instead. _vp_ 2025-12-17
-# ish_drupal_module.aphorisms_index:
-#   path: "/aphorisms"
-#   defaults:
-#     # _form: '\Drupal\ish_drupal_module\Form\AphorismsForm'
-#     _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::index'
-#   requirements:
-#     _permission: 'access content'
-#   options:
-#     parameters:
-
 ish_drupal_module.aphorisms_new:
   path: "/aphorisms/new"
   defaults:
     _form: '\Drupal\ish_drupal_module\Form\AphorismsNewForm'
-
     # _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::new'
-
     # _entity_form: node.edit
     # _title: 'New Aphorism'
   requirements:
     _role: 'content_contributor, authenticated_user'
   options:
     parameters:
+
+
+ish_drupal_module.article_generate:
+  path: '/articles/generate'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\ArticleGenerateForm'
+    _title: 'Generate an Article'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.article_translate:
+  path: '/articles/{id}/translate-to/{langcode}'
+  defaults:
+    _title: 'Translate this article'
+    _controller: '\Drupal\ish_drupal_module\Controller\ArticlesController::translateOne'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.articles_missing_translation:
+  path: '/articles/missing-translation'
+  defaults:
+    _title: 'Articles Missing Translation'
+    _controller: '\Drupal\ish_drupal_module\Controller\ArticlesController::missingTranslation'
+  requirements:
+    _role: 'administrator'
 
 
 ish_drupal_module.contrbuted_post_form:
@@ -136,6 +148,34 @@ ish_drupal_module.hiring_manager_dashboard:
     _controller: '\Drupal\ish_drupal_module\Controller\UsersController::hiring_manager_dashboard'
   requirements:
     _role: 'hiring_manager'
+
+ish_drupal_module.scene3d_touch:
+  path: '/node/{node}/touch'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\Scene3dController::touch'
+  requirements:
+    _entity_access: 'node.view'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+
+ish_drupal_module.scrape_rt_all:
+  path: '/scrape/rt/all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::all'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.scrape_rt_one:
+  path: '/scrape/rt/one'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::one'
+  requirements:
+    _role: 'administrator'
+
 
 ish_drupal_module.scrape_zerohedge_all:
   path: '/scrape/zerohedge/all'

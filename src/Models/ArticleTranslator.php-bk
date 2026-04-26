@@ -12,11 +12,35 @@ use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
-class PageYoutube {
+class ArticleTranslator {
 
   public static function run_cron() {
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'article')
+      ->condition('status', 1)
+      ->sort('created', 'ASC');
 
-    $queue = \Drupal::queue('youtube_queue');
+    $missing_es = [];
+    $nids = $query->execute();
+    if (!empty($nids)) {
+      $nodes = $storage->loadMultiple($nids);
+      foreach ($nodes as $node) {
+        if (!$node->hasTranslation('es')) {
+          $missing_es[] = $node;
+        }
+        if (count($missing_es) > 10) {
+          break;
+        }
+
+        // $missing_es[] = [
+        //   'nid' => $node->id(),
+        //   'title' => $node->label(),
+        //   'trs' => array_keys($node->getTranslationLanguages()),
+        // ];
+      }
+    }
+
+    $queue = \Drupal::queue('translate_queue');
 
     // $user = \Drupal\user\Entity\User::load( 138 ); // content-donor on piousbox_com
 
@@ -25,12 +49,11 @@ class PageYoutube {
       ->condition('type', 'youtube_channel')
       ->exists('field_tags_issue')
       ->condition('field_tags_issue', NULL, 'IS NOT NULL')
-      ->accessCheck(FALSE)
       ->condition('status', 1); // is published
     $nids = $query->execute();
 
     foreach ($nids as $nid) {
-      $queue->createItem([
+      $youtube_queue->createItem([
         'nid' => $nid,
       ]);
     }

@@ -5,7 +5,7 @@ namespace Drupal\ish_drupal_module\Service;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
-class ZerohedgeScraper {
+class RtScraper {
 
   protected ClientInterface $httpClient;
 
@@ -13,8 +13,11 @@ class ZerohedgeScraper {
     $this->httpClient = $http_client;
   }
 
+  /**
+   * all(), not implemented
+  **/
   public function all() {
-    $response = $this->httpClient->request('GET', 'https://www.zerohedge.com/', [
+    $response = $this->httpClient->request('GET', 'https://rt.com/', [
       'timeout' => 10,
       'headers' => [
         'User-Agent' => 'Mozilla/5.0',
@@ -79,37 +82,39 @@ class ZerohedgeScraper {
 
 
     $crawler
-      ->filter("article[class*='NewArticle_teaser__']")
+      ->filter(".main-promobox .main-promobox__item")
       ->each(function (Crawler $item) use (&$headlines) {
-        if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
-          return;
-        }
-        if ($item->filter("div[class*='PremiumBadge_ns__']")->count() > 0) {
-          return;
-        }
-        // $itemHtml = $item->getNode(0)->ownerDocument->saveHTML($item->getNode(0));
-        // logg($itemHtml, 'itemHtml');
 
-        $titleNode = $item->filter('h2');
-        $linkNode  = $item->filter('h2 a');
-        $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
-        $summaryNode  = $item->filter('p');
-        $summaryText = implode("\n", $item->filter('p')->each(function ($node) {
-          return trim($node->text());
-        }));
+        // if ($item->filter("div[class*='PremiumBadge_premium__']")->count() > 0) {
+        //   return;
+        // }
+        // if ($item->filter("div[class*='PremiumBadge_ns__']")->count() > 0) {
+        //   return;
+        // }
+
+        $titleNode = $item->filter('.main-promobox__link');
+        $linkNode  = $item->filter('.main-promobox__heading');
+        // $subtitleNode = $item->filter("div[class*='Article_desktopLineClamp__']");
+        // $summaryNode  = $item->filter('p');
+        // $summaryText = implode("\n", $item->filter('p')->each(function ($node) {
+        //   return trim($node->text());
+        // }));
         $headlines[] = [
           'title'    => $titleNode->count() ? trim($titleNode->text()) : '',
           'link'     => $linkNode->count() ? $linkNode->attr('href') : '',
-          'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
-          'summary'  => $summaryText,
+          // 'subtitle' => $subtitleNode->count() ? trim($subtitleNode->text()) : '',
+          // 'summary'  => $summaryText,
         ];
       });
 
     return $headlines;
   }
 
-  public function one($zhPath) {
-    $response = $this->httpClient->request('GET', 'https://www.zerohedge.com' . $zhPath, [
+  /**
+   * one()
+  **/
+  public function one($rtPath) {
+    $response = $this->httpClient->request('GET', 'https://rt.com' . $rtPath, [
       'timeout' => 10,
       'headers' => [
         'User-Agent' => 'Mozilla/5.0',
@@ -124,14 +129,14 @@ class ZerohedgeScraper {
 
     $contents = [];
 
-    $titleNode = $crawler->filter("[class*='ArticleFull_header__'] h1");
-    if ($titleNode->count() === 0) {
-        $titleNode = $crawler->filter("[class*='ContributorArticleFull_header__'] h1");
-    }
+    $titleNode = $crawler->filter("h1.article__heading")->first();
     $contents['title'] = $titleNode->count() ? trim($titleNode->text()) : '';
     // logg($contents['title'], "title");
 
-    $bodyNode = $crawler->filter("[class*='NodeContent_body__']");
+    $contents['summary'] = $crawler->filter('.article__summary')->first()->text();
+    $contents['summary'] = $contents['summary'] ? trim($contents['summary']) : $contents['summary'];
+
+    $bodyNode = $crawler->filter(".article__text");
     if ($bodyNode->count() > 0) {
         $domNode = $bodyNode->getNode(0);
 
@@ -149,6 +154,16 @@ class ZerohedgeScraper {
           $k->parentNode->removeChild($k);
         }
 
+        $bodyNode->filter('.read-more')->each(function(Crawler $node) {
+          $domNode = $node->getNode(0);
+          $domNode->parentNode->removeChild($domNode);
+        });
+        $bodyNode->filter('.Read-more-text-only')->each(function(Crawler $node) {
+          $domNode = $node->getNode(0);
+          $domNode->parentNode->removeChild($domNode);
+        });
+
+
         // Get innerHTML
         $innerHtml = '';
         foreach ($domNode->childNodes as $child) {
@@ -159,7 +174,7 @@ class ZerohedgeScraper {
         // Get text with double newlines
         $contents['text'] = trim(preg_replace("/\n/", "\n\n", $bodyNode->text()));
 
-        $contents['summary'] = $crawler->filter('meta[name="twitter:description"]')->attr('content');
+
     } else {
         $contents['html']    = '';
         $contents['text']    = '';
