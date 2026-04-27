@@ -11,6 +11,7 @@ class CollapseExpandLayout extends LayoutDefault implements PluginFormInterface 
 
   public function build(array $regions) {
     $build = parent::build($regions);
+    $build['#attached']['library'][] = 'ish_drupal_module/collapse_expand';
 
     // Attach configuration (already available in Twig)
     $build['#settings'] = $this->getConfiguration();

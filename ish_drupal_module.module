@@ -44,6 +44,7 @@ function ish_drupal_module_cron() {
   // $service->run_cron();
 }
 
+
 /*
  * renders a different form_display for aphorisms (old, not tested)
 **/

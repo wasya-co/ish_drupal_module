@@ -1,9 +1,10 @@
 
 
-$(function () {
+const $ = jQuery
 
   $(".collapse-expand").each(function() {
     const thisId = $(this).attr('id')
+    console.log('thisId:', thisId)
     if (thisId) {
       const state = localStorage.getItem("collapse-expand#"+thisId)
       if (state === 'collapsed') {
@@ -29,5 +30,4 @@ $(function () {
 
   console.log('Loaded collapse-expand.js')
 
-}); // END
 

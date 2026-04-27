@@ -2,6 +2,10 @@ main:
   css:
     theme:
       css/main.css: {}
+
+collapse_expand:
   js:
-    theme:
-      js/collapse-expand.js: {}
+    js/collapse-expand.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
