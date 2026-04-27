@@ -1,0 +1,27 @@
+
+{{ dump(  ) }}
+<hr />
+{{ dump( content ) }}
+<hr />
+{{ dump( settings ) }}
+
+{%
+  set classes = [
+    'layout',
+    'layout--collapse-expand',
+    'collapse-expand',
+    settings.extra_classes,
+  ]
+%}
+
+
+{% if content %}
+<label>{{ settings.label }}</label>
+<div{{ attributes.addClass(classes) }}>
+
+  {% if content.main %}
+    {{ content.main }}
+  {% endif %}
+
+</div>
+{% endif %}

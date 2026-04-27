@@ -11,4 +11,4 @@
 1.1.0 :: 2026-04-21 :: better list of paragraph types at /admin/paragraphs
 1.1.1                  now I want per-category pages
 1.2.1                  merged 0.5.1, so now this is the latest.
-
+1.2.2                  adding layout collapse-expand

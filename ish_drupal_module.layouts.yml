@@ -1,0 +1,13 @@
+
+
+layout_collapse_expand:
+  label: 'layout_collapse_expand'
+  category: 'Columns: 1'
+  class: '\Drupal\ish_drupal_module\Layout\CollapseExpandLayout'
+  template: templates/layout/layout--collapse-expand
+  icon_map:
+    - [main]
+  regions:
+    main:
+      label: Main
+
