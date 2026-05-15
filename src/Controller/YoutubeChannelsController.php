@@ -26,6 +26,7 @@ class YoutubeChannelsController extends ControllerBase {
 
     $nid = $request->attributes->get('node');
     $youtube_channel = Node::load($nid);
+    logg($youtube_channel, '$youtube_channel');
 
     $tags_issue_ids = $youtube_channel->get('field_tags_issue')->getValue();
     $tags_issue_ids = array_column($tags_issue_ids, 'target_id');
@@ -33,6 +34,7 @@ class YoutubeChannelsController extends ControllerBase {
 
     $channel_id      = $youtube_channel->get('field_channel_id')->value;
     $include_streams = (bool) $youtube_channel->get('field_include_streams')->value;
+    logg($include_streams, '$include_streams');
     $n_videos = 10;
     $url = 'https://www.googleapis.com/youtube/v3/search?key='
       . $api_key
@@ -63,6 +65,7 @@ class YoutubeChannelsController extends ControllerBase {
           . '&part=liveStreamingDetails';
         $video_json = file_get_contents($video_url);
         $video_data = json_decode($video_json);
+        logg($video_data, '$video_data');
         if (!empty($video_data->items[0]->liveStreamingDetails)) {
           continue;
         }
