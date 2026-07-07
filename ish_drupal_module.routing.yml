@@ -119,8 +119,16 @@ ish_drupal_module.my_feed:
 
 ## *M*
 
+ish_drupal_module.mileswmathis_churn_all:
+  path: '/mileswmathis_com/churn-all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::churnAll'
+    _title: 'MilesWMathis churnAll'
+  requirements:
+    _permission: 'administer nodes'
+
 ish_drupal_module.mileswmathis_churn_one:
-  path: '/mileswmathis_com/{slug}'
+  path: '/mileswmathis_com/churn-one/{slug}'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::churnOne'
     _title: 'MilesWMathis churnOne'

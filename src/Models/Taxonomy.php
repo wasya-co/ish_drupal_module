@@ -12,7 +12,25 @@ use Drupal\user\Entity\User;
 **/
 class Taxonomy {
 
-  function findOrCreateBySlug($slug, $vocabulary = 'tagscontrib') {
+  public static function findOrCreateByName($name, $vocabulary = 'tagscontrib') {
+    $tids = \Drupal::entityQuery('taxonomy_term')
+      ->condition('vid', $vocabulary)
+      ->condition('name', $name)
+      ->accessCheck(FALSE)
+      ->execute();
+    if (!empty($tids)) {
+      return Term::load(reset($tids));
+    }
+    $term = Term::create([
+      'vid' => $vocabulary,
+      'name' => $name,
+    ]);
+    $term->save();
+    return $term;
+  }
+
+
+  public static function findOrCreateBySlug($slug, $vocabulary = 'tagscontrib') {
 
     $tids = \Drupal::entityQuery('taxonomy_term')
       ->condition('vid', $vocabulary)
@@ -33,5 +51,4 @@ class Taxonomy {
 
     return $term;
   }
-
 }
