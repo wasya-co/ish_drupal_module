@@ -1,4 +1,27 @@
 
+ish_drupal_module.paragraphs:
+  path: '/admin/paragraphs'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
+ish_drupal_module.paragraphs_category:
+  path: '/admin/paragraphs/{category}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
+
+
+ish_drupal_module.settings:
+  path: '/admin/config/ish_drupal_module/settings'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\SettingsForm'
+    _title: 'ish_drupal_module Settings'
+  requirements:
+    _permission: 'administer site configuration'
 
 ish_drupal_module.aphorisms_new:
   path: "/aphorisms/new"
@@ -94,30 +117,17 @@ ish_drupal_module.my_feed:
   requirements:
     _permission: 'access content'
 
-ish_drupal_module.paragraphs:
-  path: '/admin/paragraphs'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
-ish_drupal_module.paragraphs_category:
-  path: '/admin/paragraphs/{category}'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
+## *M*
 
-
-ish_drupal_module.settings:
-  path: '/admin/config/ish_drupal_module/settings'
+ish_drupal_module.mileswmathis_churn_one:
+  path: '/mileswmathis_com/{slug}'
   defaults:
-    _form: '\Drupal\ish_drupal_module\Form\SettingsForm'
-    _title: 'ish_drupal_module Settings'
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::churnOne'
+    _title: 'MilesWMathis churnOne'
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'administer nodes'
 
+## *T*
 
 ish_drupal_module.tags_index:
   path: '/tag'
