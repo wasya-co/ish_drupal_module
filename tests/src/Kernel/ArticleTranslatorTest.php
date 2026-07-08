@@ -9,17 +9,23 @@ use Drupal\node\Entity\NodeType;
 /**
  * @group ish_drupal_module
 
-    composer require --dev drupal/core-dev
+    composer require --dev drupal/core-dev:10.6.12 -W
+    composer require --dev symfony/phpunit-bridge:^7.3 ## drupal 10.6
+
     composer require --dev phpunit/phpunit
     composer require --dev behat/mink
-    composer require --dev symfony/phpunit-bridge
 
-    php ./vendor/bin/phpunit -c web/core/phpunit.xml.dist web/modules/contrib/ish_drupal_module/tests/src/Kernel/ArticleTranslatorTest.php
-    vendor/bin/phpunit   -c web/core/phpunit.xml.dist   web/modules/contrib/ish_drupal_module/tests/src/Kernel/SanityTest.php
+
+    ./vendor/bin/phpunit -c ./web/core/phpunit.xml.dist \
+      web/modules/contrib/ish_drupal_module/tests/src/Kernel/SanityTest.php
+
+    ./vendor/bin/phpunit -c ./web/core/phpunit.xml.dist \
+      web/modules/contrib/ish_drupal_module/tests/src/Kernel/ArticleTranslatorTest.php
+
 
  *
 **/
-class CollectLatestArticlesTest extends KernelTestBase {
+class ArticleTranslatorTest extends KernelTestBase {
 
   protected static $modules = [
     'system',

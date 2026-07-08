@@ -8,8 +8,8 @@ use Drupal\KernelTests\KernelTestBase;
  * @group ish_drupal_module
 
   vendor/bin/phpunit \
-    -c phpunit.xml \
-    web/modules/ish_drupal_module/tests/src/Kernel/SanityTest.php
+    -c web/core/phpunit.xml.dist \
+    web/modules/contrib/ish_drupal_module/tests/src/Kernel/SanityTest.php
 
   php ./vendor/bin/phpunit -c web/core/phpunit.xml.dist \
     web/modules/contrib/ish_drupal_module/tests/src/Kernel/ArticleTranslatorTest.php
