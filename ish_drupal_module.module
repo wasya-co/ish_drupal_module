@@ -9,11 +9,11 @@ use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+use Drupal\ish_drupal_module\Controllers\YoutubeChannelCtrl;
 use Drupal\ish_drupal_module\Helpers\BjjcHelper;
 use Drupal\ish_drupal_module\Helpers\MainHelper;
-use Drupal\ish_drupal_module\Controllers\YoutubeChannelCtrl;
+use Drupal\ish_drupal_module\Models\ArticleTranslator;
 use Drupal\ish_drupal_module\Models\PageYoutube;
-// use Drupal\ish_drupal_module\Models\ArticleTranslator;
 use Drupal\ish_drupal_module\Models\YoutubeVideo;
 
 
@@ -36,12 +36,11 @@ function puts($object, $label=null) {
 function ish_drupal_module_cron() {
   \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
 
-  // for piousbox_com as a magazine
   $service = new PageYoutube();
   $service->run_cron();
 
-  // $service = new ArticleTranslator();
-  // $service->run_cron();
+  $service = new ArticleTranslator();
+  $service->runCron();
 }
 
 

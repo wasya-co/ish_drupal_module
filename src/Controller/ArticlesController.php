@@ -55,6 +55,8 @@ class ArticlesController extends ControllerBase {
 
   /**
    * ai-translate one to spanish
+   * _OBSOLETE, I copy-pasted this into a model. _vp_ 2026-07-08
+   * _TODO      rewrite to use the model. _vp_ 2026-07-08
   **/
   public function translateOne($id, $langcode) {
     $config = \Drupal::config('ish_drupal_module.settings');

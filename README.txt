@@ -29,12 +29,23 @@
   var_dump($response);
 
 == Deploy ==
-  * push to wasya-co remote.
+  * tag, push to wasya-co remote:
+
+    git tag -a v1.2.3 -m "Release v1.2.3"
+    git push origin v1.2.3
+
+  * update version in composer.json
+
   * ssh into node, login to docker, run `composer update wasya-co/ish_drupal_module` or:
 
     composer update wasya-co/ish_drupal_module \
       --ignore-platform-req=ext-bcmath \
       --ignore-platform-req=ext-gd
 
+    composer update \
+      --ignore-platform-req=ext-bcmath \
+      --ignore-platform-req=ext-gd
+
+  * the container is currently piousbox_com, not app_*
   * clear cache
 

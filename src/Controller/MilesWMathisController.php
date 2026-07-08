@@ -23,15 +23,12 @@ class MilesWMathisController extends ControllerBase {
   ];
 
   public function churnAll() {
-
     $items = $this->slugs;
     // $items = array_slice($items, 0, 5);
-
     foreach ($items as $idx => $slug) {
       $article = \Drupal\ish_drupal_module\Models\MilesWMathis::churnOneSlug($slug);
       puts($idx, 'done $idx');
     }
-
     return new Response("Probably churned some/all.");
   }
 
