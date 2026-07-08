@@ -1,6 +1,7 @@
 
   ./vendor/drush/drush/drush cc router
 
+
 == Test ==
 
   export PATH="$PATH:/var/www/html/vendor/bin"
@@ -27,4 +28,13 @@
   echo('+++ $response');
   var_dump($response);
 
+== Deploy ==
+  * push to wasya-co remote.
+  * ssh into node, login to docker, run `composer update wasya-co/ish_drupal_module` or:
+
+    composer update wasya-co/ish_drupal_module \
+      --ignore-platform-req=ext-bcmath \
+      --ignore-platform-req=ext-gd
+
+  * clear cache
 
