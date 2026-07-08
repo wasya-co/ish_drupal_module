@@ -14,45 +14,25 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /*
  * Miles W Mathis Controller
+ *
 **/
 class MilesWMathisController extends ControllerBase {
 
+  protected array $slugs = [
+    "100","1666","2020D","2022","2025","250","2pac","37","40babies","4b","911again","911revisit","AE2","Cpanic","EIC","MMtest","MMuse","NRO2","PT42of3","PT5","PT6","PacTheatre11","SNL2","SR4","TRox","abort","aclu","aclu2","acutis","ad","adams2","adele","aden","afl","agatha","agent","aging","ai","ai2","ai3","ajones","akter","alamo","alaska","alcala","aldrich","alex2","alexsells","algernon","allen","allin","altman","amanda","amber","amelia","amend","amish","ammoon","amos","amuse","anal","anni","anthropoid","antifake","antifake2","anton","aoc","apoca","arab","arc2012","arcade","archduke","arnold","arpaio","artemis22","assfilm","assyr","atate","atheism2","athena","attila","austen","austin","awake","axel","axon","ayers","b2","bail","ball","ban","bannon","barindex2","barnfire","barrel","bbb","bbc","beas","beat","beepitt","beethoven","beirut","bell","belloc","belushi","ben","benci","benhur","benito","berg","berry","bezos","bezos2","biden","biden2","bidsig","bike","bikes2","bikini","biles","billie","billy","bison","bitfraud","bitmine","black","blake","blarnia","blee2","blitzed","blm2","blob3","block","bloodsun","blurred","bo2","bobs3","bog","boleyn","bolivia","bond","bonhoef","boo","border","boston","boston2","bostrang","bot","botti","bounty","bourla","boycott","boycott2","boys","brand","brand2","brand3","break","breit","breonna","breton","brian","briancox","brief","brink","bronner","bronte","broussard","brown","bryn","btk","bubbleboy","budd2","bug","build","bulg","bumhol","bundy","bundy2","burn","burns1","bush","butler","butler2","caes","caesar","cagp1","cake","califf","calla","cancer","candowens","capone","card","carlyle","carp","carrey","carson","carville","cassam","castro","cat2","cathat","cathie","cats","cats2","cauvin","cboycott","celine","cena","censor","censor2","cgi","chapito","chapman","charl","charlesI","chase","chaswhit","chat","chat2","chauvin","chauvin3","chem2","chigi","child","chom","chom3","chom4","chuckcon","chut","circus","cjh","clap","clark","clarke","claudine","clif","clinic","clone","cloon","club","coal","cobain","coeur","coffin","coin","colbert","colley","collins","collins2","colon","conjob","conop","consent","consta","cor2","corll2","cornell","cornish","corona","coronad","corot","corpart","cosby","cosby2","cougar","covid","covid3","covid8","cowell","crazy","crew","crichton2","critics2","crooks","crosby","crumb","ctallen","cttf2","cuba","culloden","cumming","curev","curio","curses","custer","cyber","daisy","damon","dang","darkweb","darw2","darw5","darwin","data","davinci","davy","daws","dayafter","daycare","deadwood","deathrate","debs","decar","decham","delia","delphi","denver","depp","desantis","dew","diana","dickens","dilli2","disin","disney","div","diy","diy2","dmitri","doll","domin","donkey","doug","dresden","dress","dreyfus","duchamp","dullesboldpest","dunblane","dunham","duston","dylan","ebay","echols","ecole","edison","eingen","ejean","elf","elias","ellison","elpaso","elvis","email","embalm","enemy","engels","england","ennea","epstein","esalen","eston","euro","eust","everard","evol","exorcist","eze","facebits","facetat","fail","faithdeal","fakenews","fakewar","fakir","family","farrell","fatal","fauci","fawkes","fear","fear2","feb22","feder","feed","fenn","ferriss","finzgar","fires","fischer","fischl","fitz","fiv","flame","flat","flatearth","flood","florida","floyd","flyer","focus","foley","folk","food","ford","fox","frank","frev","fridge","friendsef","froyo","fruit","fry","gabby","gacy","gallup","game","garf","gas","gas2","gates","gay","gaye","gbn","gbn2","gbn3","gbn4","gboro","geese","geno","genup","gere","germanpol","gernika","getty3","ghostw","gilje","gill","glen","glenn","glenwood","gluck","gog","golden","golf","gone","gooch","good","good2","goodmen","goody5","googleai","gordon","goth","govpusher","grace","gracies","grant","grath","green","greta","gretel","guat","guru","guthrie","gymnassar","hacksaw","halderson","han","hanco","hanh","hanlon","hansen","hanuk","happy","harding","hare","harlem","harpy","harriet","hawk4","hawth","hayes","hearst","heath","heche","heine","heist","hel","henrygay","henryvii","hgate","hhholmes","hillary","hiller","hind","hippie","history","hitler2","hoa","hog","hollo","holly","hollyw","holmes","hopkins","hopper2","hormuz","horspital","hos","housing","houthi","hovey","hughes","hughes2","hughes3","hunter","hurhoax","hussain","hutt","huxley","hyper","hypox","ian","ibsen2","icet","icke","idaho","idiotbot","ignobel","indian","indiancrisis","inspire","interview","iodine","iq","iq2","iran","iran2","irish","irvin","irving","isgm","isra","isra2","isra3","isra4","israbluff2","israpoll","jack2","jackboot","jan6","japan","jbrown","jeffers","jeffers2","jeju","jen","jenny","jerk","jesuit","jfk3","jfkgay","jfranco","jimi","jkt","jlaw","jobs","joel","jonbenet","jones","jones2","jones3","jones4","jones6","jorda","justine","kahn","kamala","kamala2","kamvax","kappy","katmaher","keanu","keller","kelly","kemper","kent","kesey","kevin","khalifa","khash","kid","kids","kiev","kilmer","king","king2","kingsman","kirk","kitty","knives","knox","kobe","kolle","kosovo","kram","kray","kristall","laci","lady","lafrance","lagarde","lakanwal","laken","lamb","lance","lance2","lasveg","latunski","launder","law","lawless","lax","lc","leave","leecounty","leigh","lenin","lennon","leo","lesson","lestrade","letter","levi","lewin","lgbtcouple","lgbtqiacs","liarbot","liberal","lightfoot","lincoln","lindy","live","lively","lizzie","logic","logprop","london","longjump","lucas","lucie","luft","lundy","lusi","luther","lyle","lynch","mabel","macca","madeyou","maduro","magee","magnolia","maher","mail","malc","mallory","mamdani","mammon","mandela","mandela4","mar","marcuse","marfa","maria","marley","marley2","martin","marx","mary","mata","match","math","matrix","matrix2","matt","maud","maui","maui2","max","maxine","mcduff","mcilvaine","mckin","medit","mel","melibel","mem","meta","meuse","meyer","michael","michael2","mickel","mikerock","milespost","milgram","minime","minime2","mises2","mlk","mmAJ","mob","mofo","mondays","monkey","monkeybus","monroe","monte","moonlights","mordorgates","more","mountsong","mozart","mperry","mrbeast","ms13","msm","muja","mulvan","mundi2","mundi3","munn","murdaugh","murder","muse2","muse3","mush","musk","mycats","nab","nabok2","naft","naomi","napoleon","nash","natlam","natwood","navalreactor","nawsa","nelson","nerve","neutering","new","new1","newchron","newnew","newone","news","news2","newton","nft","ng","niall","nick","nicole","nietzsche","nigger","ninth","nixon","nnfp","noncon","nonude","novi","nowak","nuc3","nucfake","nurem","nxivm","obey","oblib","occult","oj","ok","okcb","oldecon","oldshoe","ole","oliver","olymp","onion","oops","opioid","oppen","oprah","org","orlan","orthanc","orwell","osiris","oslo","oslo2","osteen","out","ow","ows","owswhit","ozzy","pace","pacthe","pacthe12","pacthe122","pacthe13","pacthe14","pacthe15","pacthe16","pacthe17","pacthe18","pacthe19","pacthe7","pacthe8","pactheatre","pactheatre10","pactheatre9","padua","pahal","palan","palisades","palme","panther","papa","pardon","part5","party","pass","pastor","patton","patz","paul","paul2","paul3","paul4","paul5","paul8","pearl","pearl1","pearlharbor","pedo","pelicot","pelosi","penny","penske","pepper","pf","pga","phillip","philly","phish","phoen","phoen2","phoen3","phoen4","phoen5","phoenper","phoenscam","picnic","pipe","pirate","pit","pitt","pitt2","pitt3","plag","plath","plo","pnac","poetry","poetry2","police","poll3","pom","pompeo","ponce","porta","post","potter","pratt","pretti","prevost","prine","prom","protest","protocols","psycho","puff","puffd","putsch","pyle","pynch","rabin","race","radiohead","ramp","ratass","rath","real","redcross","redfield2","redpill","reed","reeve2","reffitt","relnews","remake","remington","remote","renman","reset","response","restor","rev2","revere","rfk","rich","ridolfi","rifkin","river","rkelly","roanoke","robotvax","rock","rock2","rocksmith","rodney","rodney2","roe","rogan","rogan2","roi","rommel","rose","rosi","ross","rothbard","roy","rs","ruby","rubyridge","rupert","rupnow","rusgen","rushdie","russ","rutger","sa2","sacha","sachs","sack","sadsong","sahib","salem","saltz2","samsel","sangreal","santafe","satanicpanic","sauron","savage","saveme","sb","sbf","scab","schaff","schwab","schwim","sebold","secure","self","self2","semsim","serf","sethrich","sevast","sh","sh3","sh4","sh7","shafik","shake","shan","sharaa","shark","shaw","shep","shining","shirley","shiva","shroyer","shut","sick","sideol","siebel","siegel","silk","silver","singh","sjw","skimmers","skinhead","skull","slappback","slouch","slsc","sm4","smallit","smart","snark","snyder","sotu","spaceballs","spacex","spacex2","spacexipo","spart","speaker","speck","spector","spence","spirit","spot","squab","ss1","stables","stage","stalin","stalker","stand","stander","stark","starsal","steiner","stern2","stew","sting","stockholm","stoner","strang","strange","strange2","strange3","strat","strike","strike2","styles","sub","subuh","sumner","sup2","supreme","swat","swift","swifttime","sykes","synag","tafari","tahoe","tarrio","tartar","tat","tate","tate3","tax2","taxes","taxes2","taxes3","telaviv","tenant","terrain","tesla3","test","test2","tfaf","thai","thanks","theft","thieves","thirdwave","thor","thots","thread","thurst","tian","tiger","tiger2","tiger3","till","timber","titan","tocsin2","tom8","tooth","trade","train","trake","tran","trans","trans2","trantifa","trask","trayvon","trees2","trials","tricer","trinity","tristyn","trot2","trump","trump2","trump3","trumpy","truth","tuck2","tuck4","tucker","tucker2","turing","turt12","twain","twiggs","twin","twofatals","twww","ugly","ukrainianpol","unabomber","unbroken","unver","unz","upan","upenn","ursula","uvalde","vahey","valen","vamp","vanne","vaud","vaude","vax","vax3","vax8","vaxx2","venezvaud","verm2","vermeer","vert","vietnam","vincent","vinoo","vote","vylan","waco","wage","wagner","wallace","walt","warhol","warner","wash","watergate","watts","webb","webimage","weidner","weimar","wein","welles","welling","wendy","westboro","westman","wett","wheat","whitewomen","wiki3","wilber","wilde","wise","wkelly","wolfe","wonka","worm","worry","wright","writein2","xai","xchurch","xchurch2","xchurch3","xfiles","yard","yax","yearend","zach","zeit","zodiac","zuck"
+  ];
+
   public function churnAll() {
-    // find or create user
-    // tag: miles-mathis
-    // tags-issue: 2025q4-one
 
-    // for each,
-    //   schedule publishing to n+1
+    $items = $this->slugs;
+    // $items = array_slice($items, 0, 5);
 
-    $html = file_get_contents('https://mileswmathis.com/updates.html');
-
-    $dom = new \DOMDocument();
-    libxml_use_internal_errors(true);
-    $dom->loadHTML($html);
-    libxml_clear_errors();
-
-    $pdfs = [];
-
-    foreach ($dom->getElementsByTagName('a') as $a) {
-      $href = $a->getAttribute('href');
-      if (preg_match('/\.pdf$/i', $href)) {
-        $pdfs[] = $href;
-      }
-    }
-    // print_r($pdfs);
-
-    foreach (array_slice($pdfs, 0, 5) as $item) {
-    // foreach ($pdfs as $item) {
-      $path = parse_url($item, PHP_URL_PATH);
-      $path = preg_replace('/\.pdf$/i', '', $path);
-      $path = ltrim($path, '/');
-      puts($path, '$path');
-      $article = \Drupal\ish_drupal_module\Models\MilesWMathis::churnOneSlug($path);
-      puts($article, '$article');
+    foreach ($items as $idx => $slug) {
+      $article = \Drupal\ish_drupal_module\Models\MilesWMathis::churnOneSlug($slug);
+      puts($idx, 'done $idx');
     }
 
-    return new Response("Probably churned some");
+    return new Response("Probably churned some/all.");
   }
 
   public function churnOne($slug, Request $request) {
@@ -60,120 +40,11 @@ class MilesWMathisController extends ControllerBase {
     return new Response("Probably churned `{$slug}`.");
   }
 
-  public function churnOneTrash($slug, Request $request) {
-    $source_url = "https://mileswmathis.com/$slug.pdf";
-
-    // $one = \Drupal::entityTypeManager()
-    //   ->getStorage('node')
-    //   ->loadByProperties([
-    //       'type' => 'article',
-    //       'field_source_url' => $source_url,
-    //   ]);
-    // $one = reset($one);
-    // if ($one) { return; }
-
-
-    $article =  \Drupal\ish_drupal_module\Models\Article::findOrCreateBy('field_source_url', $source_url);
-    // puts($article, '$article');
-
-    $file_system = \Drupal::service('file_system');
-    $tmp_dir = "/tmp/$slug";
-    $file_system->prepareDirectory($tmp_dir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS );
-
-    file_put_contents("$tmp_dir/$slug.pdf", file_get_contents($source_url));
-
-    exec("pdftohtml $tmp_dir/$slug.pdf $tmp_dir/$slug.html 2>&1", $_out, $_code);
-    // puts($_out, 'ze out');
-
-    $html = file_get_contents("/tmp/$slug/{$slug}s.html");
-    $html = str_replace('&#160;', ' ', $html);
-    // puts($html, 'ze html 1');
-    // $html = str_replace('\n', ' ', $html);
-    // $html = str_replace('\n\n', '<br /><br />', $html);
-    puts($html, 'ze html fin');
-
-    $dom = new \DOMDocument();
-    libxml_use_internal_errors(TRUE);
-    $dom->loadHTML($html);
-    libxml_clear_errors();
-
-    /*
-     * images
-    **/
-    $first = true;
-    foreach ($dom->getElementsByTagName('img') as $img) {
-      // puts($img, 'one $img');
-      $src = $img->getAttribute('src');
-
-      if (!str_starts_with($src, '/tmp/')) {
-        continue;
-      }
-
-      $source = $src;
-      if (!file_exists($source)) {
-        continue;
-      }
-
-      $filename = basename($source);
-      $thisDir = 'public://mileswmathis';
-      $destination = "$thisDir/$filename";
-      $file_system->prepareDirectory($thisDir, FileSystemInterface::CREATE_DIRECTORY);
-
-      $new_url = $file_system->copy( $source, $destination, FileSystemInterface::EXISTS_REPLACE );
-      // puts($new_url, '$new_url');
-
-      $file = File::create([
-        'uri' => $new_url,
-        'status' => 1,
-      ]);
-      $file->save();
-      $url = \Drupal::service('file_url_generator')->generateAbsoluteString($new_url);
-
-      $img->setAttribute('src', $url);
-
-      if ($first) {
-        $article->set('field_image_thumb', [
-          'target_id' => $file->id(),
-          'alt'       => $article->label(),
-          'title'     => $article->label(),
-        ]);
-        $first = false;
-      }
-
-    }
-
-    $body = $dom->getElementsByTagName('body')->item(0);
-    $title = '';
-    foreach ($body->childNodes as $node) {
-      if ($node->nodeType === XML_TEXT_NODE && trim($node->textContent) !== '') {
-        $title = trim($node->textContent);
-        puts($title, 'ze title');
-        break;
-      }
-    }
-    $article->set('title', $title);
-    $article->set('path', [
-      'alias' => "/mileswmathis_com/{$slug}_pdf",
-      'pathauto' => 0,
-    ]);
-
-
-    $body = $dom->saveHTML($body);
-    $body = preg_replace('~^<body>|</body>$~', '', trim($body));
-    $article->set('body', [
-      'value' => $body,
-      'format' => 'basic_html',
-    ]);
-    $article->set('status', 1);
-
-
-
-    // header, footer, author?
-    // tags? slug and other meta?
-
-    $article->save();
-
-    return new Response("Created/updated Article {$article->id()}");
+  public function index() {
+    return [
+      '#theme' => 'mileswmathis_com_index',
+      '#slugs' => $this->slugs,
+    ];
   }
 
 }

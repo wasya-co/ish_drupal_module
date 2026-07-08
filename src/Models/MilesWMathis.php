@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /*
- * MilesWMathis
+ * MilesWMathis Model
 **/
 class MilesWMathis {
 
@@ -26,13 +26,10 @@ class MilesWMathis {
 
     $state = \Drupal::state();
     if (!$state->get('mileswmathis_next_publish_on')) {
-      $state->set(
-        'mileswmathis_next_publish_on',
-        (new DrupalDateTime('+1 day'))->getTimestamp()
-      );
+      $state->set( 'mileswmathis_next_publish_on', (new DrupalDateTime('+1 day'))->getTimestamp() );
     }
 
-    $article =  \Drupal\ish_drupal_module\Models\Article::findOrCreateBy('field_source_url', $source_url);
+    $article =  \Drupal\ish_drupal_module\Models\Article::findOrBuildBy('field_source_url', $source_url);
     // puts($article, '$article');
 
     $file_system = \Drupal::service('file_system');
@@ -42,7 +39,7 @@ class MilesWMathis {
     file_put_contents("$tmp_dir/$slug.pdf", file_get_contents($source_url));
 
     exec("pdftohtml $tmp_dir/$slug.pdf $tmp_dir/$slug.html 2>&1", $_out, $_code);
-    // puts($_out, 'ze $_out');
+    puts($_out, 'ze $_out');
 
     $html = file_get_contents("/tmp/$slug/{$slug}s.html");
     $html = str_replace('&#160;', ' ', $html);
@@ -58,7 +55,6 @@ class MilesWMathis {
     **/
     $first = true;
     foreach ($dom->getElementsByTagName('img') as $img) {
-      // puts($img, 'one $img');
       $src = $img->getAttribute('src');
 
       if (!str_starts_with($src, '/tmp/')) {

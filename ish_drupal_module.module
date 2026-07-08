@@ -156,7 +156,13 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
         'testvar' => NULL,
       ],
     ],
-
+    'mileswmathis_com_index' => [
+      'path' => $path.'/templates/mileswmathis_com',
+      'template' => 'index',
+      'variables' => [
+        'slugs' => [],
+      ],
+    ],
     'my_feed' => [
       'path' => $path . '/templates',
       'render element' => 'elements', // works?!

@@ -119,6 +119,14 @@ ish_drupal_module.my_feed:
 
 ## *M*
 
+ish_drupal_module.mileswmathis:
+  path: '/mileswmathis_com'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::index'
+    _title: 'MilesWMathis Index'
+  requirements:
+    _permission: 'administer nodes'
+
 ish_drupal_module.mileswmathis_churn_all:
   path: '/mileswmathis_com/churn-all'
   defaults:

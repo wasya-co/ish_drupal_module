@@ -16,10 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 **/
 class Article {
 
-  /*
-   * _TODO rename: findOrBuildBy
-  **/
-  public static function findOrCreateBy(string $field_name, string $field_value): Node {
+  public static function findOrBuildBy(string $field_name, string $field_value): Node {
     $one = \Drupal::entityTypeManager()
       ->getStorage('node')
       ->loadByProperties([
@@ -33,8 +30,6 @@ class Article {
         'type' => 'article',
         $field_name => $field_value,
       ]);
-
-      // $node->save();
     }
 
     return $node;
