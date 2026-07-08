@@ -23,10 +23,11 @@ curl -X POST "https://translate.wasyaco.com/translate" \
 **/
 class ArticleTranslator {
 
-  public static function runCron() {
-    $max   = 3;
-    $queue = \Drupal::queue('translate_queue');
-    $user  = \Drupal\user\Entity\User::load( 138 ); // content-donor on piousbox_com
+  public static function collectMissingTranslation() {
+    $max    = 10;
+
+    $queue  = \Drupal::queue('translate_queue');
+    $user   = \Drupal\user\Entity\User::load( 138 ); // content-donor on piousbox_com
 
     $query = \Drupal::entityQuery('node')
       ->condition('type', 'article')
@@ -36,34 +37,36 @@ class ArticleTranslator {
       ->accessCheck(FALSE);
 
     $no_translate = \Drupal::entityTypeManager()->getStorage('taxonomy_term')
-      ->loadByProperties([
-        'name' => 'no-translate',
-      ]);
+      ->loadByProperties([ 'name' => 'no-translate', ]);
     $no_translate = reset($no_translate);
     if ($no_translate) {
       $query->condition('field_tags', $no_translate->id(), '<>');
     }
 
+
     $missing_es = [];
-    $nids = $query->execute();
-    if (!empty($nids)) {
+    $offset     = 0;
+    $limit      = $max;
+    while (count($missing_es) < $max) {
+      $nids = (clone $query)->range( $offset, $limit )->execute();
+      if (empty($nids)) {
+        break;
+      }
       $nodes = Node::loadMultiple($nids);
       foreach ($nodes as $node) {
         if (!$node->hasTranslation('es')) {
           $missing_es[] = $node;
         }
-        if (count($missing_es) >= $max) {
-          break;
-        }
       }
     }
+  }
+
+  public static function runCron() {
+    $missing_es = $this->collectMissingTranslation();
 
     foreach ($missing_es as $item) {
       \Drupal\ish_drupal_module\Models\Article::translateTo($item->id(), 'es');
     }
-
-
-
   }
 
 }

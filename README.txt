@@ -29,10 +29,11 @@
   var_dump($response);
 
 == Deploy ==
+
   * tag, push to wasya-co remote:
 
-    git tag -a v1.2.3 -m "Release v1.2.3"
-    git push origin v1.2.3
+    git tag -a v1.2.4 -m "Release v1.2.4"
+    git push origin v1.2.4
 
   * update version in composer.json
 
