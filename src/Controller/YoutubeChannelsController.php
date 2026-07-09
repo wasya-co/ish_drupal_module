@@ -52,7 +52,7 @@ class YoutubeChannelsController extends ControllerBase {
       $params['eventType'] = 'completed';
     }
     $url = 'https://www.googleapis.com/youtube/v3/search?' . http_build_query($params);
-    // logg($url, '$url');
+    logg($url, '$url');
 
     $json = file_get_contents($url);
     $decoded_json = json_decode($json, false);
@@ -61,7 +61,7 @@ class YoutubeChannelsController extends ControllerBase {
     $outs = [];
 
     foreach($decoded_json->items as $item) {
-      // logg($item, '$item');
+      logg($item, '$item');
 
       $youtube_id = $item->id->videoId;
       $youtube_title = YoutubeVideo::title($youtube_id);
@@ -83,7 +83,6 @@ class YoutubeChannelsController extends ControllerBase {
       } */
 
 
-      // $issue_uuid = '35'; // '4ac9695b-0854-4972-8528-1f52e21d2235'; // taxonomy_term/35 :: 2024q1-issue
       $node_manager  = \Drupal::entityTypeManager()->getStorage('node');
       $existing_page_youtube = $node_manager->loadByProperties([
         'type' => 'page_youtube',
@@ -107,7 +106,6 @@ class YoutubeChannelsController extends ControllerBase {
             'format' => 'full_html',
           ],
           'field_youtube_id' => $youtube_id,
-          // 'field_issue' => [ 'target_id' => $issue_uuid ],
           'field_tags_issue' => $tags_issue_ids,
           'status' => 1, // is published
           'title' => $youtube_title,

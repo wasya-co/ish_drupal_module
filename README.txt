@@ -32,14 +32,15 @@
 
   * tag, push to wasya-co remote:
 
-    git tag -a v1.2.6 -m "Release v1.2.6"
-    git push origin v1.2.5
+    git tag -a v1.2.8 -m "Release v1.2.8"
+    git push origin v1.2.8
 
   * update version in composer.json
 
   * ssh into node, login to docker and run:
 
-    composer update wasya-co/ish_drupal_module
+    composer update wasya-co/ish_drupal_module \
+      --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-gd
 
   * the container_name is piousbox_com, service is app_*
   * clear cache
