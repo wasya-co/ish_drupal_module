@@ -62,10 +62,10 @@ class ArticleTranslator {
   }
 
   public static function runCron() {
-    $missing_es = $this->collectMissingTranslation();
+    $missing_es = self::collectMissingTranslation();
 
     foreach ($missing_es as $item) {
-      \Drupal\ish_drupal_module\Models\Article::translateTo($item->id(), 'es');
+      Drupal\ish_drupal_module\Models\Article::translateTo($item->id(), 'es');
     }
   }
 

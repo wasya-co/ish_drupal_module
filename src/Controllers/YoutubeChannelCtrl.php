@@ -24,7 +24,7 @@ class YoutubeChannelCtrl {
   /*
    * _TODO: NOT USED.
   **/
-  public function check() {
+  /* public function check() {
     $user = \Drupal\user\Entity\User::load( 138 ); // content-donor
     $config = \Drupal::config('ish_drupal_module.settings');
     $api_key = $config->get('google_api_youtube_key');
@@ -82,15 +82,13 @@ class YoutubeChannelCtrl {
 
     // logg($outs, '$outs');
     return $outs;
-  }
-
-  /* public function getPagesYoutube(&$build) {
-    if ('youtube_channel' == $build['uid']['#bundle'] && 'full' == $build['#view_mode']) {
-      // logg($build, 'getPagesYoutube');
-    }
   } */
 
-  public static function show(&$vars) {
+  /*
+   * used in eg
+   * /2026/videos/astronauticast-19x24-la-ventola-grippata
+  **/
+   public static function show(&$vars) {
     if ('youtube_channel' == $vars['node']->getType() && 'full' == $vars['view_mode']) {
       // logg($vars, 'youtube_channel#show');
       $node = $vars['node'];
