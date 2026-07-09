@@ -11,7 +11,6 @@ use Drupal\node\Entity\NodeType;
 
     composer require --dev drupal/core-dev:10.6.12 -W
     composer require --dev symfony/phpunit-bridge:^7.3 ## drupal 10.6
-
     composer require --dev phpunit/phpunit
     composer require --dev behat/mink
 

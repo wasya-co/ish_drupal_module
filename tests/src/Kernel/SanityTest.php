@@ -7,12 +7,12 @@ use Drupal\KernelTests\KernelTestBase;
 /**
  * @group ish_drupal_module
 
-  vendor/bin/phpunit \
+  ./vendor/bin/phpunit \
     -c web/core/phpunit.xml.dist \
-    web/modules/contrib/ish_drupal_module/tests/src/Kernel/SanityTest.php
+    web/modules/custom/ish_drupal_module/tests/src/Kernel/SanityTest.php
 
-  php ./vendor/bin/phpunit -c web/core/phpunit.xml.dist \
-    web/modules/contrib/ish_drupal_module/tests/src/Kernel/ArticleTranslatorTest.php
+  ./vendor/bin/phpunit -c web/core/phpunit.xml.dist \
+    web/modules/custom/ish_drupal_module/tests/src/Kernel/ArticleTranslatorTest.php
 
  *
 **/
