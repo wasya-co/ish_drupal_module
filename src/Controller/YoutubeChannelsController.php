@@ -48,9 +48,6 @@ class YoutubeChannelsController extends ControllerBase {
     if (!$include_shorts) {
       $params['videoDuration'] = 'long';
     }
-    if (!$include_streams) {
-      $params['eventType'] = 'completed';
-    }
     $url = 'https://www.googleapis.com/youtube/v3/search?' . http_build_query($params);
     logg($url, '$url');
 
@@ -69,7 +66,7 @@ class YoutubeChannelsController extends ControllerBase {
       /*
        * Check if this was a livestream
       **/
-      /* if (!$include_streams) {
+      if (!$include_streams) {
         $video_url = 'https://www.googleapis.com/youtube/v3/videos'
           . '?key=' . $api_key
           . '&id=' . $youtube_id
@@ -80,7 +77,7 @@ class YoutubeChannelsController extends ControllerBase {
         if (!empty($video_data->items[0]->liveStreamingDetails)) {
           continue;
         }
-      } */
+      }
 
 
       $node_manager  = \Drupal::entityTypeManager()->getStorage('node');
