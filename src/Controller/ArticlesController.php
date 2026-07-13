@@ -122,12 +122,9 @@ class ArticlesController extends ControllerBase {
 
     $item->save();
 
-    return [
-      '#item' => $item,
-      '#cache' => ['max-age' => 0],
-      '#title' => $this->t('Translate this article'),
-      '#theme' => 'article_translate',
-    ];
+    return new \Symfony\Component\HttpFoundation\RedirectResponse(
+      $translation->toUrl('canonical')->toString()
+    );
   }
 
 }

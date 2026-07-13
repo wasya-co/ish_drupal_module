@@ -38,10 +38,9 @@
   * update version in composer.json
 
   * ssh into node, login to docker and run:
+  * the container_name is piousbox_com, service is app_*
 
     composer update wasya-co/ish_drupal_module \
-      --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-gd
-
-  * the container_name is piousbox_com, service is app_*
-  * clear cache
+      --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-gd ;
+    drush cr
 
