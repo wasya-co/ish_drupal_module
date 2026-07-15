@@ -324,3 +324,17 @@ function ish_drupal_module_preprocess_node(array &$variables) {
   // $variables['my_custom_variable'] = 'Hello, this is my custom text!';
 }
 
+/*
+ * remove images from body summary
+**/
+function ish_drupal_module_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+  if (!$entity->hasField('body')) {
+    return;
+  }
+  $body = $entity->body->value;
+  $body = preg_replace('/<img\b[^>]*>/i', '', $body);
+  $entity->body->summary = text_summary($body, $entity->body->format);
+}
