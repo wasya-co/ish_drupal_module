@@ -326,8 +326,9 @@ function ish_drupal_module_preprocess_node(array &$variables) {
 
 /*
  * remove images from body summary
+ * This prevents me from editing the summary!
 **/
-function ish_drupal_module_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+/* function ish_drupal_module_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() !== 'node') {
     return;
   }
@@ -337,4 +338,4 @@ function ish_drupal_module_entity_presave(\Drupal\Core\Entity\EntityInterface $e
   $body = $entity->body->value;
   $body = preg_replace('/<img\b[^>]*>/i', '', $body);
   $entity->body->summary = text_summary($body, $entity->body->format);
-}
+} */
