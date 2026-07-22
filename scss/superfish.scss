@@ -1,0 +1,16 @@
+
+
+.block-superfish {
+  width: auto;
+}
+ul.sf-menu {
+  cursor: pointer;
+
+  li {
+    background: white;
+  }
+  .sf-sub-indicator {
+    left: 0;
+    right: auto;
+  }
+}

@@ -1,0 +1,121 @@
+/**
+ * @file
+ * Utility classes to hide elements in different ways.
+ */
+/**
+ * Hide elements from all users.
+ *
+ * Used for elements which should not be immediately displayed to any user. An
+ * example would be collapsible details that will be expanded with a click
+ * from a user. The effect of this class can be toggled with the jQuery show()
+ * and hide() functions.
+ */
+.hidden {
+  display: none; }
+
+/**
+ * Hide elements visually, but keep them available for screen readers.
+ *
+ * Used for information required for screen reader users to understand and use
+ * the site where visual display is undesirable. Information provided in this
+ * manner should be kept concise, to avoid unnecessary burden on the user.
+ * "!important" is used to prevent unintentional overrides.
+ */
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  word-wrap: normal; }
+
+/**
+ * The .focusable class extends the .visually-hidden class to allow
+ * the element to be focusable when navigated to via the keyboard.
+ */
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  position: static !important;
+  overflow: visible;
+  clip: auto;
+  width: auto;
+  height: auto; }
+
+/**
+ * Hide visually and from screen readers, but maintain layout.
+ */
+.invisible {
+  visibility: hidden; }
+
+header.header-v0-0-0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: lobster, cursive;
+  margin-bottom: 1em; }
+  header.header-v0-0-0 h1.title {
+    margin-top: 0.25em;
+    color: var(--wco-202302-color1);
+    font-size: 4em;
+    text-shadow: .1em .1em black;
+    text-shadow: .1em .1em white;
+    text-shadow: .1em .1em gold;
+    text-shadow: .1em .1em #CC00A3;
+    transform: skew(-12deg) rotate(-14deg); }
+  header.header-v0-0-0 h2.subtitle {
+    color: black;
+    text-shadow: .1em .1em white;
+    transform: skew(-12deg) rotate(-14deg);
+    margin-bottom: 2em; }
+  header.header-v0-0-0 .a1 {
+    height: 40vh;
+    width: 100%;
+    min-height: 300px;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; }
+    header.header-v0-0-0 .a1 .subtitle {
+      padding: 0.2em 1.2em;
+      background: rgba(255, 255, 255, 0.75); }
+  header.header-v0-0-0 .r1 {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    height: 20px;
+    background: var(--wco-202302-burgundy);
+    margin-top: -60px;
+    position: relative;
+    z-index: 1; }
+    header.header-v0-0-0 .r1 .r1C {
+      background: var(--wco-dol-bg-color);
+      height: 40px;
+      border-radius: 20px 20px 0 0; }
+      header.header-v0-0-0 .r1 .r1C .row {
+        margin-top: 2em; }
+      header.header-v0-0-0 .r1 .r1C .Card {
+        height: 100%; }
+
+/* IssuesNavigator */
+.block-inline-blockissues-navigator {
+  margin: 10px 0 1em 0; }
+  .block-inline-blockissues-navigator h2 {
+    font-size: 1em;
+    margin: 0; }
+  .block-inline-blockissues-navigator .current-issue {
+    text-align: right; }
+  .block-inline-blockissues-navigator nav.menu--issues {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: nowrap; }
+    .block-inline-blockissues-navigator nav.menu--issues h2:after {
+      content: ":"; }
+  .block-inline-blockissues-navigator ul.menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0; }
+    .block-inline-blockissues-navigator ul.menu li {
+      padding: 0 10px;
+      border-right: 2px solid orange; }

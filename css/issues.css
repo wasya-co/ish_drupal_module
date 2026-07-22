@@ -1,0 +1,22 @@
+/* IssuesNavigator */
+.block-inline-blockissues-navigator {
+  margin: 10px 0 1em 0; }
+  .block-inline-blockissues-navigator h2 {
+    font-size: 1em;
+    margin: 0; }
+  .block-inline-blockissues-navigator .current-issue {
+    text-align: right; }
+  .block-inline-blockissues-navigator nav.menu--issues {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: nowrap; }
+    .block-inline-blockissues-navigator nav.menu--issues h2:after {
+      content: ":"; }
+  .block-inline-blockissues-navigator ul.menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0; }
+    .block-inline-blockissues-navigator ul.menu li {
+      padding: 0 10px;
+      border-right: 2px solid orange; }

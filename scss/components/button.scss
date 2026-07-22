@@ -1,0 +1,12 @@
+
+.button,
+.image-button {
+  margin-right: 1em;
+  margin-left: 1em;
+
+  &:first-child {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+

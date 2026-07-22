@@ -1,0 +1,34 @@
+
+.vud-widget {
+  // border: 1px solid red;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // width: 50px;
+}
+
+.vud-widget-thumbs {
+  margin: 0;
+
+  .up.inactive,
+  .up.active,
+  .down.inactive,
+  .down.active,
+  ._ {
+    background-image: url('https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2024/03/25165201/thumbs2.png');
+  }
+
+  .up-score {
+    border-right: 0;
+  }
+
+}
+
+.vote-current-score {
+  padding-top: 0;
+}
+
+
+

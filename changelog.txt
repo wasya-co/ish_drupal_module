@@ -5,4 +5,6 @@
 0.2.1 - 2023-11-20 - reset well.
 
 0.3.0 :: 2023-11-21 :: POST /contributed_posts with jwt but it really, really doesn't work
+0.5.0 :: 2026-07-22 :: okay, continue
+0.6.0 :: 2026-07-22 :: adding a lot of assdets to module.
 

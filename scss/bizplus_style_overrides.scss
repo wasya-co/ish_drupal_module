@@ -1,0 +1,90 @@
+
+#header-1 ul.navbar-nav.my-main-menu {
+  /* border: 1px solid red; */
+
+  display: flex;
+  justify-content: flex-end;
+
+  > li.nav-item {
+    margin-right: 1em;
+  }
+}
+
+.owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+.fullwidth {
+  max-width: 1000px;
+  margin: auto;
+}
+.maxwidth {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.text-formatted,
+.text-formatted p {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.node--type-advanced-page {
+  margin: 2em 0 5em 0;
+}
+
+.site-logo-dol {
+  display: none;
+}
+.header-fixed img.site-logo {
+  display: none;
+}
+.header-fixed img.site-logo-dol {
+  display: block;
+}
+
+body.page-node-124 .home2-info-block * {
+  color: black;
+}
+body.page-node-124 .home2-info-block a.btn-primary {
+  background-color: black;
+}
+
+
+.clear {
+  clear: both;
+}
+.a20260318-features-bank-search {
+  padding: 20px;
+}
+.a20260318-features-bank-search img {
+  max-width: 90%;
+  height: auto;
+}
+
+.why-choose-us {
+  .row div,
+  .col-sm-6 {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.why-choose-us-2 {
+  position: relative;
+
+  margin-bottom: 50px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .image-wrapper img {
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+
+  }
+
+}

@@ -195,3 +195,12 @@ function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\E
   \Drupal::messenger()->addMessage('Form ID: ' . $form_id);
   // \Drupal::logger('nisto_form_alter')->notice('Form ID: ' . $form_id); // Or log it to watchdog log.
 } // */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function ish_drupal_module_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap';
+  $attachments['#attached']['library'][] = 'ish_drupal_module/styles';
+}
+
