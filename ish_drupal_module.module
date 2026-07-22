@@ -1,5 +1,9 @@
 <?
 
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\NodeType;
+
 function logg($object, $label=null) {
   print($label . ":");
   echo "<br />";
@@ -135,12 +139,6 @@ function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\E
   }
 }
 
-/**
- * another example
-**/
-// function ish_drupal_module_entity_type_build(array &$entity_types) {
-//   $entity_types['aphorism']->setFormClass('contribute', 'Drupal\aphorism\ContributeForm');
-// }
 
 
 
@@ -204,3 +202,67 @@ function ish_drupal_module_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'ish_drupal_module/styles';
 }
 
+
+
+
+/**
+ * Create the Advanced Page content type.
+ */
+function my_module_update_9001() {
+
+  if (!NodeType::load('advanced_page')) {
+    NodeType::create([
+      'type' => 'advanced_page',
+      'name' => 'AdvPage',
+      'description' => 'Advanced page',
+      'new_revision' => FALSE,
+      'preview_mode' => DRUPAL_OPTIONAL,
+      'display_submitted' => FALSE,
+    ])->save();
+  }
+
+  foreach (['image_hero', 'image_thumb'] as $field_name) {
+    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
+      FieldStorageConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'type' => 'image',
+        'cardinality' => 1,
+        'settings' => [
+          'uri_scheme' => 'public',
+        ],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', 'advanced_page', 'field_' . $field_name)) {
+      FieldConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'bundle' => 'advanced_page',
+        'label' => ucwords(str_replace('_', ' ', $field_name)),
+        'required' => FALSE,
+        'settings' => [
+          'file_extensions' => 'png gif jpg jpeg webp',
+          'alt_field' => TRUE,
+          'title_field' => FALSE,
+        ],
+      ])->save();
+    }
+  }
+
+  $display = EntityViewDisplay::load('node.advanced_page.full');
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'advanced_page',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+  $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+  $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+  $display->save();
+
+
+
+}
