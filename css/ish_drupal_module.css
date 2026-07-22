@@ -1,0 +1,10 @@
+body {
+  background: #333;
+  color: white; }
+
+#navbar-main {
+  background-color: transparent !important; }
+
+.block-superfishmain {
+  display: flex;
+  justify-content: flex-end; }
