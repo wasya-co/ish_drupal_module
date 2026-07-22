@@ -6,3 +6,5 @@ description: Ish Locations and more.
 dependencies:
   - drupal:views
 
+libraries:
+  - ish_drupal_module/bootstrap
