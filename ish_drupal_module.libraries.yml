@@ -19,3 +19,4 @@ styles:
   css:
     theme:
       css/ish_drupal_module.css: {}
+      css/style_bordered.css: {}

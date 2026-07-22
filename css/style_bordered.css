@@ -1,0 +1,4 @@
+.node--view-mode-card {
+  border: 1px solid var(--text-color);
+  border-radius: 0.4em;
+  padding: 1em; }

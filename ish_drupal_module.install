@@ -1,0 +1,223 @@
+<?php
+
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\NodeType;
+
+
+/*
+ * view_modes: Card, CarouselThumb
+**/
+function ish_drupal_module_update_9017() {
+  $config_factory = \Drupal::configFactory();
+
+  $view_modes = [
+    'card' => 'Card',
+    'carousel_thumb' => 'CarouselThumb',
+  ];
+  foreach ($view_modes as $machine_name => $label) {
+    $config_name = "core.entity_view_mode.node.$machine_name";
+
+    $config = $config_factory->getEditable($config_name);
+    if (!$config->isNew()) {
+      continue;
+    }
+
+    $config->setData([
+      'langcode' => 'en',
+      'status' => TRUE,
+      'dependencies' => [
+        'module' => ['node'],
+      ],
+      'id' => "node.$machine_name",
+      'label' => $label,
+      'targetEntityType' => 'node',
+      'cache' => TRUE,
+    ])->save();
+  }
+}
+
+
+/*
+ * Advanced Page content type.
+**/
+function ish_drupal_module_update_9015() {
+  if (!NodeType::load('advanced_page')) {
+    NodeType::create([
+      'type' => 'advanced_page',
+      'name' => 'AdvPage',
+      'description' => 'Advanced page',
+      'new_revision' => FALSE,
+      'preview_mode' => DRUPAL_OPTIONAL,
+      'display_submitted' => FALSE,
+    ])->save();
+  }
+
+
+
+  $form_display = EntityFormDisplay::load('node.advanced_page.default');
+  if (!$form_display) {
+    $form_display = EntityFormDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'advanced_page',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+
+  $display = EntityViewDisplay::load('node.advanced_page.full');
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'advanced_page',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+  $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+  $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+  $display->save();
+
+  /* body */
+  $storage = FieldStorageConfig::loadByName('node', 'body');
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'type' => 'text_with_summary',
+      'cardinality' => 1,
+      'settings' => [],
+      'translatable' => TRUE,
+    ]);
+    $storage->save();
+  }
+  $field = FieldConfig::loadByName('node', 'advanced_page', 'body');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => 'advanced_page',
+      'label' => 'Body',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [
+        'display_summary' => TRUE,
+        'required_summary' => FALSE,
+      ],
+    ]);
+    $field->save();
+  }
+  $form_display ->setComponent('body', [
+    'type' => 'text_textarea_with_summary',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [
+      'rows' => 9,
+      'summary_rows' => 3,
+      'placeholder' => '',
+      'show_summary' => FALSE,
+    ],
+  ])->save();
+  $display->setComponent('body', [
+    'type' => 'text_default',
+    'label' => 'hidden',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+
+  /* tags */
+  $storage = FieldStorageConfig::loadByName('node', 'field_tags');
+  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_tags');
+  if (!$field) {
+    FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => 'advanced_page',
+      'label' => 'Tags',
+      'description' => '',
+      'required' => FALSE,
+      'settings' => [],
+    ])->save();
+  }
+  $form_display->setComponent('field_tags', [
+    // 'type' => 'options_select',
+    'type' => 'options_buttons',
+    'weight' => 40,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+  foreach (['image_hero', 'image_thumb'] as $field_name) {
+    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
+      FieldStorageConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'type' => 'image',
+        'cardinality' => 1,
+        'settings' => [
+          'uri_scheme' => 'public',
+        ],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', 'advanced_page', 'field_' . $field_name)) {
+      FieldConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'bundle' => 'advanced_page',
+        'label' => ucwords(str_replace('_', ' ', $field_name)),
+        'required' => FALSE,
+        'settings' => [
+          'file_extensions' => 'png gif jpg jpeg webp',
+          'alt_field' => TRUE,
+          'title_field' => FALSE,
+        ],
+      ])->save();
+    }
+
+    $form_display
+      ->setComponent('field' . $field_name, [
+        'type' => 'image_image',
+        'weight' => 10,
+        'region' => 'content',
+        'settings' => [
+          'progress_indicator' => 'throbber',
+          'preview_image_style' => 'thumbnail',
+        ],
+      ])->save();
+  }
+}
+
+/*
+ * tmp, form_display of image_thumb
+**/
+function ish_drupal_module_update_9020() {
+  $form_display = EntityFormDisplay::load('node.advanced_page.default');
+  $form_display->setComponent('field_image_thumb', [
+    'type' => 'image_image',
+    'weight' => 10,
+    'region' => 'content',
+    'settings' => [
+      'progress_indicator' => 'throbber',
+      'preview_image_style' => 'thumbnail',
+    ],
+    'third_party_settings' => [],
+  ]);
+  $form_display->save();
+
+  $form_display->setComponent('field_image_hero', [
+    'type' => 'image_image',
+    'weight' => 11,
+    'region' => 'content',
+    'settings' => [
+      'progress_indicator' => 'throbber',
+      'preview_image_style' => 'thumbnail',
+    ],
+    'third_party_settings' => [],
+  ]);
+  $form_display->save();
+}

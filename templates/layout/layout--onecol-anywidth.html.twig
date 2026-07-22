@@ -1,0 +1,16 @@
+{%
+  set classes = [
+    'layout',
+    'layout--onecol-section',
+    settings.extra_classes,
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+
+    {% if content.main %}
+      {{ content.main }}
+    {% endif %}
+
+  </div>
+{% endif %}

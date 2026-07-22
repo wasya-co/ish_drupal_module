@@ -1,0 +1,57 @@
+
+layout_onecol_any:
+  label: 'Onecol Any'
+  category: 'Columns: 1'
+  class: '\Drupal\ish_drupal_module\Layout\OnecolAnywidthLayout'
+  template: templates/layout/layout--onecol-anywidth
+  icon_map:
+    - [main]
+  regions:
+    main:
+      label: Main
+
+layout_twocol_any:
+  label: 'Twocol Any'
+  category: 'Columns: 2'
+  class: '\Drupal\ish_drupal_module\Layout\TwocolAnywidthLayout'
+  template: templates/layout/layout--twocol-anywidth
+  icon_map:
+    - [first, second]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+
+layout_threecol_any:
+  label: 'Threecol Any'
+  category: 'Columns: 3'
+  class: '\Drupal\ish_drupal_module\Layout\ThreecolAnywidthLayout'
+  template: templates/layout/layout--threecol-anywidth
+  icon_map:
+    - [first, second, third]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+
+layout_fourcol_any:
+  label: 'Fourcol Any'
+  category: 'Columns: 4'
+  class: '\Drupal\ish_drupal_module\Layout\FourcolAnywidthLayout'
+  template: templates/layout/layout--fourcol-anywidth
+  icon_map:
+    - [first, second, third, fourth]
+  regions:
+    first:
+      label: First
+    second:
+      label: Second
+    third:
+      label: Third
+    fourth:
+      label: Fourth
+

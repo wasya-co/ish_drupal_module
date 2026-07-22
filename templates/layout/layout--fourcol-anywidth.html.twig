@@ -1,0 +1,41 @@
+{%
+  set classes = [
+    'layout',
+    'layout--fourcol',
+    settings.extra_classes,
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class='row'>
+
+      {% if content.first %}
+        <div {{ region_attributes.first.addClass(settings.col1_classes) }}>
+          {{ content.first }}
+        </div>
+      {% endif %}
+
+      {% if content.second %}
+        <div {{ region_attributes.second.addClass(settings.col2_classes) }}>
+          {{ content.second }}
+        </div>
+      {% endif %}
+
+      {% if content.third %}
+        <div {{ region_attributes.third.addClass(settings.col3_classes) }}>
+          {{ content.third }}
+        </div>
+      {% endif %}
+
+      {% if content.fourth %}
+        <div {{ region_attributes.fourth.addClass(settings.col4_classes) }}>
+          {{ content.fourth }}
+        </div>
+      {% endif %}
+
+
+    </div>
+  </div>
+{% endif %}
+
+

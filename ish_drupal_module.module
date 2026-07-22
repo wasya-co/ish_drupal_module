@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
@@ -16,37 +16,6 @@ function puts($object, $label=null) {
   dump($object);
 }
 
-use Symfony\Component\HttpFoundation\RedirectResponse;
-
-
-// function ish_drupal_module_form_user_register_form_alter(&$form, $form_state, $form_id) {
-//   // $form['account']['name']['#title'] = t('First and last name');
-//   // $form['account']['name']['#description'] = t("Rewrite this about spaces, periods (.), hyphens (-) and apostrophes (').");
-//
-//   // $markup = '<div id="my-custom-markup"><h1>Here is my markup</h1></div>';
-//   // $form['field_mycustommarkup'] = [
-//   //     '#type' => 'markup',
-//   //     '#markup' => $markup,
-//   //     '#weight' => 1,
-//   // ];
-//
-//   // $markup = '<div id="my-custom-markup"><h1>New 222 Recaptcha</h1></div>';
-//   // $form['field_mycustommarkup'] = [
-//   //     '#type' => 'markup',
-//   //     '#markup' => $markup,
-//   //     '#weight' => 10,
-//   // ];
-//
-//   // $form['#submit'][] = 'ish_drupal_module_2_submit';
-// }
-
-// function ish_drupal_module_2_submit($form_id, $form_values) {
-//   drupal_set_message(t('Submit Function Executed!'));
-//   var_dump("And this, the form has been submitted.");
-//   var_dump( $form_id );
-//   var_dump( $form_values );
-//   exit(0);
-// }
 
 function ish_drupal_module_entity_type_build(array &$entity_types) {
   $entity_types['node']->setFormClass('for_youtube', 'Drupal\node\NodeForm');
@@ -204,65 +173,3 @@ function ish_drupal_module_page_attachments(array &$attachments) {
 
 
 
-
-/**
- * Create the Advanced Page content type.
- */
-function my_module_update_9001() {
-
-  if (!NodeType::load('advanced_page')) {
-    NodeType::create([
-      'type' => 'advanced_page',
-      'name' => 'AdvPage',
-      'description' => 'Advanced page',
-      'new_revision' => FALSE,
-      'preview_mode' => DRUPAL_OPTIONAL,
-      'display_submitted' => FALSE,
-    ])->save();
-  }
-
-  foreach (['image_hero', 'image_thumb'] as $field_name) {
-    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
-      FieldStorageConfig::create([
-        'field_name' => 'field_' . $field_name,
-        'entity_type' => 'node',
-        'type' => 'image',
-        'cardinality' => 1,
-        'settings' => [
-          'uri_scheme' => 'public',
-        ],
-      ])->save();
-    }
-
-    if (!FieldConfig::loadByName('node', 'advanced_page', 'field_' . $field_name)) {
-      FieldConfig::create([
-        'field_name' => 'field_' . $field_name,
-        'entity_type' => 'node',
-        'bundle' => 'advanced_page',
-        'label' => ucwords(str_replace('_', ' ', $field_name)),
-        'required' => FALSE,
-        'settings' => [
-          'file_extensions' => 'png gif jpg jpeg webp',
-          'alt_field' => TRUE,
-          'title_field' => FALSE,
-        ],
-      ])->save();
-    }
-  }
-
-  $display = EntityViewDisplay::load('node.advanced_page.full');
-  if (!$display) {
-    $display = EntityViewDisplay::create([
-      'targetEntityType' => 'node',
-      'bundle' => 'advanced_page',
-      'mode' => 'full',
-      'status' => TRUE,
-    ]);
-  }
-  $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-  $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-  $display->save();
-
-
-
-}

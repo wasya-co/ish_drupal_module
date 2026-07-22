@@ -1,0 +1,35 @@
+{%
+  set classes = [
+    'layout',
+    'container',
+    'layout--threecol',
+    settings.extra_classes,
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <div class='row'>
+
+      {% if content.first %}
+        <div {{ region_attributes.first.addClass(settings.col1_classes) }}>
+          {{ content.first }}
+        </div>
+      {% endif %}
+
+      {% if content.second %}
+        <div {{ region_attributes.second.addClass(settings.col2_classes) }}>
+          {{ content.second }}
+        </div>
+      {% endif %}
+
+      {% if content.third %}
+        <div {{ region_attributes.third.addClass(settings.col3_classes) }}>
+          {{ content.third }}
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+{% endif %}
+
+

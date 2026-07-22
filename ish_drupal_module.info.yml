@@ -1,7 +1,7 @@
 name: ish_drupal_module
 type: module
 version: VERSION
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 description: Ish Locations and more.
 dependencies:
   - drupal:views
