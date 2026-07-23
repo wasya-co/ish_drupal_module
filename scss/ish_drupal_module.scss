@@ -20,3 +20,28 @@ body {
   justify-content: flex-end;
 }
 
+/* sliders */
+
+// .my-slider {
+//   border: 2px solid blue;
+//   min-height: 400px;
+//   // min-height: 400px;
+// }
+
+.w-1 {
+  max-width: 100%;
+}
+
+.node--type-slide.node--view-mode-full {
+  border: 2px solid cyan;
+  background: #333;
+
+  max-height: 400px;
+  height: 400px;
+
+  img {
+    max-height: 300px;
+    max-width: 300px;
+    height: auto;
+  }
+}

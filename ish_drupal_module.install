@@ -6,6 +6,7 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\node\Entity\NodeType;
+use Drupal\taxonomy\Entity\Term;
 
 
 /*
@@ -44,7 +45,7 @@ function ish_drupal_module_update_9017() {
 /*
  * Advanced Page content type.
 **/
-function ish_drupal_module_update_9015() {
+function ish_drupal_module_update_9027() {
   if (!NodeType::load('advanced_page')) {
     NodeType::create([
       'type' => 'advanced_page',
@@ -151,6 +152,50 @@ function ish_drupal_module_update_9015() {
     'settings' => [],
   ])->save();
 
+  /* paragraphs */
+  $storage = FieldStorageConfig::loadByName('node', 'field_paragraphs');
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => 'field_paragraphs',
+      'entity_type' => 'node',
+      'type' => 'entity_reference_revisions',
+      'cardinality' => -1,
+      'settings' => [
+        'target_type' => 'paragraph',
+      ],
+      'translatable' => TRUE,
+    ]);
+    $storage->save();
+  }
+  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_paragraphs');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => 'advanced_page',
+      'label' => 'Paragraphs',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [],
+    ]);
+    $field->save();
+  }
+  $form_display ->setComponent('field_paragraphs', [
+    'type' => 'paragraphs',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+  $display->setComponent('body', [
+    'type' => 'entity_reference_revisions_entity_view',
+    'label' => 'hidden',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+
+
   foreach (['image_hero', 'image_thumb'] as $field_name) {
     if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
       FieldStorageConfig::create([
@@ -193,9 +238,9 @@ function ish_drupal_module_update_9015() {
 }
 
 /*
- * tmp, form_display of image_thumb
+ * update Advanced Page
 **/
-function ish_drupal_module_update_9020() {
+function ish_drupal_module_update_9028() {
   $form_display = EntityFormDisplay::load('node.advanced_page.default');
   $form_display->setComponent('field_image_thumb', [
     'type' => 'image_image',
@@ -220,4 +265,229 @@ function ish_drupal_module_update_9020() {
     'third_party_settings' => [],
   ]);
   $form_display->save();
+}
+
+/*
+ * Slide content type.
+**/
+function ish_drupal_module_update_9023() {
+  if (!NodeType::load('slide')) {
+    NodeType::create([
+      'type' => 'slide',
+      'name' => 'Slide',
+      'description' => 'Slide',
+      'new_revision' => FALSE,
+      'preview_mode' => DRUPAL_OPTIONAL,
+      'display_submitted' => FALSE,
+    ])->save();
+  }
+
+  $form_display = EntityFormDisplay::load('node.slide.default');
+  if (!$form_display) {
+    $form_display = EntityFormDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'slide',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+
+  $display = EntityViewDisplay::load('node.slide.full');
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'slide',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+  /* not needed for Slide */
+  // $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+  // $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+  // $display->save();
+
+  /* body */
+  $storage = FieldStorageConfig::loadByName('node', 'body');
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'type' => 'text_with_summary',
+      'cardinality' => 1,
+      'settings' => [],
+      'translatable' => TRUE,
+    ]);
+    $storage->save();
+  }
+  $field = FieldConfig::loadByName('node', 'slide', 'body');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => 'slide',
+      'label' => 'Body',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [
+        'display_summary' => TRUE,
+        'required_summary' => FALSE,
+      ],
+    ]);
+    $field->save();
+  }
+  $form_display ->setComponent('body', [
+    'type' => 'text_textarea_with_summary',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [
+      'rows' => 9,
+      'summary_rows' => 3,
+      'placeholder' => '',
+      'show_summary' => FALSE,
+    ],
+  ])->save();
+  $display->setComponent('body', [
+    'type' => 'text_default',
+    'label' => 'hidden',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+
+  /* tags */
+  $storage = FieldStorageConfig::loadByName('node', 'field_tags');
+  $field = FieldConfig::loadByName('node', 'slide', 'field_tags');
+  if (!$field) {
+    FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => 'slide',
+      'label' => 'Tags',
+      'description' => '',
+      'required' => FALSE,
+      'settings' => [],
+    ])->save();
+  }
+  $form_display->setComponent('field_tags', [
+    // 'type' => 'options_select',
+    'type' => 'options_buttons',
+    'weight' => 40,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+  foreach (['image_hero', 'image_thumb'] as $field_name) {
+    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
+      FieldStorageConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'type' => 'image',
+        'cardinality' => 1,
+        'settings' => [
+          'uri_scheme' => 'public',
+        ],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', 'slide', 'field_' . $field_name)) {
+      FieldConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'bundle' => 'slide',
+        'label' => ucwords(str_replace('_', ' ', $field_name)),
+        'required' => FALSE,
+        'settings' => [
+          'file_extensions' => 'png gif jpg jpeg webp',
+          'alt_field' => TRUE,
+          'title_field' => FALSE,
+        ],
+      ])->save();
+    }
+
+    $form_display->setComponent('field' . $field_name, [
+      'type' => 'image_image',
+      'weight' => 10,
+      'region' => 'content',
+      'settings' => [
+        'progress_indicator' => 'throbber',
+        'preview_image_style' => 'thumbnail',
+      ],
+    ])->save();
+  }
+}
+/*
+ * tmp, update Slide
+**/
+function ish_drupal_module_update_9026() {
+  $form_display = EntityFormDisplay::load('node.slide.default');
+  $form_display->setComponent('field_image_thumb', [
+    'type' => 'image_image',
+    'weight' => 10,
+    'region' => 'content',
+    'settings' => [
+      'progress_indicator' => 'throbber',
+      'preview_image_style' => 'thumbnail',
+    ],
+    'third_party_settings' => [],
+  ]);
+  $form_display->save();
+
+  $form_display->setComponent('field_image_hero', [
+    'type' => 'image_image',
+    'weight' => 11,
+    'region' => 'content',
+    'settings' => [
+      'progress_indicator' => 'throbber',
+      'preview_image_style' => 'thumbnail',
+    ],
+    'third_party_settings' => [],
+  ]);
+  $form_display->save();
+
+  $display = EntityViewDisplay::load('node.slide.full');
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => 'slide',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+
+  $display->setComponent('field_image_hero', [
+    'type' => 'image',
+    'label' => 'hidden',
+    'weight' => -10,
+    'settings' => [
+      'image_style' => '',
+      'image_link' => '',
+    ],
+    'third_party_settings' => [],
+  ])->save();
+
+}
+
+
+/*
+ * Create tags
+**/
+function ish_drupal_module_update_9022() {
+  $vocabulary = 'tags';
+  $tag_name = 'Slidesets.';
+
+  // Don't create it if it already exists.
+  $existing = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadByProperties([
+      'vid' => $vocabulary,
+      'name' => $tag_name,
+    ]);
+
+  if (!$existing) {
+    $term = Term::create([
+      'vid' => $vocabulary,
+      'name' => $tag_name,
+    ]);
+    $term->save();
+  }
 }

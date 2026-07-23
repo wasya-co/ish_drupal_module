@@ -32,5 +32,29 @@ $(function () {
     e.stopPropagation()
   })
 
+
+
+  /*
+  var slider = tns({
+    container: '.my-slider',
+    items: 2,
+    slideBy: 'page',
+    autoplay: true
+  });
+  // */
+
+  $('.my-slider').each((idx, el) => {
+    var slider = tns({
+      center: true,
+      container: el,
+      items: 2.1,
+      loop: true,
+      autoplay: true
+    });
+  })
+
+
+
+  console.log('+++ loaded ish_drupal_module main.js')
 })
 

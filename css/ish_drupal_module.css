@@ -11,3 +11,17 @@ body {
 .block-superfishmain {
   display: flex;
   justify-content: flex-end; }
+
+/* sliders */
+.w-1 {
+  max-width: 100%; }
+
+.node--type-slide.node--view-mode-full {
+  border: 2px solid cyan;
+  background: #333;
+  max-height: 400px;
+  height: 400px; }
+  .node--type-slide.node--view-mode-full img {
+    max-height: 300px;
+    max-width: 300px;
+    height: auto; }
