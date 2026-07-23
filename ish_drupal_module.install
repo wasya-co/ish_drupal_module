@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\block_content\Entity\BlockContentType;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
@@ -491,3 +492,70 @@ function ish_drupal_module_update_9022() {
     $term->save();
   }
 }
+
+/*
+ * create Section Hero Video
+**/
+function ish_drupal_module_update_9029() {
+  if (!BlockContentType::load('section_hero_video')) {
+    BlockContentType::create([
+      'id' => 'section_hero_video',
+      'label' => 'Section Hero Video',
+      'revision' => TRUE,
+    ])->save();
+  }
+
+  if (!FieldStorageConfig::loadByName('block_content', 'field_custom_css')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_custom_css',
+      'entity_type' => 'block_content',
+      'type' => 'string_long',
+      'cardinality' => 1,
+    ])->save();
+  }
+
+  if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_custom_css')) {
+    FieldConfig::create([
+      'field_name' => 'field_custom_css',
+      'entity_type' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'label' => 'Custom CSS',
+      'required' => FALSE,
+    ])->save();
+  }
+
+  $form_display = EntityFormDisplay::load('block_content.section_hero_video.default');
+  if (!$form_display) {
+    $form_display = EntityFormDisplay::create([
+      'targetEntityType' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+  $form_display->setComponent('field_custom_css', [
+    'type' => 'string_textarea',
+    'weight' => 10,
+  ])->save();
+
+  $display = EntityViewDisplay::load('block_content.section_hero_video.full');
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+  $display->setComponent('field_custom_css', [
+    'label' => 'hidden',
+    'type' => 'basic_string',
+    'weight' => 10,
+  ])->save();
+}
+
+
+
+
+
+// next: 9031
