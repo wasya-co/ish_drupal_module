@@ -5,6 +5,7 @@ core_version_requirement: ^9 || ^10
 description: Ish Locations and more.
 dependencies:
   - drupal:views
+  - drupal:twig_tweak
 
 libraries:
   - ish_drupal_module/bootstrap

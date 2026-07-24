@@ -496,31 +496,12 @@ function ish_drupal_module_update_9022() {
 /*
  * create Section Hero Video
 **/
-function ish_drupal_module_update_9029() {
+function ish_drupal_module_update_9035() {
   if (!BlockContentType::load('section_hero_video')) {
     BlockContentType::create([
       'id' => 'section_hero_video',
       'label' => 'Section Hero Video',
       'revision' => TRUE,
-    ])->save();
-  }
-
-  if (!FieldStorageConfig::loadByName('block_content', 'field_custom_css')) {
-    FieldStorageConfig::create([
-      'field_name' => 'field_custom_css',
-      'entity_type' => 'block_content',
-      'type' => 'string_long',
-      'cardinality' => 1,
-    ])->save();
-  }
-
-  if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_custom_css')) {
-    FieldConfig::create([
-      'field_name' => 'field_custom_css',
-      'entity_type' => 'block_content',
-      'bundle' => 'section_hero_video',
-      'label' => 'Custom CSS',
-      'required' => FALSE,
     ])->save();
   }
 
@@ -533,10 +514,6 @@ function ish_drupal_module_update_9029() {
       'status' => TRUE,
     ]);
   }
-  $form_display->setComponent('field_custom_css', [
-    'type' => 'string_textarea',
-    'weight' => 10,
-  ])->save();
 
   $display = EntityViewDisplay::load('block_content.section_hero_video.full');
   if (!$display) {
@@ -547,15 +524,340 @@ function ish_drupal_module_update_9029() {
       'status' => TRUE,
     ]);
   }
-  $display->setComponent('field_custom_css', [
+
+
+
+
+
+  // if (!FieldStorageConfig::loadByName('block_content', 'field_custom_css')) {
+  //   FieldStorageConfig::create([
+  //     'field_name' => 'field_custom_css',
+  //     'entity_type' => 'block_content',
+  //     'type' => 'string_long',
+  //     'cardinality' => 1,
+  //   ])->save();
+  // }
+  // if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_custom_css')) {
+  //   FieldConfig::create([
+  //     'field_name' => 'field_custom_css',
+  //     'entity_type' => 'block_content',
+  //     'bundle' => 'section_hero_video',
+  //     'label' => 'Custom CSS',
+  //     'required' => FALSE,
+  //   ])->save();
+  // }
+  // $form_display->setComponent('field_custom_css', [
+  //   'type' => 'string_textarea',
+  //   'weight' => 10,
+  // ])->save();
+  // $display->setComponent('field_custom_css', [
+  //   'label' => 'hidden',
+  //   'type' => 'basic_string',
+  //   'weight' => 10,
+  // ])->save();
+
+
+  if (!FieldStorageConfig::loadByName('block_content', 'body')) {
+    FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'block_content',
+      'type' => 'text_with_summary',
+      'cardinality' => 1,
+      'translatable' => TRUE,
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'body')) {
+    FieldConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'label' => 'body',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [
+        'display_summary' => TRUE,
+        'required_summary' => FALSE,
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('body', [
+    'type' => 'text_textarea_with_summary',
+    'weight' => 10,
+  ])->save();
+  $display->setComponent('body', [
     'label' => 'hidden',
-    'type' => 'basic_string',
+    'type' => 'text_default',
+    'weight' => 10,
+  ])->save();
+
+
+
+
+  if (!FieldStorageConfig::loadByName('block_content', 'field_video_file')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_video_file',
+      'entity_type' => 'block_content',
+      'type' => 'file',
+      'cardinality' => 1,
+      'settings' => [
+        'target_type' => 'file',
+        'uri_scheme' => 'public',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_video_file')) {
+    FieldConfig::create([
+      'field_name' => 'field_video_file',
+      'entity_type' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'label' => 'field_video_file',
+      'required' => FALSE,
+      'settings' => [
+        'file_extensions' => 'mp4 webm ogv',
+        'description_field' => FALSE,
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_video_file', [
+    'type' => 'file_generic',
+    'weight' => 10,
+  ])->save();
+  $display->setComponent('field_video_file', [
+    'label' => 'hidden',
+    'type' => 'file_url_plain',
+    'weight' => 10,
+  ])->save();
+
+
+  if (!FieldStorageConfig::loadByName('block_content', 'field_image')) {
+    FieldStorageConfig::create([
+      'field_name' => 'field_image',
+      'entity_type' => 'block_content',
+      'type' => 'file',
+      'cardinality' => 1,
+      'settings' => [
+        'target_type' => 'file',
+        'uri_scheme' => 'public',
+      ],
+    ])->save();
+  }
+  if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_image')) {
+    FieldConfig::create([
+      'field_name' => 'field_image',
+      'entity_type' => 'block_content',
+      'bundle' => 'section_hero_video',
+      'label' => 'field_image',
+      'required' => FALSE,
+      'settings' => [
+        'file_extensions' => 'jpg jpeg png gif',
+        'description_field' => FALSE,
+      ],
+    ])->save();
+  }
+  $form_display->setComponent('field_image', [
+    'type' => 'file_generic',
+    'weight' => 10,
+  ])->save();
+  $display->setComponent('field_image', [
+    'label' => 'hidden',
+    'type' => 'file_url_plain',
     'weight' => 10,
   ])->save();
 }
 
 
 
+/*
+ * Issue content_type
+**/
+function ish_drupal_module_update_9030() {
+  $content_type = 'issue';
+
+  if (!NodeType::load($content_type)) {
+    NodeType::create([
+      'type' => $content_type,
+      'name' => $content_type,
+      'description' => $content_type,
+      'new_revision' => FALSE,
+      'preview_mode' => DRUPAL_OPTIONAL,
+      'display_submitted' => FALSE,
+    ])->save();
+  }
+
+  $form_display = EntityFormDisplay::load("node.$content_type.default");
+  if (!$form_display) {
+    $form_display = EntityFormDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => $content_type,
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+
+  $display = EntityViewDisplay::load("node.$content_type.full");
+  if (!$display) {
+    $display = EntityViewDisplay::create([
+      'targetEntityType' => 'node',
+      'bundle' => $content_type,
+      'mode' => 'full',
+      'status' => TRUE,
+    ]);
+  }
+  $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+  $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+  $display->save();
+
+  /* body */
+  $storage = FieldStorageConfig::loadByName('node', 'body');
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'type' => 'text_with_summary',
+      'cardinality' => 1,
+      'settings' => [],
+      'translatable' => TRUE,
+    ]);
+    $storage->save();
+  }
+  $field = FieldConfig::loadByName('node', $content_type, 'body');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => $content_type,
+      'label' => 'Body',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [
+        'display_summary' => TRUE,
+        'required_summary' => FALSE,
+      ],
+    ]);
+    $field->save();
+  }
+  $form_display ->setComponent('body', [
+    'type' => 'text_textarea_with_summary',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [
+      'rows' => 9,
+      'summary_rows' => 3,
+      'placeholder' => '',
+      'show_summary' => FALSE,
+    ],
+  ])->save();
+  $display->setComponent('body', [
+    'type' => 'text_default',
+    'label' => 'hidden',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
 
 
-// next: 9031
+  /* tags */
+  $storage = FieldStorageConfig::loadByName('node', 'field_tags');
+  $field = FieldConfig::loadByName('node', $content_type, 'field_tags');
+  if (!$field) {
+    FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => $content_type,
+      'label' => 'Tags',
+      'description' => '',
+      'required' => FALSE,
+      'settings' => [],
+    ])->save();
+  }
+  $form_display->setComponent('field_tags', [
+    'type' => 'options_buttons',
+    'weight' => 40,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+  /* paragraphs */
+  $storage = FieldStorageConfig::loadByName('node', 'field_paragraphs');
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => 'field_paragraphs',
+      'entity_type' => 'node',
+      'type' => 'entity_reference_revisions',
+      'cardinality' => -1,
+      'settings' => [
+        'target_type' => 'paragraph',
+      ],
+      'translatable' => TRUE,
+    ]);
+    $storage->save();
+  }
+  $field = FieldConfig::loadByName('node', $content_type, 'field_paragraphs');
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_storage' => $storage,
+      'bundle' => $content_type,
+      'label' => 'Paragraphs',
+      'description' => '',
+      'required' => FALSE,
+      'translatable' => TRUE,
+      'settings' => [],
+    ]);
+    $field->save();
+  }
+  $form_display ->setComponent('field_paragraphs', [
+    'type' => 'paragraphs',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+  $display->setComponent('body', [
+    'type' => 'entity_reference_revisions_entity_view',
+    'label' => 'hidden',
+    'weight' => 20,
+    'region' => 'content',
+    'settings' => [],
+  ])->save();
+
+
+
+  foreach (['image_hero', 'image_thumb'] as $field_name) {
+    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
+      FieldStorageConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'type' => 'image',
+        'cardinality' => 1,
+        'settings' => [
+          'uri_scheme' => 'public',
+        ],
+      ])->save();
+    }
+
+    if (!FieldConfig::loadByName('node', $content_type, 'field_' . $field_name)) {
+      FieldConfig::create([
+        'field_name' => 'field_' . $field_name,
+        'entity_type' => 'node',
+        'bundle' => $content_type,
+        'label' => ucwords(str_replace('_', ' ', $field_name)),
+        'required' => FALSE,
+        'settings' => [
+          'file_extensions' => 'png gif jpg jpeg webp',
+          'alt_field' => TRUE,
+          'title_field' => FALSE,
+        ],
+      ])->save();
+    }
+
+    $form_display
+      ->setComponent('field' . $field_name, [
+        'type' => 'image_image',
+        'weight' => 10,
+        'region' => 'content',
+        'settings' => [
+          'progress_indicator' => 'throbber',
+          'preview_image_style' => 'thumbnail',
+        ],
+      ])->save();
+  }
+}
+// next: 9035

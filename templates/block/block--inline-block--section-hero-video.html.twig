@@ -1,0 +1,37 @@
+
+{%
+  set classes = [
+    'SectionHeroVideo',
+
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  <video class="hero-video" autoplay="" muted="" loop="" playsinline="" preload="metadata">
+    <source src="{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}" type="video/mp4">
+  </video>
+
+  <div class='hero-image' style="background-image: url({{ file_url( content.field_image['#items'].entity.uri.value ) }})" alt='' >
+  </div>
+
+  {# <ul>
+    <li>{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}</li>
+    <li>{{ content.field_video_file }}</li>
+    <li>{{ content.field_image }}</li>
+  </ul> #}
+
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      {{ content | without('field_video_file') | without('field_image') }}
+    </div>
+  {% endblock %}
+</div>
+

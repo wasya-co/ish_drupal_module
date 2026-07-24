@@ -49,11 +49,20 @@ $(function () {
       container: el,
       items: 2.1,
       loop: true,
-      autoplay: true
+      autoplay: true,
     });
   })
 
-
+  $('.my-slider').each((idx, el) => {
+    var slider = tns({
+      center: true,
+      container: el,
+      controls: false,
+      items: 2.1,
+      loop: true,
+      autoplay: true,
+    });
+  })
 
 
   console.log('+++ loaded ish_drupal_module main.js')

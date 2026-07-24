@@ -33,6 +33,15 @@ function ish_drupal_module_entity_type_build(array &$entity_types) {
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
   return [
+    'block__inline_block__section_hero_video' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
+    'page__node__issue' => [
+      'base hook' => 'page',
+      'path' => $path . '/templates/layout',
+    ],
+
     'error_404' => [
       'render element' => 'children',
       'template' => 'error_404',

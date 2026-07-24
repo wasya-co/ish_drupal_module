@@ -1,16 +1,60 @@
+.SectionHeroVideo {
+  max-height: 85vh;
+  border: 1px solid yellow;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px; }
+  .SectionHeroVideo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1; }
+  .SectionHeroVideo .content {
+    position: relative;
+    z-index: 1; }
+  .SectionHeroVideo video.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; }
+  .SectionHeroVideo .hero-image {
+    display: none; }
+
+@media (min-width: 1px) {
+  .SectionHeroVideo video.hero-video {
+    display: none; }
+  .SectionHeroVideo .hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; } }
+
 /*
- * tmp - nothing should be in this file.
+ * only make Card, Teaser nice. chips and tags can also be here.
 **/
-body {
-  background: var(--bg-color);
-  color: var(--text-color); }
+.node--view-mode-card {
+  border: 1px solid var(--text-color);
+  border-radius: 0.4em;
+  padding: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em; }
 
-#navbar-main {
-  background-color: transparent !important; }
+.no-navigation .tns-outer > button {
+  display: none; }
 
-/* sliders */
-.w-1 {
-  max-width: 100%; }
+.no-navigation .tns-outer .tns-nav {
+  display: none; }
+
+.no-navigation .tns-outer .tns-controls {
+  display: none; }
 
 .node--type-slide.node--view-mode-full {
   border: 2px solid cyan;
@@ -22,31 +66,24 @@ body {
     max-width: 300px;
     height: auto; }
 
-/* hero section with bg video */
-.a20260723-hero {
-  border: 1px solid red;
+body {
+  background: var(--bg-color);
+  color: var(--text-color); }
+
+#navbar-main {
+  background-color: transparent !important; }
+
+.tabs {
   position: relative;
-  overflow: hidden;
-  min-height: 600px; }
-  .a20260723-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: 1; }
-  .a20260723-hero .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    /* adjust opacity */
-    z-index: 1; }
-  .a20260723-hero .hero-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0; }
-  .a20260723-hero .hero-content {
-    position: relative;
-    z-index: 1; }
+  z-index: 10; }
+
+.bordered {
+  border: 1px solid yellow; }
+
+@media (min-width: 767px) {
+  .only-mobile {
+    display: none; } }
+
+@media (max-width: 767px) {
+  .no-mobile {
+    display: none; } }
