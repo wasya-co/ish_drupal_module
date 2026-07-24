@@ -8,3 +8,12 @@
 0.5.0 :: 2026-07-22 :: okay, continue
 0.6.0 :: 2026-07-22 :: adding a lot of assdets to module.
 
+1.0.0 :: 2026-01-09 :: compatibility with drupal 10
+                       removed bjjc from here - it will be separate
+1.1.0 :: 2026-04-21 :: better list of paragraph types at /admin/paragraphs
+1.1.1                  now I want per-category pages
+1.2.1                  merged 0.5.1, so now this is the latest.
+1.2.2                  adding layout collapse-expand
+1.2.3 :: 2026-07-08 :: churning mileswmathis_com
+0.6.0 :: 2026-07-23 :: rebel-cycles, same as 0.7.0
+2.0.0 ::            :: merge 1.2.3 and 0.6.0

@@ -2,12 +2,14 @@
 <div class='UserDashboard maxwidth'>
   <h1 class='center text-center'>Dashboard ({{ user.account.name }})</h1>
 
-  <ul>
+  {# <ul>
     <li><a href='/node/add/contributed_post'>New Contributed Post</a></li>
     <li><a href='/node/add/venue'>New Venue</a></li>
     <li><a href='/node/add/location'>New Location</a></li>
     <li><a href='/node/add/advanced_page'>New Page for Youtube</a></li>
-  </ul>
+  </ul> #}
+  Secondary menu:
+  {{ menu_secondary }}
 
   <div class='container row'>
     <div class='col-md-6'>

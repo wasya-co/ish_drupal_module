@@ -2,16 +2,8 @@
 
 namespace Drupal\ish_drupal_module\Form;
 
-// use DOMDocument;
-
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-
-use \Drupal\file\Entity\File;
-use \Drupal\node\Entity\Node;
-use \Drupal\node\Entity\User;
-
-use Drupal\jwt\Transcoder\JwtTranscoder;
 
 /**
  * Implements an example form.
@@ -62,15 +54,6 @@ class ForYoutube extends FormBase {
     return $form;
   }
 
-  /* function youtube_title_old(string $id) {
-    $doc = new DOMDocument();
-    $doc->loadHTMLFile("https://www.youtube.com/watch?v=" . $id);
-    $doc->preserveWhiteSpace = false;
-    $title = $doc->getElementsByTagName('title')[0]->nodeValue;
-    \Drupal::logger('ish_drupal_module_form_alter')->notice('youtube title: ' . $title);
-    return $title;
-  } // */
-
   function youtube_title(string $id) {
     $config = \Drupal::config('ish_drupal_module.settings');
     $api_key = $config->get('google_api_youtube_key');
@@ -95,8 +78,6 @@ class ForYoutube extends FormBase {
     $params = $form_state->getValues();
     // logg($params, '$params');
 
-
-
     $tmp = parse_url($form_state->getValue('youtube_url'), PHP_URL_QUERY);
     parse_str($tmp, $tmp);
     // logg($tmp);
@@ -108,7 +89,6 @@ class ForYoutube extends FormBase {
         encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     AOL;
-
 
     $type = 'page_youtube';
     $issue_uuid = '35'; // '4ac9695b-0854-4972-8528-1f52e21d2235'; // taxonomy_term/35 :: 2024q1-issue
@@ -132,3 +112,4 @@ class ForYoutube extends FormBase {
   }
 
 }
+

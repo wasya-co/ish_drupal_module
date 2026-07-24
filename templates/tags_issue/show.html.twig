@@ -1,0 +1,7 @@
+
+<h1 class='center text-center' >tags_issue#show `{{ parent_tag.name.value }}`</h1>
+<ul>
+{% for tag in tags %}
+  <li>{{ tag.name.value }}</li>
+{% endfor %}
+</ul>

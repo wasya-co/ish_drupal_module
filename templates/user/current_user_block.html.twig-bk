@@ -1,0 +1,11 @@
+
+<div class='current_user_block'>
+  {% if current_user_email %}
+    <a href="/user/dashboard">{{ current_user_email }}</a>
+    <a href="/user/logout">[Log out]</a>
+  {% else %}
+    {# <a href="/user/register">Register</a>&nbsp;|&nbsp; #}
+    {# <a href="/user/login">Login</a>&nbsp;|&nbsp; #}
+    <a href="/user/login/google?destination={{ url('<current>') }}">Login with Google</a>
+  {% endif %}
+</div>

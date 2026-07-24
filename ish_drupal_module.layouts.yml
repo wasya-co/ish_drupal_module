@@ -1,14 +1,20 @@
 
-layout_onecol_any:
-  label: 'Onecol Any'
+layout_collapse_expand:
+  label: 'layout_collapse_expand'
   category: 'Columns: 1'
-  class: '\Drupal\ish_drupal_module\Layout\OnecolAnywidthLayout'
-  template: templates/layout/layout--onecol-anywidth
+  class: '\Drupal\ish_drupal_module\Layout\CollapseExpandLayout'
+  template: templates/layout/layout--collapse-expand
   icon_map:
     - [main]
   regions:
     main:
       label: Main
+
+layout_onecol_any:
+  label: 'Onecol Any'
+  category: 'Columns: 1'
+  class: '\Drupal\ish_drupal_module\Layout\OnecolAnywidthLayout'
+  template: templates/layout/layout--onecol-anywidth
 
 layout_twocol_any:
   label: 'Twocol Any'

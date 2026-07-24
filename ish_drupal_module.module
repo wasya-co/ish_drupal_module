@@ -1,8 +1,22 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeInterface;
+use Drupal\user\Entity\User;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Drupal\ish_drupal_module\Controllers\YoutubeChannelCtrl;
+use Drupal\ish_drupal_module\Helpers\BjjcHelper;
+use Drupal\ish_drupal_module\Helpers\MainHelper;
+use Drupal\ish_drupal_module\Models\ArticleTranslator;
+use Drupal\ish_drupal_module\Models\PageYoutube;
+use Drupal\ish_drupal_module\Models\YoutubeVideo;
+
 
 function logg($object, $label=null) {
   print($label . ":");
@@ -17,12 +31,48 @@ function puts($object, $label=null) {
 }
 
 
+/*
+ *
+**/
+function ish_drupal_module_cron() {
+  \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
+
+  $service = new PageYoutube();
+  $service->run_cron();
+
+  $service = new ArticleTranslator();
+  $service->runCron();
+}
+
+
+/*
+ * renders a different form_display for aphorisms (old, not tested)
+**/
+function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\EntityFormDisplay &$form_display, array $context) {
+  if (in_array('authenticated', \Drupal::currentUser()->getRoles()) &&
+      $context['entity_type'] === 'node' &&
+      $context['bundle'] === 'aphorism') {
+    $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
+    $differentDisplay = $storage->load("{$context['entity_type']}.{$context['bundle']}.contribute"); // 'my_form_display' was created via /admin/structure/display-modes/form
+    if ($differentDisplay) {
+      $form_display = $differentDisplay;
+    }
+  }
+}
+
+/*
+ * trash, remove?! 2025-10-01
+**/
 function ish_drupal_module_entity_type_build(array &$entity_types) {
   $entity_types['node']->setFormClass('for_youtube', 'Drupal\node\NodeForm');
   // $entity_types['node']->setFormClass('for_youtube', 'ForYoutube');
 }
 
-/**
+
+
+
+
+/*
  * Implements hook_theme().
  *
  * See: https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/function/hook_theme/8.2.x
@@ -42,6 +92,25 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates/layout',
     ],
 
+    'article_translate' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'translate',
+      'variables' => [
+        'item' => NULL,
+      ],
+    ],
+    'articles_index' => [
+      'path' => $path . '/templates/articles',
+      'render element' => 'children',
+      'template' => 'index',
+      'variables' => [
+        'items' => [],
+        'pager' => NULL,
+      ],
+    ],
+
+
     'error_404' => [
       'render element' => 'children',
       'template' => 'error_404',
@@ -49,11 +118,25 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [],
     ],
 
+    'ish_dance_instructor_dashboard' => [
+      'template' => 'dance-instructor-dashboard',
+      'path' => $path . '/templates/users',
+      'variables' => [
+      ],
+    ],
+    'ish_hiring_manager_dashboard' => [
+      'template' => 'hiring-manager-dashboard',
+      'path' => $path . '/templates/users',
+      'variables' => [
+      ],
+    ],
+
     'ish_users_dashboard' => [
       'template' => 'dashboard',
       'path' => $path . '/templates/users',
       'variables' => [
         'for_youtube_form' => NULL,
+        'menu_secondary'   => NULL,
       ],
     ],
     'ish_users_edit' => [
@@ -62,6 +145,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
       ],
     ],
+
     'ish_locations_show' => [
       // 'render element' => 'requirements',
       'template' => 'show',
@@ -72,6 +156,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
+
     'menu_user_authenticated' => [
       'path' => $path . '/templates',
       // 'render element' => 'children',
@@ -80,13 +165,62 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
         'testvar' => NULL,
       ],
     ],
-
+    'mileswmathis_com_index' => [
+      'path' => $path.'/templates/mileswmathis_com',
+      'template' => 'index',
+      'variables' => [
+        'slugs' => [],
+      ],
+    ],
     'my_feed' => [
       'path' => $path . '/templates',
       'render element' => 'elements', // works?!
       'template' => 'my_feed',
       'variables' => [
         'test_var_1' => null,
+      ],
+    ],
+
+    'scene3d_touch' => [
+      'render element' => 'children',
+      'template' => 'touch',
+      'path' => $path . '/templates/scene3d',
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+
+    'scrape_modernity_all' => [
+      'render element' => 'children',
+      'template' => 'all',
+      'path' => $path . '/templates/scrape_modernity',
+      'variables' => [
+        'contents' => 'no contents',
+      ],
+    ],
+    'scrape_rt_all' => [
+      'render element' => 'children',
+      'template' => 'all',
+      'path' => $path . '/templates/scrape_rt',
+      'variables' => [
+        'contents' => 'no contents',
+      ],
+    ],
+    'scrape_zerohedge_all' => [
+      'render element' => 'children',
+      'template' => 'all',
+      'path' => $path . '/templates/scrape_zerohedge',
+      'variables' => [
+        'contents' => 'no contents',
+      ],
+    ],
+    'scrape_zerohedge_one' => [
+      'render element' => 'children',
+      'template' => 'one',
+      'path' => $path . '/templates/scrape_zerohedge',
+      'variables' => [
+        'contents' => 'no contents',
+        'zhPath' => 'no zhPath',
       ],
     ],
 
@@ -100,72 +234,105 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
         'newsitems' => [],
       ],
     ],
+
+    'tags_issue_show' => [
+      'render element' => 'children',
+      'template' => 'show',
+      'path' => $path . '/templates/tags_issue',
+      'variables' => [
+        'parent_tag' => NULL,
+        'tags' => [],
+        // 'features' => [],
+        // 'newsitems' => [],
+      ],
+    ],
+
+    'tmp' => [
+      'render element' => 'children',
+      'template' => 'tmp',
+      'path' => $path . '/templates',
+      'variables' => [
+        'tmp' => null,
+      ],
+    ],
+
+    'videos_show2' => [
+      'template' => 'show2',
+      'path' => $path. '/templates/videos',
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+
+    'youtube_channels_check' => [
+      'render element' => 'children',
+      'template' => 'check',
+      'path' => $path . '/templates/youtube_channels',
+      'variables' => [
+        'abba' => 'default a',
+        'decoded_json' => 'no decoded_json',
+        'outs' => [ 'no outs' ],
+      ],
+    ],
+    'youtube_channels_index' => [
+      'render element' => 'children',
+      'template' => 'index',
+      'path' => $path . '/templates/youtube_channels',
+      'variables' => [
+      ],
+    ],
+
   ];
 
 }
 
-
-function ish_drupal_module_entity_form_display_alter(Drupal\Core\Entity\Entity\EntityFormDisplay &$form_display, array $context) {
-  if (in_array('authenticated', \Drupal::currentUser()->getRoles()) &&
-      $context['entity_type'] === 'node' &&
-      $context['bundle'] === 'aphorism') {
-    $storage = \Drupal::entityTypeManager()->getStorage('entity_form_display');
-    $differentDisplay = $storage->load("{$context['entity_type']}.{$context['bundle']}.contribute"); // 'my_form_display' was created via /admin/structure/display-modes/form
-    if ($differentDisplay) {
-      $form_display = $differentDisplay;
-    }
-  }
-}
-
-
-
-
-/**
- * another example
+/* Redirect user on login.
+ * From: https://drupal.stackexchange.com/questions/195170/redirect-after-user-login
+ * Works?!
 **/
-// function ish_drupal_module_form_alter(&$form, $form_state, $form_id) {
-//   $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-//   $current_roles = \Drupal::currentUser()->getRoles();
-//   // var_dump('current_roles', $current_roles);
-//   switch($form_id) {
-//     case 'node_contributed_post_edit_form':
-//       if (!in_array('administrator', $current_roles)) {
-//         $form['field_issue']['#access'] = false;
-//         $form['revision_information']['#access'] = false;
-//       }
-//       break;
-//     case 'user_login_form':
-//      $form['#submit'][] = 'ish_drupal_module_submit_handler';
-//      break;
+// function ish_drupal_module_form_user_login_form_alter(&$form, $form_state) {
+//   $form['#submit'][] = 'ish_drupal_module_user_login_submit';
+// }
+/*
+ * login redirects to dashboard
+**/
+// function ish_drupal_module_user_login_submit(&$form, $form_state) {
+//   $dashboard_url = Url::fromRoute('ish_drupal_module.users_dashboard');
+//   $dance_instructor_dashboard_url = Url::fromRoute('ish_drupal_module.dance_instructor_dashboard');
+//   // Check if a destination was set, probably on an exception controller.
+//   // @see \Drupal\user\Form\UserLoginForm::submitForm()
+//   $request = \Drupal::service('request_stack')->getCurrentRequest();
+//   if (!$request->request->has('destination')) {
+//     $form_state->setRedirectUrl($dashboard_url);
+//   }
+//   else {
+//     $request->query->set('destination', $request->request->get('destination'));
 //   }
 // }
-// function ish_drupal_module_submit_handler($form, $form_state) {
-//    $url = Url::fromRoute('/user/dashboard');
-//    $form_state->setRedirectUrl($url);
-// }
 
 
-/**
- * From: https://www.drupalatyourfingertips.com/hooks
- * Implements hook_form_FORM_ID_alter().
+
+
+/*
+ * Alter render arrays (structural changes, fields, content).
 **/
-// function ish_drupal_module_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-//   // Add a custom submit button to the login form.
-//   $form['third_party_login'] = [
-//     '#type' => 'submit',
-//     '#value' => t('Login with Third-Party Provider'),
-//     '#submit' => ['ish_drupal_module_user_login_form_submit'], // Call the custom submit function.
-//   ];
-// }
-// function ish_drupal_module_user_login_form_submit(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
-//   // Get the username and password from the form state.
-//   $username = $form_state->getValue('name');
-//   $password = $form_state->getValue('pass');
-//   // Build the URL for the third-party login page, including the username and password as query parameters.
-//   $login_url = 'https://thirdpartyprovider.com/login?username=' . urlencode($username) . '&password=' . urlencode($password);
-//   // Redirect the user to the third-party login page.
-//   $form_state->setRedirect($login_url);
-// }
+function ish_drupal_module_node_view(&$build) {
+  /* For bjjcollective_com: related nodes for v2 type of video. */
+  BjjcHelper::computeRelatedVideos($build);
+
+  // YoutubeChannelCtrl::show($build);
+
+  // logg($build, 'final build');
+}
+
+/*
+ * Alter template variables (styling, theming context).
+**/
+function ish_drupal_module_preprocess_node(array &$variables) {
+  MainHelper::computeRelatedArticles($variables); // computes related_articles for Article only.
+  YoutubeChannelCtrl::show($variables);
+  // $variables['my_custom_variable'] = 'Hello, this is my custom text!';
+}
 
 /* function ish_drupal_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   \Drupal::messenger()->addMessage('Form ID: ' . $form_id);
@@ -182,3 +349,18 @@ function ish_drupal_module_page_attachments(array &$attachments) {
 
 
 
+/*
+ * remove images from body summary
+ * This prevents me from editing the summary!
+**/
+/* function ish_drupal_module_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+  if (!$entity->hasField('body')) {
+    return;
+  }
+  $body = $entity->body->value;
+  $body = preg_replace('/<img\b[^>]*>/i', '', $body);
+  $entity->body->summary = text_summary($body, $entity->body->format);
+} */

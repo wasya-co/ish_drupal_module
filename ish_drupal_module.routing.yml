@@ -1,4 +1,74 @@
 
+ish_drupal_module.paragraphs:
+  path: '/admin/paragraphs'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
+ish_drupal_module.paragraphs_category:
+  path: '/admin/paragraphs/{category}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
+
+
+ish_drupal_module.settings:
+  path: '/admin/config/ish_drupal_module/settings'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\SettingsForm'
+    _title: 'ish_drupal_module Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+ish_drupal_module.aphorisms_new:
+  path: "/aphorisms/new"
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\AphorismsNewForm'
+    # _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::new'
+    # _entity_form: node.edit
+    # _title: 'New Aphorism'
+  requirements:
+    _role: 'content_contributor, authenticated_user'
+  options:
+    parameters:
+
+
+ish_drupal_module.article_generate:
+  path: '/articles/generate'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\ArticleGenerateForm'
+    _title: 'Generate an Article'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.article_translate:
+  path: '/articles/{id}/translate-to/{langcode}'
+  defaults:
+    _title: 'Translate this article'
+    _controller: '\Drupal\ish_drupal_module\Controller\ArticlesController::translateOne'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.articles_missing_translation:
+  path: '/articles/missing-translation'
+  defaults:
+    _title: 'Articles Missing Translation'
+    _controller: '\Drupal\ish_drupal_module\Controller\ArticlesController::missingTranslation'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.contrbuted_post_form:
+  path: '/contributed_posts/new'
+  defaults:
+    _title: 'New Contributed Post'
+    _form: '\Drupal\ish_drupal_module\Form\ContributedPostForm'
+  requirements:
+    _permission: 'create contributed_post content'
+    # _access: 'TRUE'
 
 ish_drupal_module.node.create_for_youtube:
   path: '/node/add/advanced_page/for_youtube'
@@ -7,28 +77,6 @@ ish_drupal_module.node.create_for_youtube:
     _title: 'New Advanced Page for Youtube'
   requirements:
     _role: 'content_editor'
-
-ish_drupal_module.aphorisms_index:
-  path: "/aphorisms"
-  defaults:
-    # _form: '\Drupal\ish_drupal_module\Form\AphorismsForm'
-    _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::index'
-  requirements:
-    _permission: 'access content'
-  options:
-    parameters:
-
-ish_drupal_module.aphorisms_new:
-  path: "/aphorisms/new"
-  defaults:
-    # _form: '\Drupal\ish_drupal_module\Form\AphorismsNewForm'
-    # _controller: '\Drupal\ish_drupal_module\Controller\AphorismsController::new'
-    _entity_form: node.edit
-    _title: 'New Aphorism'
-  requirements:
-    _permission: 'access content'
-  options:
-    parameters:
 
 
 ish_drupal_module.locations_follow:
@@ -69,21 +117,40 @@ ish_drupal_module.my_feed:
   requirements:
     _permission: 'access content'
 
+## *M*
+
+ish_drupal_module.mileswmathis:
+  path: '/mileswmathis_com'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::index'
+    _title: 'MilesWMathis Index'
+  requirements:
+    _permission: 'administer nodes'
+
+ish_drupal_module.mileswmathis_churn_all:
+  path: '/mileswmathis_com/churn-all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::churnAll'
+    _title: 'MilesWMathis churnAll'
+  requirements:
+    _permission: 'administer nodes'
+
+ish_drupal_module.mileswmathis_churn_one:
+  path: '/mileswmathis_com/churn-one/{slug}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\MilesWMathisController::churnOne'
+    _title: 'MilesWMathis churnOne'
+  requirements:
+    _permission: 'administer nodes'
+
+## *T*
+
 ish_drupal_module.tags_index:
   path: '/tag'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\TagsController::index'
   requirements:
     _permission: 'access content'
-
-ish_drupal_module.settings:
-  path: '/admin/config/ish_drupal_module/settings'
-  defaults:
-    _form: '\Drupal\ish_drupal_module\Form\SettingsForm'
-    _title: 'ish_drupal_module Settings'
-  requirements:
-    _permission: 'administer site configuration'
-
 
 ish_drupal_module.tags_show:
   path: '/tag/{tagname}'
@@ -92,12 +159,85 @@ ish_drupal_module.tags_show:
   requirements:
     _permission: 'access content'
 
+
+ish_drupal_module.dance_instructor_dashboard:
+  path: '/dance-instructor/dashboard'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\UsersController::dance_instructor_dashboard'
+  requirements:
+    _role: 'dance_instructor'
+
+
+ish_drupal_module.hiring_manager_dashboard:
+  path: '/hiring-manager/dashboard'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\UsersController::hiring_manager_dashboard'
+  requirements:
+    _role: 'hiring_manager'
+
+ish_drupal_module.scene3d_touch:
+  path: '/node/{node}/touch'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\Scene3dController::touch'
+  requirements:
+    _entity_access: 'node.view'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+
+ish_drupal_module.scrape_rt_all:
+  path: '/scrape/rt/all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::all'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.scrape_rt_one:
+  path: '/scrape/rt/one'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeRtController::one'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.scrape_zerohedge_all:
+  path: '/scrape/zerohedge/all'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeZerohedgeController::all'
+  requirements:
+    _role: 'administrator'
+
+
+ish_drupal_module.scrape_zerohedge_one:
+  path: '/scrape/zerohedge/one'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ScrapeZerohedgeController::one'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.tags_issue_show:
+  path: '/tags_issue/{slug}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\TagsIssueController::show'
+  requirements:
+    _role: 'administrator'
+
+ish_drupal_module.tmp:
+  path: '/tmp'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\TmpController::tmp'
+  requirements:
+    _role: 'administrator'
+
 ish_drupal_module.users_dashboard:
   path: '/user/dashboard'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\UsersController::dashboard'
   requirements:
-    _role: 'content_contributor'
+    _role: 'content_contributor + authenticated'
 
 ish_drupal_module.users_my_edit:
   path: '/user/my-edit'
@@ -106,11 +246,46 @@ ish_drupal_module.users_my_edit:
   requirements:
     _permission: 'create contributed_post content'
 
-ish_drupal_module.contrbuted_post_form:
-  path: '/contributed_posts/new'
+
+ish_drupal_module.videos_showlegacy:
+  path: '/video/{id}/{slug}'
   defaults:
-    _title: 'New Contributed Post'
-    _form: '\Drupal\ish_drupal_module\Form\ContributedPostForm'
+    _controller: '\Drupal\ish_drupal_module\Controller\VideosController::showlegacy'
   requirements:
-    _permission: 'create contributed_post content'
-    # _access: 'TRUE'
+    _permission: 'access content'
+
+ish_drupal_module.worklogs_redirect:
+  path: '/worklogs/{year}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\WorklogsController::showRedirect'
+  requirements:
+    _role: 'administrator'
+  options:
+    no_cache: 'TRUE'
+
+ish_drupal_module.youtube_channels:
+  path: '/youtube_channels'
+  defaults:
+    _title: 'Youtube Channels'
+    _controller: '\Drupal\ish_drupal_module\Controller\YoutubeChannelsController::index'
+  requirements:
+    _access: 'TRUE'
+
+# ish_drupal_module.youtube_channels_after_create:
+#   defaults:
+#     _controller: '\Drupal\ish_drupal_module\Controller\YoutubeChannelsController::afterCreate'
+#     _title: 'Youtube Channels :: afterCreate'
+#   methods: [POST]
+#   path: '/youtube_channels/after_create'
+#   requirements:
+#     _role: 'administrator'
+
+
+ish_drupal_module.youtube_channels_check:
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\YoutubeChannelsController::check'
+    _title: 'Youtube Channel :: Check'
+  path: '/youtube_channels/{node}/check'
+  requirements:
+    _role: 'administrator'
+

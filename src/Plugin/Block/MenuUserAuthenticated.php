@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Drupal\ish_drupal_module\Plugin\Block;
 

@@ -1,0 +1,14 @@
+
+<h1>Modernity all</h1>
+
+<ul>
+  {% for item in contents %}
+    <li>
+      <b>{{ item.title }}</b></br />
+      {# <b>subtitle:</b> {{ item.subtitle }}<br /> #}
+      {{ item.summary }}<br />
+      {{ item.link }}<br />
+      <a href="/scrape/rt/one?path={{ item.link }}">Process</a>
+    </li>
+  {% endfor %}
+</ul>

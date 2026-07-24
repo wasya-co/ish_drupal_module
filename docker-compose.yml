@@ -1,0 +1,51 @@
+
+services:
+
+  app_test:
+    container_name: ish_test
+    image: piousbox/php83:0.0.2
+    volumes:
+      - vendor_data:/var/www/html/vendor
+      - type: bind
+        source: ./
+        target: /var/www/html/web/modules/custom/ish_drupal_module
+      # - type: bind
+      #   source: ./root/_bashrc
+      #   target: /root/.bashrc
+      # - type: bind
+      #   source: ./etc/apache2/sites-available/000-default-drupal.conf
+      #   target: /etc/apache2/sites-available/000-default.conf
+      - type: bind
+        source: ./tests/composer-test.json
+        target: /var/www/html/composer.json
+      - type: bind
+        source: ./tests/composer-test.lock
+        target: /var/www/html/composer.lock
+    # ports:
+    #   - 8099:80
+    restart: 'unless-stopped'
+
+  mysql:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    command:
+      - '--default-authentication-plugin=mysql_native_password' ## this is obsolete
+      - '--skip-log-bin'
+      - --innodb-buffer-pool-size=2G
+      - --innodb-log-file-size=128M
+      - --innodb-flush-log-at-trx-commit=2
+      - --innodb-flush-method=O_DIRECT
+      - --sync-binlog=0
+    restart: 'unless-stopped'
+    environment:
+      MYSQL_DATABASE: "ish_drupal_module_test"
+      MYSQL_ROOT_PASSWORD: "test1234"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+
+volumes:
+  vendor_data:
+  mysql_data:
+

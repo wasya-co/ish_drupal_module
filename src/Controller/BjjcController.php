@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Drupal\ish_drupal_module\Controller;
 
@@ -227,7 +227,7 @@ class BjjcController extends ControllerBase {
     $limit = 3000;
 
     $manager  = \Drupal::entityTypeManager()->getStorage('node');
-    $query  = \Drupal::entityQuery('node');
+    $query  = \Drupal::entityQuery('node')->accessCheck(TRUE);
 
     $existings = $query->condition(
       'type', $video_type

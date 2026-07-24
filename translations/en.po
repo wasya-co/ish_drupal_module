@@ -1,0 +1,2 @@
+msgid "Login with Keycloak"
+msgstr "Connexion avec Keycloak"

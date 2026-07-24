@@ -23,3 +23,15 @@ styles:
     theme:
       css/ish_drupal_module.css: {}
       css/style_bordered.css: {}
+
+# main:
+#   css:
+#     theme:
+#       css/main.css: {}
+
+collapse_expand:
+  js:
+    js/collapse-expand.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

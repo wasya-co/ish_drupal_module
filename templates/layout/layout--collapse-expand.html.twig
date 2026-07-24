@@ -1,0 +1,30 @@
+
+{# {{ dump(  ) }}
+<hr />
+{{ dump( content ) }}
+<hr />
+{{ dump( settings ) }} #}
+
+
+{{ attach_library('ish_drupal_module/collapse_expand') }}
+{%
+  set classes = [
+    'layout',
+    'layout--collapse-expand',
+    'collapse-expand',
+    settings.extra_classes,
+  ]
+%}
+
+
+{% if content %}
+<label class='collapse-expand' id="{{ content['#section_uuid'] }}"
+  >E: {{ settings.label }}</label>
+<div{{ attributes.addClass(classes) }}  >
+
+  {% if content.main %}
+    {{ content.main }}
+  {% endif %}
+
+</div>
+{% endif %}
