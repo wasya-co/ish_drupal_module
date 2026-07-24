@@ -33,16 +33,6 @@ $(function () {
   })
 
 
-
-  /*
-  var slider = tns({
-    container: '.my-slider',
-    items: 2,
-    slideBy: 'page',
-    autoplay: true
-  });
-  // */
-
   $('.my-slider').each((idx, el) => {
     var slider = tns({
       center: true,
@@ -53,17 +43,25 @@ $(function () {
     });
   })
 
-  $('.my-slider').each((idx, el) => {
-    var slider = tns({
-      center: true,
-      container: el,
-      controls: false,
-      items: 2.1,
-      loop: true,
-      autoplay: true,
-    });
-  })
 
+  window.sr = ScrollReveal();
+  ScrollReveal().reveal('.fade-up', {
+    distance: '40px',
+    origin: 'bottom',
+    duration: 800,
+    easing: 'ease',
+    interval: 100,
+    reset: false
+  })
+  ScrollReveal().reveal('.slide-right', {
+    distance: '40px',
+    opacity: 1,
+    origin: 'left',
+    duration: 800,
+    easing: 'ease',
+    interval: 100,
+    reset: false,
+  })
 
   console.log('+++ loaded ish_drupal_module main.js')
 })

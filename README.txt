@@ -7,9 +7,17 @@
 
 == css ==
 
-Available classes:
+=== Available classes ===
 
-.only-mobile
-.no-mobile
-.my-slider (must be on a e.g. ul, with li's as immediate children)
-.my-slider.no-navigation
+  .only-mobile
+  .no-mobile
+
+Slider. must be on a e.g. ul, with li's as immediate children.
+
+  .my-slider
+  .my-slider.no-navigation
+
+Animations:
+
+  .fade-up
+  .slide-right

@@ -1,0 +1,21 @@
+.no-navigation .tns-outer > button {
+  display: none; }
+
+.no-navigation .tns-outer .tns-nav {
+  display: none; }
+
+.no-navigation .tns-outer .tns-controls {
+  display: none; }
+
+.my-slider article.node {
+  border-radius: 0.5em;
+  background: #333;
+  overflow: hidden;
+  margin: 0 1em 1em 0;
+  padding: 1em;
+  max-height: 400px;
+  height: 400px; }
+  .my-slider article.node img {
+    max-height: 300px;
+    max-width: 300px;
+    height: auto; }

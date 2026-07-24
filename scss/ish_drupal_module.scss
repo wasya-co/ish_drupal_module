@@ -8,6 +8,11 @@ body {
   color: var(--text-color);
 }
 
+.sf-accordion-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
 #navbar-main {
   background-color: transparent !important;
 }
@@ -21,6 +26,9 @@ body {
   border: 1px solid yellow;
 }
 
+footer.site-footer .block {
+  border: 0;
+}
 
 @media (min-width: 767px) {
   .only-mobile {
