@@ -22,343 +22,36 @@ use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\BlocksConfig;
+use Drupal\ish_drupal_module\IssueConfig;
 use Drupal\ish_drupal_module\LayoutConfig;
 use Drupal\ish_drupal_module\ModulesConfig;
+use Drupal\ish_drupal_module\ThisConfig;
 use Drupal\ish_drupal_module\Models\YoutubeChannel;
 
-/*
- * for piousbox_com as a magazine
- * adds field_last_polled_at to youtube_channel
-**/
-function ish_drupal_module_update_9001() {
-  $content_type = 'youtube_channel';
-  if (!NodeType::load($content_type)) {
-    $type = NodeType::create([
-      'type' => $content_type,
-      'name' => $content_type,
-      'description' => $content_type,
-      'display_submitted' => TRUE,
-    ]);
-    $type->save();
-  }
 
-  $field_name = 'field_last_polled_at';
-  if (!FieldStorageConfig::loadByName('node', $field_name)) {
-    FieldStorageConfig::create([
-      'field_name' => $field_name,
-      'entity_type' => 'node',
-      'type' => 'string',
-      'settings' => [
-        'max_length' => 20,
-      ],
-      'cardinality' => 1,
-      'translatable' => FALSE,
-    ])->save();
-  }
-  if (!FieldConfig::loadByName('node', $content_type, $field_name)) {
-    FieldConfig::create([
-      'field_name' => $field_name,
-      'entity_type' => 'node',
-      'bundle' => $content_type,
-      'label' => $field_name,
-      'description' => $field_name,
-      'required' => FALSE,
-      'settings' => [],
-    ])->save();
-  }
-}
+function ish_drupal_module_update_9052() {
+  // ModulesConfig::install_modules();
+  // ModulesConfig::configure_text_editor();
 
-/*
- * create users for all youtube channels
-**/
-function ish_drupal_module_update_9003() {
-  $nids = \Drupal::entityQuery('node')
-    ->condition('type', 'youtube_channel')
-    ->accessCheck(FALSE)
-    ->execute();
+  // LayoutConfig::clear();
+  // LayoutConfig::setup_marketing_site();
+  // BlocksConfig::hours_of_operation();
 
-  foreach ($nids as $nid) {
-    $ch = new YoutubeChannel($nid);
-    $ch->afterCreate();
-  }
-  \Drupal::messenger()->addMessage('created users for all youtube channels');
+  ThisConfig::setup_permissions();
+  ThisConfig::setup_view_modes();
+
+  ThisConfig::setup_content_type('advanced_page');
+
+  ThisConfig::setup_tags();
+
 }
 
 
-/*
-* allow anonymous to view user profiles
-**/
-function ish_drupal_module_update_9019() {
-  $role = \Drupal\user\Entity\Role::load('anonymous');
-  if ($role && !$role->hasPermission('access user profiles')) {
-    $role->grantPermission('access user profiles')->save();
-  }
-}
-
-
-
-/*
- * view_modes: Card, CarouselThumb
-**/
-function ish_drupal_module_update_9017() {
-  $config_factory = \Drupal::configFactory();
-
-  $view_modes = [
-    'card' => 'Card',
-    'carousel_thumb' => 'CarouselThumb',
-  ];
-  foreach ($view_modes as $machine_name => $label) {
-    $config_name = "core.entity_view_mode.node.$machine_name";
-
-    $config = $config_factory->getEditable($config_name);
-    if (!$config->isNew()) {
-      continue;
-    }
-
-    $config->setData([
-      'langcode' => 'en',
-      'status' => TRUE,
-      'dependencies' => [
-        'module' => ['node'],
-      ],
-      'id' => "node.$machine_name",
-      'label' => $label,
-      'targetEntityType' => 'node',
-      'cache' => TRUE,
-    ])->save();
-  }
-}
-
-
-/*
- * Advanced Page content type.
-**/
-function ish_drupal_module_update_9027() {
-  if (!NodeType::load('advanced_page')) {
-    NodeType::create([
-      'type' => 'advanced_page',
-      'name' => 'AdvPage',
-      'description' => 'Advanced page',
-      'new_revision' => FALSE,
-      'preview_mode' => DRUPAL_OPTIONAL,
-      'display_submitted' => FALSE,
-    ])->save();
-  }
-
-
-
-  $form_display = EntityFormDisplay::load('node.advanced_page.default');
-  if (!$form_display) {
-    $form_display = EntityFormDisplay::create([
-      'targetEntityType' => 'node',
-      'bundle' => 'advanced_page',
-      'mode' => 'default',
-      'status' => TRUE,
-    ]);
-  }
-
-  $display = EntityViewDisplay::load('node.advanced_page.full');
-  if (!$display) {
-    $display = EntityViewDisplay::create([
-      'targetEntityType' => 'node',
-      'bundle' => 'advanced_page',
-      'mode' => 'full',
-      'status' => TRUE,
-    ]);
-  }
-  $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-  $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-  $display->save();
-
-  /* body */
-  $storage = FieldStorageConfig::loadByName('node', 'body');
-  if (!$storage) {
-    $storage = FieldStorageConfig::create([
-      'field_name' => 'body',
-      'entity_type' => 'node',
-      'type' => 'text_with_summary',
-      'cardinality' => 1,
-      'settings' => [],
-      'translatable' => TRUE,
-    ]);
-    $storage->save();
-  }
-  $field = FieldConfig::loadByName('node', 'advanced_page', 'body');
-  if (!$field) {
-    $field = FieldConfig::create([
-      'field_storage' => $storage,
-      'bundle' => 'advanced_page',
-      'label' => 'Body',
-      'description' => '',
-      'required' => FALSE,
-      'translatable' => TRUE,
-      'settings' => [
-        'display_summary' => TRUE,
-        'required_summary' => FALSE,
-      ],
-    ]);
-    $field->save();
-  }
-  $form_display ->setComponent('body', [
-    'type' => 'text_textarea_with_summary',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [
-      'rows' => 9,
-      'summary_rows' => 3,
-      'placeholder' => '',
-      'show_summary' => FALSE,
-    ],
-  ])->save();
-  $display->setComponent('body', [
-    'type' => 'text_default',
-    'label' => 'hidden',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-
-
-  /* tags */
-  $storage = FieldStorageConfig::loadByName('node', 'field_tags');
-  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_tags');
-  if (!$field) {
-    FieldConfig::create([
-      'field_storage' => $storage,
-      'bundle' => 'advanced_page',
-      'label' => 'Tags',
-      'description' => '',
-      'required' => FALSE,
-      'settings' => [],
-    ])->save();
-  }
-  $form_display->setComponent('field_tags', [
-    // 'type' => 'options_select',
-    'type' => 'options_buttons',
-    'weight' => 40,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-
-  /* paragraphs */
-  $storage = FieldStorageConfig::loadByName('node', 'field_paragraphs');
-  if (!$storage) {
-    $storage = FieldStorageConfig::create([
-      'field_name' => 'field_paragraphs',
-      'entity_type' => 'node',
-      'type' => 'entity_reference_revisions',
-      'cardinality' => -1,
-      'settings' => [
-        'target_type' => 'paragraph',
-      ],
-      'translatable' => TRUE,
-    ]);
-    $storage->save();
-  }
-  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_paragraphs');
-  if (!$field) {
-    $field = FieldConfig::create([
-      'field_storage' => $storage,
-      'bundle' => 'advanced_page',
-      'label' => 'Paragraphs',
-      'description' => '',
-      'required' => FALSE,
-      'translatable' => TRUE,
-      'settings' => [],
-    ]);
-    $field->save();
-  }
-  $form_display ->setComponent('field_paragraphs', [
-    'type' => 'paragraphs',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-  $display->setComponent('body', [
-    'type' => 'entity_reference_revisions_entity_view',
-    'label' => 'hidden',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-
-
-
-  foreach (['image_hero', 'image_thumb'] as $field_name) {
-    if (!FieldStorageConfig::loadByName('node', 'field_' . $field_name)) {
-      FieldStorageConfig::create([
-        'field_name' => 'field_' . $field_name,
-        'entity_type' => 'node',
-        'type' => 'image',
-        'cardinality' => 1,
-        'settings' => [
-          'uri_scheme' => 'public',
-        ],
-      ])->save();
-    }
-
-    if (!FieldConfig::loadByName('node', 'advanced_page', 'field_' . $field_name)) {
-      FieldConfig::create([
-        'field_name' => 'field_' . $field_name,
-        'entity_type' => 'node',
-        'bundle' => 'advanced_page',
-        'label' => ucwords(str_replace('_', ' ', $field_name)),
-        'required' => FALSE,
-        'settings' => [
-          'file_extensions' => 'png gif jpg jpeg webp',
-          'alt_field' => TRUE,
-          'title_field' => FALSE,
-        ],
-      ])->save();
-    }
-
-    $form_display
-      ->setComponent('field' . $field_name, [
-        'type' => 'image_image',
-        'weight' => 10,
-        'region' => 'content',
-        'settings' => [
-          'progress_indicator' => 'throbber',
-          'preview_image_style' => 'thumbnail',
-        ],
-      ])->save();
-  }
-}
-
-/*
- * update Advanced Page
-**/
-function ish_drupal_module_update_9028() {
-  $form_display = EntityFormDisplay::load('node.advanced_page.default');
-  $form_display->setComponent('field_image_thumb', [
-    'type' => 'image_image',
-    'weight' => 10,
-    'region' => 'content',
-    'settings' => [
-      'progress_indicator' => 'throbber',
-      'preview_image_style' => 'thumbnail',
-    ],
-    'third_party_settings' => [],
-  ]);
-  $form_display->save();
-
-  $form_display->setComponent('field_image_hero', [
-    'type' => 'image_image',
-    'weight' => 11,
-    'region' => 'content',
-    'settings' => [
-      'progress_indicator' => 'throbber',
-      'preview_image_style' => 'thumbnail',
-    ],
-    'third_party_settings' => [],
-  ]);
-  $form_display->save();
-}
 
 /*
  * Slide content type.
 **/
-function ish_drupal_module_update_9023() {
+function _TODO_ish_drupal_module_update_9023() {
   if (!NodeType::load('slide')) {
     NodeType::create([
       'type' => 'slide',
@@ -506,7 +199,7 @@ function ish_drupal_module_update_9023() {
 /*
  * tmp, update Slide
 **/
-function ish_drupal_module_update_9026() {
+function _TODO_ish_drupal_module_update_9026() {
   $form_display = EntityFormDisplay::load('node.slide.default');
   $form_display->setComponent('field_image_thumb', [
     'type' => 'image_image',
@@ -556,34 +249,11 @@ function ish_drupal_module_update_9026() {
 }
 
 
-/*
- * Create tags
-**/
-function ish_drupal_module_update_9022() {
-  $vocabulary = 'tags';
-  $tag_name = 'Slidesets.';
-
-  // Don't create it if it already exists.
-  $existing = \Drupal::entityTypeManager()
-    ->getStorage('taxonomy_term')
-    ->loadByProperties([
-      'vid' => $vocabulary,
-      'name' => $tag_name,
-    ]);
-
-  if (!$existing) {
-    $term = Term::create([
-      'vid' => $vocabulary,
-      'name' => $tag_name,
-    ]);
-    $term->save();
-  }
-}
 
 /*
  * create Section Hero Video
 **/
-function ish_drupal_module_update_9035() {
+function _TODO_ish_drupal_module_update_9035() {
   if (!BlockContentType::load('section_hero_video')) {
     BlockContentType::create([
       'id' => 'section_hero_video',
@@ -727,7 +397,7 @@ function ish_drupal_module_update_9035() {
 /*
  * content_type: Issue
 **/
-function ish_drupal_module_update_9030() {
+function _TODO_ish_drupal_module_update_9030() {
   $content_type = 'issue';
 
   if (!NodeType::load($content_type)) {
@@ -919,14 +589,4 @@ function ish_drupal_module_update_9030() {
 }
 
 
-
-function ish_drupal_module_update_9047() {
-  // ModulesConfig::install_modules();
-  ModulesConfig::configure_text_editor();
-
-  LayoutConfig::clear();
-  LayoutConfig::setup_marketing_site();
-  BlocksConfig::hours_of_operation();
-
-}
 

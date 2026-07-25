@@ -1,0 +1,24 @@
+
+/**
+ * Migrate article values from field_tag_contrib to field_tags_contrib.
+**/
+function ish_drupal_module_update_9002() {
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'article')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  $nodes = Node::loadMultiple($nids);
+
+  foreach ($nodes as $node) {
+    if ($node->hasField('field_tag_contrib') && $node->hasField('field_tags_contrib')) {
+      $old_values = $node->get('field_tag_contrib')->getValue();
+      $node->set('field_tags_contrib', $old_values);
+      $node->set('field_tag_contrib', []);
+      $node->save();
+    }
+  }
+
+  \Drupal::messenger()->addMessage('Migrated field_tag_contrib values to field_tags_contrib.');
+}
+

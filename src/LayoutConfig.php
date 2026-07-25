@@ -32,9 +32,12 @@ class LayoutConfig {
    * clear
   **/
   public static function clear() {
+    $theme = \Drupal::config('system.theme')->get('default');
     $blocks = \Drupal\block\Entity\Block::loadMultiple();
     foreach ($blocks as $block) {
-      $block->delete();
+      if ($block->getTheme() === $theme) {
+        $block->delete();
+      }
     }
   }
 
