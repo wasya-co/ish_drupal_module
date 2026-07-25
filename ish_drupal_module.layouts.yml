@@ -15,6 +15,11 @@ layout_onecol_any:
   category: 'Columns: 1'
   class: '\Drupal\ish_drupal_module\Layout\OnecolAnywidthLayout'
   template: templates/layout/layout--onecol-anywidth
+  icon_map:
+    - [main]
+  regions:
+    first:
+      label: Main
 
 layout_twocol_any:
   label: 'Twocol Any'
