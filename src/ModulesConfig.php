@@ -11,8 +11,11 @@ use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
+use Drupal\editor\Entity\Editor;
+
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\filter\Entity\FilterFormat;
 
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -29,14 +32,35 @@ class ModulesConfig {
    * install_modules
   **/
   public static function install_modules() {
-    $modules = array_filter(
-      ['admin_toolbar', 'admin_toolbar_tools', 'paragraphs', 'superfish', 'twig_tweak'],
-      static fn ($module) => !\Drupal::moduleHandler()->moduleExists($module)
-    );
+    $modules = array_filter([
+      'admin_toolbar', 'admin_toolbar_tools',
+      'paragraphs',
+      's3fs', 'superfish',
+      'twig_tweak',
+    ], static fn ($module) => !\Drupal::moduleHandler()->moduleExists($module) );
 
     if ($modules) {
       \Drupal::service('module_installer')->install($modules);
     }
   }
+
+  /*
+   * configure ckeditor5
+  **/
+  public static function configure_text_editor() {
+    $formats = ['basic_html', 'full_html'];
+    foreach ($formats as $format_id) {
+      $editor = Editor::load($format_id);
+      if (!$editor) { continue; }
+      $settings = $editor->getSettings();
+
+      $settings['toolbar']['items'][] = 'alignment';
+      $settings['plugins']['ckeditor5_alignment'] = [];
+
+      $editor->setSettings($settings);
+      $editor->save();
+    }
+  }
+
 
 }

@@ -4,6 +4,7 @@
   ./vendor/drush/drush/drush cc router
 
   ffmpeg -i motoshop-1.960x506.mp4 -frames:v 1 frame.jpg
+  ffmpeg -i $inn -frames:v 1 $inn.frame.jpg
 
   drush -l col-re.local php:eval "echo \Drupal::keyValue('system.schema')->get('ish_drupal_module'); "
 
