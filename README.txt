@@ -1,9 +1,25 @@
 
+= Develop =
+
   ./vendor/drush/drush/drush cc router
 
   ffmpeg -i motoshop-1.960x506.mp4 -frames:v 1 frame.jpg
 
-== Test ==
+  drush -l col-re.local php:eval "echo \Drupal::keyValue('system.schema')->get('ish_drupal_module'); "
+
+  drush -l col-re.local php:eval "\Drupal::keyValue('system.schema')->set('ish_drupal_module', 9000); "
+
+  drush -l col-re.local updb -y
+
+  drush -l rebelcycles10.local config:export
+
+  drush
+  SELECT collection, name, value
+    FROM key_value
+    WHERE collection = 'system.schema'
+      AND name = 'ish_drupal_module';
+
+= Test =
 
   export PATH="$PATH:/var/www/html/vendor/bin"
 
@@ -21,15 +37,15 @@
   ../vendor/bin/phpunit        -c ../phpunit.xml modules/ish_drupal_module/tests/src/Functional/CurrentUserBlockTest.php
   ../../../vendor/bin/phpunit  -c ./phpunit.xml  tests/src/Functional/WorklogsControllerTest.php
 
-=== this test works ===
+  == this test works ==
 
-  ./vendor/bin/phpunit -c phpunit.xml  -d memory_limit=1G web/modules/ish_drupal_module/tests/src/Functional/WorklogsControllerTest.php --debug
+    ./vendor/bin/phpunit -c phpunit.xml  -d memory_limit=1G web/modules/ish_drupal_module/tests/src/Functional/WorklogsControllerTest.php --debug
 
-  $response = $this->getSession()->getDriver()->getClient()->request('GET', '/worklogs/2025a', [], [], ['max_redirects' => 0]);
-  echo('+++ $response');
-  var_dump($response);
+    $response = $this->getSession()->getDriver()->getClient()->request('GET', '/worklogs/2025a', [], [], ['max_redirects' => 0]);
+    echo('+++ $response');
+    var_dump($response);
 
-== Deploy ==
+= Deploy =
 
   * tag, push to wasya-co remote:
 
@@ -45,19 +61,21 @@
       --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-gd ;
     drush cr
 
-== css ==
+= Use =
 
-=== Available classes ===
+  == css ==
 
-  .only-mobile
-  .no-mobile
+    === Available classes ===
 
-Slider. must be on a e.g. ul, with li's as immediate children.
+      .only-mobile
+      .no-mobile
 
-  .my-slider
-  .my-slider.no-navigation
+    Slider. must be on a e.g. ul, with li's as immediate children.
 
-Animations:
+      .my-slider
+      .my-slider.no-navigation
 
-  .fade-up
-  .slide-right
+    Animations:
+
+      .fade-up
+      .slide-right

@@ -21,7 +21,9 @@ use Drupal\taxonomy\Entity\Term;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-
+use Drupal\ish_drupal_module\BlocksConfig;
+use Drupal\ish_drupal_module\LayoutConfig;
+use Drupal\ish_drupal_module\ModulesConfig;
 use Drupal\ish_drupal_module\Models\YoutubeChannel;
 
 /*
@@ -915,4 +917,17 @@ function ish_drupal_module_update_9030() {
       ])->save();
   }
 }
-// next: 9035
+
+
+/*
+ * clean up Block Layout
+**/
+function ish_drupal_module_update_9043() {
+  // ModulesConfig::install_modules();
+  // LayoutConfig::clear();
+  // LayoutConfig::setup_marketing_site();
+  // BlocksConfig::hours_of_operation();
+}
+
+
+// next: 9038??
