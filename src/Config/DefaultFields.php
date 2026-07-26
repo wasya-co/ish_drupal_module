@@ -22,6 +22,7 @@ class DefaultFields {
       'placeholder' => '',
       'show_summary' => FALSE,
     ],
+    'default_value' =>[[ 'value' => '', 'format' => 'full_html' ]],
     'display' => 'text_default',
     'translatable' => true,
     'type' => 'text_with_summary',
@@ -39,9 +40,11 @@ class DefaultFields {
   ];
 
   public const image = [
+    'display' => 'file_url_plain',
     'field_config_settings' => [
       'file_extensions' => 'png gif jpg jpeg webp',
       'alt_field' => TRUE,
+      'alt_field_required' => FALSE,
       'title_field' => FALSE,
     ],
     'field_storage_config_settings' => [

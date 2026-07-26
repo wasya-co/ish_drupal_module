@@ -71,7 +71,7 @@ class SectionsConfig {
       $display = EntityViewDisplay::create([
         'targetEntityType' => 'block_content',
         'bundle' => $section_name,
-        'mode' => 'full',
+        'mode'   => 'full',
         'status' => TRUE,
       ]);
     }
@@ -79,21 +79,22 @@ class SectionsConfig {
     foreach ($fields as $field_name => $field_c) {
       if (!FieldStorageConfig::loadByName('block_content', $field_name)) {
         FieldStorageConfig::create([
-          'field_name' => $field_name,
+          'field_name'  => $field_name,
           'entity_type' => 'block_content',
-          'type' => $field_c['type'],
+          'type'        => $field_c['type'],
           'cardinality' => $field_c['cardinality'] ?? 1,
         ])->save();
       }
       if (!FieldConfig::loadByName('block_content', $section_name, $field_name)) {
         FieldConfig::create([
-          'field_name' => $field_name,
-          'entity_type' => 'block_content',
-          'bundle' => $section_name,
-          'label' => $field_name,
-          'required' => FALSE,
-          'translatable' => $field_c['translatable'] ?? false,
-          'settings' => $field_c['field_config_settings'] ?? [],
+          'bundle'        => $section_name,
+          'default_value' => $field_c['default_value'] ?? [],
+          'entity_type'   => 'block_content',
+          'field_name'    => $field_name,
+          'label'         => $field_name,
+          'required'      => FALSE,
+          'settings'      => $field_c['field_config_settings'] ?? [],
+          'translatable'  => $field_c['translatable'] ?? false,
         ])->save();
       }
       $form_display->setComponent($field_name, [
@@ -101,7 +102,7 @@ class SectionsConfig {
       ])->save();
       $display->setComponent($field_name, [
         'label' => 'hidden',
-        'type' => $field_c['display'],
+        'type'  => $field_c['display'],
       ])->save();
     } // end foreach
 

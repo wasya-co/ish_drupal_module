@@ -34,6 +34,7 @@ class ModulesConfig {
   public static function install_modules() {
     $modules = array_filter([
       'admin_toolbar', 'admin_toolbar_tools',
+      // 'ctools', /* I don't know what it does. the 'clear cache' button is admin_toolbar. */
       'layout_builder', 'layout_discovery',
       'paragraphs',
       's3fs', 'superfish',
