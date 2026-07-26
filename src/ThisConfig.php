@@ -86,15 +86,23 @@ class ThisConfig {
       ],
       'layout_builder' => true,
     ],
-    // 'issue' => [
-    //   'layout_builder' => true,
-    // ],
-    // 'slide' => [],
+    // issue is same as advanced_page, but without image_hero.
+    // slide is the same as advanced_page, but without layout_builder
   ];
 
-  public static function setup_content_type($content_type) {
-    $content_type_c = self::content_types[$content_type];
+  public static function setup_content_type_issue() {
+    $content_type_c = self::content_types['advanced_page'];
+    unset( $content_type_c['fields']['field_image_hero'] );
+    self::setup_content_type('issue', $content_type_c);
+  }
 
+  public static function setup_content_type_slide() {
+    $content_type_c = self::content_types['advanced_page'];
+    unset( $content_type_c['layout_builder'] );
+    self::setup_content_type('slide', $content_type_c);
+  }
+
+  public static function setup_content_type($content_type, $content_type_c) {
     if (!NodeType::load($content_type)) {
       NodeType::create([
         'type' => $content_type,
@@ -127,6 +135,19 @@ class ThisConfig {
     }
 
     if ($content_type_c['layout_builder']) {
+      $default_display = EntityViewDisplay::load("node.$content_type.default");
+      if (!$default_display) {
+        $default_display = EntityViewDisplay::create([
+          'targetEntityType' => 'node',
+          'bundle' => $content_type,
+          'mode' => 'default',
+          'status' => TRUE,
+        ]);
+      }
+      $default_display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+      $default_display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+      $default_display->save();
+
       $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
       $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
       $display->save();
@@ -232,7 +253,7 @@ class ThisConfig {
     $view_modes = [
       'card' => 'Card',
       'image_thumb' => 'Image Thumb',
-      'section' => 'Section,'
+      'section' => 'Section',
     ];
     foreach ($view_modes as $machine_name => $label) {
       $config_name = "core.entity_view_mode.node.$machine_name";

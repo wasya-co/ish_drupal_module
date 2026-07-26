@@ -34,6 +34,7 @@ class ModulesConfig {
   public static function install_modules() {
     $modules = array_filter([
       'admin_toolbar', 'admin_toolbar_tools',
+      'layout_builder', 'layout_discovery',
       'paragraphs',
       's3fs', 'superfish',
       'twig_tweak',

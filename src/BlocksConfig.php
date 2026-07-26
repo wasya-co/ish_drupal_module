@@ -34,18 +34,37 @@ class BlocksConfig {
   public static function hours_of_operation() {
     $slug = 'hours_of_operation';
 
-    $block = BlockContent::create([
+
+
+    $blocks = BlockContent::loadByProperties([
       'type' => 'basic',
       'info' => $slug,
-      'body' => [
-        'value' => <<<HTML
-          <ul><li>Monday: Closed</li><li>Tuesday: 9:00 AM -- 6:00 PM</li><li>Wednesday: 9:00 AM -- 6:00 PM</li><li>Thursday: 9:00 AM -- 6:00 PM</li><li>Friday: 9:00 AM -- 6:00 PM</li><li>Saturday: 9:00 AM -- 2:00 PM</li><li>Sunday: Closed</li></ul>
-    HTML,
-        'format' => 'full_html',
-      ],
     ]);
+    if ($blocks) {
+      $block = reset($blocks);
+    }
+    else {
+      $block = BlockContent::create([
+        'type' => 'basic',
+        'info' => $slug,
+        'body' => [
+          'value' => <<<HTML
+            <ul>
+              <li>Monday: Closed</li>
+              <li>Tuesday: 9:00 AM -- 6:00 PM</li>
+              <li>Wednesday: 9:00 AM -- 6:00 PM</li>
+              <li>Thursday: 9:00 AM -- 6:00 PM</li>
+              <li>Friday: 9:00 AM -- 6:00 PM</li>
+              <li>Saturday: 9:00 AM -- 2:00 PM</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          HTML,
+          'format' => 'full_html',
+        ],
+      ]);
+      $block->save();
+    }
 
-    $block->save();
 
     $theme = \Drupal::config('system.theme')->get('default');
     if (!Block::load("{$theme}_{$slug}")) {

@@ -73,7 +73,6 @@ class LayoutConfig {
         'page_title' => [
           'plugin' => 'page_title_block',
           'provider' => 'system',
-          'label' => 'Page title',
           'settings' => [],
         ],
         'tabs' => [
@@ -83,7 +82,6 @@ class LayoutConfig {
         'content' => [
           'plugin' => 'system_main_block',
           'provider' => 'system',
-          'label' => 'Main page content',
         ],
       ],
     ];
@@ -98,7 +96,7 @@ class LayoutConfig {
 
         $settings = [
           'id' => $block['plugin'],
-          'label' => $block['label'],
+          'label' => $id,
           'label_display' => FALSE,
           'provider' => $block['provider'],
         ];
