@@ -80,3 +80,27 @@
 
       .fade-up
       .slide-right
+
+  == Sections ==
+    After installing and updating the module, you can see all sections with thumbnails, usage and descriptions of fields at /admin/ish_drupal_module/sections . However, the list in this README may be more up to date with the edge development branch.
+
+    === Section Hero Video ===
+      The body accepts full html, so you can copy-paste the design there.
+
+      The autoplay checkbox is meant for development environments, so that the video isn't annoying.
+
+      Currently, the section accepts an image file for mobile display. In the future we can improve the functionality and capture the first frame of the video, as the image, automatically. This will be implemented as a feature request - please submit an offer! Alternatively, if you would like to volunteer in developing this particular piece, please submit a proposal!
+
+    === Section Callout Parallax ===
+      The fields are:
+
+        'body' => [],
+        'field_class_name' => [],
+        'field_custom_css' => [],
+        'field_image_bg' => [],
+        'field_image_thumb' => [],
+        'field_title' => [],
+        'field_link_text' => [],
+        'field_link_url' => [],
+
+      And you can custom-style each block by means of the field_class_name.

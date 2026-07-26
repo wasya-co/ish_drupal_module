@@ -17,3 +17,4 @@
 1.2.3 :: 2026-07-08 :: churning mileswmathis_com
 0.6.0 :: 2026-07-23 :: rebel-cycles, same as 0.7.0
 2.0.0 ::            :: merge 1.2.3 and 0.6.0
+2.1.0 :: 2026-07-26 :: rebel-cycles, col-re are minimally good. continue.

@@ -26,147 +26,103 @@ use Drupal\taxonomy\Entity\Term;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+
+use Drupal\ish_drupal_module\Config\DefaultFields;
+
 class SectionsConfig {
 
   /*
    * section hero video
   **/
   public static function section_hero_video() {
+    $section_name = 'section_hero_video';
+    $fields = [
+      'body'              => DefaultFields::body,
+      'field_autoplay' => DefaultFields::toggle,
+      'field_video_file' => DefaultFields::file,
+      'field_image' => DefaultFields::image,
+    ];
+    self::setup_section($section_name, $fields);
+  }
 
-    if (!BlockContentType::load('section_hero_video')) {
+  /*
+  **/
+  public static function setup_section($section_name, $fields) {
+    if (!BlockContentType::load($section_name)) {
       BlockContentType::create([
-        'id' => 'section_hero_video',
-        'label' => 'Section Hero Video',
+        'id' => $section_name,
+        'label' => $section_name,
         'revision' => TRUE,
       ])->save();
     }
 
-    $form_display = EntityFormDisplay::load('block_content.section_hero_video.default');
+    $form_display = EntityFormDisplay::load("block_content.$section_name.default");
     if (!$form_display) {
       $form_display = EntityFormDisplay::create([
         'targetEntityType' => 'block_content',
-        'bundle' => 'section_hero_video',
+        'bundle' => $section_name,
         'mode' => 'default',
         'status' => TRUE,
       ]);
     }
 
-    $display = EntityViewDisplay::load('block_content.section_hero_video.full');
+    $display = EntityViewDisplay::load("block_content.$section_name.full");
     if (!$display) {
       $display = EntityViewDisplay::create([
         'targetEntityType' => 'block_content',
-        'bundle' => 'section_hero_video',
+        'bundle' => $section_name,
         'mode' => 'full',
         'status' => TRUE,
       ]);
     }
 
-
-
-    if (!FieldStorageConfig::loadByName('block_content', 'body')) {
-      FieldStorageConfig::create([
-        'field_name' => 'body',
-        'entity_type' => 'block_content',
-        'type' => 'text_with_summary',
-        'cardinality' => 1,
-        'translatable' => TRUE,
+    foreach ($fields as $field_name => $field_c) {
+      if (!FieldStorageConfig::loadByName('block_content', $field_name)) {
+        FieldStorageConfig::create([
+          'field_name' => $field_name,
+          'entity_type' => 'block_content',
+          'type' => $field_c['type'],
+          'cardinality' => $field_c['cardinality'] ?? 1,
+        ])->save();
+      }
+      if (!FieldConfig::loadByName('block_content', $section_name, $field_name)) {
+        FieldConfig::create([
+          'field_name' => $field_name,
+          'entity_type' => 'block_content',
+          'bundle' => $section_name,
+          'label' => $field_name,
+          'required' => FALSE,
+          'translatable' => $field_c['translatable'] ?? false,
+          'settings' => $field_c['field_config_settings'] ?? [],
+        ])->save();
+      }
+      $form_display->setComponent($field_name, [
+        'type' => $field_c['form_display'],
       ])->save();
-    }
-    if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'body')) {
-      FieldConfig::create([
-        'field_name' => 'body',
-        'entity_type' => 'block_content',
-        'bundle' => 'section_hero_video',
-        'label' => 'body',
-        'required' => FALSE,
-        'translatable' => TRUE,
-        'settings' => [
-          'display_summary' => TRUE,
-          'required_summary' => FALSE,
-        ],
+      $display->setComponent($field_name, [
+        'label' => 'hidden',
+        'type' => $field_c['display'],
       ])->save();
-    }
-    $form_display->setComponent('body', [
-      'type' => 'text_textarea_with_summary',
-      'weight' => 10,
-    ])->save();
-    $display->setComponent('body', [
-      'label' => 'hidden',
-      'type' => 'text_default',
-      'weight' => 10,
-    ])->save();
+    } // end foreach
 
+  }
 
-    if (!FieldStorageConfig::loadByName('block_content', 'field_video_file')) {
-      FieldStorageConfig::create([
-        'field_name' => 'field_video_file',
-        'entity_type' => 'block_content',
-        'type' => 'file',
-        'cardinality' => 1,
-        'settings' => [
-          'target_type' => 'file',
-          'uri_scheme' => 'public',
-        ],
-      ])->save();
-    }
-    if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_video_file')) {
-      FieldConfig::create([
-        'field_name' => 'field_video_file',
-        'entity_type' => 'block_content',
-        'bundle' => 'section_hero_video',
-        'label' => 'field_video_file',
-        'required' => FALSE,
-        'settings' => [
-          'file_extensions' => 'mp4 webm ogv',
-          'description_field' => FALSE,
-        ],
-      ])->save();
-    }
-    $form_display->setComponent('field_video_file', [
-      'type' => 'file_generic',
-      'weight' => 10,
-    ])->save();
-    $display->setComponent('field_video_file', [
-      'label' => 'hidden',
-      'type' => 'file_url_plain',
-      'weight' => 10,
-    ])->save();
-
-
-    if (!FieldStorageConfig::loadByName('block_content', 'field_image')) {
-      FieldStorageConfig::create([
-        'field_name' => 'field_image',
-        'entity_type' => 'block_content',
-        'type' => 'file',
-        'cardinality' => 1,
-        'settings' => [
-          'target_type' => 'file',
-          'uri_scheme' => 'public',
-        ],
-      ])->save();
-    }
-    if (!FieldConfig::loadByName('block_content', 'section_hero_video', 'field_image')) {
-      FieldConfig::create([
-        'field_name' => 'field_image',
-        'entity_type' => 'block_content',
-        'bundle' => 'section_hero_video',
-        'label' => 'field_image',
-        'required' => FALSE,
-        'settings' => [
-          'file_extensions' => 'jpg jpeg png gif',
-          'description_field' => FALSE,
-        ],
-      ])->save();
-    }
-    $form_display->setComponent('field_image', [
-      'type' => 'file_generic',
-      'weight' => 10,
-    ])->save();
-    $display->setComponent('field_image', [
-      'label' => 'hidden',
-      'type' => 'file_url_plain',
-      'weight' => 10,
-    ])->save();
+  /*
+   * section_callout_parallax
+  **/
+  public static function section_callout_parallax() {
+    $section_name = 'section_callout_parallax';
+    $fields = [
+      'body'              => DefaultFields::body,
+      'field_class_name'  => DefaultFields::text,
+      'field_custom_css'  => DefaultFields::text_long,
+      'field_image_bg'    => DefaultFields::image,
+      'field_image_thumb' => DefaultFields::image,
+      'field_link_text'   => DefaultFields::text,
+      'field_link_url'    => DefaultFields::text,
+      'field_title'       => DefaultFields::text,
+    ];
+    self::setup_section($section_name, $fields);
   }
 
 }

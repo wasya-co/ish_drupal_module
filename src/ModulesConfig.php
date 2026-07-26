@@ -45,23 +45,6 @@ class ModulesConfig {
     }
   }
 
-  /*
-   * configure ckeditor5
-  **/
-  public static function configure_text_editor() {
-    $formats = ['basic_html', 'full_html'];
-    foreach ($formats as $format_id) {
-      $editor = Editor::load($format_id);
-      if (!$editor) { continue; }
-      $settings = $editor->getSettings();
-
-      $settings['toolbar']['items'][] = 'alignment';
-      $settings['plugins']['ckeditor5_alignment'] = [];
-
-      $editor->setSettings($settings);
-      $editor->save();
-    }
-  }
 
 
 }

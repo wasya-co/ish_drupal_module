@@ -28,187 +28,25 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ThisConfig {
 
-  public const content_types = [
-    'advanced_page' => [
-      'fields' => [
-        'body' => [
-          'field_storage_config_settings' => [
-            'display_summary' => TRUE,
-            'required_summary' => FALSE,
-          ],
-          'form_display' => 'text_textarea_with_summary',
-          'form_display_settings' => [
-            'rows' => 9,
-            'summary_rows' => 3,
-            'placeholder' => '',
-            'show_summary' => FALSE,
-          ],
-          'display' => 'text_default',
-          'translatable' => true,
-          'type' => 'text_with_summary',
-        ],
-        'field_tags' => [
-          'cardinality' => -1,
-          'form_display' => 'options_buttons',
-        ],
-        'field_image_thumb' => [
-          'field_config_settings' => [
-            'file_extensions' => 'png gif jpg jpeg webp',
-            'alt_field' => TRUE,
-            'title_field' => FALSE,
-          ],
-          'field_storage_config_settings' => [
-            'uri_scheme' => 'public',
-          ],
-          'form_display' => 'image_image',
-          'form_display_settings' => [
-            'progress_indicator' => 'throbber',
-            'preview_image_style' => 'thumbnail',
-          ],
-          'type' => 'image',
-        ],
-        'field_image_hero' => [
-          'field_config_settings' => [
-            'file_extensions' => 'png gif jpg jpeg webp',
-            'alt_field' => TRUE,
-            'title_field' => FALSE,
-          ],
-          'field_storage_config_settings' => [
-            'uri_scheme' => 'public',
-          ],
-          'form_display' => 'image_image',
-          'form_display_settings' => [
-            'progress_indicator' => 'throbber',
-            'preview_image_style' => 'thumbnail',
-          ],
-          'type' => 'image',
-        ],
-      ],
-      'layout_builder' => true,
-    ],
-    // issue is same as advanced_page, but without image_hero.
-    // slide is the same as advanced_page, but without layout_builder
-  ];
-
-  public static function setup_content_type_issue() {
-    $content_type_c = self::content_types['advanced_page'];
-    unset( $content_type_c['fields']['field_image_hero'] );
-    self::setup_content_type('issue', $content_type_c);
-  }
-
-  public static function setup_content_type_slide() {
-    $content_type_c = self::content_types['advanced_page'];
-    unset( $content_type_c['layout_builder'] );
-    self::setup_content_type('slide', $content_type_c);
-  }
-
-  public static function setup_content_type($content_type, $content_type_c) {
-    if (!NodeType::load($content_type)) {
-      NodeType::create([
-        'type' => $content_type,
-        'name' => $content_type,
-        'description' => $content_type,
-        'new_revision' => FALSE,
-        'preview_mode' => DRUPAL_OPTIONAL,
-        'display_submitted' => FALSE,
-      ])->save();
-    }
-
-    $form_display = EntityFormDisplay::load("node.$content_type.default");
-    if (!$form_display) {
-      $form_display = EntityFormDisplay::create([
-        'targetEntityType' => 'node',
-        'bundle' => $content_type,
-        'mode' => 'default',
-        'status' => TRUE,
-      ]);
-    }
-
-    $display = EntityViewDisplay::load("node.$content_type.full");
-    if (!$display) {
-      $display = EntityViewDisplay::create([
-        'targetEntityType' => 'node',
-        'bundle' => $content_type,
-        'mode' => 'full',
-        'status' => TRUE,
-      ]);
-    }
-
-    if ($content_type_c['layout_builder']) {
-      $default_display = EntityViewDisplay::load("node.$content_type.default");
-      if (!$default_display) {
-        $default_display = EntityViewDisplay::create([
-          'targetEntityType' => 'node',
-          'bundle' => $content_type,
-          'mode' => 'default',
-          'status' => TRUE,
-        ]);
-      }
-      $default_display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-      $default_display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-      $default_display->save();
-
-      $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-      $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-      $display->save();
-    }
-
-
-    foreach($content_type_c['fields'] as $field => $field_c) {
-
-      $storage = FieldStorageConfig::loadByName('node', $field);
-      if (!$storage) {
-        $storage = FieldStorageConfig::create([
-          'field_name' => $field,
-          'entity_type' => 'node',
-          'type' => $field_c['type'],
-          'cardinality' => $field_c['cardinality'] ?? 1,
-          'settings' => $field_c['field_storage_config_settings'] ?? [],
-        ]);
-        $storage->save();
-      }
-      $field_cfg = FieldConfig::loadByName('node', $content_type, $field);
-      if (!$field_cfg) {
-        $field_cfg = FieldConfig::create([
-          'field_storage' => $storage,
-          'bundle' => $content_type,
-          'label' => $field,
-          'required' => FALSE,
-          'translatable' => !!$field_c['translatable'],
-          'settings' => $field_c['field_config_settings'] ?? [],
-        ])->save();
-      }
-
-      $form_display ->setComponent($field, [
-        'type' => $field_c['form_display'],
-        'weight' => 20,
-        'region' => 'content',
-        'settings' => $field_c['form_display_settings'] ?? [],
-      ])->save();
-
-      if ($field_c['display'] ?? null) {
-        $display->setComponent($field, [
-          'type' => $field_c['display'],
-          'label' => 'hidden',
-          'weight' => 20,
-          'region' => 'content',
-          'settings' => [],
-        ])->save();
-      }
-
-    } // end fields loop
-  }
-
-
-
   /*
+   * configure text editor ckeditor5
   **/
-  // public static function content_types() {
-  //   foreach (self::content_types as $content_type => $content_type_c) { // _c means _config or _content
-  //     self->content_type($content_type);
-  //   }
-  // }
+  public static function configure_text_editor() {
+    $formats = ['basic_html', 'full_html'];
+    foreach ($formats as $format_id) {
+      $editor = Editor::load($format_id);
+      if (!$editor) { continue; }
+      $settings = $editor->getSettings();
 
+      if (!in_array('alignment', $settings['toolbar']['items'])) {
+        $settings['toolbar']['items'][] = 'alignment';
+      }
+      $settings['plugins']['ckeditor5_alignment'] ??= [];
+
+      $editor->setSettings($settings);
+      $editor->save();
+    }
+  }
 
   /*
    *
@@ -277,48 +115,3 @@ class ThisConfig {
 
 }
 
-
-
-/* paragraphs */
-/*
-  $storage = FieldStorageConfig::loadByName('node', 'field_paragraphs');
-  if (!$storage) {
-    $storage = FieldStorageConfig::create([
-      'field_name' => 'field_paragraphs',
-      'entity_type' => 'node',
-      'type' => 'entity_reference_revisions',
-      'cardinality' => -1,
-      'settings' => [
-        'target_type' => 'paragraph',
-      ],
-      'translatable' => TRUE,
-    ]);
-    $storage->save();
-  }
-  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_paragraphs');
-  if (!$field) {
-    $field = FieldConfig::create([
-      'field_storage' => $storage,
-      'bundle' => 'advanced_page',
-      'label' => 'Paragraphs',
-      'description' => '',
-      'required' => FALSE,
-      'translatable' => TRUE,
-      'settings' => [],
-    ]);
-    $field->save();
-  }
-  $form_display ->setComponent('field_paragraphs', [
-    'type' => 'paragraphs',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-  $display->setComponent('body', [
-    'type' => 'entity_reference_revisions_entity_view',
-    'label' => 'hidden',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-*/

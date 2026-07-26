@@ -15,22 +15,28 @@
   {% endif %}
   {{ title_suffix }}
 
-  <video class="hero-video" autoplay="" muted="" loop="" playsinline="" preload="metadata">
-    <source src="{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}" type="video/mp4">
-  </video>
+  {% if 'On' == content.field_autoplay[0]['#markup'] %}
+    <video class="hero-video" autoplay="" muted="" loop="" playsinline="" preload="metadata">
+      <source src="{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}" type="video/mp4">
+    </video>
+  {% endif %}
 
+  <div class='overlay'></div>
   <div class='hero-image' style="background-image: url({{ file_url( content.field_image['#items'].entity.uri.value ) }})" alt='' >
   </div>
 
-  {# <ul>
-    <li>{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}</li>
-    <li>{{ content.field_video_file }}</li>
-    <li>{{ content.field_image }}</li>
-  </ul> #}
-
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
-      {{ content | without('field_video_file') | without('field_image') }}
+      {{ content | without('field_autoplay') | without('field_image') | without('field_video_file') }}
+
+        {# <ul>
+          <li>{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}</li>
+          <li>{{ content.field_video_file }}</li>
+          <li>{{ content.field_image }}</li>
+          <li>{{ content.field_autoplay[0]['#markup'] }}</li>
+          <li>{{ dump( content.field_autoplay[0] ) }}</li>
+        </ul> #}
+
     </div>
   {% endblock %}
 </div>
