@@ -70,7 +70,7 @@ class LayoutConfig {
         ],
       ],
       'content' => [
-        'page_title' => [
+        'pagetitle' => [
           'plugin' => 'page_title_block',
           'provider' => 'system',
           'settings' => [],
@@ -119,5 +119,39 @@ class LayoutConfig {
       }
     }
   }
+
+  /*
+  **/
+  public static function update_pagetitle_for_issue() {
+    $theme = \Drupal::config('system.theme')->get('default');
+    $block = Block::load("{$theme}_pagetitle");
+    $block->setVisibilityConfig('entity_bundle:node', [
+      'id' => 'entity_bundle:node',
+      'bundles' => [
+        'issue' => 'issue',
+      ],
+      'negate' => TRUE,
+      'context_mapping' => [
+        'node' => '@node.node_route_context:node',
+      ],
+    ]);
+
+    /* trash */
+    // $config = $block->get('visibility');
+    // $config['entity_bundle:node'] = [
+    //   'id' => 'entity_bundle:node',
+    //   'bundles' => [
+    //     'issue' => 'issue',
+    //   ],
+    //   'negate' => TRUE,
+    //   'context_mapping' => [
+    //     'node' => '@node.node_route_context:node',
+    //   ],
+    // ];
+    // $block->set('visibility', $config);
+
+    $block->save();
+  }
+
 }
 

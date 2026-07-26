@@ -30,7 +30,7 @@ use Drupal\ish_drupal_module\ThisConfig;
 use Drupal\ish_drupal_module\Models\YoutubeChannel;
 
 
-function ish_drupal_module_update_9072() {
+function ish_drupal_module_update_9075() {
   // ModulesConfig::install_modules();
   // ModulesConfig::configure_text_editor();
   // ThisConfig::setup_permissions();
@@ -46,7 +46,9 @@ function ish_drupal_module_update_9072() {
   // ThisConfig::setup_content_type_slide();
 
   // SectionsConfig::section_hero_video();
-  SectionsConfig::section_callout_parallax();
+  // SectionsConfig::section_callout_parallax();
+
+  LayoutConfig::update_pagetitle_for_issue();
 }
 
 
