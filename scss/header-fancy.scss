@@ -36,6 +36,8 @@
       background-color: rgba(0,0,0, 0.2);
 
       position: absolute;
+      top: 0;
+
       width: 100%;
 
     }
@@ -60,7 +62,7 @@
 
       height: var(--header-height);
     }
-    #main-wrapper {
+    .PageIssue #main-wrapper {
       #main {
         margin-top: calc( -1 * var(--header-height) );
       }

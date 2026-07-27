@@ -19,3 +19,14 @@
     max-height: 300px;
     max-width: 300px;
     height: auto; }
+
+.tns-outer > button {
+  display: none; }
+
+.tns-outer .tns-controls {
+  text-align: right;
+  margin-bottom: 0.5em; }
+  .tns-outer .tns-controls > button {
+    margin-right: 1em;
+    border-radius: 10px;
+    background: transparent; }

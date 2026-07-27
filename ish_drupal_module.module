@@ -329,6 +329,12 @@ function ish_drupal_module_node_view(&$build) {
   // logg($build, 'final build');
 }
 
+
+function ish_drupal_module_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'ish_drupal_module/main';
+}
+
+
 /*
  * Alter template variables (styling, theming context).
 **/
@@ -343,13 +349,7 @@ function ish_drupal_module_preprocess_node(array &$variables) {
   // \Drupal::logger('nisto_form_alter')->notice('Form ID: ' . $form_id); // Or log it to watchdog log.
 } // */
 
-/**
- * Implements hook_page_attachments().
- */
-function ish_drupal_module_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap';
-  $attachments['#attached']['library'][] = 'ish_drupal_module/styles';
-}
+
 
 
 

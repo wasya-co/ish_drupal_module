@@ -64,6 +64,13 @@
 
 = Use =
 
+  == tiny slider ==
+
+    https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
+    https://ganlanyuan.github.io/tiny-slider/
+
+    Add .my-slider or .my-slider.no-pagination to a ul or a well-formed DOM tree.
+
   == css ==
 
     === Available classes ===

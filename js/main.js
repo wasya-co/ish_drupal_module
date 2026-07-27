@@ -37,9 +37,10 @@ $(function () {
     var slider = tns({
       center: true,
       container: el,
-      items: 2.1,
+      items: 2.6,
       loop: true,
       autoplay: true,
+      nav: false,
     });
   })
 

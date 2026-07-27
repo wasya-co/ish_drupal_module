@@ -6,6 +6,6 @@ description: Ish Locations and more.
 dependencies:
   - drupal:views
   - drupal:twig_tweak
-  - paragraphs:paragraphs
+  # - paragraphs:paragraphs
 libraries:
-  - ish_drupal_module/bootstrap
+  - ish_drupal_module/main

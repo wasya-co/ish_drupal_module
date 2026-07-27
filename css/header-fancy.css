@@ -24,6 +24,7 @@
   body:not(.scrolled) #header {
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
+    top: 0;
     width: 100%; }
   body:not(.scrolled) #main-wrapper #main {
     margin-top: var(--header-height); }
@@ -34,7 +35,7 @@
     top: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     height: var(--header-height); }
-  body.scrolled #main-wrapper #main {
+  body.scrolled .PageIssue #main-wrapper #main {
     margin-top: calc( -1 * var(--header-height)); }
   body.scrolled .region-top-header {
     display: none; } }

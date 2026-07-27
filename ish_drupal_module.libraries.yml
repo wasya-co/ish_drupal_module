@@ -1,14 +1,16 @@
 
-bootstrap:
+main:
   css:
     theme:
+      css/ish_drupal_module.css: {}
+      css/style-bordered.css: {}
       # vendor/css/bootstrap@4.5.2.min.css: { minified: true }
       vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
       # vendor/css/aos@3.0.0.min.css: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
-    - core/once
+    # - core/once
     # - bootstrap_barrio/global-styling
   js:
     # vendor/js/bootstrap.bundle.min.js: { minified: true }
@@ -17,17 +19,6 @@ bootstrap:
     vendor/js/scrollreveal@4.0.9.min: { minified: true }
     js/main.js: {}
 
-styles:
-  version: 1.x
-  css:
-    theme:
-      css/ish_drupal_module.css: {}
-      css/style-bordered.css: {}
-
-# main:
-#   css:
-#     theme:
-#       css/main.css: {}
 
 collapse_expand:
   js:

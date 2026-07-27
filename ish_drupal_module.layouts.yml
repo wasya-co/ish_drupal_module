@@ -18,7 +18,7 @@ layout_onecol_any:
   icon_map:
     - [main]
   regions:
-    first:
+    main:
       label: Main
 
 layout_twocol_any:
