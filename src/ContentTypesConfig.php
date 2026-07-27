@@ -94,13 +94,13 @@ class ContentTypesConfig {
     // slide is the same as advanced_page, but without layout_builder
   ];
 
-  public static function setup_content_type_issue() {
+  public static function setup_issue() {
     $content_type_c = self::content_types['advanced_page'];
     unset( $content_type_c['fields']['field_image_hero'] );
     self::setup_content_type('issue', $content_type_c);
   }
 
-  public static function setup_content_type_slide() {
+  public static function setup_slide() {
     $content_type_c = self::content_types['advanced_page'];
     unset( $content_type_c['layout_builder'] );
     self::setup_content_type('slide', $content_type_c);

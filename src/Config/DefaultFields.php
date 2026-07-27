@@ -28,7 +28,20 @@ class DefaultFields {
     'type' => 'text_with_summary',
   ];
 
-  // public const file = [];
+  public const file = [
+    'display' => 'file_url_plain',
+    'field_config_settings' => [
+      'file_extensions' => 'mp4 webm ogv',
+      'description_field' => FALSE,
+    ],
+    'field_storage_config_settings' => [
+      'target_type' => 'file',
+      'uri_scheme' => 'public',
+    ],
+    'form_display' => 'file_generic',
+    'form_display_settings' => [],
+    'type' => 'file',
+  ];
 
   public const toggle = [
     'form_display' => 'boolean_checkbox',

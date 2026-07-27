@@ -34,9 +34,7 @@ class BlocksConfig {
   public static function hours_of_operation() {
     $slug = 'hours_of_operation';
 
-
-
-    $blocks = BlockContent::loadByProperties([
+    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
       'type' => 'basic',
       'info' => $slug,
     ]);

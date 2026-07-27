@@ -2,7 +2,7 @@ name: ish_drupal_module
 type: module
 version: VERSION
 core_version_requirement: ^9.5 || ^10
-description: Ish Locations and more.
+description: ish_drupal_module - marketing sites and more.
 dependencies:
   - drupal:views
   - drupal:twig_tweak

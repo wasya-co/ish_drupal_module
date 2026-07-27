@@ -32,15 +32,15 @@ use Drupal\ish_drupal_module\Config\DefaultFields;
 class SectionsConfig {
 
   /*
-   * section hero video
+   * section_hero_video
   **/
-  public static function section_hero_video() {
+  public static function setup_hero_video() {
     $section_name = 'section_hero_video';
     $fields = [
-      'body'              => DefaultFields::body,
-      'field_autoplay' => DefaultFields::toggle,
+      'body'             => DefaultFields::body,
+      'field_autoplay'   => DefaultFields::toggle,
       'field_video_file' => DefaultFields::file,
-      'field_image' => DefaultFields::image,
+      'field_image'      => DefaultFields::image,
     ];
     self::setup_section($section_name, $fields);
   }
@@ -111,7 +111,7 @@ class SectionsConfig {
   /*
    * section_callout_parallax
   **/
-  public static function section_callout_parallax() {
+  public static function setup_callout_parallax() {
     $section_name = 'section_callout_parallax';
     $fields = [
       'body'              => DefaultFields::body,
