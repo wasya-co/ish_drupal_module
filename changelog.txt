@@ -20,3 +20,6 @@
 
 2.0.0               :: merge 1.2.3 and 0.6.0
 2.1.0 :: 2026-07-26 :: rebel-cycles, col-re are minimally good. continue.
+         v2.1.1               :: work in progress for both rebel-cycles and col-re
+         v2.1.2 :: 2026-07-28 :: rebel-cycles is minimally acceptable, again
+         v2.1.3               :: better asset load order

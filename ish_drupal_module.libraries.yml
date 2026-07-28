@@ -46,6 +46,7 @@ main:
   dependencies:
     - core/jquery
     - core/drupal
+    - ish_drupal_module/vendor
   js:
     js/ish_drupal_module.js: {}
 

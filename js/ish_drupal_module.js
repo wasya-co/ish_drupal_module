@@ -48,7 +48,7 @@ $(function () {
       autoWidth: true,
       center: true,
       container: el,
-      items: 2.6,
+      items: 3,
       loop: true,
       autoplay: true,
       nav: false,

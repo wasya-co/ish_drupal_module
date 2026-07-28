@@ -6,7 +6,6 @@ description: ish_drupal_module - marketing sites and more.
 dependencies:
   - drupal:views
   - drupal:twig_tweak
-  # - paragraphs:paragraphs
 libraries:
   - ish_drupal_module/bootstrap4
   - ish_drupal_module/bootstrap5

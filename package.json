@@ -17,8 +17,8 @@
     "node-sass": "^9.0.0"
   },
   "scripts": {
-    "build": "node-sass ./scss -o ./css",
-    "build-minify": "node-sass ./scss -o ./css --output-style compressed",
+    "build": "node-sass ./scss -o ./css --output-style compressed",
+    "build-old": "node-sass ./scss -o ./css",
     "watch": "node-sass -w ./scss -o ./css"
   }
 }
