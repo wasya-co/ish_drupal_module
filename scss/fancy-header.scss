@@ -1,17 +1,20 @@
 
 :root {
   --header-height: 92px;
+  --header-expanded-height: 180px;
   --header-bg: rgba(0,0,0, 0.5);
-
-  --bg-color: pink;
+  --header-bg-scrolled: rgba(0,0,0, 0.2);
+  --header-color: white;
+  --header-link-color: white;
 }
 
 #header {
   z-index: 20;
 
   background-color: var(--header-bg);
+
   a {
-    color: white;
+    color: var(--header-link-color);
   }
 }
 .navbar-brand {
@@ -33,7 +36,7 @@
 @media (min-width: 767px) {
   body:not(.scrolled) {
     #header {
-      background-color: rgba(0,0,0, 0.2);
+      background-color: var(--header-bg-scrolled);
 
       position: absolute;
       top: 0;
@@ -43,7 +46,7 @@
     }
     #main-wrapper {
       #main {
-        margin-top: var(--header-height);
+        margin-top: var(--header-expanded-height);
       }
     }
     .PageIssue #main-wrapper {
@@ -53,11 +56,13 @@
     }
   }
   body.scrolled {
+    #navbar-main {
+      height: var(--header-height);
+    }
     #header {
       position: sticky;
       top: 0;
 
-      // background: var(--bg-color);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
       height: var(--header-height);

@@ -7,18 +7,28 @@
 .no-navigation .tns-outer .tns-controls {
   display: none; }
 
-.my-slider article.node {
+.my-slider article.node,
+.my-slider .node--type-slide,
+.my-slider-autowidth article.node,
+.my-slider-autowidth .node--type-slide {
   border-radius: 0.5em;
-  background: #333;
   overflow: hidden;
   margin: 0 1em 1em 0;
   padding: 1em;
-  max-height: 400px;
-  height: 400px; }
-  .my-slider article.node img {
+  max-height: 70vh;
+  overflow-y: auto;
+  min-height: 200px;
+  max-width: 50vw;
+  min-width: 300px; }
+  .my-slider article.node img,
+  .my-slider .node--type-slide img,
+  .my-slider-autowidth article.node img,
+  .my-slider-autowidth .node--type-slide img {
     max-height: 300px;
+    height: auto;
     max-width: 300px;
-    height: auto; }
+    max-width: 90%;
+    width: auto; }
 
 .tns-outer > button {
   display: none; }

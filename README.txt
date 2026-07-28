@@ -1,4 +1,9 @@
 
+= About =
+
+Version 1.2.3 is for drupal 9 and piousbox_com.
+Version 2.0.0 is for drupal 10 and col-re, rebel-cycles, and everything going forwrad.
+
 = Develop =
 
   ./vendor/drush/drush/drush cc router
@@ -50,8 +55,8 @@
 
   * tag, push to wasya-co remote:
 
-    git tag -a v1.2.11 -m "Release v1.2.11"
-    git push origin v1.2.11
+    git tag -a v2.1.1 -m "Release v2.1.1"
+    git push origin v2.1.1
 
   * update version in composer.json
 
@@ -69,7 +74,7 @@
     https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
     https://ganlanyuan.github.io/tiny-slider/
 
-    Add .my-slider or .my-slider.no-pagination to a ul or a well-formed DOM tree.
+    Add .my-slider or similar (see below) to a ul or a well-formed DOM tree.
 
   == css ==
 
@@ -81,6 +86,7 @@
     Slider. must be on a e.g. ul, with li's as immediate children.
 
       .my-slider
+      .my-slider-autowidth
       .my-slider.no-navigation
 
     Animations:

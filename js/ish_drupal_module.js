@@ -1,5 +1,5 @@
 
-$ = jQuery;
+// $ = jQuery;
 $(function () {
 
   $(".collapse-expand").each(function() {
@@ -43,6 +43,17 @@ $(function () {
       nav: false,
     });
   })
+  $('.my-slider-autowidth').each((idx, el) => {
+    var slider = tns({
+      autoWidth: true,
+      center: true,
+      container: el,
+      items: 2.6,
+      loop: true,
+      autoplay: true,
+      nav: false,
+    });
+  })
 
 
   window.sr = ScrollReveal();
@@ -64,6 +75,6 @@ $(function () {
     reset: false,
   })
 
-  console.log('+++ loaded ish_drupal_module main.js')
+  console.log('+++ loaded ish_drupal_module.js', $)
 })
 

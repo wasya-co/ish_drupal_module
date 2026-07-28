@@ -1,12 +1,13 @@
 
-0.0.0 - 2023-09-xx - probably just testing locations
-0.1.0 - 2023-09-15 - renamed to ish_drupal_module
-        2023-11-18 - 1col-anywidth, 2col-anywidth
-0.2.1 - 2023-11-20 - reset well.
-
+0.0.0 :: 2023-09-xx :: probably just testing locations
+0.1.0 :: 2023-09-15 :: renamed to ish_drupal_module
+         2023-11-18 :: 1col-anywidth, 2col-anywidth
+0.2.1 :: 2023-11-20 :: reset well.
 0.3.0 :: 2023-11-21 :: POST /contributed_posts with jwt but it really, really doesn't work
 0.5.0 :: 2026-07-22 :: okay, continue
-0.6.0 :: 2026-07-22 :: adding a lot of assdets to module.
+0.6.0 :: 2026-07-22 :: adding a lot of vendor assets to the module.
+0.7.0               :: this was in prep to merge 1.2.3, to become 2.0.0
+
 
 1.0.0 :: 2026-01-09 :: compatibility with drupal 10
                        removed bjjc from here - it will be separate
@@ -15,6 +16,7 @@
 1.2.1                  merged 0.5.1, so now this is the latest.
 1.2.2                  adding layout collapse-expand
 1.2.3 :: 2026-07-08 :: churning mileswmathis_com
-0.6.0 :: 2026-07-23 :: rebel-cycles, same as 0.7.0
-2.0.0 ::            :: merge 1.2.3 and 0.6.0
+
+
+2.0.0               :: merge 1.2.3 and 0.6.0
 2.1.0 :: 2026-07-26 :: rebel-cycles, col-re are minimally good. continue.

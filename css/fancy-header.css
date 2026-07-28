@@ -1,5 +1,6 @@
 :root {
   --header-height: 92px;
+  --header-expanded-height: 180px;
   --header-bg: rgba(0,0,0, 0.5);
   --header-bg-scrolled: rgba(0,0,0, 0.2);
   --header-color: white;
@@ -29,7 +30,7 @@
     top: 0;
     width: 100%; }
   body:not(.scrolled) #main-wrapper #main {
-    margin-top: var(--header-height); }
+    margin-top: var(--header-expanded-height); }
   body:not(.scrolled) .PageIssue #main-wrapper #main {
     margin-top: 0; }
   body.scrolled #navbar-main {

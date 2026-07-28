@@ -1,13 +1,35 @@
+/*
+ * only make Card, Teaser nice. chips and tags can also be here.
+**/
+.Card,
+.node--view-mode-card {
+  border: 1px solid var(--text-color);
+  border-radius: 0.4em;
+  padding: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em; }
+
+.node--view-mode-teaser {
+  border: 1px solid var(--text-color);
+  border-radius: 0.4em;
+  padding: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  max-width: 90vw; }
+
 :root {
   --header-height: 92px;
+  --header-expanded-height: 180px;
   --header-bg: rgba(0,0,0, 0.5);
-  --bg-color: pink; }
+  --header-bg-scrolled: rgba(0,0,0, 0.2);
+  --header-color: white;
+  --header-link-color: white; }
 
 #header {
   z-index: 20;
   background-color: var(--header-bg); }
   #header a {
-    color: white; }
+    color: var(--header-link-color); }
 
 .navbar-brand {
   display: flex;
@@ -22,14 +44,16 @@
 
 @media (min-width: 767px) {
   body:not(.scrolled) #header {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--header-bg-scrolled);
     position: absolute;
     top: 0;
     width: 100%; }
   body:not(.scrolled) #main-wrapper #main {
-    margin-top: var(--header-height); }
+    margin-top: var(--header-expanded-height); }
   body:not(.scrolled) .PageIssue #main-wrapper #main {
     margin-top: 0; }
+  body.scrolled #navbar-main {
+    height: var(--header-height); }
   body.scrolled #header {
     position: sticky;
     top: 0;
@@ -51,9 +75,8 @@
   background-attachment: fixed; }
 
 .SectionHeroVideo {
-  max-height: 85vh;
-  border: 1px solid yellow;
   margin-bottom: 1em;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,25 +116,6 @@
   .SectionHeroVideo .hero-image {
     display: block; } }
 
-/*
- * only make Card, Teaser nice. chips and tags can also be here.
-**/
-.node--view-mode-card {
-  border: 1px solid var(--text-color);
-  border-radius: 0.4em;
-  padding: 1em;
-  margin-right: 1em;
-  margin-bottom: 1em; }
-
-.node--view-mode-teaser {
-  border: 1px solid var(--text-color);
-  border-radius: 0.4em;
-  padding: 1em;
-  margin-right: 1em;
-  margin-bottom: 1em; }
-  .node--view-mode-teaser img {
-    max-width: 90%; }
-
 .no-navigation .tns-outer > button {
   display: none; }
 
@@ -121,18 +125,28 @@
 .no-navigation .tns-outer .tns-controls {
   display: none; }
 
-.my-slider article.node {
+.my-slider article.node,
+.my-slider .node--type-slide,
+.my-slider-autowidth article.node,
+.my-slider-autowidth .node--type-slide {
   border-radius: 0.5em;
-  background: #333;
   overflow: hidden;
   margin: 0 1em 1em 0;
   padding: 1em;
-  max-height: 400px;
-  height: 400px; }
-  .my-slider article.node img {
+  max-height: 70vh;
+  overflow-y: auto;
+  min-height: 200px;
+  max-width: 50vw;
+  min-width: 300px; }
+  .my-slider article.node img,
+  .my-slider .node--type-slide img,
+  .my-slider-autowidth article.node img,
+  .my-slider-autowidth .node--type-slide img {
     max-height: 300px;
+    height: auto;
     max-width: 300px;
-    height: auto; }
+    max-width: 90%;
+    width: auto; }
 
 .tns-outer > button {
   display: none; }
@@ -169,3 +183,30 @@ footer.site-footer .block {
 @media (max-width: 767px) {
   .no-mobile {
     display: none; } }
+
+/*
+ * utilities, below
+**/
+.border-cyan {
+  border: 1px solid cyan; }
+
+.border-red {
+  border: 1px solid red; }
+
+.border-yellow {
+  border: 1px solid yellow; }
+
+.fixed-container {
+  margin: auto; }
+
+@media (min-width: 576px) {
+  .fixed-container {
+    width: 540px; } }
+
+@media (min-width: 768px) {
+  .fixed-container {
+    width: 720px; } }
+
+@media (min-width: 992px) {
+  .fixed-container {
+    width: 960px; } }

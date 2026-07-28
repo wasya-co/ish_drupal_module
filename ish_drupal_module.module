@@ -332,8 +332,11 @@ function ish_drupal_module_node_view(&$build) {
 
 function ish_drupal_module_page_attachments(array &$attachments) {
   // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap4';
-  $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5_cdn';
+  $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5';
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5_cdn';
+  $attachments['#attached']['library'][] = 'ish_drupal_module/vendor';
   $attachments['#attached']['library'][] = 'ish_drupal_module/main';
+  $attachments['#attached']['library'][] = 'ish_drupal_module/collapse_expand';
 }
 
 

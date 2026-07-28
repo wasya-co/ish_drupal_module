@@ -28,6 +28,6 @@ const $ = jQuery
     e.stopPropagation()
   })
 
-  console.log('Loaded collapse-expand.js')
+  console.log('+++ Loaded collapse-expand.js')
 
 

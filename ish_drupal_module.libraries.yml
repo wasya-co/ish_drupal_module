@@ -1,17 +1,4 @@
 
-main:
-  css:
-    theme:
-      css/ish_drupal_module.css: {}
-      css/style-bordered.css: {}
-      vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
-  dependencies:
-    - core/jquery
-    - core/drupal
-  js:
-    vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
-    vendor/js/scrollreveal@4.0.9.min: { minified: true }
-    js/main.js: {}
 
 bootstrap4:
   css:
@@ -20,6 +7,12 @@ bootstrap4:
   js:
     vendor/js/bootstrap@4.5.3.bundle.min.js: { minified: true }
 
+bootstrap5:
+  css:
+    theme:
+      vendor/css/bootstrap@5.0.2.min.css: { minified: true }
+  js:
+    vendor/js/bootstrap@5.0.2.bundle.min.js: { minified: true }
 
 bootstrap5_cdn:
   js:
@@ -36,3 +29,23 @@ collapse_expand:
   dependencies:
     - core/drupal
     - core/jquery
+
+vendor:
+  css:
+    theme:
+      vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
+  js:
+    vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
+    vendor/js/scrollreveal@4.0.9.min: { minified: true }
+
+
+main:
+  css:
+    theme:
+      css/ish_drupal_module.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+  js:
+    js/ish_drupal_module.js: {}
+

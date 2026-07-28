@@ -8,24 +8,27 @@ use Drupal\ish_drupal_module\SectionsConfig;
 use Drupal\ish_drupal_module\ThisConfig;
 
 
-function ish_drupal_module_update_9076() {
+function ish_drupal_module_update_9077() {
   // ModulesConfig::install_modules();
   // ThisConfig::configure_text_editor();
   // ThisConfig::setup_permissions();
   // ThisConfig::setup_view_modes();
   // ThisConfig::setup_tags();
 
+
   // LayoutConfig::clear();
   // LayoutConfig::setup_marketing_site();
   // BlocksConfig::hours_of_operation();
 
   // ContentTypesConfig::setup_content_type('advanced_page', ContentTypesConfig::content_types['advanced_page']);
+
   // ContentTypesConfig::setup_issue();
   // LayoutConfig::update_pagetitle_for_issue();
+
   // ContentTypesConfig::setup_slide();
 
-  SectionsConfig::setup_hero_video();
-  SectionsConfig::setup_callout_parallax();
+  // SectionsConfig::setup_hero_video();
+  // SectionsConfig::setup_callout_parallax();
 }
 
 

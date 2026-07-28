@@ -8,4 +8,8 @@ dependencies:
   - drupal:twig_tweak
   # - paragraphs:paragraphs
 libraries:
+  - ish_drupal_module/bootstrap4
+  - ish_drupal_module/bootstrap5
+  - ish_drupal_module/bootstrap5_cdn
   - ish_drupal_module/main
+
