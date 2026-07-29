@@ -9,7 +9,7 @@ use Drupal\ish_drupal_module\ThisConfig;
 use Drupal\ish_drupal_module\ViewsConfig;
 
 
-function ish_drupal_module_update_9118() {
+function ish_drupal_module_update_9119() {
   // ModulesConfig::install_modules();
   // ThisConfig::configure_text_editor();
   // ThisConfig::setup_permissions();
@@ -39,7 +39,11 @@ function ish_drupal_module_update_9118() {
   // ContentTypesConfig::setup_content_type('issue', ContentTypesConfig::content_types['advanced_page']);
   // ContentTypesConfig::enable_layout_builder_for('issue', 'full');
 
-  $config = [
+
+
+  // ViewsConfig::create_from_file('views.view.directory.yml');
+
+  $view_config = [
     'default' => [
       'display_options' => [
         'filters' => [
@@ -139,11 +143,15 @@ function ish_drupal_module_update_9118() {
       ],
     ],
     'display_plugin' => 'block', // block or page
-    'display_title' => 'block_02',
+    'display_title' => 'block_frontpage',
   ];
-  ViewsConfig::create_view('directory_2', 'block_02', $config);
+  // ViewsConfig::create_view('directory', 'block_frontpage', $view_config);
+  // ViewsConfig::create_from_file_2();
+
+}
 
 
+function ish_drupal_module_update_9120() {
 
 }
 

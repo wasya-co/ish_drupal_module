@@ -10,6 +10,7 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Serialization\Yaml;
 use Drupal\Core\Url;
 
 use Drupal\editor\Entity\Editor;
@@ -139,11 +140,81 @@ class ViewsConfig {
 
   /*
   **/
+  public static function create_from_file($filename) {
+    $config_path = \Drupal::service('extension.list.module')
+      ->getPath('ish_drupal_module') . '/config/install/views.view.directory.yml';
+    $data = Yaml::decode(file_get_contents($config_path));
+    if (!View::load($data['id'])) {
+      $view = View::create($data);
+      $view->save();
+    }
+  }
+
+  /*
+  **/
+  public static function create_from_file_2() {
+    $view_id = 'services';
+
+    $config_path = \Drupal::service('extension.list.module')
+      ->getPath('ish_drupal_module') . '/config/install/views.view.directory.yml';
+    $data = Yaml::decode(file_get_contents($config_path));
+    $data['id'] = $view_id;
+    $data['label'] = $view_id;
+
+    $data['display']['block_b'] = self::DEFAULT_DISPLAY;
+    $data['display']['block_b']['display_options'] = [
+      'css_class' => 'container row',
+      'filters' => [
+        'status' => [
+          'id' => 'status',
+          'table' => 'node_field_data',
+          'field' => 'status',
+          'value' => '1',
+          'entity_type' => 'node',
+          'entity_field' => 'status',
+        ],
+        'type' => [
+          'entity_type' => 'node',
+          'entity_field' => 'type',
+          'id' => 'type',
+          'field' => 'type',
+          'plugin_id' => 'bundle',
+          'table' => 'node_field_data',
+          'value' => [
+            'directory_item' => 'directory_item',
+          ],
+        ],
+      ],
+      'row' => [
+        'options' => [
+          'view_mode' => 'teaser',
+        ],
+        'plugin_id' => 'entity:node',
+        'type' => 'entity:node',
+      ],
+      'style' => [
+        'type' => 'default',
+        'plugin_id' => 'default',
+        'options' => [
+          'row_class' => 'col-sm-6 col-md-3',
+          'default_row_class' => false,
+        ],
+      ],
+    ];
+
+    if (!View::load($data['id'])) {
+      $view = View::create($data);
+      $view->save();
+    }
+  }
+
+  /*
+  **/
   public static function create_view($view_id, $display_name, $config) {
     $view = View::load($view_id);
     // if ($view) { $view->delete(); } // _TODO: remove
 
-    if (!$view) {
+    /* if (!$view) {
       $view = View::create([
         'id' => $view_id,
         'label' => $view_id,
@@ -201,12 +272,11 @@ class ViewsConfig {
           //   'display_options' => [],
           // ],
         ],
-
-
       ]);
       $view->save();
       $view = View::load($view_id);
-    }
+    } */
+
     $display = $view->get('display');
 
     // error_log( var_export( $display, true ) );

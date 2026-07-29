@@ -30,6 +30,11 @@ collapse_expand:
     - core/drupal
     - core/jquery
 
+fancy_header:
+  css:
+    theme:
+      css/fancy-header.css
+
 vendor:
   css:
     theme:

@@ -28,19 +28,3 @@ create_content:
     path: '/directory/kyle-contractor_city_ad'
 
 
-
-  - type: 'issue'
-    fields:
-      title: 'Tmp Issue'
-    path: '/tmp'
-    sections:
-      - type: 'layout_onecol_any',
-        config:
-          col1_classes: 'a-one'
-          col2_classes: 'b-two'
-          extra_classes: 'fixed-container'
-        regions:
-          main:
-            label: 'whatever-label'
-            view_id: 'directory-block_1'
-

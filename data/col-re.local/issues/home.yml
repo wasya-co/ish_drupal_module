@@ -13,6 +13,6 @@ create_content:
           extra_classes: 'fixed-container'
         regions:
           main:
-            label: 'whatever-label-4'
-            view_id: 'directory-block_4'
+            label: 'front page directory'
+            view_id: 'directory-block_frontpage'
 
