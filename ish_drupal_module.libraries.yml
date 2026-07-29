@@ -23,6 +23,11 @@ bootstrap5_cdn:
   dependencies:
     - core/popperjs
 
+card:
+  css:
+    theme:
+      css/card.css
+
 collapse_expand:
   js:
     js/collapse-expand.js: {}

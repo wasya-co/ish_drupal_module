@@ -83,4 +83,15 @@ class DefaultFields {
     'type' => 'string_long',
   ];
 
+  /* ---- */
+
+  public const default_block_fields = [
+    'body'             => DefaultFields::body,
+    'field_class_name' => DefaultFields::text,
+    'field_icon'       => DefaultFields::file,
+    'field_link_text'  => DefaultFields::text,
+    'field_link_url'   => DefaultFields::text,
+    'field_subtitle'   => DefaultFields::text,
+  ];
+
 }

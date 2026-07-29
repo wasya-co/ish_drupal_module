@@ -29,6 +29,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\Config\DefaultFields;
 
+/*
+ * these are blocks, actually
+**/
 class SectionsConfig {
 
   /*
@@ -46,8 +49,10 @@ class SectionsConfig {
   }
 
   /*
+   * _TODO: trash, remove? obsolete?
+   * renamed to blocksconfig::setup_block
   **/
-  public static function setup_section($section_name, $fields) {
+  /* public static function setup_section($section_name, $fields) {
     if (!BlockContentType::load($section_name)) {
       BlockContentType::create([
         'id' => $section_name,
@@ -105,8 +110,7 @@ class SectionsConfig {
         'type'  => $field_c['display'],
       ])->save();
     } // end foreach
-
-  }
+  } */
 
   /*
    * section_callout_parallax

@@ -3,7 +3,7 @@ create_content:
 
   - type: 'issue'
     fields:
-      title: 'Tmp Issue'
+      title: 'Home Issue'
     path: '/home'
     sections:
       - type: 'layout_onecol_any'
@@ -16,3 +16,31 @@ create_content:
             label: 'front page directory'
             view_id: 'directory-block_frontpage'
 
+      - type: 'layout_onecol_any'
+        regions:
+          main:
+            label: 'any-label'
+            block_id: "section_block:rapid_consulting"
+
+
+  - type: 'section_block'
+    info: 'rapid_consulting'
+    fields:
+      title: 'Rapid Consulting'
+      field_class_name: 'a20260729-rapid-consulting'
+      field_subtitle: 'Get things done fast.'
+      body:
+        format: 'basic_html'
+        value: |
+          <div>
+            <ul>
+              <li>Verify Backups</li>
+              <li>Reintall SSL</li>
+              <li>Setup a webform</li>
+            </ul>
+            <ul>
+              <li>Fix a stack trace</li>
+              <li>Fix server error</li>
+              <li>change colors or text</li>
+            </ul>
+          </div>

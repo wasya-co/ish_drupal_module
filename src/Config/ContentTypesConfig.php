@@ -36,6 +36,7 @@ class ContentTypesConfig {
 
   /*
    * mixins, actually
+   * _TODO: split, remove.
   **/
   public const content_types = [
     'advanced_page' => [
@@ -95,15 +96,18 @@ class ContentTypesConfig {
       ],
       // 'layout_builder' => true,
     ],
-    'marketing_block' => [
+
+    // this is in DefaultFields::default_block_fields
+    /* 'marketing_block' => [
       'fields' => [
-        'class_name' => DefaultFields::text,
-        'icon'       => DefaultFields::file,
-        'link_text'  => DefaultFields::text,
-        'link_url'   => DefaultFields::text,
-        'subtitle'   => DefaultFields::text,
+        'body'             => DefaultFields::body,
+        'field_class_name' => DefaultFields::text,
+        'field_icon'       => DefaultFields::file,
+        'field_link_text'  => DefaultFields::text,
+        'field_link_url'   => DefaultFields::text,
+        'field_subtitle'   => DefaultFields::text,
       ],
-    ],
+    ], */
   ];
 
   /*

@@ -21,6 +21,7 @@ function ish_drupal_module_update_9119() {
   // LayoutConfig::clear();
   // LayoutConfig::setup_marketing_site();
   // BlocksConfig::hours_of_operation();
+  BlocksConfig::setup_block('section_block', DefaultFields::default_block_fields);
 
   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['advanced_page']);
   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['marketing_block']);
