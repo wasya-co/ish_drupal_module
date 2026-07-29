@@ -1,0 +1,18 @@
+
+create_content:
+
+  - type: 'issue'
+    fields:
+      title: 'Tmp Issue'
+    path: '/home'
+    sections:
+      - type: 'layout_onecol_any'
+        config:
+          col1_classes: 'a-one'
+          col2_classes: 'b-two'
+          extra_classes: 'fixed-container'
+        regions:
+          main:
+            label: 'whatever-label-4'
+            view_id: 'directory-block_4'
+

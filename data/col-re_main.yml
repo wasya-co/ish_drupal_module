@@ -1,0 +1,46 @@
+
+create_content:
+  - type: 'directory_item'
+    fields:
+      body:
+        format: 'basic_html'
+        value: '<p>A marketing website for a motorcycle repair shop. Integrates with the ERP.</p>'
+      field_image_thumb: 'https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/07/29113712/rebel-cycles-1.200x200.jpg'
+      title: 'Rebel Cycles'
+    path: '/directory/rebel-cycles_city_ad'
+
+  - type: 'directory_item'
+    fields:
+      body:
+        format: 'basic_html'
+        value: '<p>A marketing website for a real estate investment firm.</p>'
+      field_image_thumb: 'https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/07/29114004/colre-black.200x200.jpg'
+      title: 'Colombia Real Estate'
+    path: '/directory/col-re_city_ad'
+
+  - type: 'directory_item'
+    fields:
+      body:
+        format: 'basic_html'
+        value: '<p>A marketing website for a Texan handyman.</p>'
+      field_image_thumb: 'https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/07/29114307/kyle-contractor.200x200.jpg'
+      title: 'Kyle Contractor'
+    path: '/directory/kyle-contractor_city_ad'
+
+
+
+  - type: 'issue'
+    fields:
+      title: 'Tmp Issue'
+    path: '/tmp'
+    sections:
+      - type: 'layout_onecol_any',
+        config:
+          col1_classes: 'a-one'
+          col2_classes: 'b-two'
+          extra_classes: 'fixed-container'
+        regions:
+          main:
+            label: 'whatever-label'
+            view_id: 'directory-block_1'
+

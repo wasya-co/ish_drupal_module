@@ -1,0 +1,22 @@
+
+
+ish_drupal_module.admin_create_content:
+  title: 'Craete Content'
+  description: 'Craete Content'
+  route_name: ish_drupal_module.create_content
+  parent: system.admin_content
+
+
+my_module.configure:
+  title: 'config ish_drupal_module'
+  description: 'config ish_drupal_module'
+  route_name: ish_drupal_module.configure
+  parent: system.admin_config
+  weight: 100
+
+
+ish_drupal_module.create_content:
+  title: 'Craete Content'
+  description: 'Craete Content'
+  route_name: ish_drupal_module.create_content
+  parent: system.admin_config

@@ -113,5 +113,15 @@ class ThisConfig {
     }
   }
 
+  public static function setup_views_config() {
+    $user_id = 1;
+    \Drupal::service('user.data')->set(
+      'views_ui',
+      $user_id,
+      'show_advanced',
+      TRUE
+    );
+  }
+
 }
 

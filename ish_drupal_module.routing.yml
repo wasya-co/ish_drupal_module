@@ -1,4 +1,20 @@
 
+ish_drupal_module.configure:
+  path: '/admin/ish_drupal_modle/configure'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ConfigController::index'
+    _title: 'Configure ish_drupal_module'
+  requirements:
+    _permission: 'administer content'
+
+ish_drupal_module.create_content:
+  path: '/admin/ish_drupal_modle/create_content'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
+    _title: 'Create Content'
+  requirements:
+    _permission: 'administer content'
+
 ish_drupal_module.paragraphs:
   path: '/admin/paragraphs'
   defaults:

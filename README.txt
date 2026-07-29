@@ -2,7 +2,9 @@
 = About =
 
 Version 1.2.3 is for drupal 9 and piousbox_com.
-Version 2.0.0 is for drupal 10 and col-re, rebel-cycles, and everything going forwrad.
+Version 2.0.0 is for drupal 10 and col-re, rebel-cycles, and everything else going forwrad.
+
+Also see changelog.txt
 
 = Develop =
 
@@ -69,32 +71,35 @@ Version 2.0.0 is for drupal 10 and col-re, rebel-cycles, and everything going fo
 
 = Use =
 
-  == tiny slider ==
-
-    https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
-    https://ganlanyuan.github.io/tiny-slider/
-
-    Add .my-slider or similar (see below) to a ul or a well-formed DOM tree.
-
   == css ==
 
-    === Available classes ===
+    === Mobile vs Desktop ===
+
+    The following classes control visibility at 768px breakpoint.
 
       .only-mobile
       .no-mobile
 
-    Slider. must be on a e.g. ul, with li's as immediate children.
+    === Slider ===
 
-      .my-slider
-      .my-slider-autowidth
-      .my-slider.no-navigation
+    * https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
+    * https://ganlanyuan.github.io/tiny-slider/
 
-    Animations:
+    The slider class .my-slider should be on a ul, with li's as immediate children. The slides are immediate children of .my-slider and any number of config classes can be added to the *wrapper* parent of the slider:
+
+      /* scss syntax */
+      .autowidth,
+      .no-navigation {
+        .my-slider {}
+      }
+
+    === Animations ===
 
       .fade-up
       .slide-right
 
   == Sections ==
+
     After installing and updating the module, you can see all sections with thumbnails, usage and descriptions of fields at /admin/ish_drupal_module/sections . However, the list in this README may be more up to date with the edge development branch.
 
     === Section Hero Video ===

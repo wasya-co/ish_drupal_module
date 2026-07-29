@@ -26,12 +26,17 @@ use Drupal\taxonomy\Entity\Term;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+
+use Drupal\ish_drupal_module\Config\DefaultFields;
+
 /*
  *
 **/
 class ContentTypesConfig {
 
-
+  /*
+   * mixins, actually
+  **/
   public const content_types = [
     'advanced_page' => [
       'fields' => [
@@ -51,9 +56,21 @@ class ContentTypesConfig {
           'translatable' => true,
           'type' => 'text_with_summary',
         ],
-        'field_tags' => [
-          'cardinality' => -1,
-          'form_display' => 'options_buttons',
+        'field_image_hero' => [
+          'field_config_settings' => [
+            'file_extensions' => 'png gif jpg jpeg webp',
+            'alt_field' => TRUE,
+            'title_field' => FALSE,
+          ],
+          'field_storage_config_settings' => [
+            'uri_scheme' => 'public',
+          ],
+          'form_display' => 'image_image',
+          'form_display_settings' => [
+            'progress_indicator' => 'throbber',
+            'preview_image_style' => 'thumbnail',
+          ],
+          'type' => 'image',
         ],
         'field_image_thumb' => [
           'field_config_settings' => [
@@ -71,35 +88,68 @@ class ContentTypesConfig {
           ],
           'type' => 'image',
         ],
-        'field_image_hero' => [
-          'field_config_settings' => [
-            'file_extensions' => 'png gif jpg jpeg webp',
-            'alt_field' => TRUE,
-            'title_field' => FALSE,
-          ],
-          'field_storage_config_settings' => [
-            'uri_scheme' => 'public',
-          ],
-          'form_display' => 'image_image',
-          'form_display_settings' => [
-            'progress_indicator' => 'throbber',
-            'preview_image_style' => 'thumbnail',
-          ],
-          'type' => 'image',
+        'field_tags' => [
+          'cardinality' => -1,
+          'form_display' => 'options_buttons',
         ],
       ],
-      'layout_builder' => true,
+      // 'layout_builder' => true,
     ],
-    // issue is same as advanced_page, but without image_hero.
-    // slide is the same as advanced_page, but without layout_builder
+    'marketing_block' => [
+      'fields' => [
+        'class_name' => DefaultFields::text,
+        'icon'       => DefaultFields::file,
+        'link_text'  => DefaultFields::text,
+        'link_url'   => DefaultFields::text,
+        'subtitle'   => DefaultFields::text,
+      ],
+    ],
   ];
 
+  /*
+  **/
+  public static function enable_layout_builder_for($content_type, $display_mode) {
+    $default_display = EntityViewDisplay::load("node.$content_type.default");
+    if (!$default_display) {
+      $default_display = EntityViewDisplay::create([
+        'targetEntityType' => 'node',
+        'bundle' => $content_type,
+        'mode' => 'default',
+        'status' => TRUE,
+      ]);
+    }
+    $default_display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+    $default_display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+    $default_display->save();
+
+    if ('default' != $display_mode) {
+      $display = EntityViewDisplay::load("node.$content_type.$display_mode");
+      if (!$display) {
+        $display = EntityViewDisplay::create([
+          'targetEntityType' => 'node',
+          'bundle' => $content_type,
+          'mode' => $display_mode,
+          'status' => TRUE,
+        ]);
+      }
+      $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
+      $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
+      $display->save();
+    }
+  }
+
+  /*
+   * issue is same as advanced_page, but without image_hero.
+  **/
   public static function setup_issue() {
     $content_type_c = self::content_types['advanced_page'];
     unset( $content_type_c['fields']['field_image_hero'] );
     self::setup_content_type('issue', $content_type_c);
   }
 
+  /*
+   * slide is the same as advanced_page, but without layout_builder
+  **/
   public static function setup_slide() {
     $content_type_c = self::content_types['advanced_page'];
     unset( $content_type_c['layout_builder'] );
@@ -136,25 +186,6 @@ class ContentTypesConfig {
         'mode' => 'full',
         'status' => TRUE,
       ]);
-    }
-
-    if ($content_type_c['layout_builder']) {
-      $default_display = EntityViewDisplay::load("node.$content_type.default");
-      if (!$default_display) {
-        $default_display = EntityViewDisplay::create([
-          'targetEntityType' => 'node',
-          'bundle' => $content_type,
-          'mode' => 'default',
-          'status' => TRUE,
-        ]);
-      }
-      $default_display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-      $default_display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-      $default_display->save();
-
-      $display->setThirdPartySetting('layout_builder', 'enabled', TRUE);
-      $display->setThirdPartySetting('layout_builder', 'allow_custom', TRUE);
-      $display->save();
     }
 
 
