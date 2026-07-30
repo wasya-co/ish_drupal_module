@@ -94,4 +94,11 @@ class DefaultFields {
     'field_subtitle'   => DefaultFields::text,
   ];
 
+  public const default_node_fields = [
+    'body'              => DefaultFields::body,
+    'field_image_hero'  => DefaultFields::image,
+    'field_image_thumb' => DefaultFields::image,
+    'field_tags'        => DefaultFields::tags, // _TODO: implement!
+  ];
+
 }

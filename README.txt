@@ -1,10 +1,4 @@
 
-= About =
-
-Version 1.2.3 is for drupal 9 and piousbox_com.
-Version 2.0.0 is for drupal 10 and col-re, rebel-cycles, and everything else going forwrad.
-
-Also see changelog.txt
 
 = Develop =
 
@@ -69,56 +63,3 @@ Also see changelog.txt
       --ignore-platform-req=ext-bcmath --ignore-platform-req=ext-gd ;
     drush cr
 
-= Use =
-
-  == css ==
-
-    === Mobile vs Desktop ===
-
-    The following classes control visibility at 768px breakpoint.
-
-      .only-mobile
-      .no-mobile
-
-    === Slider ===
-
-    * https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
-    * https://ganlanyuan.github.io/tiny-slider/
-
-    The slider class .my-slider should be on a ul, with li's as immediate children. The slides are immediate children of .my-slider and any number of config classes can be added to the *wrapper* parent of the slider:
-
-      /* scss syntax */
-      .autowidth,
-      .no-navigation {
-        .my-slider {}
-      }
-
-    === Animations ===
-
-      .fade-up
-      .slide-right
-
-  == Sections ==
-
-    After installing and updating the module, you can see all sections with thumbnails, usage and descriptions of fields at /admin/ish_drupal_module/sections . However, the list in this README may be more up to date with the edge development branch.
-
-    === Section Hero Video ===
-      The body accepts full html, so you can copy-paste the design there.
-
-      The autoplay checkbox is meant for development environments, so that the video isn't annoying.
-
-      Currently, the section accepts an image file for mobile display. In the future we can improve the functionality and capture the first frame of the video, as the image, automatically. This will be implemented as a feature request - please submit an offer! Alternatively, if you would like to volunteer in developing this particular piece, please submit a proposal!
-
-    === Section Callout Parallax ===
-      The fields are:
-
-        'body' => [],
-        'field_class_name' => [],
-        'field_custom_css' => [],
-        'field_image_bg' => [],
-        'field_image_thumb' => [],
-        'field_title' => [],
-        'field_link_text' => [],
-        'field_link_url' => [],
-
-      And you can custom-style each block by means of the field_class_name.
