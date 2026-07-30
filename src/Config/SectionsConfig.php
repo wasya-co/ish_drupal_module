@@ -1,5 +1,5 @@
 <?php
-namespace Drupal\ish_drupal_module;
+namespace Drupal\ish_drupal_module\Config;
 
 use Drupal\block\Entity\Block;
 use Drupal\block_content\Entity\BlockContent;

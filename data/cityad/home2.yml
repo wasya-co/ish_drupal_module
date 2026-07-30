@@ -1,0 +1,58 @@
+
+create_content:
+
+
+
+  - type: 'advanced_block'
+    entity_type: 'block'
+    info: 'cityad_home_old'
+    fields:
+      title: 'City Ad Directory'
+      field_class_name: 'a20260314-cityad-staticW'
+      field_subtitle: 'Small businesses getting things done.'
+      body:
+        format: 'full_html'
+        value: |
+          <style>
+            .a20260314-cityad-static {
+              margin-top: 100px;
+              margin-bottom: 100px;
+              with: 100%;
+              min-height: 50vh;
+              font-size: 24px;
+              background: #efe;
+            }
+            .a20260314-cityad-static a {
+              color: green;
+            }
+            .a20260314-cityad-static p {
+              text-align: center;
+            }
+          </style>
+          <div class='a20260314-cityad-static'>
+            <p><img src="https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/03/14122545/cityad-1.200x200-tiny.png" alt='city ad logo' /></p>
+            <p>The <a href="http://city.ad">city.ad</a> domain is</p>
+            <p>property of</p>
+            <p><a href="https://wasyaco.com/?utm_campaign=cityad">
+              <img src="https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/03/14121858/257x64-wasya_co-logo.png"
+                  alt="Wasya Co" />
+            </a></p>
+            <br /><br />
+            <p>Your friendly bespoke software engineering partner</p>
+            <p>We help you develop & maintain your technical stack. <br />
+              Including automation, nascent AI, operations & marketing.</p>
+            <p>Visit our website to learn more: <a href="https://wasyaco.com/?utm_campaign=cityad">wasyaco.com</a></p>
+          </div>
+
+  - type: 'issue'
+    # entity_type: 'node'
+    fields:
+      title: 'Home2 Issue'
+    path: '/home2'
+    sections:
+      - type: 'layout_onecol_any'
+        regions:
+          main:
+            label: 'any-label'
+            provider: 'block_content'  ## 'block_content', 'views'
+            info: "cityad_home_old"

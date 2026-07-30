@@ -1,0 +1,25 @@
+
+create_content:
+
+  - type: 'issue'
+    # entity_type: 'node'
+    fields:
+      title: 'Home3 Issue'
+    path: '/home3'
+    sections:
+      - type: 'layout_onecol_any'
+        regions:
+          main:
+            label: 'any-label'
+            provider: 'block_content'  ## 'block_content', 'views'
+            info: "cityad_home_old"
+
+add_section:
+  - to_node:
+      by_title: 'Home3 Issue'
+    type: 'layout_onecol_any'
+    regions:
+      main:
+        label: 'any-label-3a'
+        provider: 'views'
+        view_id: 'directory_tmp-frontpage_block'

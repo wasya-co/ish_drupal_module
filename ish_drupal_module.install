@@ -1,12 +1,13 @@
 <?php
 
-use Drupal\ish_drupal_module\BlocksConfig;
-use Drupal\ish_drupal_module\ContentTypesConfig;
-use Drupal\ish_drupal_module\LayoutConfig;
-use Drupal\ish_drupal_module\ModulesConfig;
-use Drupal\ish_drupal_module\SectionsConfig;
-use Drupal\ish_drupal_module\ThisConfig;
-use Drupal\ish_drupal_module\ViewsConfig;
+use Drupal\ish_drupal_module\Config\BlocksConfig;
+use Drupal\ish_drupal_module\Config\ContentTypesConfig;
+use Drupal\ish_drupal_module\Config\DefaultFields;
+use Drupal\ish_drupal_module\Config\LayoutConfig;
+use Drupal\ish_drupal_module\Config\ModulesConfig;
+use Drupal\ish_drupal_module\Config\SectionsConfig;
+use Drupal\ish_drupal_module\Config\ThisConfig;
+use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 
 function ish_drupal_module_update_9119() {
@@ -152,7 +153,8 @@ function ish_drupal_module_update_9119() {
 }
 
 
-function ish_drupal_module_update_9120() {
+function ish_drupal_module_update_9125() {
+  BlocksConfig::setup_block('advanced_block', DefaultFields::default_block_fields);
 
 }
 

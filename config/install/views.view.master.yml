@@ -6,8 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
   module:
     - node
-id: directory
-label: directory
 module: views
 description: ''
 tag: ''

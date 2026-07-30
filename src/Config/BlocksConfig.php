@@ -1,5 +1,5 @@
 <?php
-namespace Drupal\ish_drupal_module;
+namespace Drupal\ish_drupal_module\Config;
 
 use Drupal\block\Entity\Block;
 use Drupal\block_content\Entity\BlockContent;
@@ -86,28 +86,22 @@ class BlocksConfig {
 
   /*
   **/
-  public static function create_block() {
-    $block_type = 'section_block';
-    $info = 'rapid_consulting';
-
-
+  public static function create_block($block_type, $info, $config) {
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
 
     $blocks = $storage->loadByProperties([
       'type' => $block_type,
       'info' => $info,
     ]);
-
     if ($blocks) {
       $block = reset($blocks);
     }
     else {
-      $block = BlockContent::create([
-        'type' => $block_type,
-      'info' => $info,
-      ]);
+      $config2 = array_merge($config, $config['fields']);
+      $block = BlockContent::create($config2);
       $block->save();
     }
+
   }
 
   /*

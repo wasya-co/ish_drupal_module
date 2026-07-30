@@ -1,0 +1,8 @@
+
+create_content:
+
+  - view_id: 'directory_tmp'
+    entity_type: 'view'
+    display_name: 'frontpage_block'
+    display_plugin: 'block'
+    label: 'Directory. Front Page.'

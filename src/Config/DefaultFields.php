@@ -83,7 +83,7 @@ class DefaultFields {
     'type' => 'string_long',
   ];
 
-  /* ---- */
+  /* -=--- */
 
   public const default_block_fields = [
     'body'             => DefaultFields::body,

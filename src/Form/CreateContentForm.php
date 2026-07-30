@@ -15,6 +15,9 @@ use Drupal\layout_builder\SectionComponent;
 
 use Drupal\node\Entity\Node;
 
+use Drupal\ish_drupal_module\Config\BlocksConfig;
+use Drupal\ish_drupal_module\Config\ViewsConfig;
+use Drupal\ish_drupal_module\Content\NodesContent;
 
 /*
 **/
@@ -46,83 +49,29 @@ class CreateContentForm extends FormBase {
   }
 
   /*
+   * only creates a block or a node so far.
   **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $fid = $form_state->getValue('yaml_file')[0];
     $file = File::load($fid);
     $file->setPermanent();
     $file->save();
-    $data = Yaml::decode(file_get_contents($file->getFileUri()));
+    $yml_file = Yaml::decode(file_get_contents($file->getFileUri()));
 
-    foreach ($data['create_content'] ?? [] as $item) {
-
-      $nodes = \Drupal::entityTypeManager()
-        ->getStorage('node')
-        ->loadByProperties([
-          'type' => $item['type'],
-          'title' => $item['fields']['title'],
-        ]);
-      $node = reset($nodes);
-      if ($node) {
-        // continue;
-        $node->delete(); // _TODO: remove
+    foreach ($yml_file['create_content'] ?? [] as $item) {
+      if ('block' == $item['entity_type']??null) {
+        BlocksConfig::create_block($item['type'], $item['info'], $item);
       }
-
-      $values = [
-        'type' => $item['type'],
-        'status' => 1,
-        'path' => [
-          'alias' => $item['path'],
-          'pathauto' => 0,
-        ],
-      ];
-      foreach ($item['fields'] as $field_name => $field_value) {
-        if ('field_image_thumb' == $field_name) {
-          $contents = file_get_contents($field_value);
-          $directory = 'public://field_image_thumb';
-          \Drupal::service('file_system')->prepareDirectory( $directory, FileSystemInterface::CREATE_DIRECTORY );
-          $destination = $directory . '/' . basename(parse_url($field_value, PHP_URL_PATH));
-          $file = \Drupal::service('file.repository')->writeData(
-            $contents,
-            $destination,
-            FileSystemInterface::EXISTS_RENAME
-          );
-          $values['field_image_thumb'] = [
-            'target_id' => $file->id(),
-            'alt' => '',
-          ];
-        } else {
-          $values[$field_name] = $field_value;
-        }
-      } // end fields
-      $node = Node::create($values);
-      $node->save();
-
-
-      if ($item['sections']) {
-        $outs = [];
-        foreach($item['sections'] as $this_section) {
-
-          $section = new Section( $this_section['type'], $this_section['config'] );
-          foreach ($this_section['regions'] as $region => $region_c) {
-
-            $extra = [
-              'id' => "views_block:{$region_c['view_id']}",
-              'label' => $region_c['label'],
-              'label_display' => FALSE,
-              'provider' => 'views',
-            ];
-            $uuid = \Drupal::service('uuid')->generate();
-            $component = new SectionComponent( $uuid, $region, $extra );
-            $section->appendComponent($component);
-
-          }
-          $outs[] = $section;
-        }
-        $node->set('layout_builder__layout', $outs);
-        $node->save();
+      if ('node' == $item['entity_type']??null) {
+        NodesContent::create_node($item['type'], $item['path'], $item);
       }
+      if ('view' == $item['entity_type']??null) {
+        ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
+      }
+    }
 
+    foreach ($yml_file['add_section']??[] as $item) {
+      NodesContent::add_section_to($item['to_node'], $item);
     }
   }
 
