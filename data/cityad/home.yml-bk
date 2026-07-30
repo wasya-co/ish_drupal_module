@@ -1,8 +1,6 @@
 
 create_content:
 
-
-
   - type: 'advanced_block'
     entity_type: 'block'
     info: 'cityad_home_old'

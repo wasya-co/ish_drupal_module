@@ -1,6 +1,7 @@
 
 create_content:
   - type: 'directory_item'
+    entity_type: 'node'
     fields:
       body:
         format: 'basic_html'
@@ -10,6 +11,7 @@ create_content:
     path: '/directory/rebel-cycles_city_ad'
 
   - type: 'directory_item'
+    entity_type: 'node'
     fields:
       body:
         format: 'basic_html'
@@ -19,6 +21,7 @@ create_content:
     path: '/directory/col-re_city_ad'
 
   - type: 'directory_item'
+    entity_type: 'node'
     fields:
       body:
         format: 'basic_html'

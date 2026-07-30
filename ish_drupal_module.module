@@ -30,15 +30,15 @@ function puts($object, $label=null) {
 /*
  *
 **/
-function ish_drupal_module_cron() {
-  \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
+// function ish_drupal_module_cron() {
+//   \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
 
-  $service = new PageYoutube();
-  $service->run_cron();
+//   $service = new PageYoutube();
+//   $service->run_cron();
 
-  $service = new ArticleTranslator();
-  $service->runCron();
-}
+//   $service = new ArticleTranslator();
+//   $service->runCron();
+// }
 
 
 

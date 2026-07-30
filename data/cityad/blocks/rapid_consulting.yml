@@ -1,0 +1,30 @@
+
+create_content:
+
+  - type: 'advanced_block'
+    entity_type: 'block'
+    info: 'rapid_consulting'
+    label: 'some-test-label'
+    fields:
+      field_class_name: 'a20260730-rapid-consulting'
+      field_subtitle: 'Rapid Consulting'
+      body:
+        format: 'full_html'
+        value: |
+          <style>
+
+          </style>
+          <div >
+            <p>Get things done fast.</p>
+            <ul>
+              <li>Verify backups</li>
+              <li>Reinstall SSL</li>
+              <li>Setup a web form</li>
+            </ul>
+            <ul>
+              <li>Fix a stack trace</li>
+              <li>Fix a server error</li>
+              <li>Change colors or text</li>
+            </ul>
+          </div>
+
