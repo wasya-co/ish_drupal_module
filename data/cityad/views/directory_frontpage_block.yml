@@ -1,7 +1,7 @@
 
 create_content:
 
-  - view_id: 'directory_tmp'
+  - view_id: 'directory_tmp3'
     entity_type: 'view'
     display_name: 'frontpage_block'
     display_plugin: 'block'

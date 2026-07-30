@@ -22,4 +22,4 @@ add_section:
       main:
         label: 'any-label-3a'
         provider: 'views'
-        view_id: 'directory_tmp-frontpage_block'
+        view_id: 'directory_tmp2-frontpage_block'

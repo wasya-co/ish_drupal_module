@@ -48,6 +48,7 @@ class ViewsConfig {
         ->getPath('ish_drupal_module') . '/config/install/views.view.master.yml';
       $defaults = Yaml::decode(file_get_contents($path));
       $defaults['id'] = $view_id;
+      $defaults['label'] = $view_id;
 
       $view = View::create($defaults);
       $view->save();
