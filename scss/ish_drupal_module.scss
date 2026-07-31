@@ -59,14 +59,6 @@ footer.site-footer .block {
 }
 
 .fixed-container {
-  // width: 100%;
-  // padding-right: 15px;
-  // padding-left: 15px;
-  // margin-right: auto;
-  // margin-left: auto;
-
-  // border: 1px solid yellow;
-
   margin: auto;
 }
 @media (min-width: 576px) {
@@ -84,6 +76,10 @@ footer.site-footer .block {
     width: 960px;
   }
 }
-
+@media (min-width: 1200px) {
+  .fixed-container {
+    width: 1140px;
+  }
+}
 
 // .width-100p { width: 100%; }

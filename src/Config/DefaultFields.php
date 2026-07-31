@@ -20,7 +20,7 @@ class DefaultFields {
       'rows' => 9,
       'summary_rows' => 3,
       'placeholder' => '',
-      'show_summary' => FALSE,
+      'show_summary' => true,
     ],
     'default_value' =>[[ 'value' => '', 'format' => 'full_html' ]],
     'display' => 'text_default',

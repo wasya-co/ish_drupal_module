@@ -1,6 +1,7 @@
+
 {%
   set classes = [
-    'SectionCalloutParallax',
+    'AdvancedBlock',
     content.field_class_name[0]['#context']['value'],
 
     'block',
@@ -9,9 +10,9 @@
   ]
 %}
 
-{# <h1>{{ dump( content.field_image_bg ) }}</h1> #}
+{# <h1>{{ dump( content.field_class_name ) }}</h1> #}
 
-<div{{ attributes.addClass(classes) }} style="background-image: url({{ content.field_image_bg[0] }} )" >
+<div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes }}>{{ label }}</h2>
@@ -19,10 +20,7 @@
   {{ title_suffix }}
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
-      {# {{ content | without('field_class_name', 'field_image_bg', 'field_image_thumb', 'field_link_text', 'field_link_url', 'field_title' ) }} #}
-      {{ content.body }}
-
-      {# {{ dump( content ) }} #}
+      {{ content | without( 'field_class_name' ) }}
     </div>
   {% endblock %}
 </div>

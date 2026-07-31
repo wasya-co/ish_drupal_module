@@ -28,17 +28,17 @@ function puts($object, $label=null) {
 
 
 /*
- *
+ * the cron
 **/
-// function ish_drupal_module_cron() {
-//   \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
+/* function ish_drupal_module_cron() {
+  \Drupal::logger('ish_drupal_module')->notice('Starting cron...');
 
-//   $service = new PageYoutube();
-//   $service->run_cron();
+  $service = new PageYoutube();
+  $service->run_cron();
 
-//   $service = new ArticleTranslator();
-//   $service->runCron();
-// }
+  $service = new ArticleTranslator();
+  $service->runCron();
+} */
 
 
 
@@ -76,6 +76,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
+    'block__block_content__type__advanced_block' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
     'block__inline_block__section_callout_parallax' => [
       'base hook' => 'block',
       'path' => $path . '/templates/block',
