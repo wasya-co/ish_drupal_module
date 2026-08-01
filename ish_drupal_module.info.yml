@@ -16,6 +16,7 @@ dependencies:
   - drupal:superfish
   - drupal:views
   - drupal:twig_tweak
+  - drupal:viewsreference
 libraries:
   - ish_drupal_module/bootstrap4
   - ish_drupal_module/bootstrap5

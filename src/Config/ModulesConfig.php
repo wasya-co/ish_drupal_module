@@ -40,6 +40,7 @@ class ModulesConfig {
       'paragraphs',
       's3fs', 'superfish',
       'twig_tweak',
+      'viewsreference',
     ], static fn ($module) => !\Drupal::moduleHandler()->moduleExists($module) );
 
     if ($modules) {
