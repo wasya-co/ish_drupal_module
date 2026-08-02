@@ -18,6 +18,7 @@
 
 #navbar-main {
   background-color: transparent !important;
+  // flex-wrap: nowrap;
 }
 
 .tabs {
@@ -82,4 +83,6 @@ footer.site-footer .block {
   }
 }
 
-// .width-100p { width: 100%; }
+.width-100px { width: 100px; }
+.width-200px { width: 200px; }
+.width-400px { width: 400px; }

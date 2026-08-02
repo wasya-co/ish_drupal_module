@@ -1,58 +1,61 @@
 
+
+/**
+ * Usage: logg(someObject, 'label')
+ *
+ * This development-grade logger can be used instead of console.log() with some advantages:
+ * * It encourages consistent labeling of logs. By labeling each log line, you can have dozens of log lines
+ * written per action, and still know which log line comes from where.
+ * The recommended label is the component name, or function name.
+ * * If the label is present, the logged object is placed in the window, allowing you to inspect it in the console. The
+ * label becomes the name of the object (stripped to [0-9a-zA-Z\-_] chars). If you're logging a function, you can execute it.
+ * If you log more than one thing, they can interact, allowing you to validate control flow.
+ * * the logger can be turned off by making this function simply return.
+**/
+function logg (a, b="", c=null) {
+  c = "string" === typeof c ? c : b.replace(/\W/g, "");
+  if (c.length > 0) {
+    window[c] = a;
+  }
+  console.log(`+++ ${b}:`, a); // eslint-disable-line no-console
+};
+
+
 // $ = jQuery;
 $(function () {
 
-  $(".collapse-expand").each(function() {
-    const self = this
-    const thisId = $(self).attr('id')
-    const state = localStorage.getItem("collapse-expand#"+thisId)
-    if (null === state) {
-      if ($(self).attr('class').split(/\s+/).indexOf('collapsed') != -1) {
-        localStorage.setItem("collapse-expand#"+thisId, "collapsed")
-        $(self).next().slideToggle()
-      }
-    }
-    if (state === 'collapsed') {
-      $(self).next().slideToggle()
-      $(self).addClass('collapsed')
-    }
-  })
-  $(".collapse-expand").click(function (_e) {
-    const thisId = $(this).attr('id')
-    const state = localStorage.getItem("collapse-expand#"+thisId)
-    if (state === 'collapsed') {
-      localStorage.setItem("collapse-expand#"+thisId, "expanded")
-      $(this).removeClass('collapsed')
-    } else {
-      localStorage.setItem("collapse-expand#"+thisId, "collapsed")
-      $(this).addClass('collapsed')
-    }
-    $(this).next().slideToggle();
-  }).children().click(function (e) {
-    e.stopPropagation()
-  })
 
 
-  $('.my-slider').each((idx, el) => {
-    var slider = tns({
-      center: true,
-      container: el,
-      items: 2.6,
-      loop: true,
+  $('.tns-slider').each((idx, el) => {
+    const classes = [...el.parentElement.classList]
+    logg(classes, 'classes')
+
+    var config = {
       autoplay: true,
-      nav: false,
-    });
-  })
-  $('.my-slider-autowidth').each((idx, el) => {
-    var slider = tns({
+      autoplayTimeout: 5000,
       autoWidth: true,
       center: true,
       container: el,
-      items: 3,
       loop: true,
-      autoplay: true,
       nav: false,
-    });
+      speed: 1500,
+    }
+    if (classes.indexOf('continuous') != -1) {
+      config = {
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoWidth: true,
+        container: el,
+        controls: false,
+        loop: true,
+        mouseDrag: true,
+        nav: false,
+        speed: 3000,
+      }
+    }
+    // if (classes.indexOf('autowidth') != -1) { config.autoWidth = true }
+    // logg(config, 'config')
+    tns(config)
   })
 
 

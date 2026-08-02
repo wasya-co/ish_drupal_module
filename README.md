@@ -146,7 +146,7 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
     The naming convention for taxonomies is: tags_contrib, tags_issue, tags_city so e.g. the taxonomy listing cities has the word city (singular) after word tags (plural), and these are joined by an underscore. (city_tags would be something else, sounds like it would be some tags relating to this specific city. In contrast, tags_city is independent of any city.)
 
-  == Sections ==
+  == Layout Sections ==
     A section is a type of layout. We define many section_* things but those are blocks.
 
     A section can have many blocks (1-4 regions, unlimited blocks in a region).
@@ -155,13 +155,16 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
     Available sections:
 
-    * section_1col_any
-    * section_2col_any
-    * section_3col_any
-    * section_4col_any
+    * layout_collapse_expand
+
+    * Onecol Any
+    * Twocol Any
+    * Threecol Any
+    * Fourcol Any
 
     * section_bg_image
     * section_bg_video
+
 
   == Styles ==
 
@@ -195,16 +198,21 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
       Slider can additionally be enabled with css classes. DO NOT combine this with a slider block, as that would lead to a conflict. Using section or block sliders does not require you to add css classes.
 
-      * https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
-      * https://ganlanyuan.github.io/tiny-slider/
+      We offer several slider choices while this module is in development. Please do not combine several choices at once, they are definitely meant to be independent.
 
-      The slider class .my-slider should be on a ul, with li's as immediate children. The slides are immediate children of .my-slider and any number of config classes can be added to the *wrapper* parent of the slider:
+      ==== tiny slider ====
 
-        /* scss syntax */
-        .autowidth,
-        .no-navigation {
-          .my-slider {}
-        }
+        * https://ganlanyuan.github.io/tiny-slider/demo/#non-loop_wrapper
+        * https://ganlanyuan.github.io/tiny-slider/
+
+        The slider class .tns-slider should be on a ul, with li's as immediate children. The slides are immediate children of .tns-slider and any number of config classes can be added to the *wrapper* parent of the slider:
+
+          /* scss syntax */
+          .no-navigation {
+            .tns-slider {}
+          }
+
+        The slider is autoWidth by default.
 
     === Animations ===
 
