@@ -40,7 +40,9 @@ fancy_header:
     theme:
       css/fancy-header.css: {}
 
-
+##
+## excludes: card, fancy-header
+##
 main:
   css:
     theme:

@@ -45,6 +45,7 @@ $(function () {
         autoplay: true,
         autoplayTimeout: 3000,
         autoWidth: true,
+        center: true,
         container: el,
         controls: false,
         loop: true,

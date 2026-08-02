@@ -1,6 +1,6 @@
 
 layout_collapse_expand:
-  label: 'layout_collapse_expand'
+  label: 'Collapse Expand'
   category: 'Columns: 1'
   class: '\Drupal\ish_drupal_module\Layout\CollapseExpandLayout'
   template: templates/layout/layout--collapse-expand
