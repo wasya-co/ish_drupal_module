@@ -54,6 +54,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'variables' => [
         'secondary_menu_links' => [],
         'create_content_url' => NULL,
+        'recreate_layout_url' => NULL,
         'run_task_url' => NULL,
       ],
       'template' => 'admin_home',

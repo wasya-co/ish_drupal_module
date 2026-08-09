@@ -24,9 +24,9 @@ ish_drupal_module.admin_create_content:
     _permission: 'administer content'
 
 ish_drupal_module.admin_recreate_layout:
-  path: '/admin/ish_drupal_modle/recreate_layout'
+  path: '/admin/ish_drupal_module/recreate_layout'
   defaults:
-    _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
+    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::recreate_layout'
     _title: 'Recreate Layout'
   requirements:
     _permission: 'administer content'

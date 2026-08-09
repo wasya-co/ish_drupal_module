@@ -13,6 +13,35 @@ use Drupal\ish_drupal_module\Config\LayoutConfig;
 class AdminController extends ControllerBase {
 
   /*
+   * create_issue_home
+  **/
+  public function create_issue_home() {
+    ContentTypesConfig::setup_issue();   /* issue is same as advanced_page, but without image_hero. */
+
+
+    $alias_storage = \Drupal::entityTypeManager()->getStorage('path_alias');
+    $aliases = $alias_storage->loadByProperties([ 'alias' => '/home' ]);
+    if ($aliases) { return; }
+
+    $node = \Drupal\node\Entity\Node::create([
+      'type' => 'issue',
+      'title' => 'Home',
+    ]);
+    $node->save();
+
+    \Drupal\path_alias\Entity\PathAlias::create([
+      'path' => '/node/' . $node->id(),
+      'alias' => '/home',
+      'langcode' => 'en',
+    ])->save();
+
+    \Drupal::configFactory()
+      ->getEditable('system.site')
+      ->set('page.front', '/node/' . $node->id())
+      ->save();
+  }
+
+  /*
    * admin_home
   **/
   public function index() {
@@ -49,6 +78,11 @@ class AdminController extends ControllerBase {
   public function recreate_layout() {
     LayoutConfig::clear();
     LayoutConfig::setup_marketing_site();
+    BlocksConfig::hours_of_operation();
+
+    $this->messenger()->addStatus($this->t('Layout recreated.'));
+
+    return $this->redirect('ish_drupal_module.admin_home');
   }
 
 }

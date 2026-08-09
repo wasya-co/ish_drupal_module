@@ -10,9 +10,12 @@ use Drupal\ish_drupal_module\Config\ThisConfig;
 use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 /*
- * drush php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
+ * reset the counter:
+ *   drush -l pudeyev.local php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
 **/
 
+/*
+**/
 function ish_drupal_module_update_9001() {
   ModulesConfig::install_modules();
   ThisConfig::configure_text_editor();
@@ -27,6 +30,7 @@ function ish_drupal_module_update_9001() {
   // LayoutConfig::clear();
   // LayoutConfig::setup_marketing_site();
   // BlocksConfig::hours_of_operation();
+
   // BlocksConfig::setup_block('section_block', DefaultFields::default_block_fields);
   // BlocksConfig::setup_block('advanced_block', DefaultFields::default_block_fields);
 
@@ -47,7 +51,7 @@ function ish_drupal_module_update_9001() {
 
 
 
-  // ViewsConfig::create_from_file('views.view.directory.yml');
+  // ViewsConfig::create_from_file('views.view.master.yml');
 
   $view_config = [
     'default' => [
