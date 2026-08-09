@@ -166,7 +166,13 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
     * section_bg_video
 
 
-  == Styles ==
+  == Styles and Classes ==
+
+    The class to make something, eg header and footer, fixed-width eg 1200px inside a fluid container. This is the most common setup.
+
+      .fixed-container
+
+
 
     === Background ===
 

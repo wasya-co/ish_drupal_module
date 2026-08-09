@@ -154,6 +154,7 @@ class ContentTypesConfig {
     unset( $fields['field_image_hero'] );
     self::setup_content_type('issue', $fields);
     self::enable_layout_builder_for('issue', 'full');
+    LayoutConfig::update_pagetitle_for_issue();
   }
 
   /*

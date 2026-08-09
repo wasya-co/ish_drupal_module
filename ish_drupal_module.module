@@ -78,11 +78,15 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
-    'block__inline_block__section_callout_parallax' => [
+    'block__block_content__type__section_about_10' => [
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
-    'block__inline_block__section_hero_video' => [
+    'block__block_content__type__section_callout_parallax' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
+    'block__block_content__type__section_hero_video' => [
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],

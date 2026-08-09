@@ -1,0 +1,39 @@
+{%
+  set classes = [
+    'SectionAbout10',
+    content.field_class_name[0]['#context']['value'],
+    'fixed-container',
+
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+
+{# <h1>{{ dump( content.field_link_text ) }}</h1> #}
+
+<div{{ attributes.addClass(classes) }} >
+
+  {% block content %}
+    <div{{ content_attributes.addClass('content row') }}>
+
+      <div class='col-6'>
+        <div class='pushup-80px fade-up'>
+          <h3>{{ content.field_subtitle }}</h3>
+          {{ content.body }}
+          <a class='btn btn-primary'
+            href="{{ content.field_link_url[0]['#context']['value'] }}"
+          >{{ content.field_link_text[0]['#context']['value'] }}</a>
+        </div>
+      </div>
+      <div class='col-6'>
+        {{ content.field_image_thumb }}
+      </div>
+
+      {# {{ content | without('field_class_name', 'field_image_bg', 'field_image_thumb', 'field_link_text', 'field_link_url', 'field_title' ) }} #}
+
+
+      {# {{ dump( content ) }} #}
+    </div>
+  {% endblock %}
+</div>

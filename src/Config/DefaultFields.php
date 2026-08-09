@@ -53,7 +53,25 @@ class DefaultFields {
   ];
 
   public const image = [
-    'display' => 'file_url_plain',
+    'display' => 'image',
+    'field_config_settings' => [
+      'file_extensions' => 'png gif jpg jpeg webp',
+      'alt_field' => TRUE,
+      'alt_field_required' => FALSE,
+      'title_field' => FALSE,
+    ],
+    'field_storage_config_settings' => [
+      'uri_scheme' => 'public',
+    ],
+    'form_display' => 'image_image',
+    'form_display_settings' => [
+      'progress_indicator' => 'throbber',
+      'preview_image_style' => 'thumbnail',
+    ],
+    'type' => 'image',
+  ];
+  public const image_url = [
+    'display' => 'image_url',
     'field_config_settings' => [
       'file_extensions' => 'png gif jpg jpeg webp',
       'alt_field' => TRUE,
@@ -116,7 +134,7 @@ class DefaultFields {
 
   public const default_node_fields = [
     'body'              => DefaultFields::body,
-    'field_image_hero'  => DefaultFields::image,
+    'field_image_hero'  => DefaultFields::image_url,
     'field_image_thumb' => DefaultFields::image,
     'field_tags'        => DefaultFields::tags,
   ];

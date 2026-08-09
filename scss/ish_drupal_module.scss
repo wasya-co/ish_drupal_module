@@ -2,6 +2,7 @@
 @import './card.scss';
 @import './chip.scss';
 // @import './fancy-header.scss';
+@import './section-about-10.scss';
 @import './section-callout-parallax.scss';
 @import './section-hero-video.scss';
 @import './tiny-slider.scss';
@@ -81,6 +82,11 @@ footer.site-footer .block {
   .fixed-container {
     width: 1140px;
   }
+}
+// #header,
+#navbar-main,
+.site-footer__top {
+  @extend .fixed-container;
 }
 
 .width-100px { width: 100px; }

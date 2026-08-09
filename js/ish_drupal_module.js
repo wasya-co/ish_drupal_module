@@ -67,7 +67,8 @@ $(function () {
     duration: 800,
     easing: 'ease',
     interval: 100,
-    reset: false
+    reset: false,
+    viewFactor: 0.9,
   })
   ScrollReveal().reveal('.slide-right', {
     distance: '40px',

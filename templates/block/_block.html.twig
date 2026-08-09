@@ -9,9 +9,9 @@
   ]
 %}
 
-{# <h1>{{ dump( content.field_image_bg ) }}</h1> #}
+{# <h1>{{ dump( content.field_image_hero[0]['#markup'] ) }}</h1> #}
 
-<div{{ attributes.addClass(classes) }} style="background-image: url({{ content.field_image_bg[0] }} )" >
+<div{{ attributes.addClass(classes) }} style="background-image: url({{ content.field_image_hero[0]['#markup'] }} )" >
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes }}>{{ label }}</h2>

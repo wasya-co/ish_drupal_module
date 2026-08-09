@@ -205,4 +205,20 @@ class BlocksConfig {
     self::setup_block($section_name, $fields);
   }
 
+  public static function setup_about_10() {
+    $section_name = 'section_about_10';
+    $fields = [
+      'body'              => DefaultFields::body,
+      'field_class_name'  => DefaultFields::text,
+      // 'field_custom_css'  => DefaultFields::text_long,
+      // 'field_image_hero'  => DefaultFields::image,
+      'field_image_thumb' => DefaultFields::image,
+      'field_is_reverse'  => DefaultFields::toggle,
+      'field_link_text'   => DefaultFields::text,
+      'field_link_url'    => DefaultFields::text,
+      'field_subtitle'    => DefaultFields::text,
+    ];
+    self::setup_block($section_name, $fields);
+  }
+
 }

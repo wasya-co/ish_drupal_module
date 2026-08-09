@@ -163,7 +163,7 @@ function ish_drupal_module_update_9003() {
 }
 
 function ish_drupal_module_update_9005() {
-
+  BlocksConfig::setup_about_10();
 }
 
 

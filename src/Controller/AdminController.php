@@ -41,11 +41,9 @@ class AdminController extends ControllerBase {
   /*
   **/
   public function run_task() {
-    LayoutConfig::clear();
-    LayoutConfig::setup_marketing_site();
-
+    // LayoutConfig::clear();
+    // LayoutConfig::setup_marketing_site();
     $this->messenger()->addStatus($this->t('Run Task complete.'));
-
     return $this->redirect('ish_drupal_module.admin_home');
   }
 

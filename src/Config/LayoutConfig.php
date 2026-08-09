@@ -84,6 +84,12 @@ class LayoutConfig {
           'provider' => 'system',
         ],
       ],
+      'footer_fourth' => [
+        'tabs' => [
+          'plugin' => 'local_tasks_block',
+          'provider' => 'core',
+        ],
+      ],
     ];
     $weight = 0;
     foreach ($regions_blocks as $region => $blocks) {
