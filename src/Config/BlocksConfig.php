@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class BlocksConfig {
 
   /*
-   * hours_of_operation
+   * hours_of_operation, a basic block.
   **/
   public static function hours_of_operation() {
     $slug = 'hours_of_operation';
@@ -86,6 +86,7 @@ class BlocksConfig {
 
   /*
    * the block must have been already setup.
+   * and this doesn't place the block?! but only creates it.
   **/
   public static function create_block($block_type, $info, $config) {
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
@@ -106,7 +107,7 @@ class BlocksConfig {
   }
 
   /*
-   * the block definition
+   * the block definition. should be create_block_type()
   **/
   public static function setup_block($block_type, $fields) {
     if (!BlockContentType::load($block_type)) {

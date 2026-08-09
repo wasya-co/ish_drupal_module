@@ -68,7 +68,7 @@ class ContentTypesConfig {
 
   /*
   **/
-  public static function setup_content_type($content_type, $content_type_c) {
+  public static function setup_content_type($content_type, $fields) {
     if (!NodeType::load($content_type)) {
       NodeType::create([
         'type' => $content_type,
@@ -101,7 +101,7 @@ class ContentTypesConfig {
     }
 
 
-    foreach($content_type_c['fields'] as $field => $field_c) {
+    foreach($fields as $field => $field_c) {
 
       $storage = FieldStorageConfig::loadByName('node', $field);
       if (!$storage) {
@@ -150,9 +150,9 @@ class ContentTypesConfig {
    * issue is same as advanced_page, but without image_hero.
   **/
   public static function setup_issue() {
-    $content_type_c = self::content_types['advanced_page'];
-    unset( $content_type_c['fields']['field_image_hero'] );
-    self::setup_content_type('issue', $content_type_c);
+    $fields = DefaultFields::default_node_fields;
+    unset( $fields['field_image_hero'] );
+    self::setup_content_type('issue', $fields);
     self::enable_layout_builder_for('issue', 'full');
   }
 

@@ -2,24 +2,12 @@
 {# <h1>Administration</h1> #}
 
 <div class="actions">
-  <a class="button button--primary"
-     href="{{ secondary_menu_links.create_content_url }}"
-  >import content.yml
-  </a>
-
-  <a class="button button--primary"
-     href="{{ secondary_menu_links.create_issue_home_url }}"
-     onclick="return confirm('Are you sure?');"
-  >re- Create Issue Home
-  </a>
-
-  <a class="button button--primary"
-     href="{{ secondary_menu_links.recreate_layout_url }}"
-     onclick="return confirm('Are you sure?');"
-  >Recreate Layout
-  </a>
-
-  {# <a class="button" href="{{ secondary_menu_links.run_task_url }}">Run Task</a> #}
+  {% for link in secondary_menu_links %}
+    <a class="button button--primary"
+       href="{{ link.url }}"
+       onclick="return confirm('Are you sure?');"
+    >{{ link.title }}</a>
+  {% endfor %}
 </div>
 
 <hr>
