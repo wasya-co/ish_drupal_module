@@ -26,3 +26,4 @@
 2.2.0 :: 2026-07-29 :: being able to create content from yaml, auto-creating websites.
 2.3.0 ::               I'm removing a lot of functionality! it's becoming frame_drupal_module or something like that.
   2.3.1 -- better tns-slider for rebel cycles
+      :: 2026-08-09 :: groking admin_home, button to recreate_layout

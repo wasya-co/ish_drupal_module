@@ -11,7 +11,7 @@ ish_drupal_module.admin_home:
   path: '/admin/ish_drupal_module'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\AdminController::index'
-    _title: 'admin home :: ish_drupal_module'
+    _title: 'admin home | ish_drupal_module'
   requirements:
     _permission: 'administer content'
 
@@ -20,6 +20,14 @@ ish_drupal_module.admin_create_content:
   defaults:
     _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
     _title: 'Create Content'
+  requirements:
+    _permission: 'administer content'
+
+ish_drupal_module.admin_recreate_layout:
+  path: '/admin/ish_drupal_modle/recreate_layout'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
+    _title: 'Recreate Layout'
   requirements:
     _permission: 'administer content'
 

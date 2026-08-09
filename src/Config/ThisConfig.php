@@ -62,22 +62,22 @@ class ThisConfig {
   **/
   public static function setup_tags() {
     $vocabulary = 'tags';
-    $tag_name = 'Slidesets.';
+    $tag_names = [ 'premium', 'Slidesets.' ];
 
-    // Don't create it if it already exists.
-    $existing = \Drupal::entityTypeManager()
-      ->getStorage('taxonomy_term')
-      ->loadByProperties([
-        'vid' => $vocabulary,
-        'name' => $tag_name,
-      ]);
-
-    if (!$existing) {
-      $term = Term::create([
-        'vid' => $vocabulary,
-        'name' => $tag_name,
-      ]);
-      $term->save();
+    foreach ($tag_names as $tag_name) {
+      $existing = \Drupal::entityTypeManager()
+        ->getStorage('taxonomy_term')
+        ->loadByProperties([
+          'vid' => $vocabulary,
+          'name' => $tag_name,
+        ]);
+      if (!$existing) {
+        $term = Term::create([
+          'vid' => $vocabulary,
+          'name' => $tag_name,
+        ]);
+        $term->save();
+      }
     }
   }
 

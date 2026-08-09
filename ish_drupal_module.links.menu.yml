@@ -2,12 +2,12 @@
 
 ish_drupal_module.admin_create_content:
   title: 'Craete Content'
-  description: 'Craete Content'
+  description: 'Create Content'
   route_name: ish_drupal_module.create_content
   parent: system.admin_content
 
 
-my_module.configure:
+ish_drupal_module.configure:
   title: 'config ish_drupal_module'
   description: 'config ish_drupal_module'
   route_name: ish_drupal_module.configure

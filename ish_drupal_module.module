@@ -44,7 +44,7 @@ function puts($object, $label=null) {
 
 
 /*
- * the theme
+ * Theme
  *
 **/
 function ish_drupal_module_theme($existing, $type, $theme, $path) {
