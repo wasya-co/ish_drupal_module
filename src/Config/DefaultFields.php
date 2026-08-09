@@ -83,6 +83,26 @@ class DefaultFields {
     'type' => 'string_long',
   ];
 
+  public const tags = [
+    'cardinality' => -1,
+    'display' => 'entity_reference_label',
+    'field_config_settings' => [
+      'handler' => 'default:taxonomy_term',
+      'handler_settings' => [
+        'target_bundles' => [
+          'tags' => 'tags',
+        ],
+        'auto_create' => FALSE,
+      ],
+    ],
+    'field_storage_config_settings' => [
+      'target_type' => 'taxonomy_term',
+    ],
+    'form_display' => 'options_buttons',
+    'form_display_settings' => [],
+    'type' => 'entity_reference',
+  ];
+
   /* -=--- */
 
   public const default_block_fields = [
@@ -98,7 +118,7 @@ class DefaultFields {
     'body'              => DefaultFields::body,
     'field_image_hero'  => DefaultFields::image,
     'field_image_thumb' => DefaultFields::image,
-    'field_tags'        => DefaultFields::tags, // _TODO: implement!
+    'field_tags'        => DefaultFields::tags,
   ];
 
 }
