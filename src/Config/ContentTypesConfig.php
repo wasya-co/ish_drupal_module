@@ -30,85 +30,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\ish_drupal_module\Config\DefaultFields;
 
 /*
- *
 **/
 class ContentTypesConfig {
 
-  /*
-   * mixins, actually
-   * _TODO: split, remove.
-  **/
-  public const content_types = [
-    'advanced_page' => [
-      'fields' => [
-        'body' => [
-          'field_storage_config_settings' => [
-            'display_summary' => TRUE,
-            'required_summary' => FALSE,
-          ],
-          'form_display' => 'text_textarea_with_summary',
-          'form_display_settings' => [
-            'rows' => 9,
-            'summary_rows' => 3,
-            'placeholder' => '',
-            'show_summary' => FALSE,
-          ],
-          'display' => 'text_default',
-          'translatable' => true,
-          'type' => 'text_with_summary',
-        ],
-        'field_image_hero' => [
-          'field_config_settings' => [
-            'file_extensions' => 'png gif jpg jpeg webp',
-            'alt_field' => TRUE,
-            'title_field' => FALSE,
-          ],
-          'field_storage_config_settings' => [
-            'uri_scheme' => 'public',
-          ],
-          'form_display' => 'image_image',
-          'form_display_settings' => [
-            'progress_indicator' => 'throbber',
-            'preview_image_style' => 'thumbnail',
-          ],
-          'type' => 'image',
-        ],
-        'field_image_thumb' => [
-          'field_config_settings' => [
-            'file_extensions' => 'png gif jpg jpeg webp',
-            'alt_field' => TRUE,
-            'title_field' => FALSE,
-          ],
-          'field_storage_config_settings' => [
-            'uri_scheme' => 'public',
-          ],
-          'form_display' => 'image_image',
-          'form_display_settings' => [
-            'progress_indicator' => 'throbber',
-            'preview_image_style' => 'thumbnail',
-          ],
-          'type' => 'image',
-        ],
-        'field_tags' => [
-          'cardinality' => -1,
-          'form_display' => 'options_buttons',
-        ],
-      ],
-      // 'layout_builder' => true,
-    ],
-
-    // this is in DefaultFields::default_block_fields
-    /* 'marketing_block' => [
-      'fields' => [
-        'body'             => DefaultFields::body,
-        'field_class_name' => DefaultFields::text,
-        'field_icon'       => DefaultFields::file,
-        'field_link_text'  => DefaultFields::text,
-        'field_link_url'   => DefaultFields::text,
-        'field_subtitle'   => DefaultFields::text,
-      ],
-    ], */
-  ];
 
   /*
   **/
@@ -143,23 +67,7 @@ class ContentTypesConfig {
   }
 
   /*
-   * issue is same as advanced_page, but without image_hero.
   **/
-  public static function setup_issue() {
-    $content_type_c = self::content_types['advanced_page'];
-    unset( $content_type_c['fields']['field_image_hero'] );
-    self::setup_content_type('issue', $content_type_c);
-  }
-
-  /*
-   * slide is the same as advanced_page, but without layout_builder
-  **/
-  public static function setup_slide() {
-    $content_type_c = self::content_types['advanced_page'];
-    unset( $content_type_c['layout_builder'] );
-    self::setup_content_type('slide', $content_type_c);
-  }
-
   public static function setup_content_type($content_type, $content_type_c) {
     if (!NodeType::load($content_type)) {
       NodeType::create([
@@ -238,17 +146,24 @@ class ContentTypesConfig {
     } // end fields loop
   }
 
-
+  /*
+   * issue is same as advanced_page, but without image_hero.
+  **/
+  public static function setup_issue() {
+    $content_type_c = self::content_types['advanced_page'];
+    unset( $content_type_c['fields']['field_image_hero'] );
+    self::setup_content_type('issue', $content_type_c);
+    self::enable_layout_builder_for('issue', 'full');
+  }
 
   /*
+   * slide is the same as advanced_page, but without layout_builder
   **/
-  // public static function content_types() {
-  //   foreach (self::content_types as $content_type => $content_type_c) { // _c means _config or _content
-  //     self->content_type($content_type);
-  //   }
-  // }
-
-
+  public static function setup_slide() {
+    $content_type_c = self::content_types['advanced_page'];
+    unset( $content_type_c['layout_builder'] );
+    self::setup_content_type('slide', $content_type_c);
+  }
 
 }
 

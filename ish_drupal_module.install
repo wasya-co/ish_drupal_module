@@ -18,7 +18,7 @@ use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 /*
 **/
-function ish_drupal_module_update_9002() {
+function ish_drupal_module_update_9003() {
   ModulesConfig::install_modules();
   ThisConfig::configure_text_editor();
   ThisConfig::setup_permissions();
@@ -42,14 +42,14 @@ function ish_drupal_module_update_9002() {
 
   // ContentTypesConfig::setup_slide();
 
-  // SectionsConfig::setup_hero_video();
-  // SectionsConfig::setup_callout_parallax();
+  BlocksConfig::setup_hero_video();
+  BlocksConfig::setup_callout_parallax();
 
 
   // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
 
-  // ContentTypesConfig::setup_content_type('issue', ContentTypesConfig::content_types['advanced_page']);
-  // ContentTypesConfig::enable_layout_builder_for('issue', 'full');
+  ContentTypesConfig::setup_content_type('issue', ContentTypesConfig::content_types['advanced_page']);
+  ContentTypesConfig::enable_layout_builder_for('issue', 'full');
 
 
 
@@ -162,7 +162,9 @@ function ish_drupal_module_update_9002() {
 
 }
 
+function ish_drupal_module_update_9005() {
 
+}
 
 
 

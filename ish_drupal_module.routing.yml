@@ -7,13 +7,6 @@ ish_drupal_module.admin_create_content:
   requirements:
     _permission: 'administer content'
 
-ish_drupal_module.admin_create_issue_home:
-  path: '/admin/ish_drupal_modle/create_issue_home'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::recreate_issue_home'
-    _title: 'Create Issue Home'
-  requirements:
-    _permission: 'administer content'
 
 ish_drupal_module.admin_home:
   path: '/admin/ish_drupal_module'
@@ -40,6 +33,14 @@ ish_drupal_module.admin_paragraphs_category:
     _title: 'Paragraph types'
   requirements:
     _permission: 'administer paragraphs types'
+
+ish_drupal_module.admin_recreate_issue_home:
+  path: '/admin/ish_drupal_module/recreate_issue_home'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::recreate_issue_home'
+    _title: 'Create Issue Home'
+  requirements:
+    _permission: 'administer content'
 
 ish_drupal_module.admin_recreate_layout:
   path: '/admin/ish_drupal_module/recreate_layout'

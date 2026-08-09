@@ -19,13 +19,13 @@ class AdminController extends ControllerBase {
   **/
   public function index() {
     return [
-      '#theme' => 'admin_home',
       '#secondary_menu_links' => [
         'create_content_url' => Url::fromRoute('ish_drupal_module.admin_create_content')->toString(),
-        'create_issue_home_url' => Url::fromRoute('ish_drupal_module.admin_create_issue_home')->toString(),
+        'recreate_issue_home_url' => Url::fromRoute('ish_drupal_module.admin_recreate_issue_home')->toString(),
         'recreate_layout_url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
         'run_task_url' => Url::fromRoute('ish_drupal_module.admin_run_task')->toString(),
       ],
+      '#theme' => 'admin_home',
     ];
   }
 
@@ -45,7 +45,6 @@ class AdminController extends ControllerBase {
   **/
   public function recreate_issue_home() {
     ContentTypesConfig::setup_issue();   /* issue is same as advanced_page, but without image_hero. */
-
 
     $alias_storage = \Drupal::entityTypeManager()->getStorage('path_alias');
     $aliases = $alias_storage->loadByProperties([ 'alias' => '/home' ]);
@@ -84,7 +83,41 @@ class AdminController extends ControllerBase {
 
     $this->messenger()->addStatus($this->t('Issue home created.'));
 
+    $this->recreate_issue_home_sections($node);
+
     return $this->redirect('ish_drupal_module.admin_home');
+  }
+
+  public function recreate_issue_home_sections($node) {
+    $block = \Drupal\block_content\Entity\BlockContent::create([
+      'type' => 'section_callout_parallax',
+      'info' => 'home_section_1',
+    ]);
+    $block->save();
+
+    $layout = $node->get('layout_builder__layout')->getValue();
+    $section = new \Drupal\layout_builder\Section('layout_onecol');
+
+    $section->appendComponent(
+      \Drupal\layout_builder\SectionComponent::fromArray([
+        'uuid' => \Drupal::service('uuid')->generate(),
+        'region' => 'content',
+        'configuration' => [
+          'id' => 'section_callout_parallax:home_section_1',
+          'label' => 'home_section_1',
+          'label_display' => '0',
+          'provider' => 'layout_builder',
+          'view_mode' => 'full',
+          'block_revision_id' => $block->getRevisionId(),
+          'block_serialized' => NULL,
+        ],
+      ])
+    );
+
+    $layout[] = $section->toArray();
+
+    $node->set('layout_builder__layout', $layout);
+    $node->save();
   }
 
   /*

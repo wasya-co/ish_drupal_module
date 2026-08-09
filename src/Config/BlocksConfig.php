@@ -85,6 +85,7 @@ class BlocksConfig {
   }
 
   /*
+   * the block must have been already setup.
   **/
   public static function create_block($block_type, $info, $config) {
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
@@ -105,6 +106,7 @@ class BlocksConfig {
   }
 
   /*
+   * the block definition
   **/
   public static function setup_block($block_type, $fields) {
     if (!BlockContentType::load($block_type)) {
@@ -165,6 +167,41 @@ class BlocksConfig {
       ])->save();
     } // end fields foreach
 
+  }
+
+
+
+  /*
+   * section_hero_video
+  **/
+  public static function setup_hero_video() {
+    $section_name = 'section_hero_video';
+    $fields = [
+      'body'             => DefaultFields::body,
+      'field_autoplay'   => DefaultFields::toggle,
+      'field_class_name' => DefaultFields::text,
+      'field_video_file' => DefaultFields::file,
+      'field_image_bg'   => DefaultFields::image,
+    ];
+    self::setup_block($section_name, $fields);
+  }
+
+  /*
+   * section_callout_parallax
+  **/
+  public static function setup_callout_parallax() {
+    $section_name = 'section_callout_parallax';
+    $fields = [
+      'body'              => DefaultFields::body,
+      'field_class_name'  => DefaultFields::text,
+      // 'field_custom_css'  => DefaultFields::text_long,
+      'field_image_hero'  => DefaultFields::image,
+      'field_image_thumb' => DefaultFields::image,
+      'field_link_text'   => DefaultFields::text,
+      'field_link_url'    => DefaultFields::text,
+      'field_subtitle'    => DefaultFields::text,
+    ];
+    self::setup_block($section_name, $fields);
   }
 
 }
