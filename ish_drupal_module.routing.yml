@@ -10,7 +10,7 @@ ish_drupal_module.admin_create_content:
 ish_drupal_module.admin_create_issue_home:
   path: '/admin/ish_drupal_modle/create_issue_home'
   defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::create_issue_home'
+    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::recreate_issue_home'
     _title: 'Create Issue Home'
   requirements:
     _permission: 'administer content'

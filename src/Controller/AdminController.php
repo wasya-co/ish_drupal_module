@@ -50,9 +50,20 @@ class AdminController extends ControllerBase {
     $alias_storage = \Drupal::entityTypeManager()->getStorage('path_alias');
     $aliases = $alias_storage->loadByProperties([ 'alias' => '/home' ]);
     if ($aliases) {
-      $this->messenger()->addWarning($this->t('Home alias already exists.'));
-      return $this->redirect('ish_drupal_module.admin_home');
+      foreach ($aliases as $alias) {
+        $path = $alias->getPath();
+        if (preg_match('#^/node/(\d+)$#', $path, $matches)) {
+          $existing_node = \Drupal\node\Entity\Node::load($matches[1]);
+          if ($existing_node) { $existing_node->delete(); }
+        }
+        $alias->delete();
+      }
     }
+    // if ($aliases) {
+    //   $this->messenger()->addWarning($this->t('Home alias already exists.'));
+    //   return $this->redirect('ish_drupal_module.admin_home');
+    // }
+
 
     $node = \Drupal\node\Entity\Node::create([
       'type' => 'issue',
