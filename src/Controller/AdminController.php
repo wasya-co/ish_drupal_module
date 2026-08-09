@@ -13,10 +13,37 @@ use Drupal\ish_drupal_module\Config\LayoutConfig;
 **/
 class AdminController extends ControllerBase {
 
+
+  /*
+   * admin_home
+  **/
+  public function index() {
+    return [
+      '#theme' => 'admin_home',
+      '#secondary_menu_links' => [
+        'create_content_url' => Url::fromRoute('ish_drupal_module.admin_create_content')->toString(),
+        'create_issue_home_url' => Url::fromRoute('ish_drupal_module.admin_create_issue_home')->toString(),
+        'recreate_layout_url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
+        'run_task_url' => Url::fromRoute('ish_drupal_module.admin_run_task')->toString(),
+      ],
+    ];
+  }
+
+  /*
+  **/
+  public function run_task() {
+    LayoutConfig::clear();
+    LayoutConfig::setup_marketing_site();
+
+    $this->messenger()->addStatus($this->t('Run Task complete.'));
+
+    return $this->redirect('ish_drupal_module.admin_home');
+  }
+
   /*
    * create_issue_home
   **/
-  public function create_issue_home() {
+  public function recreate_issue_home() {
     ContentTypesConfig::setup_issue();   /* issue is same as advanced_page, but without image_hero. */
 
 
@@ -45,32 +72,6 @@ class AdminController extends ControllerBase {
       ->save();
 
     $this->messenger()->addStatus($this->t('Issue home created.'));
-
-    return $this->redirect('ish_drupal_module.admin_home');
-  }
-
-  /*
-   * admin_home
-  **/
-  public function index() {
-    return [
-      '#theme' => 'admin_home',
-      '#secondary_menu_links' => [
-        'create_content_url' => Url::fromRoute('ish_drupal_module.admin_create_content')->toString(),
-        'create_issue_home_url' => Url::fromRoute('ish_drupal_module.admin_create_issue_home')->toString(),
-        'recreate_layout_url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
-        'run_task_url' => Url::fromRoute('ish_drupal_module.admin_run_task')->toString(),
-      ],
-    ];
-  }
-
-  /*
-  **/
-  public function run_task() {
-    LayoutConfig::clear();
-    LayoutConfig::setup_marketing_site();
-
-    $this->messenger()->addStatus($this->t('Run Task complete.'));
 
     return $this->redirect('ish_drupal_module.admin_home');
   }
