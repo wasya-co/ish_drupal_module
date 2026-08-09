@@ -1,11 +1,19 @@
 
-# ish_drupal_module.admin_layout_clear:
-#   path: '/admin/ish_drupal_module/layout/clear'
-#   defaults:
-#     _form: '\Drupal\ish_drupal_module\Form\ClearLayoutForm'
-#     _title: 'Clear Layout'
-#   requirements:
-#     _permission: 'administer site configuration'
+ish_drupal_module.admin_create_content:
+  path: '/admin/ish_drupal_modle/create_content'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
+    _title: 'Create Content'
+  requirements:
+    _permission: 'administer content'
+
+ish_drupal_module.admin_create_issue_home:
+  path: '/admin/ish_drupal_modle/create_issue_home'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::create_issue_home'
+    _title: 'Create Issue Home'
+  requirements:
+    _permission: 'administer content'
 
 ish_drupal_module.admin_home:
   path: '/admin/ish_drupal_module'
@@ -15,13 +23,23 @@ ish_drupal_module.admin_home:
   requirements:
     _permission: 'administer content'
 
-ish_drupal_module.admin_create_content:
-  path: '/admin/ish_drupal_modle/create_content'
+
+
+
+ish_drupal_module.admin_paragraphs:
+  path: '/admin/paragraphs'
   defaults:
-    _form: '\Drupal\ish_drupal_module\Form\CreateContentForm'
-    _title: 'Create Content'
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
   requirements:
-    _permission: 'administer content'
+    _permission: 'administer paragraphs types'
+ish_drupal_module.admin_paragraphs_category:
+  path: '/admin/paragraphs/{category}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
 
 ish_drupal_module.admin_recreate_layout:
   path: '/admin/ish_drupal_module/recreate_layout'
@@ -49,20 +67,6 @@ ish_drupal_module.admin_settings:
   requirements:
     _permission: 'administer site configuration'
 
-ish_drupal_module.admin_paragraphs:
-  path: '/admin/paragraphs'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
-ish_drupal_module.paragraphs_category:
-  path: '/admin/paragraphs/{category}'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
 
 ish_drupal_module.article_generate:
   path: '/articles/generate'

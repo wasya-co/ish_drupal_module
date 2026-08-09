@@ -3,17 +3,22 @@
 
 <div class="actions">
   <a class="button button--primary"
-     href="{{ create_content_url }}"
+     href="{{ secondary_menu_links.create_content_url }}"
   >import content.yml
   </a>
 
   <a class="button button--primary"
-     href="{{ recreate_layout_url }}"
+     href="{{ secondary_menu_links.create_issue_home_url }}"
+  >Create Issue Home
+  </a>
+
+  <a class="button button--primary"
+     href="{{ secondary_menu_links.recreate_layout_url }}"
      onclick="return confirm('Are you sure?');"
   >Recreate Layout
   </a>
 
-  {# <a class="button" href="{{ run_task_url }}">Run Task</a> #}
+  {# <a class="button" href="{{ secondary_menu_links.run_task_url }}">Run Task</a> #}
 </div>
 
 <hr>

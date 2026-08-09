@@ -27,3 +27,4 @@
 2.3.0 ::               I'm removing a lot of functionality! it's becoming frame_drupal_module or something like that.
   2.3.1 -- better tns-slider for rebel cycles
       :: 2026-08-09 :: groking admin_home, button to recreate_layout
+                       groking DefaultFields::tags
