@@ -20,6 +20,8 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   Install the module. Then, review ish_drupal_module.install keep what you want, discard what you don't want, then run 'drush ... updb'. A lot of the available functionality is available at /admin/ish_drupal_module
 
+  Verify that display of field_image_hero is url to image, not actual image. This applies to all blocks and content types.
+
 == Configure ==
   * enable or disable fancy_header, it's up to you.
 

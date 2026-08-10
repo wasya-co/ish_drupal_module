@@ -1,12 +1,27 @@
 
 .SectionAbout10 {
-  border: 1px solid red;
+  // border: 1px solid red;
 
   padding: 3em;
+
+  .container-2 {
+    padding: 0 3em 3em 3em;
+
+    img {
+      max-width: 100%;
+      height: auto;
+
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+
 }
+
 
 .pushup-80px {
   margin-top: -120px;
   background-color: var(--bg-color);
-  padding: 40px;
+  padding: 120px 40px 40px 40px;
 }

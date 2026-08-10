@@ -1,4 +1,0 @@
-
-/*
- * create issue '/home'
-**/

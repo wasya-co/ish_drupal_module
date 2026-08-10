@@ -121,15 +121,29 @@ class DefaultFields {
     'type' => 'entity_reference',
   ];
 
+  public const view_ref = [
+    'cardinality' => 1,
+    'display' => 'viewsreference_formatter', // viewsreference_view
+    'field_config_settings' => [],
+    'field_storage_config_settings' => [
+      'target_type' => 'viewsreference',
+    ],
+    'form_display' => 'viewsreference_select', // 'viewsreference_autocomplete',
+    'form_display_settings' => [],
+    'type' => 'viewsreference',
+  ];
+
   /* -=--- */
 
   public const default_block_fields = [
-    'body'             => DefaultFields::body,
-    'field_class_name' => DefaultFields::text,
-    'field_icon'       => DefaultFields::file,
-    'field_link_text'  => DefaultFields::text,
-    'field_link_url'   => DefaultFields::text,
-    'field_subtitle'   => DefaultFields::text,
+    'body'              => DefaultFields::body,
+    'field_class_name'  => DefaultFields::text,
+    'field_custom_css'  => DefaultFields::text_long,
+    'field_icon'        => DefaultFields::file,
+    'field_image_thumb' => DefaultFields::image,
+    'field_link_text'   => DefaultFields::text,
+    'field_link_url'    => DefaultFields::text,
+    'field_subtitle'    => DefaultFields::text,
   ];
 
   public const default_node_fields = [

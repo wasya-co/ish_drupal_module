@@ -1,3 +1,8 @@
+
+<style>
+  {{ content.field_custom_css[0]['#context']['value'] }}
+</style>
+
 {%
   set classes = [
     'SectionCalloutParallax',
@@ -9,7 +14,7 @@
   ]
 %}
 
-{# <h1>{{ dump( content.field_image_hero[0]['#markup'] ) }}</h1> #}
+{# <h1>{{ dump( content.field_custom_css[0]['#context']['value'] ) }}</h1> #}
 
 <div{{ attributes.addClass(classes) }} style="background-image: url({{ content.field_image_hero[0]['#markup'] }} )" >
   {{ title_prefix }}
@@ -20,6 +25,8 @@
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
       {# {{ content | without('field_class_name', 'field_image_bg', 'field_image_thumb', 'field_link_text', 'field_link_url', 'field_title' ) }} #}
+      <h3>{{ content.field_subtitle }}</h3>
+
       {{ content.body }}
 
       {# {{ dump( content ) }} #}

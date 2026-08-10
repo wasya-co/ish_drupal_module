@@ -48,7 +48,7 @@ function ish_drupal_module_update_9003() {
 
   // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
 
-  ContentTypesConfig::setup_content_type('issue', ContentTypesConfig::content_types['advanced_page']);
+  ContentTypesConfig::setup_content_type('issue', DefaultFields::default_node_fields );
   ContentTypesConfig::enable_layout_builder_for('issue', 'full');
 
 
@@ -162,8 +162,13 @@ function ish_drupal_module_update_9003() {
 
 }
 
-function ish_drupal_module_update_9005() {
-  BlocksConfig::setup_about_10();
+function ish_drupal_module_update_9008() {
+  // BlocksConfig::setup_callout_parallax();
+
+  // ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
+  // ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
+
+  BlocksConfig::setup_list_10();
 }
 
 
