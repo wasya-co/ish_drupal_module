@@ -22,6 +22,8 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   Verify that display of field_image_hero is url to image, not actual image. This applies to all blocks and content types.
 
+  You should click Manage -> Structure -> Views -> Settings -> Always show advanced display settings
+
 == Configure ==
   * enable or disable fancy_header, it's up to you.
 

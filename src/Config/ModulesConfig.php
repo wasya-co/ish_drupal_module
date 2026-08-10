@@ -34,13 +34,14 @@ class ModulesConfig {
   public static function install_modules() {
     $modules = array_filter([
       'admin_toolbar', 'admin_toolbar_tools',
-      // 'ctools', /* I don't need it */
       'devel',
+      'hcaptcha',
       'layout_builder', 'layout_discovery',
       'paragraphs',
       's3fs', 'superfish',
-      'twig_tweak',
+      'toolbar', 'twig_tweak',
       'viewsreference',
+      'webform', 'webform_ui',
     ], static fn ($module) => !\Drupal::moduleHandler()->moduleExists($module) );
 
     if ($modules) {

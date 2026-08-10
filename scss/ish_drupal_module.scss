@@ -35,6 +35,14 @@ footer.site-footer .block {
   border: 0;
 }
 
+.field--name-field-image-thumb {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
 @media (min-width: 767px) {
   .only-mobile {
     display: none;

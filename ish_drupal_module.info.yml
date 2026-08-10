@@ -10,6 +10,7 @@ dependencies:
   - drupal:admin_toolbar
   - drupal:admin_toolbar_tools
   - drupal:devel
+  - drupal:hcaptcha
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:paragraphs
@@ -18,6 +19,7 @@ dependencies:
   - drupal:views
   - drupal:twig_tweak
   - drupal:viewsreference
+  - drupal:webform
 libraries:
   - ish_drupal_module/bootstrap4
   - ish_drupal_module/bootstrap5

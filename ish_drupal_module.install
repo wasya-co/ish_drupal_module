@@ -162,13 +162,15 @@ function ish_drupal_module_update_9003() {
 
 }
 
-function ish_drupal_module_update_9008() {
+function ish_drupal_module_update_9009() {
   // BlocksConfig::setup_callout_parallax();
 
   // ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
   // ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
 
-  BlocksConfig::setup_list_10();
+  // BlocksConfig::setup_list_10();
+
+  ModulesConfig::install_modules();
 }
 
 

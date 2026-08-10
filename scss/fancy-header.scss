@@ -8,6 +8,7 @@
   --header-link-color: white;
 }
 
+
 #header {
   z-index: 20;
 
@@ -31,7 +32,10 @@
     margin-top: 0;
   }
 }
-
+button.navbar-toggler {
+  background: var(--bg-color);
+  // margin-right: 1em;
+}
 
 @media (min-width: 767px) {
   body:not(.scrolled) {
@@ -58,6 +62,10 @@
   body.scrolled {
     #navbar-main {
       height: var(--header-height);
+    }
+    .navbar-collapse.show ul.navbar-nav {
+      background-color: var(--header-bg-scrolled);
+      padding-left: 1em;
     }
     #header {
       position: sticky;

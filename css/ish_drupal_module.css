@@ -6,10 +6,12 @@
 .node--view-mode-teaser {
   border: 1px solid var(--text-color);
   border-radius: 0.4em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
-  max-width: 90vw; }
+  max-width: 90vw;
+  background-color: var(--bg-color-2); }
 
 .SectionAbout10 {
   padding: 3em; }
@@ -137,6 +139,10 @@
 
 footer.site-footer .block {
   border: 0; }
+
+.field--name-field-image-thumb img {
+  max-width: 100%;
+  height: auto; }
 
 @media (min-width: 767px) {
   .only-mobile {
