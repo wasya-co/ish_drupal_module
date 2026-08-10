@@ -24,6 +24,8 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   You should click Manage -> Structure -> Views -> Settings -> Always show advanced display settings
 
+  Change default captcha to be h-captcha, it is the only one that works well. Google's captcha is extremely annoying and faulty.
+
 == Configure ==
   * enable or disable fancy_header, it's up to you.
 
@@ -180,7 +182,7 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
     === Background ===
 
-      We encourage defining/customizing (default: different grays) the following to distinguish between consecutive sections:
+      @obsolete: We encourage defining/customizing (default: different grays) the following to distinguish between consecutive sections:
 
         .background-1
         .background-2
@@ -203,6 +205,12 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
       Increases padding-bottom and makes the following content creep up to the current content:
 
         .overlay-bottom
+
+    === push-up ===
+
+      Provides negative top margin:
+
+        .pushup-80px
 
     === Slider ===
 

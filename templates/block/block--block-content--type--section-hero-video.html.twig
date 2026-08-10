@@ -22,17 +22,16 @@
   {% endif %}
 
   <div class='overlay'></div>
-  <div class='hero-image' style="background-image: url({{ file_url( content.field_image['#items'].entity.uri.value ) }})" alt='' >
-  </div>
+  <div class='hero-image' style="background-image: url({{ file_url( content.field_image_hero['#items'].entity.uri.value ) }})" alt='' ></div>
 
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
-      {{ content | without('field_autoplay') | without('field_image') | without('field_video_file') }}
+      {{ content | without('field_autoplay') | without('field_image_hero') | without('field_video_file') }}
 
         {# <ul>
           <li>{{ file_url( content.field_video_file['#items'].entity.uri.value ) }}</li>
           <li>{{ content.field_video_file }}</li>
-          <li>{{ content.field_image }}</li>
+          <li>{{ content.field_image_hero }}</li>
           <li>{{ content.field_autoplay[0]['#markup'] }}</li>
           <li>{{ dump( content.field_autoplay[0] ) }}</li>
         </ul> #}

@@ -27,7 +27,9 @@
 .pushup-80px {
   margin-top: -120px;
   background-color: var(--bg-color);
-  padding: 120px 40px 40px 40px; }
+  padding: 120px 40px 40px 40px;
+  z-index: 10;
+  position: relative; }
 
 .SectionCalloutParallax {
   padding: 2em;
@@ -133,6 +135,11 @@
 .sf-accordion-toggle {
   display: flex;
   justify-content: flex-end; }
+
+.fade-up,
+.slide-right {
+  position: relative;
+  z-index: 5; }
 
 #header {
   padding: 0 1em; }

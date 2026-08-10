@@ -217,7 +217,7 @@ class BlocksConfig {
       'field_autoplay'   => DefaultFields::toggle,
       'field_class_name' => DefaultFields::text,
       'field_video_file' => DefaultFields::file,
-      'field_image_bg'   => DefaultFields::image,
+      'field_image_hero' => DefaultFields::image,
     ];
     self::setup_block($section_name, $fields);
   }

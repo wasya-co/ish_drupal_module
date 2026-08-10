@@ -13,6 +13,12 @@
   justify-content: flex-end;
 }
 
+.fade-up,
+.slide-right {
+  position: relative;
+  z-index: 5;
+}
+
 #header {
   padding: 0 1em; // just for the smallest screens
 }
