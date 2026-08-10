@@ -13,6 +13,11 @@
 {# <h1>{{ dump( content.field_link_text ) }}</h1> #}
 
 <div{{ attributes.addClass(classes) }} >
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
 
   {% block content %}
     <div{{ content_attributes.addClass('content row') }}>

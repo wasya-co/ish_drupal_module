@@ -1,1 +1,13 @@
-.SectionCalloutParallax{border:2px solid cyan;padding:2em;margin-bottom:1em;min-height:50vh;height:80vh;background-position:center;background-repeat:no-repeat;background-size:cover;background-attachment:fixed}
+.SectionCalloutParallax {
+  padding: 2em;
+  margin-bottom: 1em;
+  min-height: 50vh;
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; }
+
+@media (max-width: 767px) {
+  .SectionCalloutParallax {
+    height: 50vh; } }

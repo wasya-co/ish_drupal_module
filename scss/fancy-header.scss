@@ -1,19 +1,13 @@
 
 :root {
   --header-height: 92px;
-  --header-expanded-height: 180px;
-  --header-bg: rgba(0,0,0, 0.5);
-  --header-bg-scrolled: rgba(0,0,0, 0.2);
-  --header-color: white;
-  --header-link-color: white;
+  --image-hero-height: 250px; // 250px + height of h1.title ?
 }
 
 
 #header {
   z-index: 20;
-
   background-color: var(--header-bg);
-
   a {
     color: var(--header-link-color);
   }
@@ -41,16 +35,14 @@ button.navbar-toggler {
   body:not(.scrolled) {
     #header {
       background-color: var(--header-bg-scrolled);
-
       position: absolute;
       top: 0;
-
       width: 100%;
-
     }
     #main-wrapper {
       #main {
-        margin-top: var(--header-expanded-height);
+        border: 1px solid yellow;
+        margin-top: var(--image-hero-height);
       }
     }
     .PageIssue #main-wrapper {

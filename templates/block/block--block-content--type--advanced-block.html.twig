@@ -18,6 +18,7 @@
     <h2{{ title_attributes }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
+
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
       {{ content | without( 'field_class_name' ) }}

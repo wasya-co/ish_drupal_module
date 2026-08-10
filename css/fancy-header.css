@@ -1,10 +1,6 @@
 :root {
   --header-height: 92px;
-  --header-expanded-height: 180px;
-  --header-bg: rgba(0,0,0, 0.5);
-  --header-bg-scrolled: rgba(0,0,0, 0.2);
-  --header-color: white;
-  --header-link-color: white; }
+  --image-hero-height: 250px; }
 
 #header {
   z-index: 20;
@@ -33,7 +29,8 @@ button.navbar-toggler {
     top: 0;
     width: 100%; }
   body:not(.scrolled) #main-wrapper #main {
-    margin-top: var(--header-expanded-height); }
+    border: 1px solid yellow;
+    margin-top: var(--image-hero-height); }
   body:not(.scrolled) .PageIssue #main-wrapper #main {
     margin-top: 0; }
   body.scrolled #navbar-main {

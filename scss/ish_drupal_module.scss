@@ -5,18 +5,17 @@
 @import './section-about-10.scss';
 @import './section-callout-parallax.scss';
 @import './section-hero-video.scss';
+@import './section-list-10.scss';
 @import './tiny-slider.scss';
-
-// body {
-//   background: var(--bg-color);
-//   color: var(--text-color);
-// }
 
 .sf-accordion-toggle {
   display: flex;
   justify-content: flex-end;
 }
 
+#header {
+  padding: 0 1em; // just for the smallest screens
+}
 #navbar-main {
   background-color: transparent !important;
   // flex-wrap: nowrap;
@@ -100,3 +99,34 @@ footer.site-footer .block {
 .width-100px { width: 100px; }
 .width-200px { width: 200px; }
 .width-400px { width: 400px; }
+
+
+/* field_image_hero of advanced_page */
+
+h1.title {
+  display: flex;
+  justify-content: center;
+
+  .field--name-title {
+    background-color: var(--bg-color-transparent, var(--bg-color));
+    padding: 0 0.5em;
+  }
+}
+
+article,
+article.node--type-advanced-page {
+  position: relative;
+}
+.image-hero {
+  position: absolute;
+  top: calc( -1 * ( var(--image-hero-height) + 100px ) );
+  left: 0;
+  width: 100%;
+  height: calc( var(--image-hero-height) + 100px );
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: -1;
+}
