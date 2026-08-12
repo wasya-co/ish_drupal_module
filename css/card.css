@@ -1,14 +1,1 @@
-/*
- * only make Card, Teaser nice. chips and tags can also be here.
-**/
-.Card,
-.node--view-mode-card,
-.node--view-mode-teaser {
-  border: 1px solid var(--text-color);
-  border-radius: 0.4em;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 1em;
-  margin-right: 1em;
-  margin-bottom: 1em;
-  width: 100%;
-  background-color: var(--bg-color-2); }
+.Card,.node--view-mode-card,.node--view-mode-teaser{border:1px solid var(--text-color);border-radius:0.4em;box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:1em;margin-right:1em;margin-bottom:1em;width:100%;background-color:var(--bg-color-2)}
