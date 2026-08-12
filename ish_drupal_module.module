@@ -94,10 +94,6 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
-    'field__comment' => [
-      'base hook' => 'field',
-      'path' => $path . '/templates/field',
-    ],
     'node__advanced_page__full' => [
       'base hook' => 'node',
       'path' => $path . '/templates/content',

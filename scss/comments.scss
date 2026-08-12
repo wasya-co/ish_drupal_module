@@ -1,6 +1,17 @@
 
 /* comments */
 
+
+#edit-comment-body-0-format {
+  display: none;
+}
+#edit-comment-body-0-format-help {
+  display: none;
+}
+.form-item-comment-body-0-format {
+  display: none;
+}
+
 article.comment {
   .content {
     display: flex;
@@ -15,7 +26,7 @@ article.comment {
 
 .comment-wrapper {
   article {
-    border-left: 2px solid gray;
+    border-left: 2px solid var(--text-color, gray);
     padding-left: 1em;
     margin-bottom: 1em;
   }
