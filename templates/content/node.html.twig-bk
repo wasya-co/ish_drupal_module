@@ -67,6 +67,7 @@
  *
 **/
 #}
+{% set image_hero = node.field_image_hero.entity %}
 {%
   set classes = [
     'node',
@@ -77,8 +78,11 @@
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
   ]
 %}
-{{ attach_library('ish_drupal_theme/node') }}
 <article{{ attributes.addClass(classes) }}>
+
+  {% if image_hero %}
+    <div class='image-hero' style="background-image: url({{ file_url(image_hero.uri.value) }});" ></div>
+  {% endif %}
 
   {{ title_prefix }}
   {% if label and not page %}

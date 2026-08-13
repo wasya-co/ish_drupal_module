@@ -3,15 +3,20 @@
 @import './chip.scss';
 // @import "./comments.scss"; /* this is in city_drupal_theme, keep it in one place. */
 @import './section-about-10.scss';
+@import './section-about-3cards.scss';
 @import './section-callout-parallax.scss';
 @import './section-hero-video.scss';
 @import './section-list-10.scss';
 @import './tiny-slider.scss';
 
-.sf-accordion-toggle {
-  display: flex;
-  justify-content: flex-end;
+/* A */
+
+article,
+article.node--type-advanced-page {
+  position: relative;
 }
+
+/* animations */
 
 .fade-up,
 .slide-right {
@@ -19,9 +24,38 @@
   z-index: 5;
 }
 
+/* B */
+
+.block-system-breadcrumb-block {
+  @extend .fixed-container;
+}
+
+/* F */
+
+footer.site-footer {
+
+  background-position: center;
+
+  .block {
+    border: 0;
+  }
+}
+
+/* H */
+
 #header {
   padding: 0 1em; // just for the smallest screens
 }
+
+/* S */
+
+.sf-accordion-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
 #navbar-main {
   background-color: transparent !important;
   // flex-wrap: nowrap;
@@ -36,9 +70,6 @@
   border: 1px solid yellow;
 }
 
-footer.site-footer .block {
-  border: 0;
-}
 
 .field--name-field-image-thumb {
   img {
@@ -112,10 +143,6 @@ h1.title {
   }
 }
 
-article,
-article.node--type-advanced-page {
-  position: relative;
-}
 .image-hero {
   position: absolute;
   top: calc( -1 * ( var(--image-hero-height) + 100px ) );
@@ -132,6 +159,11 @@ article.node--type-advanced-page {
 
 /* M */
 
+main.main-content {
+  margin: 0;
+  padding: 0;
+}
+
 .more-link {
 
   width: 100%;
@@ -141,7 +173,6 @@ article.node--type-advanced-page {
 
   padding-bottom: 1em;
 
-
   a::after {
     content: " →";
   }
@@ -149,6 +180,12 @@ article.node--type-advanced-page {
 
 /* N */
 
-.node__meta {
+header .node__meta {
+  @extend .fixed-container;
+
   margin-bottom: 0.5em;
+}
+
+article.node--view-mode-full:not(.node--type-issue) {
+  padding-top: 1.6em;
 }

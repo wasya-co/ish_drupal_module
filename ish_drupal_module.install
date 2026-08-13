@@ -162,7 +162,7 @@ function ish_drupal_module_update_9003() {
 
 }
 
-function ish_drupal_module_update_9009() {
+function ish_drupal_module_update_9011() {
   // BlocksConfig::setup_callout_parallax();
 
   // ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
@@ -170,40 +170,14 @@ function ish_drupal_module_update_9009() {
 
   // BlocksConfig::setup_list_10();
 
-  ModulesConfig::install_modules();
+  // ModulesConfig::install_modules();
+
+  BlocksConfig::setup_about_3cards();
+  // BlocksConfig::setup_about_20();
 }
 
 
 
 
 
-
-
-/*
-
-  $tmp_issue = [
-    'path' => '/tmp',
-    'fields' => [
-      'title' => 'Issue tmp',
-    ],
-    'sections' => [
-      [ 'type' => 'layout_onecol_any',
-        'config' => [
-          'col1_classes' => 'a-one',
-          'col2_classes' => 'b-two',
-          'extra_classes' => 'fixed-container',
-        ],
-        'regions' => [
-          'main' => [
-            'label' => 'whatever-label',
-            'view_id' => 'directory-block_1',
-          ],
-        ],
-      ],
-    ],
-  ];
-  // ThisContent::create_node_by('issue', $tmp_issue);
-
-
-*/
 

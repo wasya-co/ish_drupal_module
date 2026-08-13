@@ -82,6 +82,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
+    'block__block_content__type__section_about_3cards' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
     'block__block_content__type__section_callout_parallax' => [
       'base hook' => 'block',
       'path' => $path . '/templates/block',
@@ -94,11 +98,14 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
+    // 'node' => [
+    //   'base hook' => 'node',
+    //   'path' => $path . '/templates/content',
+    // ],
     'node__advanced_page__full' => [
       'base hook' => 'node',
       'path' => $path . '/templates/content',
     ],
-
 
 
 
@@ -140,9 +147,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
 
 function ish_drupal_module_page_attachments(array &$attachments) {
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap4';
   $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5_cdn';
   $attachments['#attached']['library'][] = 'ish_drupal_module/vendor';
   $attachments['#attached']['library'][] = 'ish_drupal_module/main';
   $attachments['#attached']['library'][] = 'ish_drupal_module/collapse_expand';

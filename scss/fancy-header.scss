@@ -26,6 +26,7 @@
     margin-top: 0;
   }
 }
+
 button.navbar-toggler {
   background: var(--bg-color);
   // margin-right: 1em;
@@ -41,7 +42,6 @@ button.navbar-toggler {
     }
     #main-wrapper {
       #main {
-        border: 1px solid yellow;
         margin-top: var(--image-hero-height);
       }
     }
@@ -70,6 +70,12 @@ button.navbar-toggler {
     .PageIssue #main-wrapper {
       #main {
         margin-top: calc( -1 * var(--header-height) );
+      }
+    }
+    #page-wrapper:not(.PageIssue) #main-wrapper {
+      #main {
+        // margin-top: calc( -1 * var(--header-height) );
+        margin-top: calc( var(--image-hero-height) - var(--header-height) );
       }
     }
     .region-top-header {

@@ -114,11 +114,18 @@
         </aside>
       </div>
     {% endif %}
-    <footer class="site-footer">
+
+    <footer class="site-footer"
+      {% if footer_image_hero %}
+        style="background-image: url('{{ footer_image_hero }}');"
+      {% endif %}
+    >
       {% block footer %}
         <div class="{{ container }}">
           {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-            <div class="site-footer__top clearfix">
+            <div class="site-footer__top clearfix"
+
+            >
               {{ page.footer_first }}
               {{ page.footer_second }}
               {{ page.footer_third }}
