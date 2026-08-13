@@ -181,9 +181,12 @@ main.main-content {
 /* N */
 
 header .node__meta {
-  @extend .fixed-container;
-
   margin-bottom: 0.5em;
+}
+.node--view-mode-full {
+  header .node__meta {
+    @extend .fixed-container;
+  }
 }
 
 article.node--view-mode-full:not(.node--type-issue) {
