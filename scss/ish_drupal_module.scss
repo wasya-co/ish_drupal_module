@@ -30,14 +30,21 @@ article.node--type-advanced-page {
   @extend .fixed-container;
 }
 
+.border-blue {
+  border: 1px solid blue;
+}
+
 .border-cyan {
   border: 1px solid cyan;
+}
+.border-green {
+  border: 1px solid green;
 }
 .border-red {
   border: 1px solid red;
 }
 .border-yellow {
-  border: 1px solid yellow;
+  border: 2px solid yellow;
 }
 
 /* D */
@@ -181,7 +188,8 @@ article.node--view-mode-full:not(.node--type-issue) {
 .width-100px { width: 100px; }
 .width-200px { width: 200px; }
 .width-400px { width: 400px; }
-
+.width-500px { width: 500px; }
+.width-600px { width: 600px; }
 
 // #header,
 #navbar-main,

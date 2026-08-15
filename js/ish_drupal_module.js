@@ -31,9 +31,18 @@ $(function () {
     if (!el.querySelector(':scope > .swiper-wrapper > .swiper-slide')) {
       return;
     }
-    new Swiper(el, {
+    const swiper = new Swiper(el, {
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+      freeMode: {
+        enabled: true,
+        momentum: false,
+      },
       loop: true,
       slidesPerView: 'auto',
+      speed: 3000,
 
       // pagination: {
       //   el: el.querySelector('.swiper-pagination'),
@@ -45,6 +54,10 @@ $(function () {
       // },
 
     });
+
+    // Swiper eases every transition by default, which stutters at each slide boundary.
+    swiper.wrapperEl.style.transitionTimingFunction = 'linear';
+    console.log('+++ initialized swiper once.')
   });
 
   $('.tns-slider').each((idx, el) => {

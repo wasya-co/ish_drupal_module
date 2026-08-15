@@ -16,7 +16,7 @@
   {{ title_suffix }}
 
   {% block content %}
-    <div{{ content_attributes.addClass('content swiper-wrapper') }}>
+    <div{{ content_attributes.addClass('content swiper-wrapper width-500px border-yellow ') }}>
       {# {{ dump( content.field_view_ref ) }} #}
 
       {% set view = content.field_view_ref.0.contents['#view'] %}

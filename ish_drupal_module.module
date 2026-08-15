@@ -107,10 +107,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
     //   'base hook' => 'node',
     //   'path' => $path . '/templates/content',
     // ],
-    'node__slide__image_thumb' => [
-      'base hook' => 'node',
-      'path' => $path . '/templates/content',
-    ],
+    // 'node__slide__image_thumb' => [
+    //   'base hook' => 'node',
+    //   'path' => $path . '/templates/content',
+    // ],
 
 
 
