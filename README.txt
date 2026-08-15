@@ -51,8 +51,8 @@
 
   * tag, push to wasya-co remote:
 
-    git tag -a v2.3.1 -m "Release v2.3.1"
-    git push origin v2.3.1
+    git tag -a v2.3.2 -m "Release v2.3.2"
+    git push origin v2.3.2
 
   * update version in composer.json
 
