@@ -20,11 +20,23 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   Install the module. Then, review ish_drupal_module.install keep what you want, discard what you don't want, then run 'drush ... updb'. A lot of the available functionality is available at /admin/ish_drupal_module
 
-  Verify that display of field_image_hero is url to image, not actual image. This applies to all blocks and content types.
-
   You should click Manage -> Structure -> Views -> Settings -> Always show advanced display settings
 
-  Change default captcha to be h-captcha, it is the only one that works well. Google's captcha is extremely annoying and faulty.
+  == verify fields ==
+
+    Verify that display of field_image_hero is url to image, not actual image. This applies to all blocks and content types.
+
+  == theme config ==
+
+    This module heavily expects a barrio theme, preferably our own cityad_drupal_theme.
+
+    You want to enable "Convert input submit to button element" in the theme.
+
+  == other modules ==
+
+    Change default captcha to be h-captcha, it is the only one that works well. Google's captcha is extremely annoying and faulty.
+
+    You should setup matomo analytics.
 
 == Configure ==
   * enable or disable fancy_header, it's up to you.

@@ -54,13 +54,25 @@ main:
   js:
     js/ish_drupal_module.js: {}
 
-
-vendor:
-  css:
-    theme:
-      vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
+scrollreveal:
   js:
-    vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
     vendor/js/scrollreveal@4.0.9.min: { minified: true }
+
+
+swiper_cdn:
+  css:
+    component:
+      //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css: {}
+  js:
+    //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
+
+## tinyslider and scrollreveal. becoming obsolete
+# vendor:
+#   css:
+#     theme:
+#       vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
+#   js:
+#     vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
+#     vendor/js/scrollreveal@4.0.9.min: { minified: true }
 
 

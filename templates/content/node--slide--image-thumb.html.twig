@@ -1,0 +1,36 @@
+
+{%
+  set classes = [
+    'swiper-slide',
+
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div{{ content_attributes.addClass('node__content') }}>
+    {% for key, item in content %}
+      {% if key|first != '#' %}
+        {% if key == 'field_image_thumb' %}
+          {{ item }}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="clearfix"></div>
+</article>

@@ -30,70 +30,6 @@ article.node--type-advanced-page {
   @extend .fixed-container;
 }
 
-/* F */
-
-footer.site-footer {
-
-  background-position: center;
-
-  .block {
-    border: 0;
-  }
-}
-
-/* H */
-
-#header {
-  padding: 0 1em; // just for the smallest screens
-}
-
-/* S */
-
-.sf-accordion-toggle {
-  display: flex;
-  justify-content: flex-end;
-}
-
-
-
-#navbar-main {
-  background-color: transparent !important;
-  // flex-wrap: nowrap;
-}
-
-.tabs {
-  position: relative;
-  z-index: 10;
-}
-
-.debug {
-  border: 1px solid yellow;
-}
-
-
-.field--name-field-image-thumb {
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-
-@media (min-width: 767px) {
-  .only-mobile {
-    display: none;
-  }
-}
-@media (max-width: 767px) {
-  .no-mobile {
-    display: none;
-  }
-}
-
-/*
- * utilities, below
-**/
-
 .border-cyan {
   border: 1px solid cyan;
 }
@@ -103,6 +39,15 @@ footer.site-footer {
 .border-yellow {
   border: 1px solid yellow;
 }
+
+/* D */
+
+.debug {
+  border: 1px solid yellow;
+}
+
+
+/* F */
 
 .fixed-container {
   margin: auto;
@@ -120,42 +65,30 @@ footer.site-footer {
   .fixed-container { width: 1140px; }
 }
 
-// #header,
-#navbar-main,
-.site-footer__top {
-  @extend .fixed-container;
-}
+footer.site-footer {
 
-.width-100px { width: 100px; }
-.width-200px { width: 200px; }
-.width-400px { width: 400px; }
+  background-position: center;
 
-
-/* field_image_hero of advanced_page */
-
-h1.title {
-  display: flex;
-  justify-content: center;
-
-  .field--name-title {
-    background-color: var(--bg-color-transparent, var(--bg-color));
-    padding: 0 0.5em;
+  .block {
+    border: 0;
   }
 }
 
-.image-hero {
-  position: absolute;
-  top: calc( -1 * ( var(--image-hero-height) + 100px ) );
-  left: 0;
-  width: 100%;
-  height: calc( var(--image-hero-height) + 100px );
+/* H */
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  z-index: -1;
+#header {
+  padding: 0 1em; // just for the smallest screens
 }
+
+/* I */
+
+
+/* doesn't work b/c covers the whole viewport and is ugly:
+// article .image-hero:first-child {
+//   background-attachment: fixed;
+// }
+
+
 
 /* M */
 
@@ -191,4 +124,93 @@ header .node__meta {
 
 article.node--view-mode-full:not(.node--type-issue) {
   padding-top: 1.6em;
+}
+
+
+/* S */
+
+.sf-accordion-toggle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* T */
+
+
+.tabs {
+  position: relative;
+  z-index: 10;
+}
+
+.text-formatted {
+  img {
+    max-width: 100%;
+    padding: 0.6em;
+  }
+}
+
+
+#navbar-main {
+  background-color: transparent !important;
+  // flex-wrap: nowrap;
+}
+
+
+
+.field--name-field-image-thumb {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+@media (min-width: 767px) {
+  .only-mobile {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .no-mobile {
+    display: none;
+  }
+}
+
+/* W */
+
+.width-100px { width: 100px; }
+.width-200px { width: 200px; }
+.width-400px { width: 400px; }
+
+
+// #header,
+#navbar-main,
+.site-footer__top {
+  @extend .fixed-container;
+}
+
+/* field_image_hero of advanced_page */
+
+h1.title {
+  display: flex;
+  justify-content: center;
+
+  .field--name-title {
+    background-color: var(--bg-color-transparent, var(--bg-color));
+    padding: 0 0.5em;
+  }
+}
+
+.image-hero {
+  position: absolute;
+  top: calc( -1 * ( var(--image-hero-height) + 100px ) );
+  left: 0;
+  width: 100%;
+  height: calc( var(--image-hero-height) + 100px );
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: -1;
 }
