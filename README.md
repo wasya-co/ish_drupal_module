@@ -199,6 +199,14 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
         .background-1
         .background-2
 
+    === black and white ===
+
+    makes children images grayscale.
+
+      .black-and-white
+      .bw
+
+
     === Card ===
 
       A bordered, padded container with a different background.

@@ -270,6 +270,13 @@ article.node--type-advanced-page {
   z-index: 5; }
 
 /* B */
+.black-and-white,
+.bw {
+  filter: grayscale(100%); }
+  .black-and-white img,
+  .bw img {
+    filter: grayscale(100%); }
+
 .border-blue {
   border: 1px solid blue; }
 
@@ -352,6 +359,12 @@ article.node--view-mode-full:not(.node--type-issue) {
   padding-top: 1.6em; }
 
 /* S */
+.block-content-section_slider_images .field--name-field-subtitle {
+  text-align: center; }
+
+.block-content-section_slider_images article.node--type-slide > header {
+  display: none; }
+
 .sf-accordion-toggle {
   display: flex;
   justify-content: flex-end; }

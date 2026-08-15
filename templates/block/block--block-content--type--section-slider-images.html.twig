@@ -1,7 +1,11 @@
+
+<style>
+  {{ content.field_custom_css[0]['#context']['value'] }}
+</style>
+
 {%
   set classes = [
-    'swiper',
-
+    content.field_class_name[0]['#context']['value'],
     'block',
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
@@ -16,19 +20,23 @@
   {{ title_suffix }}
 
   {% block content %}
-    <div{{ content_attributes.addClass('content swiper-wrapper width-500px border-yellow ') }}>
-      {# {{ dump( content.field_view_ref ) }} #}
+    <h1>{{ content.field_subtitle }}</h1>
 
-      {% set view = content.field_view_ref.0.contents['#view'] %}
-      {% for row in view.result %}
-        {% if row._entity %}
-          <div class='border-red swiper-slide width-100px'>
-            {# {{ dump( row._entity ) }} #}
-            {{ drupal_entity('node', row._entity.id, 'image_thumb') }}
-          </div>
-        {% endif %}
-      {% endfor %}
+    <div{{ content_attributes.addClass('content swiper fixed-container _border-yellow ') }}>
+      <div class='swiper-wrapper'>
+        {# {{ dump( content.field_view_ref ) }} #}
 
+        {% set view = content.field_view_ref.0.contents['#view'] %}
+        {% for row in view.result %}
+          {% if row._entity %}
+            <div class=' swiper-slide width-200px d-flex justify-content-center align-items-center '>
+              {# {{ dump( row._entity ) }} #}
+              {{ drupal_entity('node', row._entity.id, 'image_thumb') }}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+      </div>
     </div>
   {% endblock %}
 

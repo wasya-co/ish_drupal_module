@@ -26,6 +26,15 @@ article.node--type-advanced-page {
 
 /* B */
 
+.black-and-white,
+.bw {
+  filter: grayscale(100%);
+
+  img {
+    filter: grayscale(100%);
+  }
+}
+
 .block-system-breadcrumb-block {
   @extend .fixed-container;
 }
@@ -136,6 +145,17 @@ article.node--view-mode-full:not(.node--type-issue) {
 
 /* S */
 
+.block-content-section_slider_images {
+  .field--name-field-subtitle {
+    text-align: center;
+  }
+
+  article.node--type-slide > header {
+    display: none;
+  }
+}
+
+
 .sf-accordion-toggle {
   display: flex;
   justify-content: flex-end;
@@ -161,7 +181,6 @@ article.node--view-mode-full:not(.node--type-issue) {
   background-color: transparent !important;
   // flex-wrap: nowrap;
 }
-
 
 
 .field--name-field-image-thumb {
