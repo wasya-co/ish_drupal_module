@@ -17,9 +17,17 @@
 
   {% block content %}
     <div{{ content_attributes.addClass('content swiper-wrapper') }}>
-      {{ dump( content.field_view_ref.0.contents ) }}
+      {# {{ dump( content.field_view_ref ) }} #}
 
-      {{ content.field_view_ref.0.contents }}
+      {% set view = content.field_view_ref.0.contents['#view'] %}
+      {% for row in view.result %}
+        {% if row._entity %}
+          <div class='border-red swiper-slide width-100px'>
+            {# {{ dump( row._entity ) }} #}
+            {{ drupal_entity('node', row._entity.id, 'image_thumb') }}
+          </div>
+        {% endif %}
+      {% endfor %}
 
     </div>
   {% endblock %}

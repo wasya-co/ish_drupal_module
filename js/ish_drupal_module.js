@@ -24,7 +24,7 @@ function logg (a, b="", c=null) {
 // $ = jQuery;
 $(function () {
 
-  document.querySelectorAll('.swiper').forEach((el) => {
+  $('.swiper').each((idx, el) => {
     if (typeof Swiper === 'undefined' || el.swiper) {
       return;
     }
@@ -34,15 +34,16 @@ $(function () {
     new Swiper(el, {
       loop: true,
       slidesPerView: 'auto',
-      spaceBetween: 16,
-      pagination: {
-        el: el.querySelector('.swiper-pagination'),
-        clickable: true,
-      },
-      navigation: {
-        nextEl: el.querySelector('.swiper-button-next'),
-        prevEl: el.querySelector('.swiper-button-prev'),
-      },
+
+      // pagination: {
+      //   el: el.querySelector('.swiper-pagination'),
+      //   clickable: true,
+      // },
+      // navigation: {
+      //   nextEl: el.querySelector('.swiper-button-next'),
+      //   prevEl: el.querySelector('.swiper-button-prev'),
+      // },
+
     });
   });
 
