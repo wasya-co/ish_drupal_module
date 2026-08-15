@@ -24,7 +24,27 @@ function logg (a, b="", c=null) {
 // $ = jQuery;
 $(function () {
 
-
+  document.querySelectorAll('.swiper').forEach((el) => {
+    if (typeof Swiper === 'undefined' || el.swiper) {
+      return;
+    }
+    if (!el.querySelector(':scope > .swiper-wrapper > .swiper-slide')) {
+      return;
+    }
+    new Swiper(el, {
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      pagination: {
+        el: el.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: el.querySelector('.swiper-button-next'),
+        prevEl: el.querySelector('.swiper-button-prev'),
+      },
+    });
+  });
 
   $('.tns-slider').each((idx, el) => {
     const classes = [...el.parentElement.classList]

@@ -50,7 +50,8 @@ main:
   dependencies:
     - core/jquery
     - core/drupal
-    - ish_drupal_module/vendor
+    - ish_drupal_module/scrollreveal
+    - ish_drupal_module/swiper_cdn
   js:
     js/ish_drupal_module.js: {}
 
@@ -66,13 +67,12 @@ swiper_cdn:
   js:
     //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
 
-## tinyslider and scrollreveal. becoming obsolete
-# vendor:
+## tinyslider, becoming obsolete
+# tinyslider:
 #   css:
 #     theme:
 #       vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
 #   js:
 #     vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
-#     vendor/js/scrollreveal@4.0.9.min: { minified: true }
 
 
