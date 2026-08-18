@@ -54,25 +54,30 @@ class PutContentForm extends FormBase {
     $file = File::load($fid);
     $file->setPermanent();
     $file->save();
-    $yml_file = Yaml::decode(file_get_contents($file->getFileUri()));
+    $yaml_file = Yaml::decode(file_get_contents($file->getFileUri()));
 
-    foreach ($yml_file ?? [] as $item) {
-      if ($item['entity_type']??null) {
-        if ('block' == $item['entity_type']) {
+    foreach ($yaml_file ?? [] as $item) {
+      // [$entity_type, $name] = explode(':', 'advanced_block:copyright', 2);
+
+      switch($item['type']) {
+        case 'advanced_block':
+        case 'section_callout_parallax':
           BlocksConfig::create_block($item['type'], $item['info'], $item);
-        }
-        if ('node' == $item['entity_type']) {
+          break;
+
+        case 'issue':
           NodesContent::create_node($item['type'], $item['path'], $item);
-        }
-        if ('view' == $item['entity_type']) {
-          ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
-        }
+          break;
+
+        // case 'view':
+        //   ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
+        //   break;
+
+        default:
+          throw new \Exception('Not implemented');
       }
     }
 
-    foreach ($yml_file['add_section']??[] as $item) {
-      NodesContent::add_section_to($item['to_node'], $item);
-    }
   }
 
 }

@@ -58,19 +58,19 @@ class PostContentForm extends FormBase {
     $file->save();
     $yml_file = Yaml::decode(file_get_contents($file->getFileUri()));
 
-    foreach ($yml_file['create_content'] ?? [] as $item) {
-      if ($item['entity_type']??null) {
-        if ('block' == $item['entity_type']) {
-          BlocksConfig::create_block($item['type'], $item['info'], $item);
-        }
-        if ('node' == $item['entity_type']) {
-          NodesContent::create_node($item['type'], $item['path'], $item);
-        }
-        if ('view' == $item['entity_type']) {
-          ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
-        }
-      }
-    }
+    // foreach ($yml_file['create_content'] ?? [] as $item) {
+    //   if ($item['entity_type']??null) {
+    //     if ('block' == $item['entity_type']) {
+    //       BlocksConfig::create_block($item['type'], $item['info'], $item);
+    //     }
+    //     if ('node' == $item['entity_type']) {
+    //       NodesContent::create_node($item['type'], $item['path'], $item);
+    //     }
+    //     if ('view' == $item['entity_type']) {
+    //       ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
+    //     }
+    //   }
+    // }
 
     foreach ($yml_file['add_section']??[] as $item) {
       NodesContent::add_section_to($item['to_node'], $item);

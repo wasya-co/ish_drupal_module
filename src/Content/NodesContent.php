@@ -24,6 +24,17 @@ class NodesContent {
 
   /*
   **/
+  function get_node_by_path(string $path): ?\Drupal\node\Entity\Node {
+    $internal_path = \Drupal::service('path_alias.manager')
+      ->getPathByAlias($path);
+    if (preg_match('/^\/node\/(\d+)$/', $internal_path, $matches)) {
+      return \Drupal\node\Entity\Node::load($matches[1]);
+    }
+    return NULL;
+  }
+
+  /*
+  **/
   public static function add_section_to($which, $this_section) {
     if ($which['by_title']) {
       $nodes = \Drupal::entityTypeManager()
@@ -81,16 +92,11 @@ class NodesContent {
   }
 
   /*
+   * 2026-08-18 _vp_ continue
   **/
   public static function create_node($type, $path, $item) {
 
-    $nodes = \Drupal::entityTypeManager()
-      ->getStorage('node')
-      ->loadByProperties([
-        'type' => $item['type'],
-        'title' => $item['fields']['title'],
-      ]);
-    $node = reset($nodes);
+    $node = $this->get_node_by_path($path);
     if ($node) {
       // return;
       $node->delete(); // _TODO: remove
@@ -134,38 +140,41 @@ class NodesContent {
         $section = new Section( $this_section['type'], $this_section['config']??[] );
         foreach ($this_section['regions'] as $region_name => $region_c) {
 
-          if ('views' == $region_c['provider']) {
+          switch ($region_c['provider']??'block_content') {
+            case 'views':
 
-            $extra = [
-              'id' => "views_block:{$region_c['view_id']}",
-              'label' => $region_c['label'],
-              'label_display' => FALSE,
-              'provider' => $region_c['provider'],
-            ];
-            $uuid = \Drupal::service('uuid')->generate();
-            $component = new SectionComponent( $uuid, $region_name, $extra );
-            $section->appendComponent($component);
+              $extra = [
+                'id' => "views_block:{$region_c['view_id']}",
+                'label' => $region_c['label'],
+                'label_display' => FALSE,
+                'provider' => $region_c['provider'],
+              ];
+              $uuid = \Drupal::service('uuid')->generate();
+              $component = new SectionComponent( $uuid, $region_name, $extra );
+              $section->appendComponent($component);
 
-          } elseif ('block_content' == $region_c['provider']) {
+              break;
+            case 'block_content':
 
-            $blocks = \Drupal::entityTypeManager()
-              ->getStorage('block_content')
-              ->loadByProperties([
-                'info' => $region_c['info'],
-              ]);
-            $block = reset($blocks);
-            $extra = [
-              'id' => "block_content:{$block->uuid()}",
-              'label' => $region_c['label'],
-              'label_display' => FALSE,
-              'provider' => $region_c['provider'],
-            ];
-            $uuid = \Drupal::service('uuid')->generate();
-            $component = new SectionComponent( $uuid, $region_name, $extra );
-            $section->appendComponent($component);
+              $blocks = \Drupal::entityTypeManager()
+                ->getStorage('block_content')
+                ->loadByProperties([
+                  'info' => $region_c['info'],
+                ]);
+              $block = reset($blocks);
+              $extra = [
+                'id' => "block_content:{$block->uuid()}",
+                'label' => $region_c['label'],
+                'label_display' => $region_c['label_display']??false,
+                'provider' => $region_c['provider'],
+              ];
+              $uuid = \Drupal::service('uuid')->generate();
+              $component = new SectionComponent( $uuid, $region_name, $extra );
+              $section->appendComponent($component);
 
-          }
-
+            break;
+          default:
+            throw new \Exception('Not implemented :: NodesContent');
         }
         $outs[] = $section;
       } // end foreach sections
@@ -178,7 +187,6 @@ class NodesContent {
   /*
   **/
   public static function create_node_by($content_type, $config) {
-
     $nodes = \Drupal::entityTypeManager()
       ->getStorage('node')
       ->loadByProperties([

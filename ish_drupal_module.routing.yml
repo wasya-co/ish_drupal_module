@@ -31,7 +31,7 @@ ish_drupal_module.admin_post_content:
   path: '/admin/ish_drupal_modle/post_content'
   defaults:
     _form: '\Drupal\ish_drupal_module\Form\PostContentForm'
-    _title: 'Create Content'
+    _title: 'Add Content'
   requirements:
     _permission: 'administer content'
 
@@ -39,7 +39,7 @@ ish_drupal_module.admin_put_content:
   path: '/admin/ish_drupal_modle/put_content'
   defaults:
     _form: '\Drupal\ish_drupal_module\Form\PutContentForm'
-    _title: 'Create Content'
+    _title: 'Replace Content'
   requirements:
     _permission: 'administer content'
 
