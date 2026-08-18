@@ -13,14 +13,14 @@ create_content:
           extra_classes: 'fixed-container'
         regions:
           main:
-            label: 'front page directory'
-            view_id: 'directory-block_frontpage'
+            - label: 'front page directory'
+              view_id: 'directory-block_frontpage'
 
       - type: 'layout_onecol_any'
         regions:
           main:
-            label: 'any-label'
-            block_id: "section_block:rapid_consulting"
+            - label: 'any-label'
+              block_id: "section_block:rapid_consulting"
 
 
   - type: 'section_block'

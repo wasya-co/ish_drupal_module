@@ -265,7 +265,7 @@ class NodesContent {
     foreach($item['elements'] as $name => $config) {
       $elements[$name] = [
         '#type' => $config['type'] ?? 'textfield',
-        '#title' => $config['title'] ?? $config['id'],
+        '#title' => $config['title'] ?? $name,
         '#required' => $config['required'] ?? false,
       ];
     }
