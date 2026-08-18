@@ -24,7 +24,7 @@ class NodesContent {
 
   /*
   **/
-  function get_node_by_path(string $path): ?\Drupal\node\Entity\Node {
+  public static function get_node_by_path(string $path): ?\Drupal\node\Entity\Node {
     $internal_path = \Drupal::service('path_alias.manager')
       ->getPathByAlias($path);
     if (preg_match('/^\/node\/(\d+)$/', $internal_path, $matches)) {
@@ -96,7 +96,7 @@ class NodesContent {
   **/
   public static function create_node($type, $path, $item) {
 
-    $node = $this->get_node_by_path($path);
+    $node = self::get_node_by_path($path);
     if ($node) {
       // return;
       $node->delete(); // _TODO: remove
@@ -172,10 +172,12 @@ class NodesContent {
               $component = new SectionComponent( $uuid, $region_name, $extra );
               $section->appendComponent($component);
 
-            break;
-          default:
-            throw new \Exception('Not implemented :: NodesContent');
+              break;
+            default:
+              throw new \Exception('Not implemented :: NodesContent');
+          }
         }
+
         $outs[] = $section;
       } // end foreach sections
       $node->set('layout_builder__layout', $outs);
