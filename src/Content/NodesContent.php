@@ -175,7 +175,24 @@ class NodesContent {
                     'label_display' => false,
                     'provider' => 'layout_builder',
                   ];
+                  $uuid = \Drupal::service('uuid')->generate();
                   $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+
+                  break;
+                case 'webform':
+
+
+                  $extra = [
+                    'id' => 'webform_block',
+                    'label' => $block_c,
+                    'label_display' => FALSE,
+                    'provider' => 'webform',
+                    'webform_id' => $name,
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent($uuid, $region_name, $extra);
                   $section->appendComponent($component);
 
 
