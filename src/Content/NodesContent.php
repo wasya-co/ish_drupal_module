@@ -174,6 +174,15 @@ class NodesContent {
                     'label' => $block_c,
                     'label_display' => false,
                     'provider' => 'layout_builder',
+                    'context_mapping' => [
+                      'entity' => 'layout_builder.entity',
+                    ],
+                    'formatter' => [
+                      'type' => 'text_default',
+                      'label' => 'hidden',
+                      'settings' => [],
+                      'third_party_settings' => [],
+                    ],
                   ];
                   $uuid = \Drupal::service('uuid')->generate();
                   $component = new SectionComponent( $uuid, $region_name, $extra );
