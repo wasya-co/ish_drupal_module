@@ -11,14 +11,14 @@ use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 /*
  * reset the counter:
- *   drush -l pudeyev.local php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
+ *   drush -l mavericks.local php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
  * check the counter:
- *   drush -l pudeyev.local php:eval "print \Drupal::keyValue('system.schema')->get('ish_drupal_module');"
+ *   drush -l mavericks.local php:eval "print \Drupal::keyValue('system.schema')->get('ish_drupal_module');"
 **/
 
 /*
 **/
-function ish_drupal_module_update_9003() {
+function ish_drupal_module_update_9002() {
   ModulesConfig::install_modules();
   ThisConfig::configure_text_editor();
   ThisConfig::setup_permissions();
@@ -38,7 +38,7 @@ function ish_drupal_module_update_9003() {
 
 
   BlocksConfig::create_block_type('advanced_block', DefaultFields::default_block_fields);
-  BlocksConfig::setup_about_20(); // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
+  BlocksConfig::setup_about_20();                                        // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
   BlocksConfig::create_block_type('section_about_3cards', DefaultFields::default_block_fields);
   BlocksConfig::create_block_type('section_callout_parallax', DefaultFields::default_block_fields);
   BlocksConfig::create_block_type('section_hero_video', DefaultFields::default_block_fields);
