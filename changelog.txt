@@ -32,4 +32,4 @@
   v2.3.2 :: 2026-08-15 :: lets deploy separately for staging.pudeyev.com
   v2.3.3 :: 2026-08-15 :: meta of article is no longer fixed-container
 
-      :: 2026-08-18 :: lotsa changes, lets do an actual single-click build of mavericks
+2.4.0 :: 2026-08-18 :: lotsa changes, lets do an actual single-click build of mavericks
