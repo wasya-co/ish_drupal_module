@@ -226,7 +226,11 @@ class NodesContent {
         '#required' => $config['required'] ?? false,
       ];
     }
-    $elements['actions'] => [
+    $elements['captcha'] = [
+      '#type' => 'captcha',
+      '#captcha_type' => 'hcaptcha/hCaptcha',
+    ];
+    $elements['actions'] = [
       '#type' => 'webform_actions',
       '#title' => 'Submit',
       '#submit__label' => 'Send',
