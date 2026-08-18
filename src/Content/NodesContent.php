@@ -139,8 +139,12 @@ class NodesContent {
 
     $node = self::get_node_by_path($path);
     if ($node) {
-      // return;
-      $node->delete(); // _TODO: remove
+      if ($item['meta']['existing'] == 'destroy') {
+        $node->delete();
+      } else {
+        \Drupal::messenger()->addStatus("Node `$path` already exists.");
+        return;
+      }
     }
 
     $values = [
