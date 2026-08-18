@@ -96,13 +96,14 @@ class BlocksConfig {
     }
 
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
-
-    $existing = $storage->loadByProperties([
-      'type' => $config['type'],
-      'info' => $config['info'],
-    ]);
+    $existing = $storage->loadByProperties([ 'type' => $config['type'], 'info' => $config['info'] ]);
     if (!empty($existing)) {
-      return reset($existing);
+      $existing = reset($existing);
+      if ($config['meta']['replace'] ?? false) {
+        $existing->delete();
+      else {
+        return $existing;
+      }
     }
 
     $block = BlockContent::create(array_merge(

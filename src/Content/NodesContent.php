@@ -142,7 +142,7 @@ class NodesContent {
 
     $node = self::get_node_by_path($item['path']);
     if ($node) {
-      if ($item['meta']['existing'] == 'destroy') {
+      if ($item['meta']['replace'] ?? false) {
         $node->delete();
       } else {
         \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
@@ -261,27 +261,7 @@ class NodesContent {
                   break;
                 case 'block_content':
 
-                  if ($block_c['info']) { // place existing
 
-                    $blocks = \Drupal::entityTypeManager()
-                      ->getStorage('block_content')
-                      ->loadByProperties([
-                        'info' => $block_c['info'],
-                      ]);
-                    $block = reset($blocks);
-                    $extra = [
-                      'id' => "block_content:{$block->uuid()}",
-                      'label' => $block_c['label'],
-                      'label_display' => $block_c['label_display']??false,
-                      'provider' => $provider,
-                    ];
-                    $uuid = \Drupal::service('uuid')->generate();
-                    $component = new SectionComponent( $uuid, $region_name, $extra );
-                    $section->appendComponent($component);
-
-                  } else { // create new
-
-                    $block_c['info'] = \Drupal::service('uuid')->generate();
                     $block = BlocksConfig::create_block($block_c);
                     $extra = [
                       'id' => "block_content:{$block->uuid()}",
@@ -293,7 +273,6 @@ class NodesContent {
                     $component = new SectionComponent( $uuid, $region_name, $extra );
                     $section->appendComponent($component);
 
-                  }
 
                 //   break;
                 // default:
