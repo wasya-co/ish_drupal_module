@@ -138,43 +138,47 @@ class NodesContent {
       foreach($item['sections'] as $this_section) {
 
         $section = new Section( $this_section['type'], $this_section['config']??[] );
-        foreach ($this_section['regions'] as $region_name => $region_c) {
+        foreach ($this_section['regions'] as $region_name => $region_blocks) {
 
-          switch ($region_c['provider']??'block_content') {
-            case 'views':
+          foreach ($region_blocks as $block_c) {
 
-              $extra = [
-                'id' => "views_block:{$region_c['view_id']}",
-                'label' => $region_c['label'],
-                'label_display' => FALSE,
-                'provider' => $region_c['provider'],
-              ];
-              $uuid = \Drupal::service('uuid')->generate();
-              $component = new SectionComponent( $uuid, $region_name, $extra );
-              $section->appendComponent($component);
 
-              break;
-            case 'block_content':
+            switch ($block_c['provider']??'block_content') {
+              case 'views':
 
-              $blocks = \Drupal::entityTypeManager()
-                ->getStorage('block_content')
-                ->loadByProperties([
-                  'info' => $region_c['info'],
-                ]);
-              $block = reset($blocks);
-              $extra = [
-                'id' => "block_content:{$block->uuid()}",
-                'label' => $region_c['label'],
-                'label_display' => $region_c['label_display']??false,
-                'provider' => $region_c['provider'],
-              ];
-              $uuid = \Drupal::service('uuid')->generate();
-              $component = new SectionComponent( $uuid, $region_name, $extra );
-              $section->appendComponent($component);
+                $extra = [
+                  'id' => "views_block:{$block_c['view_id']}",
+                  'label' => $block_c['label'],
+                  'label_display' => FALSE,
+                  'provider' => $block_c['provider'],
+                ];
+                $uuid = \Drupal::service('uuid')->generate();
+                $component = new SectionComponent( $uuid, $region_name, $extra );
+                $section->appendComponent($component);
 
-              break;
-            default:
-              throw new \Exception('Not implemented :: NodesContent');
+                break;
+              case 'block_content':
+
+                $blocks = \Drupal::entityTypeManager()
+                  ->getStorage('block_content')
+                  ->loadByProperties([
+                    'info' => $block_c['info'],
+                  ]);
+                $block = reset($blocks);
+                $extra = [
+                  'id' => "block_content:{$block->uuid()}",
+                  'label' => $block_c['label'],
+                  'label_display' => $block_c['label_display']??false,
+                  'provider' => $block_c['provider'],
+                ];
+                $uuid = \Drupal::service('uuid')->generate();
+                $component = new SectionComponent( $uuid, $region_name, $extra );
+                $section->appendComponent($component);
+
+                break;
+              default:
+                throw new \Exception('Not implemented :: NodesContent');
+            }
           }
         }
 
