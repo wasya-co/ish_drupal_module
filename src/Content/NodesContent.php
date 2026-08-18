@@ -20,6 +20,8 @@ use Drupal\node\Entity\Node;
 
 use Drupal\webform\Entity\Webform;
 
+use Drupal\ish_drupal_module\Config\BlocksConfig;
+
 /*
 **/
 class NodesContent {
@@ -168,7 +170,7 @@ class NodesContent {
         $section = new Section( $this_section['type'], $this_section['config']??[] );
         foreach ($this_section['regions'] as $region_name => $region_blocks) {
           foreach ($region_blocks as $block_c) {
-            logg($block_c, 'block_c');
+            logg($block_c, 'create_node() block_c');
 
             if (is_string($block_c)) {
               [$provider, $name] = explode(':', $block_c, 2);
@@ -259,23 +261,39 @@ class NodesContent {
                   break;
                 case 'block_content':
 
+                  if ($block_c['info']) { // place existing
 
-                  $blocks = \Drupal::entityTypeManager()
-                    ->getStorage('block_content')
-                    ->loadByProperties([
-                      'info' => $block_c['info'],
-                    ]);
-                  $block = reset($blocks);
-                  $extra = [
-                    'id' => "block_content:{$block->uuid()}",
-                    'label' => $block_c['label'],
-                    'label_display' => $block_c['label_display']??false,
-                    'provider' => $provider,
-                  ];
-                  $uuid = \Drupal::service('uuid')->generate();
-                  $component = new SectionComponent( $uuid, $region_name, $extra );
-                  $section->appendComponent($component);
+                    $blocks = \Drupal::entityTypeManager()
+                      ->getStorage('block_content')
+                      ->loadByProperties([
+                        'info' => $block_c['info'],
+                      ]);
+                    $block = reset($blocks);
+                    $extra = [
+                      'id' => "block_content:{$block->uuid()}",
+                      'label' => $block_c['label'],
+                      'label_display' => $block_c['label_display']??false,
+                      'provider' => $provider,
+                    ];
+                    $uuid = \Drupal::service('uuid')->generate();
+                    $component = new SectionComponent( $uuid, $region_name, $extra );
+                    $section->appendComponent($component);
 
+                  } else { // create new
+
+                    $block_c['info'] = \Drupal::service('uuid')->generate();
+                    $block = BlocksConfig::create_block($block_c);
+                    $extra = [
+                      'id' => "block_content:{$block->uuid()}",
+                      'label' => $block_c['label'],
+                      'label_display' => $block_c['label_display']??false,
+                      'provider' => $provider,
+                    ];
+                    $uuid = \Drupal::service('uuid')->generate();
+                    $component = new SectionComponent( $uuid, $region_name, $extra );
+                    $section->appendComponent($component);
+
+                  }
 
                 //   break;
                 // default:

@@ -95,7 +95,6 @@ class BlocksConfig {
       throw new \Exception("create_block() expects key 'type'.");
     }
 
-
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
 
     $existing = $storage->loadByProperties([
