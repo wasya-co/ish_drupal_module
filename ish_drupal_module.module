@@ -22,7 +22,7 @@ function dumpp($object, $label=null) {
 }
 
 function logg($what, $label) {
-  error_log("\n+++ +++ $label:\n" . print_r($what, true));
+  error_log("\n+++ +++ $label:\n" . print_r($what, true)) . "\n\n";
 }
 
 

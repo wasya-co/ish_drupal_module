@@ -168,9 +168,11 @@ class NodesContent {
         $section = new Section( $this_section['type'], $this_section['config']??[] );
         foreach ($this_section['regions'] as $region_name => $region_blocks) {
           foreach ($region_blocks as $block_c) {
+            logg($block_c, 'block_c');
+
             if (is_string($block_c)) {
               [$provider, $name] = explode(':', $block_c, 2);
-              logg($block_c, 'block_c');
+
 
               switch($provider) {
                 case 'field':
@@ -213,14 +215,32 @@ class NodesContent {
 
 
                   break;
+                case 'basic':
+                case 'advanced_block':
+                case 'section_callout_parallax':
                 default:
-                  throw new \Exception('iot - this should never happen');
+
+
+                  $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([ 'info' => $name ]);
+                  $block  = reset($blocks);
+                  $extra  = [
+                    'id'            => "block_content:{$block->uuid()}",
+                    'label'         => $name,
+                    'label_display' => false,
+                    'provider'      => 'block_content',
+                  ];
+                  $uuid      = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+
+                //   break;
+                // default:
+                //   throw new \Exception("iot - this should never happen: $name");
               }
             } elseif (is_array($block_c)) {
 
-              $provider = $block_c['provider']??'block_content';
-              logg($provider, 'provider');
-
+              $provider = $block_c['provider'] ?? 'block_content';
               switch ($provider) {
                 case 'views':
 
@@ -257,9 +277,9 @@ class NodesContent {
                   $section->appendComponent($component);
 
 
-                  break;
-                default:
-                  throw new \Exception('iou - this should never happen');
+                //   break;
+                // default:
+                //   throw new \Exception('iou - this should never happen');
               } // end switch $provider
 
             }
