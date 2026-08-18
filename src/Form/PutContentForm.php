@@ -2,11 +2,11 @@
 
 namespace Drupal\ish_drupal_module\Form;
 
-use Drupal\Component\Serialization\Yaml;
-use Drupal\Component\Uuid\Uuid;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Component\Serialization\Yaml;
+use Drupal\Component\Uuid\Uuid;
 
 use Drupal\file\Entity\File;
 
@@ -14,6 +14,8 @@ use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 
 use Drupal\node\Entity\Node;
+
+use Drupal\webform\Entity\Webform;
 
 use Drupal\ish_drupal_module\Config\BlocksConfig;
 use Drupal\ish_drupal_module\Config\ViewsConfig;
@@ -68,6 +70,10 @@ class PutContentForm extends FormBase {
 
         case 'issue':
           NodesContent::create_node($item['type'], $item['path'], $item);
+          break;
+
+        case 'webform':
+          NodesContent::create_webform($item);
           break;
 
         // case 'view':

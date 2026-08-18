@@ -18,6 +18,8 @@ use Drupal\layout_builder\SectionComponent;
 
 use Drupal\node\Entity\Node;
 
+use Drupal\webform\Entity\Webform;
+
 /*
 **/
 class NodesContent {
@@ -35,7 +37,7 @@ class NodesContent {
 
   /*
   **/
-  public static function imageFieldFromUrl(string $field_name, string $url): array {
+  public static function image_field_from_url(string $field_name, string $url): array {
     $response = \Drupal::httpClient()->get($url);
     $contents = (string) $response->getBody();
     $directory = 'public://' . $field_name;
@@ -57,11 +59,11 @@ class NodesContent {
 
   /*
   **/
-  public static function prepareFieldValues(array $fields): array {
+  public static function prepare_field_values(array $fields): array {
     $values = [];
     foreach ($fields as $field_name => $field_value) {
       if (str_contains($field_name, 'image') && is_string($field_value) && filter_var($field_value, FILTER_VALIDATE_URL)) {
-        $values[$field_name] = self::imageFieldFromUrl($field_name, $field_value);
+        $values[$field_name] = self::image_field_from_url($field_name, $field_value);
         continue;
       }
       if ($field_name === 'body' && is_array($field_value) && !isset($field_value['format'])) {
@@ -149,7 +151,7 @@ class NodesContent {
         'pathauto' => 0,
       ],
     ];
-    $values = array_merge($values, self::prepareFieldValues($item['fields']));
+    $values = array_merge($values, self::prepare_field_values($item['fields']));
     $node = Node::create($values);
     $node->save();
 
@@ -208,6 +210,47 @@ class NodesContent {
       $node->set('layout_builder__layout', $outs);
       $node->save();
     }
+  }
+
+  /*
+  **/
+  public static function create_webform($item) {
+    if (Webform::load($item['id'])) {
+      return;
+    }
+    $elements = [
+      'name' => [
+        '#type' => 'textfield',
+        '#title' => 'Name',
+        '#required' => TRUE,
+      ],
+      'email' => [
+        '#type' => 'email',
+        '#title' => 'Email',
+        '#required' => TRUE,
+      ],
+      'message' => [
+        '#type' => 'textarea',
+        '#title' => 'Message',
+        '#required' => TRUE,
+      ],
+      'actions' => [
+        '#type' => 'webform_actions',
+        '#title' => 'Submit',
+        '#submit__label' => 'Send',
+      ],
+    ];
+
+    $settings = Webform::getDefaultSettings();
+
+    $webform = Webform::create([
+      'id' => $item['id'],
+      'title' => $item['title'],
+      'elements' => Yaml::encode($elements),
+      'settings' => $settings,
+    ]);
+
+    $webform->save();
   }
 
 }

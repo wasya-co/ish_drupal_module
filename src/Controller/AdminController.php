@@ -22,6 +22,7 @@ class AdminController extends ControllerBase {
     return [
       '#secondary_menu_links' => [
         [
+          'confirm' => false,
           'title' => 'Replace content yaml',
           'url' => Url::fromRoute('ish_drupal_module.admin_put_content')->toString(),
         ],

@@ -99,7 +99,7 @@ class BlocksConfig {
 
     $block = BlockContent::create(array_merge(
       $config,
-      NodesContent::prepareFieldValues($config['fields'] ?? [])
+      NodesContent::prepare_field_values($config['fields'] ?? [])
     ));
     $block->save();
     return $block;
