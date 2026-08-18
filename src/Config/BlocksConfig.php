@@ -29,6 +29,12 @@ use Drupal\ish_drupal_module\Content\NodesContent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /*
+ delete advanced blocks:
+   drush -l mavericks.local php:eval '$storage = \Drupal::entityTypeManager()->getStorage("block_content"); foreach ($storage->loadByProperties(["type" => "advanced_block"]) as $block) { $block->delete(); }'
+**/
+
+
+/*
 **/
 class BlocksConfig {
 
@@ -101,7 +107,7 @@ class BlocksConfig {
       $existing = reset($existing);
       if ($config['meta']['replace'] ?? false) {
         $existing->delete();
-      else {
+      } else {
         return $existing;
       }
     }

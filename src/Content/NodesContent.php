@@ -242,7 +242,7 @@ class NodesContent {
               }
             } elseif (is_array($block_c)) {
 
-              $provider = $block_c['provider'] ?? 'block_content';
+              $provider = $block_c['type'] ?? 'block_content';
               switch ($provider) {
                 case 'views':
 
@@ -267,14 +267,30 @@ class NodesContent {
                       'id' => "block_content:{$block->uuid()}",
                       'label' => $block_c['label'],
                       'label_display' => $block_c['label_display']??false,
-                      'provider' => $provider,
+                      'provider' => 'block_content',
                     ];
                     $uuid = \Drupal::service('uuid')->generate();
                     $component = new SectionComponent( $uuid, $region_name, $extra );
                     $section->appendComponent($component);
 
 
-                //   break;
+                  break;
+                case 'webform':
+
+
+                    $extra = [
+                      'id'            => 'webform_block',
+                      'label'         => $block_c['webform_id'],
+                      'label_display' => $block_c['label_display']??false,
+                      'provider'      => 'webform',
+                      'webform_id'    => $block_c['webform_id'],
+                    ];
+                    $uuid      = \Drupal::service('uuid')->generate();
+                    $component = new SectionComponent($uuid, $region_name, $extra);
+                    $section->appendComponent($component);
+
+
+                    break;
                 // default:
                 //   throw new \Exception('iou - this should never happen');
               } // end switch $provider

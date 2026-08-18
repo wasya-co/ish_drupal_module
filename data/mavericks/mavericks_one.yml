@@ -70,7 +70,7 @@
 
 - type: 'section_callout_parallax'
   meta:
-    replace: true
+    replace: false
   info: 'main_hero'
   fields:
     field_image_hero: 'https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2022/02/randall-king-wallpaper.jpg'
@@ -141,8 +141,8 @@
 
 
 - type: 'issue'
-  # meta:
-  #   replace: true
+  meta:
+    replace: true
   fields:
     title: 'Home'
   path: /home
@@ -166,13 +166,17 @@
           }
       regions:
         first:
-          - info: main_4icon_1
+          - type: advanced_block
+            info: main_4icon_1
         second:
-          - info: main_4icon_2
+          - type: advanced_block
+            info: main_4icon_2
         third:
-          - info: main_4icon_3
+          - type: advanced_block
+            info: main_4icon_3
         fourth:
-          - info: main_4icon_4
+          - type: advanced_block
+            info: main_4icon_4
     - type: layout_threecol_any
       col1_classes: col-12 col-md-4
       col2_classes: col-12 col-md-4
@@ -227,6 +231,7 @@
       regions:
         main:
           - type: advanced_block
+            info: home_section_2links
             fields:
               body:
                 value: |
@@ -243,6 +248,7 @@
       regions:
         first:
           - type: advanced_block
+            info: home_country_dance
             fields:
               body:
                 value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/10/country_dance.jpg' />
@@ -256,6 +262,7 @@
       regions:
         main:
           - type: advanced_block
+            info: home_link2_map
             fields:
               body:
                 value: |
