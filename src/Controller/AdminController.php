@@ -27,6 +27,7 @@ class AdminController extends ControllerBase {
           'url' => Url::fromRoute('ish_drupal_module.admin_put_content')->toString(),
         ],
         [
+          'confirm' => false,
           'title' => 'Add content yaml',
           'url' => Url::fromRoute('ish_drupal_module.admin_post_content')->toString(),
         ],

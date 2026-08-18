@@ -218,34 +218,25 @@ class NodesContent {
     if (Webform::load($item['id'])) {
       return;
     }
-    $elements = [
-      'name' => [
-        '#type' => 'textfield',
-        '#title' => 'Name',
-        '#required' => TRUE,
-      ],
-      'email' => [
-        '#type' => 'email',
-        '#title' => 'Email',
-        '#required' => TRUE,
-      ],
-      'message' => [
-        '#type' => 'textarea',
-        '#title' => 'Message',
-        '#required' => TRUE,
-      ],
-      'actions' => [
-        '#type' => 'webform_actions',
-        '#title' => 'Submit',
-        '#submit__label' => 'Send',
-      ],
+    $elements = [];
+    foreach($item['elements'] as $name => $config) {
+      $elements[$name] = [
+        '#type' => $config['type'] ?? 'textfield',
+        '#title' => $config['title'] ?? $config['id'],
+        '#required' => $config['required'] ?? false,
+      ];
+    }
+    $elements['actions'] => [
+      '#type' => 'webform_actions',
+      '#title' => 'Submit',
+      '#submit__label' => 'Send',
     ];
 
     $settings = Webform::getDefaultSettings();
 
     $webform = Webform::create([
       'id' => $item['id'],
-      'title' => $item['title'],
+      'title' => $item['title'] ?? $item['id'],
       'elements' => Yaml::encode($elements),
       'settings' => $settings,
     ]);

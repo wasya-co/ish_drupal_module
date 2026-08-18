@@ -36,7 +36,7 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   == other modules ==
 
-    Change default captcha to be h-captcha, it is the only one that works well. Google's captcha is extremely annoying and faulty.
+    Change default captcha to be h-captcha, it is the only one that works well. Google's captcha is extremely annoying and faulty. Paste your h-captcha key.
 
     You should setup matomo analytics.
 
