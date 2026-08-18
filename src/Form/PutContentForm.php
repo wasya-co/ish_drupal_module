@@ -72,7 +72,7 @@ class PutContentForm extends FormBase {
           break;
 
         case 'issue':
-          NodesContent::create_node($item['type'], $item['path'], $item);
+          NodesContent::create_node($item);
           break;
 
         case 'webform':

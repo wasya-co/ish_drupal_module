@@ -135,15 +135,15 @@ class NodesContent {
   /*
    * 2026-08-18 _vp_ continue
   **/
-  public static function create_node($type, $path, $item) {
+  public static function create_node($item) {
     logg($item, 'create_node()');
 
-    $node = self::get_node_by_path($path);
+    $node = self::get_node_by_path($item['path']);
     if ($node) {
       if ($item['meta']['existing'] == 'destroy') {
         $node->delete();
       } else {
-        \Drupal::messenger()->addStatus("Node `$path` already exists.");
+        \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
         return;
       }
     }
