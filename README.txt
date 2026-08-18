@@ -21,6 +21,8 @@
     WHERE collection = 'system.schema'
       AND name = 'ish_drupal_module';
 
+  tail -f /var/log/apache2/error.log | sed 's/\\n/\n/g'
+
 = Test =
 
   export PATH="$PATH:/var/www/html/vendor/bin"

@@ -136,6 +136,7 @@ class NodesContent {
    * 2026-08-18 _vp_ continue
   **/
   public static function create_node($type, $path, $item) {
+    logg($item, 'create_node()');
 
     $node = self::get_node_by_path($path);
     if ($node) {
@@ -169,7 +170,7 @@ class NodesContent {
           foreach ($region_blocks as $block_c) {
             if (is_string($block_c)) {
               [$provider, $name] = explode(':', $block_c, 2);
-              error_log("+++ +++ block_c: $block_c");
+              logg($block_c, 'block_c');
 
               switch($provider) {
                 case 'field':
@@ -218,7 +219,7 @@ class NodesContent {
             } elseif (is_array($block_c)) {
 
               $provider = $block_c['provider']??'block_content';
-              error_log("+++ +++ explicit provider: $provider");
+              logg($provider, 'provider');
 
               switch ($provider) {
                 case 'views':
@@ -275,6 +276,8 @@ class NodesContent {
   /*
   **/
   public static function create_webform($item) {
+    logg($item, 'create_webform()');
+
     if (Webform::load($item['id'])) {
       return;
     }

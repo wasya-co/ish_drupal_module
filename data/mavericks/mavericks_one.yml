@@ -1,6 +1,6 @@
 ---
 - type: basic
-  id: preheader_contact_info
+  info: preheader_contact_info
   fields:
     field_body:
       value: |
@@ -11,7 +11,7 @@
         </ul>
 
 - type: advanced_block
-  id: facebook_bottom
+  info: facebook_bottom
   fields:
     field_body:
       format: 'full_html'
@@ -79,7 +79,7 @@
       .a2026_main_hero { height: 100vh; background: #ce0f33; }
 
 - type: advanced_block
-  id: map
+  info: map
   fields:
     field_body:
       value: <div>The map</div>

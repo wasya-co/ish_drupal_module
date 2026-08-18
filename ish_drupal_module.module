@@ -14,17 +14,17 @@ use Drupal\ish_drupal_module\Helpers\MainHelper;
 use Drupal\ish_drupal_module\Models\ArticleTranslator;
 
 
-function logg($object, $label=null) {
-  print($label . ":");
+
+function dumpp($object, $label=null) {
+  print("+++ $label:");
   echo "<br />";
   dump($object);
 }
 
-function puts($object, $label=null) {
-  print($label . ":");
-  echo "<br />";
-  dump($object);
+function logg($what, $label) {
+  error_log("\n+++ +++ $label:\n" . print_r($what, true));
 }
+
 
 
 /*

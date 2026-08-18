@@ -61,7 +61,7 @@ class PostContentForm extends FormBase {
     // foreach ($yml_file['create_content'] ?? [] as $item) {
     //   if ($item['entity_type']??null) {
     //     if ('block' == $item['entity_type']) {
-    //       BlocksConfig::create_block($item['type'], $item['info'], $item);
+    //       BlocksConfig::create_block($item);
     //     }
     //     if ('node' == $item['entity_type']) {
     //       NodesContent::create_node($item['type'], $item['path'], $item);

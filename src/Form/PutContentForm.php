@@ -21,6 +21,7 @@ use Drupal\ish_drupal_module\Config\BlocksConfig;
 use Drupal\ish_drupal_module\Config\ViewsConfig;
 use Drupal\ish_drupal_module\Content\NodesContent;
 
+
 /*
 **/
 class PutContentForm extends FormBase {
@@ -59,13 +60,15 @@ class PutContentForm extends FormBase {
     $yaml_file = Yaml::decode(file_get_contents($file->getFileUri()));
 
     foreach ($yaml_file ?? [] as $item) {
+      logg($item, 'item');
+
       // [$entity_type, $name] = explode(':', 'advanced_block:copyright', 2);
 
       switch($item['type']) {
         case 'advanced_block':
         case 'basic':
         case 'section_callout_parallax':
-          BlocksConfig::create_block($item['type'], $item['info'], $item);
+          BlocksConfig::create_block($item);
           break;
 
         case 'issue':
@@ -81,7 +84,7 @@ class PutContentForm extends FormBase {
         //   break;
 
         default:
-          throw new \Exception('Not implemented');
+          throw new \Exception('zz3 - Not implemented');
       }
     }
 
