@@ -1,0 +1,259 @@
+---
+- type: basic
+  id: preheader_contact_info
+  fields:
+    field_body:
+      value: |
+        <ul>
+          <li>(512) 514-5650</li>
+          <li>info@mavericksdancehall.com</li>
+          <li>facebook</li>
+        </ul>
+
+- type: advanced_block
+  id: facebook_bottom
+  fields:
+    field_body:
+      format: 'full_html'
+      value: |
+        <a target='_blank' href='https://www.facebook.com/mavericksdancehallbuda'>Facebook</a>
+
+
+- type: 'webform'
+  id: 'contact_us_simple'
+  title: 'Contact Us'
+  elements:
+    name: {}
+    email: {}
+    message:
+      type: 'textarea'
+
+- type: webform
+  id: careers
+  title: careers
+  elements:
+    name: {}
+    email: {}
+    message:
+      type: 'textarea'
+
+
+- type: issue
+  path: /careers
+  fields:
+    title: Careers
+    body:
+      value: |
+        <p>Apply now</p>
+        <h5>Buda</h5>
+        <p>Our Buda location is currently taking applications for:</p>
+        <ul>
+          <li>Security Personnel</li>
+          <li>Bartenders</li>
+          <li>Cocktails</li>
+          <li>Bar Backs</li>
+          <li>Front Desk</li>
+        </ul>
+  sections:
+    - type: layout_onecol_any
+      regions:
+        main:
+          - 'field:body'
+          - 'webform:careers'
+
+- type: basic
+  info: copyright
+  fields:
+    field_body:
+      value: |
+        <span>Copyright © 2026 Mavericks Dance Hall. Hosted by <a href='https://wasyaco.com/?utm_campaign=mavericks'>wasya.co</a></span>
+
+- type: 'section_callout_parallax'
+  info: 'main_hero'
+  fields:
+    body:
+      value: "<p><b>main hero</b>body.</p>"
+    field_image_hero: 'https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2022/02/randall-king-wallpaper.jpg'
+    field_class_name: 'a2026_main_hero'
+    field_custom_css: |
+      .a2026_main_hero { height: 100vh; background: #ce0f33; }
+
+- type: advanced_block
+  id: map
+  fields:
+    field_body:
+      value: <div>The map</div>
+
+
+- type: issue
+  path: /contact-us
+  fields:
+    body:
+      value: |
+        <h5>More Info</h5>
+        <p>Feel free to contact us with any questions...</p>
+  sections:
+    - type: layout_onecol_any
+      regions:
+        main:
+          - 'advanced_block:map'
+    - type: layout_twocol_any
+      regions:
+        first:
+          - 'webform:contact_us_simple'
+        second:
+          - 'field:body'
+
+
+- type: 'advanced_block'
+  info: 'main_4icon_1'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: FIVE BARS
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/saloon.png
+    field_body: |
+      <span>We have a bar on our patio and four bars positioned around the large dance floor.</span>
+- type: 'advanced_block'
+  info: 'main_4icon_2'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LIVE MUSIC
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/live_music.png
+    field_body: |
+      <span>We have live music and DJs to provide great entertainment all night long. Check our calendar.</span>
+- type: 'advanced_block'
+  info: 'main_4icon_3'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LARGE DANCE FLOOR
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/dancing.png
+    field_body: |
+      <span>Our large dance floor is the center of entertainment and community here at Mavericks.</span>
+- type: 'advanced_block'
+  info: 'main_4icon_Our patio provides a relaxing and fun atmosphere with games and live DJs Thur-Sat.'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: HUGE PATIO
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/games.png
+    field_body: |
+      <span>Our patio provides a relaxing and fun atmosphere with games and live DJs Thur-Sat.</span>
+
+
+- type: 'issue'
+  meta:
+    existing: 'destroy'
+  fields:
+    title: 'Home'
+  path: /home
+  sections:
+    - type: 'layout_onecol_any'
+      regions:
+        main:
+          - 'section_callout_parallax:main_hero'
+    - type: 'layout_fourcol_any'
+      col1_classes: col-6 col-md-3
+      col2_classes: col-6 col-md-3
+      col3_classes: col-6 col-md-3
+      col4_classes: col-6 col-md-3
+      fields:
+        field_image_hero: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2015/10/brickwall.jpg
+        field_class_name: a2026_main_4iconW
+        field_custom_css: |
+          .a2026_main_4iconW {
+            background-repeat: repeat;
+            text-align: center;
+          }
+      regions:
+        first:
+          - info: main_4icon_1
+        second:
+          - info: main_4icon_2
+        third:
+          - info: main_4icon_3
+        fourth:
+          - info: main_4icon_4
+    - type: layout_threecol_any
+      col1_classes: col-12 col-md-4
+      col2_classes: col-12 col-md-4
+      col3_classes: col-12 col-md-4
+      fields:
+        field_class_name: 'a2026_main_imgs_promo'
+        field_custom_css: |
+          .a2026_main_imgs_promo {
+            background-color: rgb(23, 26, 46);
+          }
+      regions:
+        first:
+          - type: advanced_block
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
+        second:
+          - type: advanced_block
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2021/02/CollegeNight2021-Buda-vertical-980x1515.jpg' alt='' />
+        third:
+          - type: advanced_block
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
+
+    - type: layout_twocol_any
+      col1_classes: col-12 col-md-4 offset-md-2
+      col2_classes: col-12 col-md-4
+      regions:
+        first:
+          - type: advanced_block
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/04/red-dirt-dance-lessons2023-980x1515.jpg' alt='' />
+        second:
+          - type: advanced_block
+            fields:
+              body:
+                value: |
+                  <a href="https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/05/Buda-Events-Print2023.jpg">
+                    <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/05/Buda-Events-Print2023.jpg' />
+                  </a>
+
+    - type: layout_onecol_any
+      regions:
+        main:
+          - type: advanced_block
+            fields:
+              body:
+                value: |
+                  <h3>CHECK OUT OUR EVENT SCHEDULE</h3>
+                  <ul>
+                    <li><a href='/events' class='btn btn-primary'>Calendar</a></li>
+                    <li><a href='/tickets' class='btn btn-primary'>Tickets</a></li>
+                  </ul>
+
+    - type: layout_twocol_any
+      label: contact_us
+      col1_classes: col-12 col-md-6
+      col2_classes: col-12 col-md-6
+      regions:
+        first:
+          - type: advanced_block
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/10/country_dance.jpg' />
+
+        second:
+          - type: webform
+            webform_id: contact_us_simple
+
+    - type: layout_onecol_any
+      label: visit_us
+      regions:
+        main:
+          - type: advanced_block
+            fields:
+              body:
+                value: |
+                  <h3>Open Wednesday through Saturday 7pm to 2am</h3>
+                  <ul>
+                    <li><a href='https://www.google.com/maps/place/Mavericks+Dance+Hall/@30.4566767,-97.663402,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x4fb92b622be36125!8m2!3d30.4566767!4d-97.6612133' class='btn btn-primary'>Visit Us!</a></li>
+                  </ul>

@@ -1,0 +1,37 @@
+---
+
+
+
+- type: 'menu'
+  id: 'main_menu'
+  links:
+    - title: Home
+      url: /home
+      weight: 0
+    - title: Events
+      url: /events
+      weight: 0
+    - title: Careers
+      url: /careers
+      weight: 0
+    - title: Contact Us
+      url: /contact-us
+      weight: 0
+
+
+- theme_config:
+    logo: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/logo.png
+    custom_css:
+
+block_layout:
+  regions:
+    preheader:
+      - 'advanced_block:preheader_contact_info'
+    preheader_form:
+      - 'menu:main_menu'
+    prefooter:
+      - 'menu:main_menu'
+    footer_1:
+      - 'advanced_block:copyright'
+    footer_4:
+      - 'advanced_block:facebook_bottom'
