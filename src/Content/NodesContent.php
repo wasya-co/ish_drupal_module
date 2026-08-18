@@ -113,7 +113,7 @@ class NodesContent {
     foreach ($item['fields'] as $field_name => $field_value) {
       if (str_contains($field_name, 'image')) {
         $contents = file_get_contents($field_value);
-        $directory = 'public://field_image_thumb';
+        $directory = "public://$field_name";
         \Drupal::service('file_system')->prepareDirectory( $directory, FileSystemInterface::CREATE_DIRECTORY );
         $destination = $directory . '/' . basename(parse_url($field_value, PHP_URL_PATH));
         $file = \Drupal::service('file.repository')->writeData(
@@ -121,7 +121,7 @@ class NodesContent {
           $destination,
           FileSystemInterface::EXISTS_RENAME
         );
-        $values['field_image_thumb'] = [
+        $values[$field_name] = [
           'target_id' => $file->id(),
           'alt' => '',
         ];
@@ -142,8 +142,8 @@ class NodesContent {
 
           foreach ($region_blocks as $block_c) {
 
-
-            switch ($block_c['provider']??'block_content') {
+            $provider = $block_c['provider']??'block_content';
+            switch ($provider) {
               case 'views':
 
                 $extra = [
@@ -169,7 +169,7 @@ class NodesContent {
                   'id' => "block_content:{$block->uuid()}",
                   'label' => $block_c['label'],
                   'label_display' => $block_c['label_display']??false,
-                  'provider' => $block_c['provider'],
+                  'provider' => $provider,
                 ];
                 $uuid = \Drupal::service('uuid')->generate();
                 $component = new SectionComponent( $uuid, $region_name, $extra );
@@ -177,7 +177,7 @@ class NodesContent {
 
                 break;
               default:
-                throw new \Exception('Not implemented :: NodesContent');
+                throw new \Exception('iou - this should never happen');
             }
           }
         }
