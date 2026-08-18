@@ -26,13 +26,14 @@ use Drupal\taxonomy\Entity\Term;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+/*
+**/
 class BlocksConfig {
 
   /*
-   * hours_of_operation, a basic block.
   **/
-  public static function hours_of_operation() {
-    $slug = 'hours_of_operation';
+  public static function copyright() {
+    $slug = 'copyright';
 
     $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
       'type' => 'basic',
@@ -40,22 +41,15 @@ class BlocksConfig {
     ]);
     if ($blocks) {
       $block = reset($blocks);
-    }
-    else {
+    } else {
       $block = BlockContent::create([
         'type' => 'basic',
         'info' => $slug,
         'body' => [
           'value' => <<<HTML
-            <ul>
-              <li>Monday: Closed</li>
-              <li>Tuesday: 9:00 AM -- 6:00 PM</li>
-              <li>Wednesday: 9:00 AM -- 6:00 PM</li>
-              <li>Thursday: 9:00 AM -- 6:00 PM</li>
-              <li>Friday: 9:00 AM -- 6:00 PM</li>
-              <li>Saturday: 9:00 AM -- 2:00 PM</li>
-              <li>Sunday: Closed</li>
-            </ul>
+            <center>
+              Copyright &copy; 2026 <a href="https://wasyaco.com/">WasyaCo</a> &nbsp; All rights Reserved
+            </center>
           HTML,
           'format' => 'full_html',
         ],
@@ -63,25 +57,27 @@ class BlocksConfig {
       $block->save();
     }
 
-
+    /* place it in the theme */
     $theme = \Drupal::config('system.theme')->get('default');
     if (!Block::load("{$theme}_{$slug}")) {
-    Block::create([
+      Block::create([
         'id' => "{$theme}_{$slug}",
         'theme' => $theme,
         'plugin' => 'block_content:' . $block->uuid(),
-        'region' => 'footer_first',
+        'region' => 'footer_fifth',
         'weight' => 0,
         'visibility' => [],
         'settings' => [
           'id' => 'block_content:' . $block->uuid(),
-          'label' => 'Hours of Operation',
-          'label_display' => true,
+          'label' => 'Copyright',
+          'label_display' => false,
           'provider' => 'block_content',
           'view_mode' => 'full',
         ],
       ])->save();
     }
+
+    return $block;
   }
 
   /*
@@ -107,9 +103,67 @@ class BlocksConfig {
   }
 
   /*
+   * hours_of_operation, a basic block.
+  **/
+  public static function hours_of_operation() {
+    $slug = 'hours_of_operation';
+
+    $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([
+      'type' => 'basic',
+      'info' => $slug,
+    ]);
+    if ($blocks) {
+      $block = reset($blocks);
+    } else {
+      $block = BlockContent::create([
+        'type' => 'basic',
+        'info' => $slug,
+        'body' => [
+          'value' => <<<HTML
+            <ul>
+              <li>Monday: Closed</li>
+              <li>Tuesday: 9:00 AM -- 6:00 PM</li>
+              <li>Wednesday: 9:00 AM -- 6:00 PM</li>
+              <li>Thursday: 9:00 AM -- 6:00 PM</li>
+              <li>Friday: 9:00 AM -- 6:00 PM</li>
+              <li>Saturday: 9:00 AM -- 2:00 PM</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          HTML,
+          'format' => 'full_html',
+        ],
+      ]);
+      $block->save();
+    }
+
+    /* place it in the theme */
+    $theme = \Drupal::config('system.theme')->get('default');
+    if (!Block::load("{$theme}_{$slug}")) {
+      Block::create([
+        'id' => "{$theme}_{$slug}",
+        'theme' => $theme,
+        'plugin' => 'block_content:' . $block->uuid(),
+        'region' => 'footer_first',
+        'weight' => 0,
+        'visibility' => [],
+        'settings' => [
+          'id' => 'block_content:' . $block->uuid(),
+          'label' => 'Hours of Operation',
+          'label_display' => true,
+          'provider' => 'block_content',
+          'view_mode' => 'full',
+        ],
+      ])->save();
+    }
+
+    return $block;
+  }
+
+
+  /*
    * the block definition. should be create_block_type()
   **/
-  public static function setup_block($block_type, $fields) {
+  public static function create_block_type($block_type, $fields) {
     if (!BlockContentType::load($block_type)) {
       BlockContentType::create([
         'id' => $block_type,
@@ -170,29 +224,31 @@ class BlocksConfig {
 
   }
 
-  /*
+  /* use setup_about_20()
   **/
-  public static function setup_about_10() {
-    $section_name = 'section_about_10';
-    $fields = [
-      'body'              => DefaultFields::body,
-      'field_class_name'  => DefaultFields::text,
-      'field_custom_css'  => DefaultFields::text_long,
-      'field_image_hero'  => DefaultFields::image,
-      'field_image_thumb' => DefaultFields::image,
-      'field_is_reverse'  => DefaultFields::toggle,
-      'field_link_text'   => DefaultFields::text,
-      'field_link_url'    => DefaultFields::text,
-      'field_subtitle'    => DefaultFields::text,
-    ];
-    self::setup_block($section_name, $fields);
-  }
+  // public static function setup_about_10() {
+  //   $section_name = 'section_about_10';
+  //   $fields = [
+  //     'body'              => DefaultFields::body,
+  //     'field_class_name'  => DefaultFields::text,
+  //     'field_custom_css'  => DefaultFields::text_long,
+  //     'field_image_hero'  => DefaultFields::image,
+  //     'field_image_thumb' => DefaultFields::image,
+  //     'field_is_reverse'  => DefaultFields::toggle,
+  //     'field_link_text'   => DefaultFields::text,
+  //     'field_link_url'    => DefaultFields::text,
+  //     'field_subtitle'    => DefaultFields::text,
+  //   ];
+  //   self::create_block_type($section_name, $fields);
+  // }
 
   public static function setup_about_20() {
     $section_name = 'section_about_20';
     $fields = [
       'field_class_name'  => DefaultFields::text,
       'field_custom_css'  => DefaultFields::text_long,
+      'field_style'       => DefaultFields::select_3style,
+      'field_is_reverse'  => DefaultFields::toggle,
 
       'field_subtitle'    => DefaultFields::text,
       'body'              => DefaultFields::body,
@@ -201,13 +257,11 @@ class BlocksConfig {
       'field_image_thumb' => DefaultFields::image,
       'field_icon'        => DefaultFields::file,
 
-      'field_is_reverse'  => DefaultFields::toggle,
-
       'field_link_text'   => DefaultFields::text,
       'field_link_url'    => DefaultFields::text,
 
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
   /*
   **/
@@ -236,7 +290,7 @@ class BlocksConfig {
       'field_3_body'        => DefaultFields::text,
       'field_3_icon'        => DefaultFields::file,
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
 
   /*
@@ -254,7 +308,7 @@ class BlocksConfig {
       'field_link_url'    => DefaultFields::text,
       'field_subtitle'    => DefaultFields::text,
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
 
 
@@ -270,7 +324,7 @@ class BlocksConfig {
       'field_video_file' => DefaultFields::file,
       'field_image_hero' => DefaultFields::image,
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
 
   /*
@@ -281,15 +335,20 @@ class BlocksConfig {
       'body'              => DefaultFields::body,
       'field_class_name'  => DefaultFields::text,
       'field_custom_css'  => DefaultFields::text_long,
-      // 'field_image_hero'  => DefaultFields::image,
-      // 'field_image_thumb' => DefaultFields::image,
+      'field_style'       => DefaultFields::select_3style,
       // 'field_is_reverse'  => DefaultFields::toggle,
-      // 'field_link_text'   => DefaultFields::text,
-      // 'field_link_url'    => DefaultFields::text,
+
       'field_subtitle'    => DefaultFields::text,
       'field_view_ref' => DefaultFields::view_ref,
+      // 'body'              => DefaultFields::body,
+
+      // 'field_image_hero'  => DefaultFields::image,
+      // 'field_image_thumb' => DefaultFields::image,
+
+      // 'field_link_text'   => DefaultFields::text,
+      // 'field_link_url'    => DefaultFields::text,
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
 
   /*
@@ -299,6 +358,8 @@ class BlocksConfig {
     $fields = [
       'field_class_name'  => DefaultFields::text,
       'field_custom_css'  => DefaultFields::text_long,
+      'field_style'       => DefaultFields::select_3style,
+
       'field_subtitle'    => DefaultFields::text,
       'body'              => DefaultFields::body,
       'field_view_ref'    => DefaultFields::view_ref,
@@ -306,7 +367,7 @@ class BlocksConfig {
       'field_link_text'   => DefaultFields::text,
       'field_link_url'    => DefaultFields::text,
     ];
-    self::setup_block($section_name, $fields);
+    self::create_block_type($section_name, $fields);
   }
 
 }

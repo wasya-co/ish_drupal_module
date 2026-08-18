@@ -16,6 +16,8 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
   See changelog.txt , see doc/ and the development-grade README.txt
 
+  You should read the README.md that corresponds to your exact version, since capabilities change so much. Generally, you should update to the latest minor and patch versions: 2.99.98 where 99 is the latest you can find, and then 98 is the latest you can find.
+
 = Install =
 
   Install the module. Then, review ish_drupal_module.install keep what you want, discard what you don't want, then run 'drush ... updb'. A lot of the available functionality is available at /admin/ish_drupal_module
@@ -107,6 +109,8 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
     === advanced_block ===
 
+      What is the difference between it and a basic block? It has all the default_block_fields.
+
     === counter ===
       Not implemented. I personally find the type misleading.
 
@@ -116,14 +120,16 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
       * field_subtitle
       * field_tags
 
-    === section_about ===
+    === section_about_10 ===
+
+    === section_about_3cards ===
+
     === section_about_image ===
       * title or field_subtitle
       * body
       * field_image_thumb
       * field_link
 
-    === section_about_three_cards ===
     === section_accordeon ===
       Same as FAQ's.
 

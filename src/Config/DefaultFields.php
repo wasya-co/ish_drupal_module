@@ -43,6 +43,21 @@ class DefaultFields {
     'type' => 'file',
   ];
 
+  public const select_3style = [
+    'default_value' => ['value' => 'style_1'],
+    'field_config_settings' => [],
+    'field_storage_config_settings' => [
+      'allowed_value' => [
+        'style_1' => 'style_1',
+        'style_2' => 'style_2',
+        'style_3' => 'style_3',
+      ],
+    ],
+    'form_display' => 'options_select',
+    'display' => 'string',
+    'type' => 'list_string',
+  ];
+
   public const toggle = [
     'form_display' => 'boolean_checkbox',
     'default_value' => [

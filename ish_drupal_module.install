@@ -27,158 +27,33 @@ function ish_drupal_module_update_9003() {
   ThisConfig::setup_views_config();
 
   ContentTypesConfig::setup_issue();
-  LayoutConfig::update_pagetitle_for_issue();
+  ContentTypesConfig::setup_slide();
+  ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
+  ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
 
-  // LayoutConfig::clear();
-  // LayoutConfig::setup_marketing_site();
-  // BlocksConfig::hours_of_operation();
-
-  // BlocksConfig::setup_block('section_block', DefaultFields::default_block_fields);
-  // BlocksConfig::setup_block('advanced_block', DefaultFields::default_block_fields);
-
-  // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['advanced_page']);
-  // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['marketing_block']);
+  LayoutConfig::clear();
+  BlocksConfig::hours_of_operation();
+  BlocksConfig::copyright();
+  LayoutConfig::setup_marketing_site();
 
 
-  // ContentTypesConfig::setup_slide();
+  BlocksConfig::create_block_type('advanced_block', DefaultFields::default_block_fields);
+  BlocksConfig::setup_about_20(); // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_about_3cards', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_callout_parallax', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_hero_video', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_list_10', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_slider_images', DefaultFields::default_block_fields);
 
+  BlocksConfig::setup_slider_images();
   BlocksConfig::setup_hero_video();
   BlocksConfig::setup_callout_parallax();
 
-
-  // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
-
-  ContentTypesConfig::setup_content_type('issue', DefaultFields::default_node_fields );
-  ContentTypesConfig::enable_layout_builder_for('issue', 'full');
-
-
-
-  // ViewsConfig::create_from_file('views.view.master.yml');
-
-  $view_config = [
-    'default' => [
-      'display_options' => [
-        'filters' => [
-          'status' => [
-            'id' => 'status',
-            'table' => 'node_field_data',
-            'field' => 'status',
-            'value' => '1',
-            'entity_type' => 'node',
-            'entity_field' => 'status',
-          ],
-          'type' => [
-            'entity_type' => 'node',
-            'entity_field' => 'type',
-            'id' => 'type',
-            'field' => 'type',
-            'plugin_id' => 'bundle',
-            'table' => 'node_field_data',
-            'value' => [
-              'directory_item' => 'directory_item',
-            ],
-          ],
-          'row' => [
-            'options' => [
-              'view_mode' => 'teaser',
-            ],
-            'plugin_id' => 'entity:node',
-            'type' => 'entity:node',
-          ],
-          'style' => [
-            'type' => 'default',
-            'plugin_id' => 'default',
-            'options' => [
-              'row_class' => 'col-sm-6 col-md-3',
-              'default_row_class' => false,
-            ],
-          ],
-        ],
-      ],
-    ],
-    'defaults' => [
-      'row' => false,
-      'style' => false,
-    ],
-    'display_options' => [
-      'css_class' => 'container row',
-      'filters' => [
-        'status' => [
-          'id' => 'status',
-          'table' => 'node_field_data',
-          'field' => 'status',
-          'value' => '1',
-          'entity_type' => 'node',
-          'entity_field' => 'status',
-        ],
-        'type' => [
-          'entity_type' => 'node',
-          'entity_field' => 'type',
-          'id' => 'type',
-          'field' => 'type',
-          'plugin_id' => 'bundle',
-          'table' => 'node_field_data',
-          'value' => [
-            'directory_item' => 'directory_item',
-          ],
-        ],
-        'row' => [
-          'options' => [
-            'view_mode' => 'teaser',
-          ],
-          'plugin_id' => 'entity:node',
-          'type' => 'entity:node',
-        ],
-        'style' => [
-          'type' => 'default',
-          'plugin_id' => 'default',
-          'options' => [
-            'row_class' => 'col-sm-6 col-md-3',
-            'default_row_class' => false,
-          ],
-        ],
-      ],
-      'row' => [
-        'options' => [
-          'view_mode' => 'teaser',
-        ],
-        'plugin_id' => 'entity:node',
-        'type' => 'entity:node',
-      ],
-      'style' => [
-        'type' => 'default',
-        'plugin_id' => 'default',
-        'options' => [
-          'row_class' => 'col-sm-6 col-md-3',
-          'default_row_class' => false,
-        ],
-      ],
-    ],
-    'display_plugin' => 'block', // block or page
-    'display_title' => 'block_frontpage',
-  ];
-  // ViewsConfig::create_view('directory', 'block_frontpage', $view_config);
-  // ViewsConfig::create_from_file_2();
-
+  ViewsConfig::create_from_file('views.view.master.yml');
 }
 
-function ish_drupal_module_update_9013() {
-  // BlocksConfig::setup_callout_parallax();
-
-  // ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
-  // ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
-
-  // BlocksConfig::setup_list_10();
-
-  // ModulesConfig::install_modules();
-
-  // BlocksConfig::setup_about_3cards();
-  // BlocksConfig::setup_about_20();
-
-  // ContentTypesConfig::setup_slide();
-
-  BlocksConfig::setup_slider_images();
-}
+// function ish_drupal_module_update_9013() {
+// }
 
 
 

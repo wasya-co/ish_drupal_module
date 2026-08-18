@@ -8,7 +8,6 @@ use Drupal\Core\Plugin\PluginFormInterface;
 
 class CollapseExpandLayout extends LayoutDefault implements PluginFormInterface {
 
-
   public function build(array $regions) {
     $build = parent::build($regions);
     $build['#attached']['library'][] = 'ish_drupal_module/collapse_expand';

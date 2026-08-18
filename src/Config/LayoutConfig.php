@@ -46,6 +46,8 @@ class LayoutConfig {
   **/
   public static function setup_marketing_site() {
     $theme = \Drupal::config('system.theme')->get('default');
+    $hours_of_operation = BlocksConfig::hours_of_operation();
+    $copyright = BlocksConfig::copyright();
 
     $regions_blocks = [
       'header' => [
@@ -62,10 +64,10 @@ class LayoutConfig {
       ],
       'primary_menu' => [
         'main_menu' => [
-          'plugin' => 'superfish:main',
-          'provider' => 'superfish',
+          'plugin' => 'system_menu_block:main',
+          'provider' => 'system',
           'settings' => [
-            'id' => 'superfish:main',
+            'id' => 'system_menu_block:main',
           ],
         ],
       ],
@@ -84,11 +86,24 @@ class LayoutConfig {
           'provider' => 'system',
         ],
       ],
+      'footer_first' => [
+        /* incomplete: */
+        // 'hours_of_operation' => [
+        //   'label_display' => false,
+        //   'plugin' => 'block_content:' . $hours_of_operation->uuid(),
+        //   'provider' => '',
+        //   'settings' => [
+        //     'id' => 'block_content:' . $hours_of_operation->uuid(),
+        //   ],
+        // ],
+      ],
       'footer_fourth' => [
         'tabs' => [
           'plugin' => 'local_tasks_block',
           'provider' => 'core',
         ],
+      ],
+      'footer_fifth' => [
       ],
     ];
     $weight = 0;

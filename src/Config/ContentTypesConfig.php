@@ -147,6 +147,14 @@ class ContentTypesConfig {
   }
 
   /*
+  **/
+  // public static function setup_directory_item() {
+  //   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['advanced_page']);
+  //   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['marketing_block']);
+  //   // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
+  // }
+
+  /*
    * issue is same as advanced_page, but without image_hero.
   **/
   public static function setup_issue() {

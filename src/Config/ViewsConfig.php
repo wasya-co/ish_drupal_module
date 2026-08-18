@@ -60,8 +60,6 @@ class ViewsConfig {
     // if ($config['default']['display_options']['filters']) {
     //   $display['default']['display_options']['filters'] = $config['default']['display_options']['filters'];
     // }
-
-
     // $display[$display_name] = [
     //   'id' => $display_name,
     //   'display_options' => $config['display_options']??[],
@@ -76,4 +74,115 @@ class ViewsConfig {
   }
 
 }
+
+
+
+
+
+
+/* trash, use yml */
+/* $view_config = [
+  'default' => [
+    'display_options' => [
+      'filters' => [
+        'status' => [
+          'id' => 'status',
+          'table' => 'node_field_data',
+          'field' => 'status',
+          'value' => '1',
+          'entity_type' => 'node',
+          'entity_field' => 'status',
+        ],
+        'type' => [
+          'entity_type' => 'node',
+          'entity_field' => 'type',
+          'id' => 'type',
+          'field' => 'type',
+          'plugin_id' => 'bundle',
+          'table' => 'node_field_data',
+          'value' => [
+            'directory_item' => 'directory_item',
+          ],
+        ],
+        'row' => [
+          'options' => [
+            'view_mode' => 'teaser',
+          ],
+          'plugin_id' => 'entity:node',
+          'type' => 'entity:node',
+        ],
+        'style' => [
+          'type' => 'default',
+          'plugin_id' => 'default',
+          'options' => [
+            'row_class' => 'col-sm-6 col-md-3',
+            'default_row_class' => false,
+          ],
+        ],
+      ],
+    ],
+  ],
+  'defaults' => [
+    'row' => false,
+    'style' => false,
+  ],
+  'display_options' => [
+    'css_class' => 'container row',
+    'filters' => [
+      'status' => [
+        'id' => 'status',
+        'table' => 'node_field_data',
+        'field' => 'status',
+        'value' => '1',
+        'entity_type' => 'node',
+        'entity_field' => 'status',
+      ],
+      'type' => [
+        'entity_type' => 'node',
+        'entity_field' => 'type',
+        'id' => 'type',
+        'field' => 'type',
+        'plugin_id' => 'bundle',
+        'table' => 'node_field_data',
+        'value' => [
+          'directory_item' => 'directory_item',
+        ],
+      ],
+      'row' => [
+        'options' => [
+          'view_mode' => 'teaser',
+        ],
+        'plugin_id' => 'entity:node',
+        'type' => 'entity:node',
+      ],
+      'style' => [
+        'type' => 'default',
+        'plugin_id' => 'default',
+        'options' => [
+          'row_class' => 'col-sm-6 col-md-3',
+          'default_row_class' => false,
+        ],
+      ],
+    ],
+    'row' => [
+      'options' => [
+        'view_mode' => 'teaser',
+      ],
+      'plugin_id' => 'entity:node',
+      'type' => 'entity:node',
+    ],
+    'style' => [
+      'type' => 'default',
+      'plugin_id' => 'default',
+      'options' => [
+        'row_class' => 'col-sm-6 col-md-3',
+        'default_row_class' => false,
+      ],
+    ],
+  ],
+  'display_plugin' => 'block', // block or page
+  'display_title' => 'block_frontpage',
+]; */
+// ViewsConfig::create_view('directory', 'block_frontpage', $view_config);
+
 
