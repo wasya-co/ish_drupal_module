@@ -61,6 +61,7 @@ class PutContentForm extends FormBase {
 
       switch($item['type']) {
         case 'advanced_block':
+        case 'basic':
         case 'section_callout_parallax':
           BlocksConfig::create_block($item['type'], $item['info'], $item);
           break;

@@ -24,6 +24,8 @@ use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
+use Drupal\ish_drupal_module\Content\NodesContent;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /*
@@ -87,19 +89,20 @@ class BlocksConfig {
   public static function create_block($block_type, $info, $config) {
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
 
-    $blocks = $storage->loadByProperties([
+    $existing = $storage->loadByProperties([
       'type' => $block_type,
       'info' => $info,
     ]);
-    if ($blocks) {
-      $block = reset($blocks);
-    }
-    else {
-      $config2 = array_merge($config, $config['fields']);
-      $block = BlockContent::create($config2);
-      $block->save();
+    if (!empty($existing)) {
+      return reset($existing);
     }
 
+    $block = BlockContent::create(array_merge(
+      $config,
+      NodesContent::prepareFieldValues($config['fields'] ?? [])
+    ));
+    $block->save();
+    return $block;
   }
 
   /*

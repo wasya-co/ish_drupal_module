@@ -35,6 +35,45 @@ class NodesContent {
 
   /*
   **/
+  public static function imageFieldFromUrl(string $field_name, string $url): array {
+    $response = \Drupal::httpClient()->get($url);
+    $contents = (string) $response->getBody();
+    $directory = 'public://' . $field_name;
+    \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
+    $destination = $directory . '/' . basename(parse_url($url, PHP_URL_PATH));
+    $file = \Drupal::service('file.repository')->writeData(
+      $contents,
+      $destination,
+      FileSystemInterface::EXISTS_RENAME
+    );
+    $file->setPermanent();
+    $file->save();
+
+    return [
+      'target_id' => $file->id(),
+      'alt' => '',
+    ];
+  }
+
+  /*
+  **/
+  public static function prepareFieldValues(array $fields): array {
+    $values = [];
+    foreach ($fields as $field_name => $field_value) {
+      if (str_contains($field_name, 'image') && is_string($field_value) && filter_var($field_value, FILTER_VALIDATE_URL)) {
+        $values[$field_name] = self::imageFieldFromUrl($field_name, $field_value);
+        continue;
+      }
+      if ($field_name === 'body' && is_array($field_value) && !isset($field_value['format'])) {
+        $field_value['format'] = 'basic_html';
+      }
+      $values[$field_name] = $field_value;
+    }
+    return $values;
+  }
+
+  /*
+  **/
   public static function add_section_to($which, $this_section) {
     if ($which['by_title']) {
       $nodes = \Drupal::entityTypeManager()
@@ -44,7 +83,7 @@ class NodesContent {
         ]);
       $node = reset($nodes);
     } else {
-      throw new \LogicException('Not implemented zzq');
+      throw new \LogicException('zzq - Not implemented');
     }
 
     $section = new Section( $this_section['type'], $this_section['config']??[] );
@@ -110,25 +149,7 @@ class NodesContent {
         'pathauto' => 0,
       ],
     ];
-    foreach ($item['fields'] as $field_name => $field_value) {
-      if (str_contains($field_name, 'image')) {
-        $contents = file_get_contents($field_value);
-        $directory = "public://$field_name";
-        \Drupal::service('file_system')->prepareDirectory( $directory, FileSystemInterface::CREATE_DIRECTORY );
-        $destination = $directory . '/' . basename(parse_url($field_value, PHP_URL_PATH));
-        $file = \Drupal::service('file.repository')->writeData(
-          $contents,
-          $destination,
-          FileSystemInterface::EXISTS_RENAME
-        );
-        $values[$field_name] = [
-          'target_id' => $file->id(),
-          'alt' => '',
-        ];
-      } else {
-        $values[$field_name] = $field_value;
-      }
-    } // end fields
+    $values = array_merge($values, self::prepareFieldValues($item['fields']));
     $node = Node::create($values);
     $node->save();
 
