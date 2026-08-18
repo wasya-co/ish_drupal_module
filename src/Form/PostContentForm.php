@@ -21,10 +21,10 @@ use Drupal\ish_drupal_module\Content\NodesContent;
 
 /*
 **/
-class CreateContentForm extends FormBase {
+class PostContentForm extends FormBase {
 
   public function getFormId() {
-    return 'create_content_form';
+    return 'post_content_form';
   }
 
   /*

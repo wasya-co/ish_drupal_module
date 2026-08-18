@@ -49,7 +49,7 @@ function ish_drupal_module_update_9002() {
   BlocksConfig::setup_hero_video();
   BlocksConfig::setup_callout_parallax();
 
-  ViewsConfig::create_from_file('views.view.master.yml');
+  ViewsConfig::create_view('master', 'block_frontpage', ['display_plugin' => 'block']);
 }
 
 // function ish_drupal_module_update_9013() {

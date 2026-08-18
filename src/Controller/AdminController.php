@@ -22,15 +22,19 @@ class AdminController extends ControllerBase {
     return [
       '#secondary_menu_links' => [
         [
-          'title' => 'import content.yml',
-          'url' => Url::fromRoute('ish_drupal_module.admin_create_content')->toString(),
+          'title' => 'Replace content yaml',
+          'url' => Url::fromRoute('ish_drupal_module.admin_put_content')->toString(),
         ],
         [
-          'title' => 're- Create Issue Home',
+          'title' => 'Add content yaml',
+          'url' => Url::fromRoute('ish_drupal_module.admin_post_content')->toString(),
+        ],
+        [
+          'title' => 'Replace issue home',
           'url' => Url::fromRoute('ish_drupal_module.admin_recreate_issue_home')->toString(),
         ],
         [
-          'title' => 'Recreate Layout',
+          'title' => 'Recreate layout',
           'url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
         ],
       ],
