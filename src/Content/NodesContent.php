@@ -164,43 +164,66 @@ class NodesContent {
         foreach ($this_section['regions'] as $region_name => $region_blocks) {
 
           foreach ($region_blocks as $block_c) {
+            if (is_string($block_c)) {
 
-            $provider = $block_c['provider']??'block_content';
-            switch ($provider) {
-              case 'views':
+              [$provider, $id] = explode(':', $block_c, 2);
+              switch($provider) {
+                case 'field':
 
-                $extra = [
-                  'id' => "views_block:{$block_c['view_id']}",
-                  'label' => $block_c['label'],
-                  'label_display' => FALSE,
-                  'provider' => $block_c['provider'],
-                ];
-                $uuid = \Drupal::service('uuid')->generate();
-                $component = new SectionComponent( $uuid, $region_name, $extra );
-                $section->appendComponent($component);
+                  $extra = [
+                    'id' => "field_block:node:$node_type:$field_name",
+                    'label' => $block_c['label'],
+                    'label_display' => $block_c['label_display']??false,
+                    'provider' => 'layout_builder',
+                  ];
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
 
-                break;
-              case 'block_content':
+                  break;
+                default:
+                  throw new \Exception('iot - this should never happen');
+              }
 
-                $blocks = \Drupal::entityTypeManager()
-                  ->getStorage('block_content')
-                  ->loadByProperties([
-                    'info' => $block_c['info'],
-                  ]);
-                $block = reset($blocks);
-                $extra = [
-                  'id' => "block_content:{$block->uuid()}",
-                  'label' => $block_c['label'],
-                  'label_display' => $block_c['label_display']??false,
-                  'provider' => $provider,
-                ];
-                $uuid = \Drupal::service('uuid')->generate();
-                $component = new SectionComponent( $uuid, $region_name, $extra );
-                $section->appendComponent($component);
+            } elseif (is_array($block_c)) {
 
-                break;
-              default:
-                throw new \Exception('iou - this should never happen');
+              $provider = $block_c['provider']??'block_content';
+              switch ($provider) {
+                case 'views':
+
+                  $extra = [
+                    'id' => "views_block:{$block_c['view_id']}",
+                    'label' => $block_c['label'],
+                    'label_display' => FALSE,
+                    'provider' => $block_c['provider'],
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+                  break;
+                case 'block_content':
+
+                  $blocks = \Drupal::entityTypeManager()
+                    ->getStorage('block_content')
+                    ->loadByProperties([
+                      'info' => $block_c['info'],
+                    ]);
+                  $block = reset($blocks);
+                  $extra = [
+                    'id' => "block_content:{$block->uuid()}",
+                    'label' => $block_c['label'],
+                    'label_display' => $block_c['label_display']??false,
+                    'provider' => $provider,
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+                  break;
+                default:
+                  throw new \Exception('iou - this should never happen');
+              } // end switch $provider
+
             }
           }
         }
