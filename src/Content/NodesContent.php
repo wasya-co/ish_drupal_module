@@ -169,6 +169,8 @@ class NodesContent {
           foreach ($region_blocks as $block_c) {
             if (is_string($block_c)) {
               [$provider, $name] = explode(':', $block_c, 2);
+              error_log("+++ +++ block_c: $block_c");
+
               switch($provider) {
                 case 'field':
 
@@ -216,6 +218,8 @@ class NodesContent {
             } elseif (is_array($block_c)) {
 
               $provider = $block_c['provider']??'block_content';
+              error_log("+++ +++ explicit provider: $provider");
+
               switch ($provider) {
                 case 'views':
 
