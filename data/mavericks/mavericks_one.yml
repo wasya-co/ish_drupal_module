@@ -185,6 +185,7 @@
         fourth:
           - type: advanced_block
             info: main_4icon_4
+
     - type: layout_threecol_any
       col1_classes: col-12 col-md-4
       col2_classes: col-12 col-md-4
@@ -197,23 +198,35 @@
           }
       regions:
         first:
-          - type: advanced_block
-            info: home_college_prep
+          - info: home_college_prep
+            type: advanced_block
+            meta:
+              replace: true
             fields:
               body:
-                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
+                format: full_html
+                value: |
+                  <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
         second:
-          - type: advanced_block
-            info: home_college_night
+          - info: home_college_night
+            type: advanced_block
+            meta:
+              replace: true
             fields:
               body:
-                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2021/02/CollegeNight2021-Buda-vertical-980x1515.jpg' alt='' />
+                format: full_html
+                value: |
+                  <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2021/02/CollegeNight2021-Buda-vertical-980x1515.jpg' alt='' />
         third:
-          - type: advanced_block
-            info: home_dukes
+          - info: home_dukes
+            type: advanced_block
+            meta:
+              replace: true
             fields:
               body:
-                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
+                format: full_html
+                value: |
+                  <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
 
     - type: layout_twocol_any
       col1_classes: col-12 col-md-4 offset-md-2
