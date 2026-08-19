@@ -1,35 +1,17 @@
 ---
-- path: /home
-  type: 'issue'
-  meta:
-    replace: true
-  fields:
-    title: 'Home'
-  sections:
-    - type: 'layout_fourcol_any'
-      col1_classes: col-6 col-md-3
-      col2_classes: col-6 col-md-3
-      col3_classes: col-6 col-md-3
-      col4_classes: col-6 col-md-3
-      fields:
-        field_image_hero: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2015/10/brickwall.jpg
-        field_class_name: a2026_main_4iconW
-        field_custom_css: |
-          .a2026_main_4iconW {
-            background-repeat: repeat;
-            text-align: center;
-          }
-      regions:
-        first:
-          - type: advanced_block
-            info: main_4icon_1
-        second:
-          - type: advanced_block
-            info: main_4icon_2
-        third:
-          - type: advanced_block
-            info: main_4icon_3
-        fourth:
-          - type: advanced_block
-            info: main_4icon_4
 
+- type: 'menu'
+  id: 'main'
+  links:
+    - title: Home
+      url: /home
+      weight: 1
+    - title: Events
+      url: /events
+      weight: 2
+    - title: Careers
+      url: /careers
+      weight: 3
+    - title: Contact Us
+      url: /contact-us
+      weight: 4

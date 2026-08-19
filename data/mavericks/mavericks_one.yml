@@ -186,7 +186,8 @@
           - type: advanced_block
             info: main_4icon_4
 
-    - type: layout_threecol_any
+    - label: layout_threecol_any
+      type: layout_threecol_any
       col1_classes: col-12 col-md-4
       col2_classes: col-12 col-md-4
       col3_classes: col-12 col-md-4
@@ -228,7 +229,8 @@
                 value: |
                   <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
 
-    - type: layout_twocol_any
+    - label: promos bottom row
+      type: layout_twocol_any
       col1_classes: col-12 col-md-4 offset-md-2
       col2_classes: col-12 col-md-4
       regions:
@@ -248,7 +250,8 @@
                     <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/05/Buda-Events-Print2023.jpg' />
                   </a>
 
-    - type: layout_onecol_any
+    - label: CHECK OUT OUR EVENT SCHEDULE
+      type: layout_onecol_any
       regions:
         main:
           - type: advanced_block
@@ -262,8 +265,8 @@
                     <li><a href='/tickets' class='btn btn-primary'>Tickets</a></li>
                   </ul>
 
-    - type: layout_twocol_any
-      label: contact_us
+    - label: contact_us
+      type: layout_twocol_any
       col1_classes: col-12 col-md-6
       col2_classes: col-12 col-md-6
       regions:
@@ -278,8 +281,8 @@
           - type: webform
             webform_id: contact_us_simple
 
-    - type: layout_onecol_any
-      label: visit_us
+    - label: visit_us
+      type: layout_onecol_any
       regions:
         main:
           - type: advanced_block

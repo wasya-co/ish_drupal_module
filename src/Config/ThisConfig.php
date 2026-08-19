@@ -28,6 +28,27 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ThisConfig {
 
+  public static function put_menu_links($menu_name, $links) {
+    foreach($links as $c) {
+      $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+      $existing = $storage->loadByProperties([
+        'title' => $c['title'],
+        'menu_name' => $menu_name,
+      ]);
+      if (!$existing) {
+        $link = \Drupal\menu_link_content\Entity\MenuLinkContent::create([
+          'title' => $c['title'],
+          'link' => [
+            'uri' => str_starts_with($c['url'], 'http') ? $c['url'] : "internal:{$c['url']}",
+          ],
+          'menu_name' => $menu_name,
+        ]);
+        $link->save();
+      }
+    }
+    \Drupal::messenger()->addMessage('finished');
+  }
+
   /*
    * configure text editor ckeditor5
   **/

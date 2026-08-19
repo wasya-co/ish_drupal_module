@@ -1,9 +1,7 @@
 ---
 
-
-
 - type: 'menu'
-  id: 'main_menu'
+  id: 'main'
   links:
     - title: Home
       url: /home
@@ -18,12 +16,12 @@
       url: /contact-us
       weight: 0
 
-
 - theme_config:
     logo: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/logo.png
-    custom_css:
+    field_custom_css: |
+      body { color: red !important; }
 
-block_layout:
+- block_layout:
   regions:
     preheader:
       - 'advanced_block:preheader_contact_info'

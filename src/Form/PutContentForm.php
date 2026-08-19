@@ -18,9 +18,8 @@ use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 
 use Drupal\ish_drupal_module\Config\BlocksConfig;
-use Drupal\ish_drupal_module\Config\ViewsConfig;
+use Drupal\ish_drupal_module\Config\ThisConfig;
 use Drupal\ish_drupal_module\Content\NodesContent;
-
 
 /*
 **/
@@ -69,12 +68,17 @@ class PutContentForm extends FormBase {
         case 'basic':
         case 'section_callout_parallax':
           BlocksConfig::create_block($item);
-          break;
 
+          break;
         case 'issue':
           NodesContent::create_node($item);
-          break;
 
+          break;
+        case 'menu':
+
+          ThisConfig::put_menu_links($item['id'], $item['links']);
+
+          break;
         case 'webform':
           NodesContent::create_webform($item);
           break;
