@@ -279,6 +279,7 @@
           - type: advanced_block
             info: home_section_2links
             fields:
+              field_class_name: home-checkout-schedule
               body:
                 value: |
                   <h3>CHECK OUT OUR EVENT SCHEDULE</h3>
@@ -310,6 +311,7 @@
           - type: advanced_block
             info: home_link2_map
             fields:
+              field_class_name: home-open-wednesday
               body:
                 value: |
                   <h3>Open Wednesday through Saturday 7pm to 2am</h3>
