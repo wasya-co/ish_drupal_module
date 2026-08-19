@@ -74,11 +74,6 @@ class ThisConfig {
     }
   }
 
-
-
-
-  }
-
   /*
   **/
   public static function put_menu_links($menu_name, $links) {
