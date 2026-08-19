@@ -1,0 +1,90 @@
+
+
+-=----- Marketing Copy
+
+  We help small businesses maintain their infrastructure.
+
+  In a world dominated by monopolies, we enable our clients to own their technical stack.
+
+  Your data has to live somewhere. There is no such thing as "serverless architecture". Giving up the ownership of your company's digital assets is a slippery slope, fraught with peril. But by using our services, you can preserve your technical edge, even amidst crumbling ecosystems and languages that disappear. What is more, we help you incorporate modern AI tools, helping you become both modern and rooted.
+
+
+  -=---
+
+  Service Offerings
+
+  We are generalist-specialists with the following capabilities.
+
+  [full-stack applications]
+    - It's in our DNA
+    [php & drupal]
+      - marketing, content
+    [n-tier architecture]
+      - jenkins or similar
+    [ruby on rails]
+      - elegant, sophisticated frontends
+    [react frontend]
+      - We create interfaces that are much, much better than Facebook!
+      - emotionally enabled UI
+
+  [email stack]
+    [intelligent client]
+    [smtp infrastructure]
+    [email campaigns]
+    [security & anti-spam]
+
+  [marketing]
+    [content generation]
+    [automatic publishing]
+    [a/b testing]
+
+  [agentic systems]
+    [browser extension]
+    [agentic chat]
+    [content generation]
+    [browser automation]
+
+  -=--- more
+
+  [devops]
+    [docker]
+    [jenkins]
+      - automation
+      - scheduled agent runs
+    [process automation]
+    [performance optimization]
+      - when your website or system... just becomes unbearably slow al of a sudden - or worse, throws 500 errors at you - maybe you would panic. But I am here to help.
+      - it makes a lot of difference if your pages can load under 200ms. We're here to help you achieve that goal.
+
+  [integrations]
+    [facebook tech provider]
+    [integration with linkedin]
+
+  [agentic _]
+
+    - severe constraints
+
+      "We understand that modern AI can do anything. It's only a matter of making it do what you want."
+      For this, we develop a profound framework of constraints, that also act as interfaces.
+      Case in point. While there are several ways of driving Drupal changes with AI, we opted for using module migrations to fulfill that purpose. This plays well with our DNA of introspection and accountability.
+      - From the prompt, the AI write a module migration. The migration acts as an interface and proof-able copy. Someone can review the migration, and possibly spot errors, or unneeded hallucinations. Additionally, a migration can be rolled back - the capability that all agentic work has to provide.
+      - A human operator, or an automated process, then pushes and deploys the migration. This causes the update on the live site. And backup/migrations are ongoing as a separate process.
+
+
+  -=---
+
+  Continuous Process
+
+  We move to survive. Motion is life. In digital space, we position our clients for continuous improvement as a way of staying relevant, combatting obsolescence and maintaining your competitive advantage.
+
+  [Continuous Delivery]
+
+  [Continuous Improvement]
+
+
+
+-=--- Fedfis BHB:
+
+  - tell their partners that we can build platforms for them. For $50,000.
+
+

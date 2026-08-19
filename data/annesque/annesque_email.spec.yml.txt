@@ -1,0 +1,68 @@
+---
+site:
+
+  main_menu:
+    - title: Home
+      link: <front>
+    - title: Features
+      link: /features
+    - title: Pricing
+      link: /pricing
+    - title: Contact Sales
+      link: /contact-us
+
+  config:
+    logo_url: ''
+    slogan: ''
+    contact_email: ''
+    contact_phone: ''
+    address: ''
+
+
+  pages:
+
+    home:
+      path: '<front>'
+
+    pricing:
+      path: /pricing
+
+    contact_us:
+    path: /contact-us
+
+    features:
+      kind: advanced_page
+      title: Annesque Email Features
+      path: '/features'
+      sections:
+        - kind: section_feature_0_0_0
+          title: Autonomous inbox triage
+          link: /features/auto-triage
+          image:
+            - kind: image_generate_0_0_0
+            - prompt: "a paper envelope, on white"
+          body: Automatically classifies, prioritizes, and routes emails (e.g., urgent, low priority, newsletters) without manual rules.
+
+        - kind: section_feature_0_0_0
+          title: Goal-based inbox management
+          link: /features/intent-driven-replies
+          image:
+            - kind: desktop_frame_0_0_0
+              size_px: 600x377
+              image:
+                - kind: image_generate_0_0_0
+                  prompt: an example ui
+                  ar: 1.60
+          body: Users can set high-level goals (e.g., “clear hiring pipeline” or “manage client support”), and the agent organizes and prioritizes emails to support those objectives.
+
+    features_auto_triage:
+      kind: advanced_page
+      title: "Feature: auto-triage"
+      path: /features/auto-triage
+
+
+    features_auto_triage:
+      kind: advanced_page
+      title: "Feature: Intent-driven replies"
+      path: /features/intent-driven-replies
+
