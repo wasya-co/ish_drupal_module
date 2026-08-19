@@ -85,8 +85,8 @@
       value: <div>The map</div>
 
 
-- type: issue
-  path: /contact-us
+- path: /contact-us
+  type: issue
   fields:
     title: Contact Us
     body:
@@ -106,46 +106,54 @@
           - 'field:body'
 
 
-- type: 'advanced_block'
-  info: 'main_4icon_1'
+- info: 'main_4icon_1'
+  meta:
+    replace: true
+  type: 'advanced_block'
   fields:
     field_class_name: a2026_main_4icon_each
     field_subtitle: FIVE BARS
     field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/saloon.png
-    field_body: |
+    body: |
       <span>We have a bar on our patio and four bars positioned around the large dance floor.</span>
-- type: 'advanced_block'
-  info: 'main_4icon_2'
+- info: 'main_4icon_2'
+  meta:
+    replace: true
+  type: 'advanced_block'
   fields:
     field_class_name: a2026_main_4icon_each
     field_subtitle: LIVE MUSIC
     field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/live_music.png
-    field_body: |
+    body: |
       <span>We have live music and DJs to provide great entertainment all night long. Check our calendar.</span>
-- type: 'advanced_block'
-  info: 'main_4icon_3'
+- info: 'main_4icon_3'
+  type: 'advanced_block'
+  meta:
+    replace: true
   fields:
     field_class_name: a2026_main_4icon_each
     field_subtitle: LARGE DANCE FLOOR
     field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/dancing.png
-    field_body: |
+    ody: |
       <span>Our large dance floor is the center of entertainment and community here at Mavericks.</span>
-- type: 'advanced_block'
-  info: 'main_4icon_4'
+- info: 'main_4icon_4'
+  meta:
+    replace: true
+  type: 'advanced_block'
   fields:
     field_class_name: a2026_main_4icon_each
     field_subtitle: HUGE PATIO
     field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/games.png
-    field_body: |
+    body: |
       <span>Our patio provides a relaxing and fun atmosphere with games and live DJs Thur-Sat.</span>
 
 
-- type: 'issue'
+- path: /home
+  type: 'issue'
   meta:
     replace: true
   fields:
     title: 'Home'
-  path: /home
   sections:
     - type: 'layout_onecol_any'
       regions:

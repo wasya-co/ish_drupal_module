@@ -170,7 +170,7 @@ class NodesContent {
         $section = new Section( $this_section['type'], $this_section['config']??[] );
         foreach ($this_section['regions'] as $region_name => $region_blocks) {
           foreach ($region_blocks as $block_c) {
-            logg($block_c, 'create_node() block_c');
+            logg($block_c, 'create_node() sections block_c');
 
             if (is_string($block_c)) {
               [$provider, $name] = explode(':', $block_c, 2);
@@ -242,8 +242,8 @@ class NodesContent {
               }
             } elseif (is_array($block_c)) {
 
-              $provider = $block_c['type'] ?? 'block_content';
-              switch ($provider) {
+              $type = $block_c['type'] ?? 'block_content';
+              switch ($type) {
                 case 'views':
 
 
@@ -259,7 +259,10 @@ class NodesContent {
 
 
                   break;
+                case 'advanced_block':
+                case 'basic':
                 case 'block_content':
+                case 'section_callout_parallax':
 
 
                     $block = BlocksConfig::create_block($block_c);
@@ -291,9 +294,9 @@ class NodesContent {
 
 
                     break;
-                // default:
-                //   throw new \Exception('iou - this should never happen');
-              } // end switch $provider
+                default:
+                  throw new \Exception('iou - this should never happen');
+              } // end switch $type
 
             }
           }

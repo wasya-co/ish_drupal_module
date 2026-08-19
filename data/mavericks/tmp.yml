@@ -1,0 +1,66 @@
+---
+- path: /home
+  type: 'issue'
+  meta:
+    replace: true
+  fields:
+    title: 'Home'
+  sections:
+    - type: 'layout_fourcol_any'
+      col1_classes: col-6 col-md-3
+      col2_classes: col-6 col-md-3
+      col3_classes: col-6 col-md-3
+      col4_classes: col-6 col-md-3
+      fields:
+        field_image_hero: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2015/10/brickwall.jpg
+        field_class_name: a2026_main_4iconW
+        field_custom_css: |
+          .a2026_main_4iconW {
+            background-repeat: repeat;
+            text-align: center;
+          }
+      regions:
+        first:
+          - type: advanced_block
+            info: main_4icon_1
+        second:
+          - type: advanced_block
+            info: main_4icon_2
+        third:
+          - type: advanced_block
+            info: main_4icon_3
+        fourth:
+          - type: advanced_block
+            info: main_4icon_4
+
+    - type: layout_threecol_any
+      col1_classes: col-12 col-md-4
+      col2_classes: col-12 col-md-4
+      col3_classes: col-12 col-md-4
+      fields:
+        field_class_name: 'a2026_main_imgs_promo'
+        field_custom_css: |
+          .a2026_main_imgs_promo {
+            background-color: rgb(23, 26, 46);
+          }
+      regions:
+        first:
+          - info: home_college_prep
+            type: advanced_block
+            meta:
+              replace: true
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
+        second:
+          - type: advanced_block
+            info: home_college_night
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2021/02/CollegeNight2021-Buda-vertical-980x1515.jpg' alt='' />
+        third:
+          - type: advanced_block
+            info: home_dukes
+            fields:
+              body:
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
