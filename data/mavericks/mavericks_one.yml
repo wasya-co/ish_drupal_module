@@ -1,5 +1,10 @@
 ---
 
+# - theme_config:
+#     logo: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/logo.png
+#     field_custom_css: |
+#       body { color: red !important; }
+
 - type: 'menu'
   id: 'main'
   links:
@@ -311,3 +316,16 @@
                   <ul>
                     <li><a href='https://www.google.com/maps/place/Mavericks+Dance+Hall/@30.4566767,-97.663402,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x4fb92b622be36125!8m2!3d30.4566767!4d-97.6612133' class='btn btn-primary'>Visit Us!</a></li>
                   </ul>
+
+- type: 'block_layout'
+  regions:
+    top_header:
+      - 'advanced_block:preheader_contact_info'
+    top_header_form:
+      - 'menu:main'
+    featured_bottom_first:
+      - 'menu:main'
+    footer_fourth:
+      - 'advanced_block:facebook_bottom'
+    footer_fifth:
+      - 'advanced_block:copyright'

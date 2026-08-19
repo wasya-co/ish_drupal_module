@@ -36,21 +36,21 @@ class ThisConfig {
 
     foreach ($regions as $r_name => $blocks) {
       foreach ($blocks as $c) {
+        logg($c, "c in put_block_layout");
+
         [$type, $name] = explode(':', $c, 2);
         switch ($type) {
-          case 'advanced_block':
-
-            $block = BlocksConfig::create_block(['type' => $type, 'info' => $name ]);
-            $plugin_id = "block_content:{$block_content->uuid()}";
-
-            break;
           case 'menu':
 
             $plugin_id = "system_menu_block:$name";
 
             break;
+          case 'basic':
+          case 'advanced_block':
           default:
-            throw new \Exception('zri - Not implemented');
+
+            $block     = BlocksConfig::create_block(['type' => $type, 'info' => $name ]);
+            $plugin_id = "block_content:{$block->uuid()}";
         }
 
         $existing = $storage->loadByProperties([
@@ -60,7 +60,7 @@ class ThisConfig {
         ]);
         if (!$existing) {
           $block = $storage->create([
-            'id' => "{$type}_{$name}",
+            'id'     => "{$r_name}_{$type}_{$name}",
             'plugin' => $plugin_id,
             'theme'  => $theme,
             'region' => $r_name,
