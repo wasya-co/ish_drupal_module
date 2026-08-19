@@ -70,6 +70,11 @@ class PutContentForm extends FormBase {
           BlocksConfig::create_block($item);
 
           break;
+        case 'block_layout':
+
+          ThisConfig::put_block_layout($item['regions']);
+
+          break;
         case 'issue':
           NodesContent::create_node($item);
 

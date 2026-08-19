@@ -20,16 +20,3 @@
     logo: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/logo.png
     field_custom_css: |
       body { color: red !important; }
-
-- block_layout:
-  regions:
-    preheader:
-      - 'advanced_block:preheader_contact_info'
-    preheader_form:
-      - 'menu:main_menu'
-    prefooter:
-      - 'menu:main_menu'
-    footer_1:
-      - 'advanced_block:copyright'
-    footer_4:
-      - 'advanced_block:facebook_bottom'

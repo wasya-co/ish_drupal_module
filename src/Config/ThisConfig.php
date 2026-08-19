@@ -28,6 +28,59 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ThisConfig {
 
+  /*
+  **/
+  public static function put_block_layout($regions) {
+    $theme   = \Drupal::config('system.theme')->get('default');
+    $storage = \Drupal::entityTypeManager()->getStorage('block');
+
+    foreach ($regions as $r_name => $blocks) {
+      foreach ($blocks as $c) {
+        [$type, $name] = explode(':', $c, 2);
+        switch ($type) {
+          case 'advanced_block':
+
+            $block = BlocksConfig::create_block(['type' => $type, 'info' => $name ]);
+            $plugin_id = "block_content:{$block_content->uuid()}";
+
+            break;
+          case 'menu':
+
+            $plugin_id = "system_menu_block:$name";
+
+            break;
+          default:
+            throw new \Exception('zri - Not implemented');
+        }
+
+        $existing = $storage->loadByProperties([
+          'plugin' => $plugin_id,
+          'theme'  => $theme,
+          'region' => $r_name,
+        ]);
+        if (!$existing) {
+          $block = $storage->create([
+            'id' => "{$type}_{$name}",
+            'plugin' => $plugin_id,
+            'theme'  => $theme,
+            'region' => $r_name,
+            'status' => 1,
+            'weight' => 0,
+          ]);
+          $block->save();
+        }
+
+      }
+    }
+  }
+
+
+
+
+  }
+
+  /*
+  **/
   public static function put_menu_links($menu_name, $links) {
     foreach($links as $c) {
       $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');

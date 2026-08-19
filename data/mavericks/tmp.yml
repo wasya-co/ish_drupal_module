@@ -1,17 +1,14 @@
 ---
 
-- type: 'menu'
-  id: 'main'
-  links:
-    - title: Home
-      url: /home
-      weight: 1
-    - title: Events
-      url: /events
-      weight: 2
-    - title: Careers
-      url: /careers
-      weight: 3
-    - title: Contact Us
-      url: /contact-us
-      weight: 4
+- type: 'block_layout'
+  regions:
+    top_header:
+      - 'advanced_block:preheader_contact_info'
+    top_header_form:
+      - 'menu:main'
+    featured_bottom_first:
+      - 'menu:main'
+    footer_fourth:
+      - 'advanced_block:facebook_bottom'
+    footer_fifth:
+      - 'advanced_block:copyright'

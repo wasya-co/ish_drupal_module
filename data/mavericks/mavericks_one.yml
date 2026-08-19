@@ -1,4 +1,21 @@
 ---
+
+- type: 'menu'
+  id: 'main'
+  links:
+    - title: Home
+      url: /home
+      weight: 1
+    - title: Events
+      url: /events
+      weight: 2
+    - title: Careers
+      url: /careers
+      weight: 3
+    - title: Contact Us
+      url: /contact-us
+      weight: 4
+
 - type: basic
   info: preheader_contact_info
   fields:
