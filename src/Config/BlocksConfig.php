@@ -250,7 +250,7 @@ class BlocksConfig {
   //     'body'              => DefaultFields::body,
   //     'field_class_name'  => DefaultFields::text,
   //     'field_custom_css'  => DefaultFields::text_long,
-  //     'field_image_hero'  => DefaultFields::image,
+  //     'field_image_hero'  => DefaultFields::image_url,
   //     'field_image_thumb' => DefaultFields::image,
   //     'field_is_reverse'  => DefaultFields::toggle,
   //     'field_link_text'   => DefaultFields::text,
@@ -260,6 +260,8 @@ class BlocksConfig {
   //   self::create_block_type($section_name, $fields);
   // }
 
+  /*
+  **/
   public static function setup_about_20() {
     $section_name = 'section_about_20';
     $fields = [
@@ -271,7 +273,7 @@ class BlocksConfig {
       'field_subtitle'    => DefaultFields::text,
       'body'              => DefaultFields::body,
 
-      'field_image_hero'  => DefaultFields::image,
+      'field_image_hero'  => DefaultFields::image_url,
       'field_image_thumb' => DefaultFields::image,
       'field_icon'        => DefaultFields::file,
 
@@ -281,6 +283,7 @@ class BlocksConfig {
     ];
     self::create_block_type($section_name, $fields);
   }
+
   /*
   **/
   public static function setup_about_3cards() {
@@ -320,7 +323,7 @@ class BlocksConfig {
       'body'              => DefaultFields::body,
       'field_class_name'  => DefaultFields::text,
       'field_custom_css'  => DefaultFields::text_long,
-      'field_image_hero'  => DefaultFields::image,
+      'field_image_hero'  => DefaultFields::image_url,
       'field_image_thumb' => DefaultFields::image,
       'field_link_text'   => DefaultFields::text,
       'field_link_url'    => DefaultFields::text,
@@ -340,7 +343,7 @@ class BlocksConfig {
       'field_autoplay'   => DefaultFields::toggle,
       'field_class_name' => DefaultFields::text,
       'field_video_file' => DefaultFields::file,
-      'field_image_hero' => DefaultFields::image,
+      'field_image_hero' => DefaultFields::image_url,
     ];
     self::create_block_type($section_name, $fields);
   }
@@ -360,7 +363,7 @@ class BlocksConfig {
       'field_view_ref' => DefaultFields::view_ref,
       // 'body'              => DefaultFields::body,
 
-      // 'field_image_hero'  => DefaultFields::image,
+      // 'field_image_hero'  => DefaultFields::image_url,
       // 'field_image_thumb' => DefaultFields::image,
 
       // 'field_link_text'   => DefaultFields::text,
@@ -381,7 +384,7 @@ class BlocksConfig {
       'field_subtitle'    => DefaultFields::text,
       'body'              => DefaultFields::body,
       'field_view_ref'    => DefaultFields::view_ref,
-      'field_image_hero'  => DefaultFields::image,
+      'field_image_hero'  => DefaultFields::image_url,
       'field_link_text'   => DefaultFields::text,
       'field_link_url'    => DefaultFields::text,
     ];

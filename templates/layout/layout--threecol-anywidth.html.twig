@@ -1,29 +1,30 @@
 {%
   set classes = [
     'layout',
-    'container',
     'layout--threecol',
-    settings.extra_classes,
+    settings.field_class_name,
   ]
 %}
 {% if content %}
-  <div{{ attributes.addClass(classes) }}>
+  <div {{ attributes.addClass(classes) }}
+       {% if settings.field_image_hero %} style="background-image: url('{{ settings.field_image_hero }}')"{% endif %}
+  >
     <div class='row'>
 
       {% if content.first %}
-        <div {{ region_attributes.first.addClass(settings.col1_classes) }}>
+        <div {{ region_attributes.first.addClass(settings.field_col1_class_name) }}>
           {{ content.first }}
         </div>
       {% endif %}
 
       {% if content.second %}
-        <div {{ region_attributes.second.addClass(settings.col2_classes) }}>
+        <div {{ region_attributes.second.addClass(settings.field_col2_class_name) }}>
           {{ content.second }}
         </div>
       {% endif %}
 
       {% if content.third %}
-        <div {{ region_attributes.third.addClass(settings.col3_classes) }}>
+        <div {{ region_attributes.third.addClass(settings.field_col3_class_name) }}>
           {{ content.third }}
         </div>
       {% endif %}

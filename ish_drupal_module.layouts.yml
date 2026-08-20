@@ -16,10 +16,10 @@ layout_onecol_any:
   class: '\Drupal\ish_drupal_module\Layout\OnecolAnywidthLayout'
   template: templates/layout/layout--onecol-anywidth
   icon_map:
-    - [main]
+    - [first]
   regions:
-    main:
-      label: Main
+    first:
+      label: First
 
 layout_twocol_any:
   label: 'Twocol Any'

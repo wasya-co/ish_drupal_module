@@ -1,0 +1,63 @@
+---
+
+- id: careers
+  type: webform
+  title: careers
+  elements:
+    name: {}
+    email: {}
+    message:
+      type: 'textarea'
+
+
+- info: map
+  type: advanced_block
+
+  fields:
+    field_body:
+      value: <div>The map</div>
+
+
+- path: /contact-us
+  type: issue
+  fields:
+    title: Contact Us
+    body:
+      value: |
+        <h5>More Info</h5>
+        <p>Feel free to contact us with any questions...</p>
+  sections:
+    - type: layout_onecol_any
+      regions:
+        main:
+          - 'advanced_block:map'
+    - type: layout_twocol_any
+      regions:
+        first:
+          - 'webform:contact_us_simple'
+        second:
+          - 'field:body'
+
+
+- path: /careers
+  type: issue
+  fields:
+    title: Careers
+    body:
+      value: |
+        <p>Apply now</p>
+        <h5>Buda</h5>
+        <p>Our Buda location is currently taking applications for:</p>
+        <ul>
+          <li>Security Personnel</li>
+          <li>Bartenders</li>
+          <li>Cocktails</li>
+          <li>Bar Backs</li>
+          <li>Front Desk</li>
+        </ul>
+  sections:
+    - type: layout_onecol_any
+      regions:
+        main:
+          - 'field:body'
+          - 'webform:careers'

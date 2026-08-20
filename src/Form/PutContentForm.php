@@ -84,6 +84,11 @@ class PutContentForm extends FormBase {
           ThisConfig::put_menu_links($item['id'], $item['links']);
 
           break;
+        case 'theme_config':
+
+          ThisConfig::put_theme_config($item);
+
+          break;
         case 'webform':
           NodesContent::create_webform($item);
           break;

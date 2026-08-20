@@ -20,6 +20,7 @@ use Drupal\ish_drupal_module\Config\ViewsConfig;
 use Drupal\ish_drupal_module\Content\NodesContent;
 
 /*
+ * OBSOLETE - use PUT only.
 **/
 class PostContentForm extends FormBase {
 

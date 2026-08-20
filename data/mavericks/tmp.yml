@@ -1,1 +1,218 @@
 ---
+
+
+
+- info: 'main_hero'
+  type: 'section_callout_parallax'
+  meta:
+    replace: false
+  fields:
+    field_image_hero: 'https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2022/02/randall-king-wallpaper.jpg'
+    field_class_name: 'a2026_main_hero'
+    field_custom_css: |
+      .a2026_main_hero { height: 100vh; }
+
+- info: 'main_4icon_1'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: FIVE BARS
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/saloon.png
+    body:
+      format: full_html
+      value: |
+        <span>We have a bar on our patio and four bars positioned around the large dance floor.</span>
+
+- info: 'main_4icon_2'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LIVE MUSIC
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/live_music.png
+    body:
+      format: full_html
+      value: |
+        <span>We have live music and DJs to provide great entertainment all night long. Check our calendar.</span>
+
+- info: 'main_4icon_3'
+  type: 'advanced_block'
+  meta:
+    replace: false
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LARGE DANCE FLOOR
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/dancing.png
+    body:
+      format: full_html
+      value: |
+        <span>Our large dance floor is the center of entertainment and community here at Mavericks.</span>
+
+- info: 'main_4icon_4'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: HUGE PATIO
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/games.png
+    body:
+      format: full_html
+      value: |
+        <span>Our patio provides a relaxing and fun atmosphere with games and live DJs Thur-Sat.</span>
+
+- info: home_5promos
+  type: advanced_block
+  meta:
+    replace: true
+  fields:
+    field_class_name: home_5promos
+    field_custom_css: |
+      .home_5promos {
+        background-color: #171a2e;
+      }
+
+    body:
+      format: full_html
+      value: |
+        <div class='row'>
+          <div class='col-md-6 col-lg-4'>
+            <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
+          </div>
+          <div class='col-md-6 col-lg-4'>
+            <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2021/02/CollegeNight2021-Buda-vertical-980x1515.jpg' alt='' />
+          </div>
+          <div class='col-md-6 col-lg-4'>
+            <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2026/03/DukesBoots2023-980x1515.jpg' alt='' />
+          </div>
+          <div class='col-md-6 col-lg-4'>
+            <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/04/red-dirt-dance-lessons2023-980x1515.jpg' alt='' />
+          </div>
+          <div class='col-md-6 col-lg-4'>
+            <a href="https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/05/Buda-Events-Print2023.jpg">
+              <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2023/05/Buda-Events-Print2023.jpg' />
+            </a>
+          </div>
+        </div>
+
+
+
+
+
+
+
+- path: /tmp
+  type: 'issue'
+  meta:
+    replace: true
+  fields:
+    title: 'Home'
+  sections:
+    - type: 'layout_onecol_any'
+      regions:
+        first:
+          - 'section_callout_parallax:main_hero'
+
+    - type: 'layout_fourcol_any'
+      fields:
+        field_image_hero: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2015/10/brickwall.jpg
+        field_class_name: a2026_main_4iconW
+        field_col1_class_name: col-6 col-md-3
+        field_col2_class_name: col-6 col-md-3
+        field_col3_class_name: col-6 col-md-3
+        field_col4_class_name: col-6 col-md-3
+        field_custom_css: |
+          .a2026_main_4iconW {
+            background-repeat: repeat;
+            text-align: center;
+          }
+      regions:
+        first:
+          - type: advanced_block
+            info: main_4icon_1
+        second:
+          - type: advanced_block
+            info: main_4icon_2
+        third:
+          - type: advanced_block
+            info: main_4icon_3
+        fourth:
+          - type: advanced_block
+            info: main_4icon_4
+
+    - label: layout_onecol_any
+      type: layout_onecol_any
+      fields:
+        field_class_name: 'a2026_main_imgs_promo'
+        field_custom_css: |
+          .a2026_main_imgs_promo {
+            background-color: rgb(23, 26, 46);
+          }
+      regions:
+        first:
+          - "advanced_block:home_5promos"
+
+    - label: CHECK OUT OUR EVENT SCHEDULE
+      type: layout_onecol_any
+      regions:
+        first:
+          - type: advanced_block
+            info: home_section_2links
+            fields:
+              field_class_name: home-checkout-schedule
+              body:
+                value: |
+                  <h3>CHECK OUT OUR EVENT SCHEDULE</h3>
+                  <div class='rowC'>
+                    <a class='btn btn-primary' href='/events' class='btn btn-primary'>Calendar</a>
+                    <a class='btn btn-primary' href='/tickets' class='btn btn-primary'>Tickets</a>
+                  </div>
+
+    - label: contact_us
+      type: layout_twocol_any
+      meta:
+        replace: true
+      fields:
+        field_class_name: _
+        field_col1_class_name: col-12 col-md-6
+        field_col2_class_name: col-12 col-md-6
+      regions:
+        first:
+          - info: home_country_dance
+            type: advanced_block
+            meta:
+              replace: true
+            fields:
+              body:
+                format: full_html
+                value: <img src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/10/country_dance.jpg' />
+        second:
+          - type: webform
+            webform_id: contact_us_simple
+
+    - label: visit_us
+      type: layout_onecol_any
+      fields:
+        field_class_name: _
+      regions:
+        first:
+          - info: home_visit_us
+            type: advanced_block
+            meta:
+              replace: true
+            fields:
+              field_class_name: home-a3
+              field_custom_css: |
+                .home-a3 {
+                  text-align: center;
+                  padding: 3em;
+                  color: white;
+                  background-color: #b32d2c;
+                }
+              body:
+                value: |
+                  <h3>Open Wednesday through Saturday 7pm to 2am</h3>
+                  <a class='btn btn-primary' href='https://www.google.com/maps/place/Mavericks+Dance+Hall/@30.4566767,-97.663402,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x4fb92b622be36125!8m2!3d30.4566767!4d-97.6612133' class='btn btn-primary'>Visit Us!</a>

@@ -26,7 +26,31 @@ use Drupal\taxonomy\Entity\Term;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+use Drupal\ish_drupal_module\Content\NodesContent;
+
+/*
+**/
 class ThisConfig {
+
+  /*
+   * configure text editor ckeditor5
+  **/
+  public static function configure_text_editor() {
+    $formats = ['basic_html', 'full_html'];
+    foreach ($formats as $format_id) {
+      $editor = Editor::load($format_id);
+      if (!$editor) { continue; }
+      $settings = $editor->getSettings();
+
+      if (!in_array('alignment', $settings['toolbar']['items'])) {
+        $settings['toolbar']['items'][] = 'alignment';
+      }
+      $settings['plugins']['ckeditor5_alignment'] ??= [];
+
+      $editor->setSettings($settings);
+      $editor->save();
+    }
+  }
 
   /*
   **/
@@ -98,23 +122,20 @@ class ThisConfig {
   }
 
   /*
-   * configure text editor ckeditor5
   **/
-  public static function configure_text_editor() {
-    $formats = ['basic_html', 'full_html'];
-    foreach ($formats as $format_id) {
-      $editor = Editor::load($format_id);
-      if (!$editor) { continue; }
-      $settings = $editor->getSettings();
+  public static function put_theme_config($config) {
+    $theme   = \Drupal::config('system.theme')->get('default');
 
-      if (!in_array('alignment', $settings['toolbar']['items'])) {
-        $settings['toolbar']['items'][] = 'alignment';
-      }
-      $settings['plugins']['ckeditor5_alignment'] ??= [];
-
-      $editor->setSettings($settings);
-      $editor->save();
+    if ($config['logo']) {
+      $file = NodesContent::file_from_url($config['logo']);
+      \Drupal::configFactory()
+        ->getEditable($theme . '.settings')
+        ->set('logo.use_default', FALSE)
+        ->set('logo.path', $file->getFileUri())
+        ->save();
     }
+
+    \Drupal::messenger()->addMessage('finished put_theme_config');
   }
 
   /*

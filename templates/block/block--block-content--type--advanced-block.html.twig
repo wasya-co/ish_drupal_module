@@ -1,4 +1,6 @@
-
+<style>
+  {{ content.field_custom_css[0]['#context']['value'] }}
+</style>
 {%
   set classes = [
     'AdvancedBlock',
@@ -21,7 +23,7 @@
 
   {% block content %}
     <div{{ content_attributes.addClass('content') }}>
-      {{ content | without( 'field_class_name' ) }}
+      {{ content | without( 'field_class_name', 'field_custom_css' ) }}
     </div>
   {% endblock %}
 </div>

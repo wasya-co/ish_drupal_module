@@ -97,7 +97,7 @@ class LayoutConfig {
         //   ],
         // ],
       ],
-      'footer_fourth' => [
+      'footer_third' => [
         'tabs' => [
           'plugin' => 'local_tasks_block',
           'provider' => 'core',

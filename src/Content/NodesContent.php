@@ -27,6 +27,217 @@ use Drupal\ish_drupal_module\Config\BlocksConfig;
 class NodesContent {
 
   /*
+   * 2026-08-18 _vp_ continue
+  **/
+  public static function create_node($item) {
+    logg($item, 'create_node()');
+
+    $node = self::get_node_by_path($item['path']);
+    if ($node) {
+      if ($item['meta']['replace'] ?? false) {
+        $node->delete();
+      } else {
+        \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
+        return;
+      }
+    }
+
+    $values = [
+      'type' => $item['type'],
+      'status' => 1,
+      'path' => [
+        'alias' => $item['path'],
+        'pathauto' => 0,
+      ],
+    ];
+    $values = array_merge($values, self::prepare_field_values($item['fields']));
+    $node = Node::create($values);
+    $node->save();
+
+
+    if ($item['sections']) {
+      $outs = [];
+      foreach($item['sections'] as $this_section) {
+
+        $section = new Section( $this_section['type'], $this_section['fields']??[] );
+        foreach ($this_section['regions'] as $region_name => $region_blocks) {
+          foreach ($region_blocks as $block_c) {
+            logg($block_c, 'create_node() sections block_c');
+
+            if (is_string($block_c)) {
+              [$provider, $name] = explode(':', $block_c, 2);
+              switch($provider) {
+                case 'field':
+
+
+                  $extra = [
+                    'id' => "field_block:node:{$node->bundle()}:$name",
+                    'label' => $block_c,
+                    'label_display' => false,
+                    'provider' => 'layout_builder',
+                    'context_mapping' => [
+                      'entity' => 'layout_builder.entity',
+                    ],
+                    'formatter' => [
+                      'type' => 'text_default',
+                      'label' => 'hidden',
+                      'settings' => [],
+                      'third_party_settings' => [],
+                    ],
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+
+                  break;
+                case 'webform':
+
+
+                  $extra = [
+                    'id' => 'webform_block',
+                    'label' => $block_c,
+                    'label_display' => FALSE,
+                    'provider' => 'webform',
+                    'webform_id' => $name,
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent($uuid, $region_name, $extra);
+                  $section->appendComponent($component);
+
+
+                  break;
+                case 'basic':
+                case 'advanced_block':
+                case 'section_callout_parallax':
+                default:
+
+
+                  $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([ 'info' => $name ]);
+                  $block  = reset($blocks);
+                  $extra  = [
+                    'id'            => "block_content:{$block->uuid()}",
+                    'label'         => $name,
+                    'label_display' => false,
+                    'provider'      => 'block_content',
+                  ];
+                  $uuid      = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+
+                //   break;
+                // default:
+                //   throw new \Exception("iot - this should never happen: $name");
+              }
+            } elseif (is_array($block_c)) {
+
+              $type = $block_c['type'] ?? 'block_content';
+              switch ($type) {
+                case 'views':
+
+
+                  $extra = [
+                    'id' => "views_block:{$block_c['view_id']}",
+                    'label' => $block_c['label'],
+                    'label_display' => FALSE,
+                    'provider' => $block_c['provider'],
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent( $uuid, $region_name, $extra );
+                  $section->appendComponent($component);
+
+
+                  break;
+                case 'advanced_block':
+                case 'basic':
+                case 'block_content':
+                case 'section_callout_parallax':
+
+
+                    $block = BlocksConfig::create_block($block_c);
+                    $extra = [
+                      'id' => "block_content:{$block->uuid()}",
+                      'label' => $block_c['label']??null,
+                      'label_display' => $block_c['label_display']??false,
+                      'provider' => 'block_content',
+                    ];
+                    $uuid = \Drupal::service('uuid')->generate();
+                    $component = new SectionComponent( $uuid, $region_name, $extra );
+                    $section->appendComponent($component);
+
+
+                  break;
+                case 'webform':
+
+
+                    $extra = [
+                      'id'            => 'webform_block',
+                      'label'         => $block_c['webform_id'],
+                      'label_display' => $block_c['label_display']??false,
+                      'provider'      => 'webform',
+                      'webform_id'    => $block_c['webform_id'],
+                    ];
+                    $uuid      = \Drupal::service('uuid')->generate();
+                    $component = new SectionComponent($uuid, $region_name, $extra);
+                    $section->appendComponent($component);
+
+
+                    break;
+                default:
+                  throw new \Exception('iou - this should never happen');
+              } // end switch $type
+
+            }
+          }
+        }
+
+        $outs[] = $section;
+      } // end foreach sections
+      $node->set('layout_builder__layout', $outs);
+      $node->save();
+    }
+  }
+
+  /*
+  **/
+  public static function create_webform($item) {
+    logg($item, 'create_webform()');
+
+    if (Webform::load($item['id'])) {
+      return;
+    }
+    $elements = [];
+    foreach($item['elements'] as $name => $config) {
+      $elements[$name] = [
+        '#type' => $config['type'] ?? 'textfield',
+        '#title' => $config['title'] ?? $name,
+        '#required' => $config['required'] ?? false,
+      ];
+    }
+    $elements['captcha'] = [
+      '#type' => 'captcha',
+      '#captcha_type' => 'hcaptcha/hCaptcha',
+    ];
+    $elements['actions'] = [
+      '#type' => 'webform_actions',
+      '#title' => 'Submit',
+      '#submit__label' => 'Send',
+    ];
+
+    $settings = Webform::getDefaultSettings();
+
+    $webform = Webform::create([
+      'id' => $item['id'],
+      'title' => $item['title'] ?? $item['id'],
+      'elements' => Yaml::encode($elements),
+      'settings' => $settings,
+    ]);
+
+    $webform->save();
+  }
+
+  /*
   **/
   public static function get_node_by_path(string $path): ?\Drupal\node\Entity\Node {
     $internal_path = \Drupal::service('path_alias.manager')
@@ -38,6 +249,26 @@ class NodesContent {
   }
 
   /*
+  **/
+  public static function file_from_url($url) {
+    $response = \Drupal::httpClient()->get($url);
+    $contents = (string) $response->getBody();
+    $directory = 'public://extra';
+    \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY);
+    $destination = $directory . '/' . basename(parse_url($url, PHP_URL_PATH));
+    $file = \Drupal::service('file.repository')->writeData(
+      $contents,
+      $destination,
+      FileSystemInterface::EXISTS_RENAME
+    );
+    $file->setPermanent();
+    $file->save();
+
+    return $file;
+  }
+
+  /*
+   * _TODO: should use file_from_url()
   **/
   public static function image_field_from_url(string $field_name, string $url): array {
     $response = \Drupal::httpClient()->get($url);
@@ -134,218 +365,7 @@ class NodesContent {
     $node->save();
   }
 
-  /*
-   * 2026-08-18 _vp_ continue
-  **/
-  public static function create_node($item) {
-    logg($item, 'create_node()');
 
-    $node = self::get_node_by_path($item['path']);
-    if ($node) {
-      if ($item['meta']['replace'] ?? false) {
-        $node->delete();
-      } else {
-        \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
-        return;
-      }
-    }
-
-    $values = [
-      'type' => $item['type'],
-      'status' => 1,
-      'path' => [
-        'alias' => $item['path'],
-        'pathauto' => 0,
-      ],
-    ];
-    $values = array_merge($values, self::prepare_field_values($item['fields']));
-    $node = Node::create($values);
-    $node->save();
-
-
-    if ($item['sections']) {
-      $outs = [];
-      foreach($item['sections'] as $this_section) {
-
-        $section = new Section( $this_section['type'], $this_section['config']??[] );
-        foreach ($this_section['regions'] as $region_name => $region_blocks) {
-          foreach ($region_blocks as $block_c) {
-            logg($block_c, 'create_node() sections block_c');
-
-            if (is_string($block_c)) {
-              [$provider, $name] = explode(':', $block_c, 2);
-
-
-              switch($provider) {
-                case 'field':
-
-
-                  $extra = [
-                    'id' => "field_block:node:{$node->bundle()}:$name",
-                    'label' => $block_c,
-                    'label_display' => false,
-                    'provider' => 'layout_builder',
-                    'context_mapping' => [
-                      'entity' => 'layout_builder.entity',
-                    ],
-                    'formatter' => [
-                      'type' => 'text_default',
-                      'label' => 'hidden',
-                      'settings' => [],
-                      'third_party_settings' => [],
-                    ],
-                  ];
-                  $uuid = \Drupal::service('uuid')->generate();
-                  $component = new SectionComponent( $uuid, $region_name, $extra );
-                  $section->appendComponent($component);
-
-
-                  break;
-                case 'webform':
-
-
-                  $extra = [
-                    'id' => 'webform_block',
-                    'label' => $block_c,
-                    'label_display' => FALSE,
-                    'provider' => 'webform',
-                    'webform_id' => $name,
-                  ];
-                  $uuid = \Drupal::service('uuid')->generate();
-                  $component = new SectionComponent($uuid, $region_name, $extra);
-                  $section->appendComponent($component);
-
-
-                  break;
-                case 'basic':
-                case 'advanced_block':
-                case 'section_callout_parallax':
-                default:
-
-
-                  $blocks = \Drupal::entityTypeManager()->getStorage('block_content')->loadByProperties([ 'info' => $name ]);
-                  $block  = reset($blocks);
-                  $extra  = [
-                    'id'            => "block_content:{$block->uuid()}",
-                    'label'         => $name,
-                    'label_display' => false,
-                    'provider'      => 'block_content',
-                  ];
-                  $uuid      = \Drupal::service('uuid')->generate();
-                  $component = new SectionComponent( $uuid, $region_name, $extra );
-                  $section->appendComponent($component);
-
-
-                //   break;
-                // default:
-                //   throw new \Exception("iot - this should never happen: $name");
-              }
-            } elseif (is_array($block_c)) {
-
-              $type = $block_c['type'] ?? 'block_content';
-              switch ($type) {
-                case 'views':
-
-
-                  $extra = [
-                    'id' => "views_block:{$block_c['view_id']}",
-                    'label' => $block_c['label'],
-                    'label_display' => FALSE,
-                    'provider' => $block_c['provider'],
-                  ];
-                  $uuid = \Drupal::service('uuid')->generate();
-                  $component = new SectionComponent( $uuid, $region_name, $extra );
-                  $section->appendComponent($component);
-
-
-                  break;
-                case 'advanced_block':
-                case 'basic':
-                case 'block_content':
-                case 'section_callout_parallax':
-
-
-                    $block = BlocksConfig::create_block($block_c);
-                    $extra = [
-                      'id' => "block_content:{$block->uuid()}",
-                      'label' => $block_c['label'],
-                      'label_display' => $block_c['label_display']??false,
-                      'provider' => 'block_content',
-                    ];
-                    $uuid = \Drupal::service('uuid')->generate();
-                    $component = new SectionComponent( $uuid, $region_name, $extra );
-                    $section->appendComponent($component);
-
-
-                  break;
-                case 'webform':
-
-
-                    $extra = [
-                      'id'            => 'webform_block',
-                      'label'         => $block_c['webform_id'],
-                      'label_display' => $block_c['label_display']??false,
-                      'provider'      => 'webform',
-                      'webform_id'    => $block_c['webform_id'],
-                    ];
-                    $uuid      = \Drupal::service('uuid')->generate();
-                    $component = new SectionComponent($uuid, $region_name, $extra);
-                    $section->appendComponent($component);
-
-
-                    break;
-                default:
-                  throw new \Exception('iou - this should never happen');
-              } // end switch $type
-
-            }
-          }
-        }
-
-        $outs[] = $section;
-      } // end foreach sections
-      $node->set('layout_builder__layout', $outs);
-      $node->save();
-    }
-  }
-
-  /*
-  **/
-  public static function create_webform($item) {
-    logg($item, 'create_webform()');
-
-    if (Webform::load($item['id'])) {
-      return;
-    }
-    $elements = [];
-    foreach($item['elements'] as $name => $config) {
-      $elements[$name] = [
-        '#type' => $config['type'] ?? 'textfield',
-        '#title' => $config['title'] ?? $name,
-        '#required' => $config['required'] ?? false,
-      ];
-    }
-    $elements['captcha'] = [
-      '#type' => 'captcha',
-      '#captcha_type' => 'hcaptcha/hCaptcha',
-    ];
-    $elements['actions'] = [
-      '#type' => 'webform_actions',
-      '#title' => 'Submit',
-      '#submit__label' => 'Send',
-    ];
-
-    $settings = Webform::getDefaultSettings();
-
-    $webform = Webform::create([
-      'id' => $item['id'],
-      'title' => $item['title'] ?? $item['id'],
-      'elements' => Yaml::encode($elements),
-      'settings' => $settings,
-    ]);
-
-    $webform->save();
-  }
 
 }
 
