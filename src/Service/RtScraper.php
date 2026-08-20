@@ -3,6 +3,7 @@
 namespace Drupal\ish_drupal_module\Service;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
 
 class RtScraper {
@@ -17,12 +18,18 @@ class RtScraper {
    * all(), not implemented
   **/
   public function all() {
-    $response = $this->httpClient->request('GET', 'https://rt.com/', [
-      'timeout' => 10,
-      'headers' => [
-        'User-Agent' => 'Mozilla/5.0',
-      ],
-    ]);
+    try {
+      $response = $this->httpClient->request('GET', 'https://rt.com/', [
+        'timeout' => 10,
+        'headers' => [
+          'User-Agent' => 'Mozilla/5.0',
+        ],
+      ]);
+    }
+    catch (GuzzleException $e) {
+      \Drupal::messenger()->addMessage('curl failed');
+      return [];
+    }
 
     $html = (string) $response->getBody();
     // var_dump( $html );
