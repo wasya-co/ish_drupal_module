@@ -1,28 +1,32 @@
-{%
-  set classes = [
+<style>
+  {{ settings.field_custom_css }}
+</style>
+{% set classes = [
     'layout',
     'layout--twocol',
     settings.field_class_name,
-  ]
-%}
+] %}
 {% if content %}
-  <div {{ attributes.addClass(classes) }}
-       {% if settings.field_image_hero %} style="background-image: url('{{ settings.field_image_hero }}')"{% endif %}
-  >
-    <div class='row'>
+  <div class='w-1'
+    {% if settings.field_image_hero %} style="background-image: url('{{ settings.field_image_hero }}')" >{% endif %}
+  </div>
+    <div {{ attributes.addClass(classes) }} >
 
-      {% if content.first %}
-        <div {{ region_attributes.first.addClass(settings.field_col1_class_name) }}>
-          {{ content.first }}
-        </div>
-      {% endif %}
+      <div class='row'>
 
-      {% if content.second %}
-        <div {{ region_attributes.second.addClass(settings.field_col2_class_name) }}>
-          {{ content.second }}
-        </div>
-      {% endif %}
+        {% if content.first %}
+          <div {{ region_attributes.first.addClass(settings.field_col1_class_name) }}>
+            {{ content.first }}
+          </div>
+        {% endif %}
 
+        {% if content.second %}
+          <div {{ region_attributes.second.addClass(settings.field_col2_class_name) }}>
+            {{ content.second }}
+          </div>
+        {% endif %}
+
+      </div>
     </div>
   </div>
 {% endif %}
