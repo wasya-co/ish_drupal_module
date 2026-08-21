@@ -69,16 +69,10 @@
   meta:
     replace: true
   fields:
-    field_class_name: home_5promos
-    field_custom_css: |
-      .home_5promos {
-        background-color: #171a2e;
-      }
-
     body:
       format: full_html
       value: |
-        <div class='row'>
+        <div class='row fixed-container'>
           <div class='col-md-6 col-lg-4'>
             <img style="width: 100%; height: auto;" src='https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2025/04/buda-college-prep-wed-vert.jpg' />
           </div>
@@ -112,6 +106,8 @@
     title: 'Home'
   sections:
     - type: 'layout_onecol_any'
+      fields:
+        field_class_name: _
       regions:
         first:
           - 'section_callout_parallax:main_hero'
@@ -119,7 +115,7 @@
     - type: 'layout_fourcol_any'
       fields:
         field_image_hero: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2015/10/brickwall.jpg
-        field_class_name: a2026_main_4iconW
+        field_class_name: a2026_main_4iconW fixed-container
         field_col1_class_name: col-6 col-md-3
         field_col2_class_name: col-6 col-md-3
         field_col3_class_name: col-6 col-md-3
@@ -146,10 +142,10 @@
     - label: layout_onecol_any
       type: layout_onecol_any
       fields:
-        field_class_name: 'a2026_main_imgs_promo'
+        field_class_name: a2026_main_imgs_promo row
         field_custom_css: |
           .a2026_main_imgs_promo {
-            background-color: rgb(23, 26, 46);
+            background-color: #171a2e;
           }
       regions:
         first:
@@ -157,10 +153,19 @@
 
     - label: CHECK OUT OUR EVENT SCHEDULE
       type: layout_onecol_any
+      fields:
+        field_class_name: home-checkout-scheduleW
+        field_col1_class_name: fixed-container
+        field_custom_css: |
+          .home-checkout-scheduleW {
+            background-color: #4489c1;
+          }
       regions:
         first:
-          - type: advanced_block
-            info: home_section_2links
+          - info: home_section_2links
+            type: advanced_block
+            meta:
+              replace: true
             fields:
               field_class_name: home-checkout-schedule
               body:
@@ -176,9 +181,9 @@
       meta:
         replace: true
       fields:
-        field_class_name: _
+        field_class_name: fixed-container home-contactW
         field_col1_class_name: col-12 col-md-6
-        field_col2_class_name: col-12 col-md-6
+        field_col2_class_name: col-12 col-md-6 home-contact-simple
       regions:
         first:
           - info: home_country_dance

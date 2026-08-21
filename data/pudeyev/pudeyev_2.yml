@@ -1,0 +1,105 @@
+---
+
+- type: section
+  fields:
+    field_subtitle: Not just a website. A full marketing suite.
+    body:
+      value: We don't just build websites. We implement full marketing solutions.
+
+
+- type: section
+  fields:
+    field_subtitle: My job is to translate your ideas into working software.
+    body:
+      format: full_html
+      value: |
+        <p>The meat and potatoes. I spend the majority of my time writing the application layer, and it is the core skillset that I offer. It is where requirements turn into behavior, where systems become usable, and where most of the business value lives.</p>
+
+        <p>It’s less about raw infrastructure and more about composition: stitching services together, shaping workflows, handling edge cases, and making sure the system behaves correctly in real-world circumstances.</p>
+
+        <h5>Challenges</h5>
+        <ul>
+          <li>Translating ambiguous requirements into precise implementation</li>
+          <li>Keeping systems simple while they grow in complexity</li>
+          <li>Ensuring reliability under real-world load and failure conditions</li>
+          <li>Preventing regressions when shipping frequent changes</li>
+          <li>Coordinating behavior across multiple teams</li>
+          <li>Maintaining clear and actionable documentation</li>
+        </ul>
+
+- info: services_offered_devops
+  label: Services Offered: Devops
+  type: section
+  fields:
+    body:
+      value: |
+        Automation in software development focuses on reducing manual effort by using tools and scripts to handle repetitive tasks such as building code, running tests, provisioning environments, and deploying applications. It ensures consistency and reliability by eliminating human error and speeding up processes that would otherwise be time-consuming. Automation also supports scalability, allowing teams to manage complex systems and workflows efficiently while maintaining high quality and faster delivery cycles.
+
+        Continuous Integration (CI) is a development practice where developers frequently merge code changes into a shared repository, triggering automated builds and tests. The main task of CI is to detect integration issues early by validating each change against the existing codebase. It enforces code quality through automated testing, ensures that the application remains in a deployable state, and provides rapid feedback to developers. Together with automation, CI helps teams deliver software more reliably and with greater confidence.
+
+- info: services_offered_architecture
+  label: Services Offered: Architecture
+  type: section
+  fields:
+    body:
+      format: full_html
+      value: |
+        Software architecture services focus on designing the high-level structure of software systems so they are scalable, reliable, and maintainable. These services typically include defining system components, selecting appropriate technologies, establishing data flow, and creating architectural patterns such as microservices, layered architecture, or event-driven systems. Architects evaluate business requirements and translate them into technical blueprints, ensuring the system can handle expected workloads, integrate with other systems, and evolve over time without major disruptions.
+
+        In addition, software architecture services involve governance and ongoing optimization. This includes setting coding standards, ensuring security and compliance, and conducting architecture reviews to identify risks or inefficiencies. Architects also guide development teams, helping them align with best practices and long-term goals. As systems grow more complex, these services become essential for reducing technical debt, improving performance, and enabling faster, more consistent delivery of new features.
+
+        Challenges
+
+        - Managing tight coupling between components
+
+        I resolve issues where systems were too interdependent by introducing clear boundaries, interfaces, and separation of concerns. This made services easier to modify, test, and scale independently.
+
+        - Scaling monolithic systems
+
+        I address scalability limits in monolithic architectures by modularizing the system and, where appropriate, transitioning parts into service-based or distributed architectures to handle increased load more effectively.
+
+        - Maintaining consistency across distributed systems
+
+        I solve data consistency challenges by implementing strategies like event-driven communication, eventual consistency patterns, and clear data ownership rules between services.
+
+        - Handling growing complexity in codebases
+
+        I reduce complexity by enforcing layered architecture patterns, improving domain separation, and introducing clearer project structure and conventions to keep the system maintainable over time.
+
+        - Improving deployment and release cycles
+
+        I streamline deployment challenges by introducing CI/CD pipelines, containerization, and environment parity practices, making releases more reliable, repeatable, and less risky.
+
+        - Scaling monolithic systems
+
+        - Maintaining consistency across distributed systems
+
+        - Improving deployment and release cycles
+
+
+
+
+- type: block_card
+  fields:
+    field_subtitle: Continuous Integration (CI)
+    body: Automate code integration and testing to detect issues early and improve code quality.
+
+- type: block_card
+  fields:
+    field_subtitle: Continuous Delivery/Deployment (CD)
+    body: Streamline releases with automated pipelines, enabling faster and more reliable deployments.
+
+- type: block_card
+  fields:
+    field_subtitle: Infrastructure as Code (IaC)
+    body: Manage and provision infrastructure using code, ensuring consistency and scalability across environments.
+
+- type: block_card
+  fields:
+    field_subtitle: Monitoring and Logging
+    body: Implement real-time monitoring and centralized logging to quickly detect, troubleshoot, and resolve issues.
+
+- type: block_card
+  fields:
+    field_subtitle: Collaboration and Communication
+    body: Foster better coordination between development and operations teams to improve efficiency and reduce deployment friction.
