@@ -35,6 +35,11 @@ collapse_expand:
     - core/drupal
     - core/jquery
 
+elegant_icons:
+  css:
+    theme:
+      css/elegantIcons.css: {}
+
 fancy_header:
   css:
     theme:

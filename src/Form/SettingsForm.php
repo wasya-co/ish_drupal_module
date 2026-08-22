@@ -12,23 +12,35 @@ class SettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
-   */
+  **/
   public function getFormId() {
     return 'ish_drupal_module_settings_form';
   }
 
   /**
    * {@inheritdoc}
-   */
+  **/
   protected function getEditableConfigNames() {
     return ['ish_drupal_module.settings'];
   }
 
   /**
    * {@inheritdoc}
-   */
+  **/
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('ish_drupal_module.settings');
+
+    $form['load_libraries'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Load libraries'),
+      '#options' => [
+        'elegant_icons' => $this->t('Elegant Icons'),
+        'bootstrap4' => $this->t('Bootstrap 4'),
+        'bootstrap5' => $this->t('Bootstrap 5'),
+      ],
+      '#default_value' => $config->get('load_libraries') ?? [],
+      '#description' => $this->t('Selected libraries will be loaded on all pages.'),
+    ];
 
     $form['google_api_youtube_key'] = [
       '#type' => 'textfield',
@@ -63,9 +75,10 @@ class SettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
-   */
+  **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('ish_drupal_module.settings')
+      ->set('load_libraries', array_values(array_filter( $form_state->getValue('load_libraries') )) )
       ->set('google_api_youtube_key', $form_state->getValue('google_api_youtube_key'))
       ->set('libretranslate_api_key', $form_state->getValue('libretranslate_api_key'))
       ->set('llm_api_key',            $form_state->getValue('llm_api_key'))

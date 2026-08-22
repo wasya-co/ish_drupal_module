@@ -101,22 +101,38 @@ class BlocksConfig {
       throw new \Exception("create_block() expects key 'type'.");
     }
 
+    $is_replace = $config['meta']['replace'] ?? false;
+    $is_update = $config['meta']['update'] ?? false;
+
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
     $existing = $storage->loadByProperties([ 'type' => $config['type'], 'info' => $config['info'] ]);
     if (!empty($existing)) {
       $existing = reset($existing);
-      if ($config['meta']['replace'] ?? false) {
+      if ($is_replace) {
         $existing->delete();
+      } elseif ($is_update) {
+        // continue
+        $block = $existing;
       } else {
         return $existing;
       }
     }
 
-    $block = BlockContent::create(array_merge(
-      $config,
-      NodesContent::prepare_field_values($config['fields'] ?? [])
-    ));
+    if ($is_update) {
+      $_fields = NodesContent::prepare_field_values($config['fields'] ?? []);
+      foreach ($_fields as $key => $value) {
+        if ($block->hasField($key)) {
+          $block->set($key, $value);
+        }
+      }
+    } else {
+      $block = BlockContent::create(array_merge(
+        $config,
+        NodesContent::prepare_field_values($config['fields'] ?? [])
+      ));
+    }
     $block->save();
+
     return $block;
   }
 

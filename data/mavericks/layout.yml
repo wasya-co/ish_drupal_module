@@ -53,7 +53,7 @@
 - type: 'block_layout'
   regions:
     top_header:
-      - 'advanced_block:preheader_contact_info'
+      - 'basic:preheader_contact_info'
     top_header_form:
       - 'menu:main'
     featured_bottom_first:

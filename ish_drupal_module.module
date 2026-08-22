@@ -157,6 +157,12 @@ function ish_drupal_module_page_attachments(array &$attachments) {
   $attachments['#attached']['library'][] = 'ish_drupal_module/main';
   $attachments['#attached']['library'][] = 'ish_drupal_module/swiper_cdn';
   $attachments['#attached']['library'][] = 'ish_drupal_module/scrollreveal';
+
+  $config = \Drupal::config('ish_drupal_module.settings');
+  $libraries = $config->get('load_libraries') ?? [];
+  foreach ($libraries as $library) {
+    $attachments['#attached']['library'][] = "ish_drupal_module/{$library}";
+  }
 }
 
 

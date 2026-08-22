@@ -14,7 +14,7 @@ dependencies:
   - drupal:layout_builder
   - drupal:layout_discovery
   - drupal:paragraphs
-  - drupal:s3fs
+  # - drupal:s3fs
   - drupal:superfish
   - drupal:views
   - drupal:twig_tweak

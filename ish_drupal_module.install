@@ -54,6 +54,8 @@ function ish_drupal_module_update_9002() {
 
 function ish_drupal_module_update_9003() {
   \Drupal::configFactory()->getEditable('captcha.settings')->set('default_challenge', 'hcaptcha/hcaptcha')->save();
+
+  ThisConfig::configure_contact_us();
 }
 
 

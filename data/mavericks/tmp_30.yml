@@ -1,0 +1,30 @@
+---
+
+- info: preheader_contact_info
+  type: basic
+  meta:
+    update: true
+  fields:
+    body:
+      format: full_html
+      value: |
+        <ul>
+          <li >
+            <i class='icon_phone'>&nbsp;</i>
+            (512) 514-5650
+          </li>
+          <li >
+            <i class='icon_mail'>&nbsp;</i>
+            info@mavericksdancehall.com
+          </li>
+          <li >
+            <i class='social_facebook'>&nbsp;</i>
+            facebook
+          </li>
+        </ul>
+    field_class_name: preheader_contact_info
+    field_custom_css: |
+      .preheader_contact_info ul {
+        display: flex;
+      }
+

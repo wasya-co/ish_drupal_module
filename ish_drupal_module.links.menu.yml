@@ -15,8 +15,8 @@ ish_drupal_module.configure:
   weight: 100
 
 
-ish_drupal_module.create_content:
-  title: 'Craete Content'
-  description: 'Craete Content'
-  route_name: ish_drupal_module.create_content
-  parent: system.admin_config
+# ish_drupal_module.create_content:
+#   title: 'Craete Content'
+#   description: 'Craete Content'
+#   route_name: ish_drupal_module.create_content
+#   parent: system.admin_config

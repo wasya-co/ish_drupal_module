@@ -1,0 +1,73 @@
+---
+
+- info: 'main_hero'
+  type: 'section_callout_parallax'
+  meta:
+    replace: false
+  fields:
+    field_image_hero: 'https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2022/02/randall-king-wallpaper.jpg'
+    field_class_name: 'a2026_main_hero'
+    field_custom_css: |
+      .a2026_main_hero { height: 100vh; }
+
+
+- id: 'contact_us_simple'
+  type: 'webform'
+  title: 'Contact Us'
+  elements:
+    name: {}
+    email: {}
+    message:
+      type: 'textarea'
+
+
+
+- info: 'main_4icon_1'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: FIVE BARS
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/saloon.png
+    body:
+      format: full_html
+      value: |
+        <span>We have a bar on our patio and four bars positioned around the large dance floor.</span>
+- info: 'main_4icon_2'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LIVE MUSIC
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/live_music.png
+    body:
+      format: full_html
+      value: |
+        <span>We have live music and DJs to provide great entertainment all night long. Check our calendar.</span>
+- info: 'main_4icon_3'
+  type: 'advanced_block'
+  meta:
+    replace: false
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: LARGE DANCE FLOOR
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/dancing.png
+    body:
+      format: full_html
+      value: |
+        <span>Our large dance floor is the center of entertainment and community here at Mavericks.</span>
+- info: 'main_4icon_4'
+  meta:
+    replace: false
+  type: 'advanced_block'
+  fields:
+    field_class_name: a2026_main_4icon_each
+    field_subtitle: HUGE PATIO
+    field_image_thumb: https://buda.mavericksdancehall.com/wp-content/uploads/sites/5/2019/05/games.png
+    body:
+      format: full_html
+      value: |
+        <span>Our patio provides a relaxing and fun atmosphere with games and live DJs Thur-Sat.</span>
+

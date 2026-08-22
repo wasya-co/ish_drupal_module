@@ -24,6 +24,8 @@ use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
+use Drupal\webform\Entity\Webform;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\Content\NodesContent;
@@ -31,6 +33,67 @@ use Drupal\ish_drupal_module\Content\NodesContent;
 /*
 **/
 class ThisConfig {
+
+  /*
+  **/
+  public static function configure_contact_us() {
+    $webform = Webform::load('contact');
+    if (!$webform) {
+      throw new \RuntimeException('Webform "contact" was not found.');
+    }
+
+    $handlers = $webform->getHandlers();
+
+    if ($handlers->get('email_admin')) {
+      return;
+    }
+
+    $handlers->addHandler([
+      'id' => 'email',
+      'handler_id' => 'email_admin',
+      'label' => 'Email admin',
+      'category' => 'Notification',
+      'status' => TRUE,
+      'weight' => 0,
+      'settings' => [
+        'states' => [
+          'completed' => [
+            'completed' => TRUE,
+          ],
+        ],
+        'to_mail' => 'admin@gmail.com',
+        'to_options' => [],
+        'cc_mail' => '',
+        'cc_options' => [],
+        'bcc_mail' => '',
+        'bcc_options' => [],
+        'from_mail' => '',
+        'from_options' => [],
+        'from_name' => '',
+        'reply_to' => '',
+        'return_path' => '',
+        'sender_mail' => '',
+        'sender_name' => '',
+        'subject' => '[webform_submission:created] :: [site:name] :: [webform:title] :: New webform submission',
+        'body' => "A new submission has been received.\n\n[webform_submission:values]",
+        'excluded_elements' => [],
+        'included_elements' => [],
+        'exclude_empty' => FALSE,
+        'exclude_empty_checkbox' => FALSE,
+        'exclude_unset' => FALSE,
+        'exclude_markup' => FALSE,
+        'exclude_options' => FALSE,
+        'exclude_access' => FALSE,
+        'exclude_sensitive' => FALSE,
+        'attachments' => FALSE,
+        'html' => FALSE,
+        'twig' => FALSE,
+      ],
+    ]);
+
+    $webform->save();
+  }
+
 
   /*
    * configure text editor ckeditor5

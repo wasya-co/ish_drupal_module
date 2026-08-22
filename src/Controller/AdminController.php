@@ -26,18 +26,22 @@ class AdminController extends ControllerBase {
           'title' => 'Replace content yaml',
           'url' => Url::fromRoute('ish_drupal_module.admin_put_content')->toString(),
         ],
+        // [ 'confirm' => false,
+        //   'title' => 'Add content yaml',
+        //   'url' => Url::fromRoute('ish_drupal_module.admin_post_content')->toString(),
+        // ],
+        // [
+        //   'title' => 'Replace issue home',
+        //   'url' => Url::fromRoute('ish_drupal_module.admin_recreate_issue_home')->toString(),
+        // ],
+        // [
+        //   'title' => 'Recreate layout',
+        //   'url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
+        // ],
         [
           'confirm' => false,
-          'title' => 'Add content yaml',
-          'url' => Url::fromRoute('ish_drupal_module.admin_post_content')->toString(),
-        ],
-        [
-          'title' => 'Replace issue home',
-          'url' => Url::fromRoute('ish_drupal_module.admin_recreate_issue_home')->toString(),
-        ],
-        [
-          'title' => 'Recreate layout',
-          'url' => Url::fromRoute('ish_drupal_module.admin_recreate_layout')->toString(),
+          'title' => 'Settings',
+          'url' => Url::fromRoute('ish_drupal_module.admin_settings')->toString(),
         ],
       ],
       '#theme' => 'admin_home',
