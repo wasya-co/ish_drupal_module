@@ -1,0 +1,12 @@
+---
+- info: services_ror
+- info: services_react
+- info: services_marketing_drupal
+- info: services_ai_dev
+
+- info: services_marketing
+- info: services_hosting
+
+- info: services_devops
+- info: services_feature_implementation
+- info: services_legacy_maintenance
