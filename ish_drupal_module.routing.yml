@@ -11,21 +11,6 @@ ish_drupal_module.admin_home:
 
 
 
-ish_drupal_module.admin_paragraphs:
-  path: '/admin/paragraphs'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
-ish_drupal_module.admin_paragraphs_category:
-  path: '/admin/paragraphs/{category}'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
-    _title: 'Paragraph types'
-  requirements:
-    _permission: 'administer paragraphs types'
-
 
 ish_drupal_module.admin_post_content:
   path: '/admin/ish_drupal_modle/post_content'
@@ -68,7 +53,7 @@ ish_drupal_module.admin_run_task:
     _permission: 'administer site configuration'
 
 ##
-## API keys?!
+## API keys, attached libraries
 ##
 ish_drupal_module.admin_settings:
   path: '/admin/ish_drupal_module/settings'
@@ -78,6 +63,21 @@ ish_drupal_module.admin_settings:
   requirements:
     _permission: 'administer site configuration'
 
+
+ish_drupal_module.admin_paragraphs:
+  path: '/admin/paragraphs'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
+ish_drupal_module.admin_paragraphs_category:
+  path: '/admin/paragraphs/{category}'
+  defaults:
+    _controller: '\Drupal\ish_drupal_module\Controller\ParagraphTypesController::index'
+    _title: 'Paragraph types'
+  requirements:
+    _permission: 'administer paragraphs types'
 
 ish_drupal_module.article_generate:
   path: '/articles/generate'

@@ -35,4 +35,4 @@
 2.4.0 :: 2026-08-18 :: lotsa changes, lets do an actual single-click build of mavericks
                        it worked, for a total site import.
 3.0.0 :: 2026-08-20 :: the four layouts have been revised.
-                       the the ability to import is aaalmost complete.
+                       the ability to import is aaalmost complete.

@@ -1,7 +1,7 @@
 
 
 ish_drupal_module.admin_create_content:
-  title: 'Craete Content'
+  title: 'Create Content'
   description: 'Create Content'
   route_name: ish_drupal_module.create_content
   parent: system.admin_content

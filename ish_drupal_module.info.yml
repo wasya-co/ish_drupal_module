@@ -1,11 +1,10 @@
 name: ish_drupal_module
 type: module
 version: VERSION
-# configure: ish_drupal_module.configure
 configure: ish_drupal_module.admin_home
 core_version_requirement: ^9.5 || ^10
 
-description: ish_drupal_module - marketing sites and more.
+description: ish_drupal_module - city ad directory, marketing sites and more.
 dependencies:
   - drupal:admin_toolbar
   - drupal:admin_toolbar_tools
