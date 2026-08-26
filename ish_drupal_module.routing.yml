@@ -9,17 +9,6 @@ ish_drupal_module.admin_home:
     _permission: 'administer content'
 
 
-
-
-
-ish_drupal_module.admin_post_content:
-  path: '/admin/ish_drupal_modle/post_content'
-  defaults:
-    _form: '\Drupal\ish_drupal_module\Form\PostContentForm'
-    _title: 'Add Content'
-  requirements:
-    _permission: 'administer content'
-
 ish_drupal_module.admin_put_content:
   path: '/admin/ish_drupal_modle/put_content'
   defaults:
@@ -29,13 +18,6 @@ ish_drupal_module.admin_put_content:
     _permission: 'administer content'
 
 
-ish_drupal_module.admin_recreate_issue_home:
-  path: '/admin/ish_drupal_module/recreate_issue_home'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::recreate_issue_home'
-    _title: 'Create Issue Home'
-  requirements:
-    _permission: 'administer content'
 
 ish_drupal_module.admin_recreate_layout:
   path: '/admin/ish_drupal_module/recreate_layout'
@@ -45,12 +27,7 @@ ish_drupal_module.admin_recreate_layout:
   requirements:
     _permission: 'administer content'
 
-ish_drupal_module.admin_run_task:
-  path: '/admin/ish_drupal_module/run_task'
-  defaults:
-    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::run_task'
-  requirements:
-    _permission: 'administer site configuration'
+
 
 ##
 ## API keys, attached libraries

@@ -31,11 +31,9 @@ function ish_drupal_module_update_9002() {
   ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
   ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
 
-  LayoutConfig::clear();
+
   BlocksConfig::hours_of_operation();
   BlocksConfig::copyright();
-  LayoutConfig::setup_marketing_site();
-
 
   BlocksConfig::create_block_type('advanced_block', DefaultFields::default_block_fields);
   BlocksConfig::setup_about_20();                                        // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
@@ -50,13 +48,14 @@ function ish_drupal_module_update_9002() {
   BlocksConfig::setup_callout_parallax();
 
   ViewsConfig::create_view('master', 'block_frontpage', ['display_plugin' => 'block']);
-}
 
-function ish_drupal_module_update_9003() {
   \Drupal::configFactory()->getEditable('captcha.settings')->set('default_challenge', 'hcaptcha/hcaptcha')->save();
 
   ThisConfig::configure_contact_us();
 }
+
+// function ish_drupal_module_update_9003() {
+// }
 
 
 

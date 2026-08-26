@@ -38,7 +38,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 **/
 class BlocksConfig {
 
-  /*
+  /* copyright is a basic block
   **/
   public static function copyright() {
     $slug = 'copyright';
@@ -66,24 +66,24 @@ class BlocksConfig {
     }
 
     /* place it in the theme */
-    $theme = \Drupal::config('system.theme')->get('default');
-    if (!Block::load("{$theme}_{$slug}")) {
-      Block::create([
-        'id' => "{$theme}_{$slug}",
-        'theme' => $theme,
-        'plugin' => 'block_content:' . $block->uuid(),
-        'region' => 'footer_fifth',
-        'weight' => 0,
-        'visibility' => [],
-        'settings' => [
-          'id' => 'block_content:' . $block->uuid(),
-          'label' => 'Copyright',
-          'label_display' => false,
-          'provider' => 'block_content',
-          'view_mode' => 'full',
-        ],
-      ])->save();
-    }
+    // $theme = \Drupal::config('system.theme')->get('default');
+    // if (!Block::load("{$theme}_{$slug}")) {
+    //   Block::create([
+    //     'id' => "{$theme}_{$slug}",
+    //     'theme' => $theme,
+    //     'plugin' => 'block_content:' . $block->uuid(),
+    //     'region' => 'footer_fifth',
+    //     'weight' => 0,
+    //     'visibility' => [],
+    //     'settings' => [
+    //       'id' => 'block_content:' . $block->uuid(),
+    //       'label' => 'Copyright',
+    //       'label_display' => false,
+    //       'provider' => 'block_content',
+    //       'view_mode' => 'full',
+    //     ],
+    //   ])->save();
+    // }
 
     return $block;
   }
@@ -171,24 +171,24 @@ class BlocksConfig {
     }
 
     /* place it in the theme */
-    $theme = \Drupal::config('system.theme')->get('default');
-    if (!Block::load("{$theme}_{$slug}")) {
-      Block::create([
-        'id' => "{$theme}_{$slug}",
-        'theme' => $theme,
-        'plugin' => 'block_content:' . $block->uuid(),
-        'region' => 'footer_first',
-        'weight' => 0,
-        'visibility' => [],
-        'settings' => [
-          'id' => 'block_content:' . $block->uuid(),
-          'label' => 'Hours of Operation',
-          'label_display' => true,
-          'provider' => 'block_content',
-          'view_mode' => 'full',
-        ],
-      ])->save();
-    }
+    // $theme = \Drupal::config('system.theme')->get('default');
+    // if (!Block::load("{$theme}_{$slug}")) {
+    //   Block::create([
+    //     'id' => "{$theme}_{$slug}",
+    //     'theme' => $theme,
+    //     'plugin' => 'block_content:' . $block->uuid(),
+    //     'region' => 'footer_first',
+    //     'weight' => 0,
+    //     'visibility' => [],
+    //     'settings' => [
+    //       'id' => 'block_content:' . $block->uuid(),
+    //       'label' => 'Hours of Operation',
+    //       'label_display' => true,
+    //       'provider' => 'block_content',
+    //       'view_mode' => 'full',
+    //     ],
+    //   ])->save();
+    // }
 
     return $block;
   }

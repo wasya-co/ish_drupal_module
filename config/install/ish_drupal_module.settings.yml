@@ -1,5 +1,5 @@
 
-load_libraries: [ 'bootstrap5' ]
+load_libraries: [ 'bootstrap5', 'collapse_expand', 'swipder_cdn', 'scrollreveal' ]
 
 google_api_youtube_key: 'xxForYoutubexx'
 libretranslate_api_key: 'xxForLibretranslatexx'

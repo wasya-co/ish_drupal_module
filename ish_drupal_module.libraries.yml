@@ -1,4 +1,8 @@
 
+##
+## tinyslider is obsolete
+## use owl carousel, swiper, scrollreveal
+##
 
 bootstrap4:
   css:
@@ -62,7 +66,7 @@ main:
 
 scrollreveal:
   js:
-    vendor/js/scrollreveal@4.0.9.min: { minified: true }
+    vendor/js/scrollreveal@4.0.9.min.js: { minified: true }
 
 
 swiper_cdn:
@@ -71,13 +75,4 @@ swiper_cdn:
       //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css: {}
   js:
     //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
-
-## tinyslider, becoming obsolete
-# tinyslider:
-#   css:
-#     theme:
-#       vendor/css/tiny-slider@2.9.4.min.css: { minified: true }
-#   js:
-#     vendor/js/tiny-slider@2.9.2.min.js: { minified: true }
-
 

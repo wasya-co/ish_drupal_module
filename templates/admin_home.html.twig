@@ -5,7 +5,7 @@
   {% for link in secondary_menu_links %}
     <a class="button button--primary"
        href="{{ link.url }}"
-       {% if link.confirm is not same as(false) %}onclick="return confirm('Are you sure?');"{% endif %}
+       {% if link.confirm %}onclick="return confirm('Are you sure?');"{% endif %}
     >{{ link.title }}</a>
   {% endfor %}
 </div>

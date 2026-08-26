@@ -36,3 +36,6 @@
                        it worked, for a total site import.
 3.0.0 :: 2026-08-20 :: the four layouts have been revised.
                        the ability to import is aaalmost complete.
+3.1.0 :: 2026-08-25 :: only cleanup, continue.
+                       groking old wasyaco_com with this very new module!
+

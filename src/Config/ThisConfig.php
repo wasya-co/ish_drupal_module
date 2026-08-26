@@ -61,7 +61,7 @@ class ThisConfig {
             'completed' => TRUE,
           ],
         ],
-        'to_mail' => 'admin@gmail.com',
+        'to_mail' => \Drupal::config('system.site')->get('mail'),
         'to_options' => [],
         'cc_mail' => '',
         'cc_options' => [],
