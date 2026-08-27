@@ -1,0 +1,35 @@
+---
+
+- info: copyright
+  type: basic
+  fields:
+    field_body:
+      value: |
+        <span>Copyright © 2026 WasyaCo. Hosted by <a href='https://wasyaco.com/?utm_campaign=drup_fresh'>wasya.co</a></span>
+
+# - type: theme_config
+#   logo: https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/08/20042550/logo.300x100-tiny.png
+
+- info: preheader_contact_info
+  type: basic
+  fields:
+    field_body:
+      value: |
+        <ul>
+          <li>(415) 948-0368</li>
+          <li>victor@wasyaco.com</li>
+        </ul>
+
+
+- type: 'block_layout'
+  regions:
+    top_header:
+      - 'basic:preheader_contact_info'
+    top_header_form:
+      - 'menu:main'
+    featured_bottom_first:
+      - 'menu:main'
+    footer_fourth:
+      - 'core:local_tasks_block'
+    footer_fifth:
+      - 'basic:copyright'

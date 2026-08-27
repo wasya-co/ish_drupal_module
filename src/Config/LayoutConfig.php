@@ -87,15 +87,14 @@ class LayoutConfig {
         ],
       ],
       'footer_first' => [
-        /* incomplete: */
-        // 'hours_of_operation' => [
-        //   'label_display' => false,
-        //   'plugin' => 'block_content:' . $hours_of_operation->uuid(),
-        //   'provider' => '',
-        //   'settings' => [
-        //     'id' => 'block_content:' . $hours_of_operation->uuid(),
-        //   ],
-        // ],
+        'hours_of_operation' => [
+          'label_display' => false,
+          'plugin' => 'block_content:' . $hours_of_operation->uuid(),
+          'provider' => '',
+          'settings' => [
+            'id' => 'block_content:' . $hours_of_operation->uuid(),
+          ],
+        ],
       ],
       'footer_third' => [
         'tabs' => [
@@ -104,6 +103,14 @@ class LayoutConfig {
         ],
       ],
       'footer_fifth' => [
+        'copyright' => [
+          'label_display' => false,
+          'plugin' => 'block_content:' . $copyright->uuid(),
+          'provider' => '',
+          'settings' => [
+            'id' => 'block_content:' . $copyright->uuid(),
+          ],
+        ],
       ],
     ];
     $weight = 0;

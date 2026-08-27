@@ -127,6 +127,11 @@ class ThisConfig {
 
         [$type, $name] = explode(':', $c, 2);
         switch ($type) {
+          case 'core':
+
+            $plugin_id = $name;
+
+            break;
           case 'menu':
 
             $plugin_id = "system_menu_block:$name";
@@ -134,10 +139,13 @@ class ThisConfig {
             break;
           case 'basic':
           case 'advanced_block':
-          default:
 
             $block     = BlocksConfig::create_block(['type' => $type, 'info' => $name ]);
             $plugin_id = "block_content:{$block->uuid()}";
+
+            break;
+          default:
+            throw new \Exception('zz5 - Not implemented');
         }
 
         $existing = $storage->loadByProperties([
@@ -156,7 +164,6 @@ class ThisConfig {
           ]);
           $block->save();
         }
-
       }
     }
   }

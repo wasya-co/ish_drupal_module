@@ -150,13 +150,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
 
 }
 
-
+/*
+**/
 function ish_drupal_module_page_attachments(array &$attachments) {
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/collapse_expand';
   $attachments['#attached']['library'][] = 'ish_drupal_module/main';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/swiper_cdn';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/scrollreveal';
 
   $config = \Drupal::config('ish_drupal_module.settings');
   $libraries = $config->get('load_libraries') ?? [];
@@ -173,3 +170,16 @@ function ish_drupal_module_preprocess_node(array &$variables) {
   MainHelper::computeRelatedArticles($variables); // computes related_articles for Article only.
 }
 
+
+
+
+
+
+
+
+/*
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/swiper_cdn';
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/scrollreveal';
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5';
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/collapse_expand';
+*/

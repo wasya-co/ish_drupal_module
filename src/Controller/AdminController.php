@@ -46,9 +46,6 @@ class AdminController extends ControllerBase {
     LayoutConfig::clear();
     LayoutConfig::setup_marketing_site();
 
-    $this->messenger()->addStatus($this->t('_TODO: place hours_of_operation'));
-    $this->messenger()->addStatus($this->t('_TODO: place copyright'));
-
     $this->messenger()->addStatus($this->t('Layout recreated.'));
     return $this->redirect('ish_drupal_module.admin_home');
   }
