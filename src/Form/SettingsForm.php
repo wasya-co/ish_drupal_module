@@ -81,8 +81,14 @@ class SettingsForm extends ConfigFormBase {
    * {@inheritdoc}
   **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
+    $libraries = [];
+    foreach ($form_state->getValue('load_libraries') as $library => $loaded) {
+      $libraries[$library] = $loaded ? $library : 0;
+    }
+
     $this->config('ish_drupal_module.settings')
-      ->set('load_libraries', array_values(array_filter( $form_state->getValue('load_libraries') )) )
+      ->set('load_libraries',         $libraries )
       ->set('google_api_youtube_key', $form_state->getValue('google_api_youtube_key'))
       ->set('libretranslate_api_key', $form_state->getValue('libretranslate_api_key'))
       ->set('llm_api_key',            $form_state->getValue('llm_api_key'))
