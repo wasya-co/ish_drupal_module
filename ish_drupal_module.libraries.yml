@@ -59,8 +59,8 @@ main:
   dependencies:
     - core/jquery
     - core/drupal
-    - ish_drupal_module/scrollreveal
-    - ish_drupal_module/swiper_cdn
+    # - ish_drupal_module/scrollreveal
+    # - ish_drupal_module/swiper_cdn
   js:
     js/ish_drupal_module.js: {}
 
