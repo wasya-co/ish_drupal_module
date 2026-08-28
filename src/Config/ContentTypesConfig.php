@@ -121,7 +121,7 @@ class ContentTypesConfig {
           'bundle' => $content_type,
           'label' => $field,
           'required' => FALSE,
-          'translatable' => !!$field_c['translatable'],
+          'translatable' => !!( $field_c['translatable'] ?? false ),
           'settings' => $field_c['field_config_settings'] ?? [],
         ])->save();
       }

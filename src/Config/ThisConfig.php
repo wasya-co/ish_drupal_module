@@ -37,14 +37,17 @@ class ThisConfig {
   /*
   **/
   public static function configure_contact_us() {
+    \Drupal::messenger()->addMessage('+++ +++ Start configure_contact_us()...');
+
     $webform = Webform::load('contact');
     if (!$webform) {
-      throw new \RuntimeException('Webform "contact" was not found.');
+      \Drupal::messenger()->addMessage('+++ +++ Webform "contact" was not found.');
+      return;
     }
 
     $handlers = $webform->getHandlers();
-
     if ($handlers->get('email_admin')) {
+      \Drupal::messenger()->addMessage('+++ +++ hadler email_admin not found.');
       return;
     }
 

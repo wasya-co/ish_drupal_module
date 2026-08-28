@@ -21,7 +21,7 @@ function logg (a, b="", c=null) {
 };
 
 
-// $ = jQuery;
+$ = jQuery;
 $(function () {
 
   $('.swiper').each((idx, el) => {
