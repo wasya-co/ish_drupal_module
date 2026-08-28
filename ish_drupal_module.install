@@ -36,12 +36,12 @@ function ish_drupal_module_update_9010() {
   BlocksConfig::copyright();
 
   BlocksConfig::create_block_type('advanced_block', DefaultFields::default_block_fields);
-  BlocksConfig::setup_about_20();                                        // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
-  BlocksConfig::create_block_type('section_about_3cards', DefaultFields::default_block_fields);
+  BlocksConfig::setup_about_20();
+  BlocksConfig::setup_about_3cards();                                      // BlocksConfig::create_block_type('section_about_20', DefaultFields::default_block_fields);
   BlocksConfig::create_block_type('section_callout_parallax', DefaultFields::default_block_fields);
-  BlocksConfig::create_block_type('section_hero_video', DefaultFields::default_block_fields);
-  BlocksConfig::create_block_type('section_list_10', DefaultFields::default_block_fields);
-  BlocksConfig::create_block_type('section_slider_images', DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_hero_video',       DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_list_10',          DefaultFields::default_block_fields);
+  BlocksConfig::create_block_type('section_slider_images',    DefaultFields::default_block_fields);
 
   BlocksConfig::setup_slider_images();
   BlocksConfig::setup_hero_video();
@@ -54,8 +54,23 @@ function ish_drupal_module_update_9010() {
   ThisConfig::configure_contact_us();
 }
 
-// function ish_drupal_module_update_9003() {
-// }
+function ish_drupal_module_update_9014() {
+  $section_name = 'section_about_3cards_viewref';
+  $fields = [
+    'field_tagline'     => DefaultFields::text,
+    'field_subtitle'    => DefaultFields::text,
+    'body'              => DefaultFields::body,
+
+    'field_class_name'  => DefaultFields::text,
+    'field_custom_css'  => DefaultFields::text_long,
+
+    'field_link_text'   => DefaultFields::text,
+    'field_link_url'    => DefaultFields::text,
+
+    'field_view_ref' => DefaultFields::view_ref,
+  ];
+  BlocksConfig::create_block_type($section_name, $fields);
+}
 
 
 

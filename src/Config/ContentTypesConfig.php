@@ -170,6 +170,8 @@ class ContentTypesConfig {
   public static function setup_slide() {
     $fields = DefaultFields::default_node_fields;
     unset( $fields['field_image_hero'] );
+    $fields['field_icon']     = DefaultFields::file;
+    $fields['field_subtitle'] = DefaultFields::text;
     self::setup_content_type('slide', $fields);
   }
 

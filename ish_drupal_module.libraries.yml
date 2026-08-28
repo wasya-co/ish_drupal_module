@@ -64,6 +64,7 @@ main:
   js:
     js/ish_drupal_module.js: {}
 
+
 scrollreveal:
   js:
     vendor/js/scrollreveal@4.0.9.min.js: { minified: true }
