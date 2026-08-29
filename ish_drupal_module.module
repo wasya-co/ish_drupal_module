@@ -132,10 +132,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
     ],
 
-    'page__node__issue' => [
-      'base hook' => 'page',
-      'path' => $path . '/templates/layout',
-    ],
+    // 'page__node__issue' => [
+    //   'base hook' => 'page',
+    //   'path' => $path . '/templates/layout',
+    // ],
 
     'tmp' => [
       'render element' => 'children',
@@ -177,11 +177,3 @@ function ish_drupal_module_preprocess_node(array &$variables) {
 
 
 
-
-
-/*
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/swiper_cdn';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/scrollreveal';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/bootstrap5';
-  // $attachments['#attached']['library'][] = 'ish_drupal_module/collapse_expand';
-*/

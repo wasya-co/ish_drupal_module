@@ -193,17 +193,12 @@ body.scrolled {
 header .node__meta {
   margin-bottom: 0.5em;
 }
-/* turns out this cannot happen. I have to think more. */
-// .node--view-mode-full {
-//   header .node__meta {
-//     @extend .fixed-container;
-//   }
-// }
 
-article.node--view-mode-full {
+article.node--type-article.node--view-mode-full {
   @extend .fixed-container;
 }
 
+/* for field_image_hero I presume */
 article.node--view-mode-full:not(.node--type-issue) {
   padding-top: 1.6em;
 }
