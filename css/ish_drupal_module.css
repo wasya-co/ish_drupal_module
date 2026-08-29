@@ -14,6 +14,15 @@
   width: 100%;
   background-color: var(--bg-color-2); }
 
+/*
+ * any card should be center-aligned and pretty?
+ * text above photo means, mostly reading. photo above text means, mostly watching
+**/
+.node--type-issue.node--view-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
 .SectionAbout10 {
   padding: 40px; }
   .SectionAbout10 .container-2 {
@@ -335,17 +344,23 @@ article.node--type-advanced-page {
 footer.site-footer {
   background-position: center;
   background-repeat: no-repeat;
-  padding-bottom: 0; }
+  padding: 0;
+  font-family: unset; }
   footer.site-footer .block {
-    border: 0; }
+    border: 0;
+    margin: 0; }
+  footer.site-footer .content {
+    font-size: 1em; }
   footer.site-footer ul.nav {
     display: flex;
     flex-direction: column; }
   footer.site-footer nav.tabs ul.nav {
     flex-direction: row; }
 
-.site-footer__bottom .region {
-  margin-top: 0; }
+div.site-footer__bottom {
+  margin: 0; }
+  div.site-footer__bottom .region {
+    margin-top: 0; }
 
 /* H */
 #header {

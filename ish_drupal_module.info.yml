@@ -12,7 +12,7 @@ dependencies:
   - drupal:hcaptcha
   - drupal:layout_builder
   - drupal:layout_discovery
-  - drupal:paragraphs
+  # - drupal:paragraphs
   # - drupal:s3fs
   - drupal:superfish
   - drupal:views

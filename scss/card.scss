@@ -22,3 +22,14 @@
   background-color: var(--bg-color-2);
 
 }
+
+/*
+ * any card should be center-aligned and pretty?
+ * text above photo means, mostly reading. photo above text means, mostly watching
+**/
+.node--type-issue.node--view-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

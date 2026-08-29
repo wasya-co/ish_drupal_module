@@ -37,7 +37,7 @@ class ModulesConfig {
       'devel',
       'hcaptcha',
       'layout_builder', 'layout_discovery',
-      'paragraphs',
+      // 'paragraphs',
       // 's3fs',
       'superfish',
       'toolbar', 'twig_tweak',

@@ -95,22 +95,28 @@ footer.site-footer {
   background-position: center;
   background-repeat: no-repeat;
 
-  padding-bottom: 0;
+  padding: 0;
+  font-family: unset;
 
   .block {
     border: 0;
+    margin: 0;
+  }
+  .content {
+    font-size: 1em;
   }
   ul.nav {
     display: flex;
     flex-direction: column;
   }
   nav.tabs ul.nav {
-    flex-direction: row;
+    flex-direction: row; // admin tabs
   }
 
 }
 
-.site-footer__bottom {
+div.site-footer__bottom {
+  margin: 0;
   .region {
     margin-top: 0;
   }
