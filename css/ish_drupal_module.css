@@ -304,27 +304,27 @@ article.node--type-advanced-page {
 
 /* F */
 .fixed-container, .block-system-breadcrumb-block, #navbar-main,
-.site-footer__top {
+.site-footer__top, article.node--view-mode-full {
   margin: auto; }
 
 @media (min-width: 576px) {
   .fixed-container, .block-system-breadcrumb-block, #navbar-main,
-  .site-footer__top {
+  .site-footer__top, article.node--view-mode-full {
     width: 540px; } }
 
 @media (min-width: 768px) {
   .fixed-container, .block-system-breadcrumb-block, #navbar-main,
-  .site-footer__top {
+  .site-footer__top, article.node--view-mode-full {
     width: 720px; } }
 
 @media (min-width: 992px) {
   .fixed-container, .block-system-breadcrumb-block, #navbar-main,
-  .site-footer__top {
+  .site-footer__top, article.node--view-mode-full {
     width: 960px; } }
 
 @media (min-width: 1200px) {
   .fixed-container, .block-system-breadcrumb-block, #navbar-main,
-  .site-footer__top {
+  .site-footer__top, article.node--view-mode-full {
     width: 1140px; } }
 
 /* what extends fixed-container? */
@@ -334,12 +334,15 @@ article.node--type-advanced-page {
 
 footer.site-footer {
   background-position: center;
+  background-repeat: no-repeat;
   padding-bottom: 0; }
   footer.site-footer .block {
     border: 0; }
   footer.site-footer ul.nav {
     display: flex;
     flex-direction: column; }
+  footer.site-footer nav.tabs ul.nav {
+    flex-direction: row; }
 
 .site-footer__bottom .region {
   margin-top: 0; }
@@ -349,13 +352,6 @@ footer.site-footer {
   padding: 0 1em; }
 
 /* I */
-/* doesn't work b/c covers the whole viewport and is ugly:
-// article .image-hero:first-child {
-//   background-attachment: fixed;
-// }
-
-
-
 /* M */
 main.main-content {
   margin: 0;
@@ -409,11 +405,11 @@ article.node--view-mode-full:not(.node--type-issue) {
   justify-content: flex-end; }
 
 /* T */
-.node--type-page .text-formatted img,
-.node--type-article .text-formatted img,
-.node--type-advanced-page .text-formatted img,
-.node--view-mode-full .text-formatted img,
-_ .text-formatted img {
+main#content .node--type-page .text-formatted img,
+main#content .node--type-article .text-formatted img,
+main#content .node--type-advanced-page .text-formatted img,
+main#content .node--view-mode-full .text-formatted img,
+main#content _ .text-formatted img {
   max-width: 100%;
   padding: 0.6em; }
 

@@ -27,10 +27,11 @@ bootstrap5:
 #   dependencies:
 #     - core/popperjs
 
-card:
+card_and_chip:
   css:
     theme:
       css/card.css: {}
+      css/chip.css: {}
 
 collapse_expand:
   js:
@@ -49,9 +50,6 @@ fancy_header:
     theme:
       css/fancy-header.css: {}
 
-##
-## excludes: card, fancy-header
-##
 main:
   css:
     theme:

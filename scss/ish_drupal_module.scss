@@ -93,6 +93,7 @@ article.node--type-advanced-page {
 footer.site-footer {
 
   background-position: center;
+  background-repeat: no-repeat;
 
   padding-bottom: 0;
 
@@ -103,6 +104,10 @@ footer.site-footer {
     display: flex;
     flex-direction: column;
   }
+  nav.tabs ul.nav {
+    flex-direction: row;
+  }
+
 }
 
 .site-footer__bottom {
@@ -119,11 +124,6 @@ footer.site-footer {
 
 /* I */
 
-
-/* doesn't work b/c covers the whole viewport and is ugly:
-// article .image-hero:first-child {
-//   background-attachment: fixed;
-// }
 
 
 
@@ -194,6 +194,10 @@ header .node__meta {
 //   }
 // }
 
+article.node--view-mode-full {
+  @extend .fixed-container;
+}
+
 article.node--view-mode-full:not(.node--type-issue) {
   padding-top: 1.6em;
 }
@@ -219,16 +223,17 @@ article.node--view-mode-full:not(.node--type-issue) {
 
 /* T */
 
-
-.node--type-page,
-.node--type-article,
-.node--type-advanced-page,
-.node--view-mode-full,
-_, {
-  .text-formatted {
-    img {
-      max-width: 100%;
-      padding: 0.6em;
+main#content {
+  .node--type-page,
+  .node--type-article,
+  .node--type-advanced-page,
+  .node--view-mode-full,
+  _, {
+    .text-formatted {
+      img {
+        max-width: 100%;
+        padding: 0.6em;
+      }
     }
   }
 }

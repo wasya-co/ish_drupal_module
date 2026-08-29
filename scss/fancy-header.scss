@@ -38,7 +38,7 @@ button.navbar-toggler {
 @media (min-width: 767px) {
   body:not(.scrolled) {
     #header {
-      background-color: var(--header-bg-scrolled);
+      background: var(--header-bg);
       position: absolute;
       top: 0;
       width: 100%;
@@ -63,6 +63,7 @@ button.navbar-toggler {
       padding-left: 1em;
     }
     #header {
+      background: var(--header-bg-scrolled);
       position: sticky;
       top: 0;
 

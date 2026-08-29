@@ -153,7 +153,7 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
 /*
 **/
 function ish_drupal_module_page_attachments(array &$attachments) {
-  $attachments['#attached']['library'][] = 'ish_drupal_module/main';
+  // $attachments['#attached']['library'][] = 'ish_drupal_module/main';
 
   $config = \Drupal::config('ish_drupal_module.settings');
   $libraries = $config->get('load_libraries') ?? [];

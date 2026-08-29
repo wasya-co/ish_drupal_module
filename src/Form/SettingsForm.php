@@ -39,6 +39,7 @@ class SettingsForm extends ConfigFormBase {
         'collapse_expand' => 'collapse_expand',
         'elegant_icons' => 'elegant_icons',
         'fancy_header'  => 'fancy_header',
+        'main' => 'main',
         'swiper_cdn' => 'swiper_cdn',
         'scrollreveal' => 'scrollreveal',
       ],
