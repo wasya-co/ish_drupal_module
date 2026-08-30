@@ -268,6 +268,7 @@ class BlocksConfig {
       'field_style'       => DefaultFields::select_3style,
       'field_is_reverse'  => DefaultFields::toggle,
 
+      'field_tagline'    => DefaultFields::text,
       'field_subtitle'    => DefaultFields::text,
       'body'              => DefaultFields::body,
 

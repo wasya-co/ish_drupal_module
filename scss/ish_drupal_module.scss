@@ -50,6 +50,12 @@ article.node--type-advanced-page {
   border: 2px solid yellow;
 }
 
+/* C */
+
+.block-system-main-block .content {
+  position: relative; // for field_image_hero to display a nice header
+}
+
 /* D */
 
 .debug {

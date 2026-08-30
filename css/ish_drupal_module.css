@@ -310,6 +310,10 @@ article.node--type-advanced-page {
 .border-yellow {
   border: 2px solid yellow; }
 
+/* C */
+.block-system-main-block .content {
+  position: relative; }
+
 /* D */
 .debug {
   border: 1px solid yellow; }
