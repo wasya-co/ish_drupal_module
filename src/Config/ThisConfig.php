@@ -28,6 +28,15 @@ use Drupal\webform\Entity\Webform;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
+
+use Drupal\ish_drupal_module\Config\BlocksConfig;
+use Drupal\ish_drupal_module\Config\ContentTypesConfig;
+use Drupal\ish_drupal_module\Config\DefaultFields;
+use Drupal\ish_drupal_module\Config\LayoutConfig;
+use Drupal\ish_drupal_module\Config\ModulesConfig;
+use Drupal\ish_drupal_module\Config\SectionsConfig;
+use Drupal\ish_drupal_module\Config\ViewsConfig;
+
 use Drupal\ish_drupal_module\Content\NodesContent;
 
 /*
@@ -117,6 +126,61 @@ class ThisConfig {
       $editor->save();
     }
   }
+
+  /*
+  **/
+  public static function do_initial_setup() {
+    ModulesConfig::install_modules();
+    ThisConfig::configure_text_editor();
+    ThisConfig::setup_permissions();
+    ThisConfig::setup_view_modes();
+    ThisConfig::setup_tags();
+    ThisConfig::setup_views_config();
+
+    ContentTypesConfig::setup_issue();
+    ContentTypesConfig::setup_slide();
+    ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
+    ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
+
+
+    BlocksConfig::hours_of_operation();
+    BlocksConfig::copyright();
+
+    BlocksConfig::create_block_type('advanced_block', DefaultFields::default_block_fields);
+    BlocksConfig::setup_about_10();
+    BlocksConfig::setup_about_3cards();
+    $section_name = 'section_about_3cards_viewref';
+    $fields = [
+      'field_tagline'     => DefaultFields::text,
+      'field_subtitle'    => DefaultFields::text,
+      'body'              => DefaultFields::body,
+
+      'field_class_name'  => DefaultFields::text,
+      'field_custom_css'  => DefaultFields::text_long,
+
+      'field_link_text'   => DefaultFields::text,
+      'field_link_url'    => DefaultFields::text,
+
+      'field_view_ref' => DefaultFields::view_ref,
+    ];
+    BlocksConfig::create_block_type($section_name, $fields);
+
+    BlocksConfig::create_block_type('section_callout_parallax', DefaultFields::default_block_fields);
+    BlocksConfig::create_block_type('section_hero_video',       DefaultFields::default_block_fields);
+    BlocksConfig::create_block_type('section_list_10',          DefaultFields::default_block_fields);
+    BlocksConfig::create_block_type('section_slider_images',    DefaultFields::default_block_fields);
+
+    BlocksConfig::setup_slider_images();
+    BlocksConfig::setup_hero_video();
+    BlocksConfig::setup_callout_parallax();
+
+    ViewsConfig::create_view('master', 'block_frontpage', ['display_plugin' => 'block']);
+
+    \Drupal::configFactory()->getEditable('captcha.settings')->set('default_challenge', 'hcaptcha/hcaptcha')->save();
+
+    ThisConfig::configure_contact_us();
+  }
+
 
   /*
   **/

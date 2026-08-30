@@ -1,7 +1,7 @@
 
 :root {
-  --header-bg: #ddd;
-  --header-bg-scrolled: #ccc;
+  // --header-bg: #ddd;
+  // --header-bg-scrolled: #ccc;
 
   --header-height: 92px;
   --image-hero-height: 250px; // 250px + height of h1.title ?
@@ -9,7 +9,6 @@
 
 
 #header {
-  z-index: 20;
   background-color: var(--header-bg);
   a {
     color: var(--header-link-color);
@@ -20,7 +19,7 @@
   align-items: center;
 }
 
-.PageIssue {
+body.node--type-issue {
   main#content {
     margin: 0;
     padding: 0;
@@ -31,7 +30,7 @@
 }
 
 button.navbar-toggler {
-  background: var(--bg-color);
+  background-color: var(--bg-color);
   // margin-right: 1em;
 }
 
@@ -48,13 +47,20 @@ button.navbar-toggler {
         margin-top: var(--image-hero-height);
       }
     }
-    .PageIssue #main-wrapper {
+  }
+  body.node--type-issue:not(.scrolled) {
+    #main-wrapper {
       #main {
         margin-top: 0;
       }
     }
   }
   body.scrolled {
+    #main-wrapper {
+      #main {
+        margin-top: calc( var(--image-hero-height) - var(--header-height) );
+      }
+    }
     #navbar-main {
       height: var(--header-height);
     }
@@ -71,19 +77,15 @@ button.navbar-toggler {
 
       height: var(--header-height);
     }
-    .PageIssue #main-wrapper {
+    .region-top-header {
+      display: none;
+    }
+  }
+  body.node--type-issue.scrolled {
+    #main-wrapper {
       #main {
         margin-top: calc( -1 * var(--header-height) );
       }
-    }
-    #page-wrapper:not(.PageIssue) #main-wrapper {
-      #main {
-        // margin-top: calc( -1 * var(--header-height) );
-        margin-top: calc( var(--image-hero-height) - var(--header-height) );
-      }
-    }
-    .region-top-header {
-      display: none;
     }
   }
 }
