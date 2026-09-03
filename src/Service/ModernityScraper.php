@@ -3,6 +3,7 @@
 namespace Drupal\ish_drupal_module\Service;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ModernityScraper {
@@ -14,7 +15,17 @@ class ModernityScraper {
   }
 
   public function all() {
-    $response = $this->httpClient->request('GET', 'https://modernity.news/wp-json/wp/v2/posts');
+    try {
+      $response = $this->httpClient->request('GET', 'https://modernity.news/wp-json/wp/v2/posts', [
+        'timeout' => 10,
+        'headers' => [
+          'User-Agent' => 'curl/8.0',
+        ],
+      ]);
+    } catch (GuzzleException $e) {
+      \Drupal::messenger()->addMessage('curl failed');
+      return [];
+    }
 
     if ($response->getStatusCode() !== 200) {
       return [];

@@ -14,3 +14,4 @@
 1.2.2                  adding layout collapse-expand
 1.2.3 :: 2026-07-08 :: churning mileswmathis_com
   1.2.13 :: i don't know why rt curl fails, but catching that exception now.
+  1.2.14 :: modernity exception caught
