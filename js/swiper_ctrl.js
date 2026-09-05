@@ -36,19 +36,17 @@ jQuery(function () {
 
 
     if (el.classList.contains('one-per-page')) {
-      const swiper = new Swiper(el, {
-        autoplay: {
-          delay: 0,
-          disableOnInteraction: false,
-        },
-        freeMode: {
-          enabled: true,
-          momentum: false,
-        },
+      const prevEl = el.querySelector('.swiper-prev')
+      const nextEl = el.querySelector('.swiper-next')
+      new Swiper(el, {
         loop: true,
         slidesPerView: 'auto',
-        speed: 3000,
-      });
+        spaceBetween: 16,
+        navigation: {
+          nextEl: nextEl,
+          prevEl: prevEl,
+        },
+      })
 
     } else if (el.classList.contains('continuous')) {
       const swiper = new Swiper(el, {
