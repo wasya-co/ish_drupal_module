@@ -426,6 +426,24 @@ article.node--view-mode-full:not(.node--type-issue) {
   display: flex;
   justify-content: flex-end; }
 
+/* social login */
+/* make them look like buttons: */
+/*
+  .social-auth.auth-link {
+    display: block;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .social-auth.auth-icon {
+    display: none;
+  }
+  a[href="/user/login/facebook"]::after {
+    content: "Login with Facebook";
+  }
+  a[href="/user/login/google"]::after {
+    content: "Login with Google";
+  } */
 /* T */
 main#content .node--type-page .text-formatted img,
 main#content .node--type-article .text-formatted img,
@@ -456,10 +474,13 @@ main#content _ .text-formatted img {
 /* field_image_hero of advanced_page */
 h1.title {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 100%); }
   h1.title .field--name-title {
-    background-color: var(--bg-color-transparent, var(--bg-color));
-    padding: 0 0.5em; }
+    border-radius: 1rem 1rem 0 0;
+    background-color: var(--bg-color);
+    padding: 0.4rem 4rem 0 4rem; }
 
 .image-hero {
   position: absolute;
@@ -469,7 +490,7 @@ h1.title {
   height: calc( var(--image-hero-height) + 100px);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: bottom; }
 
 /* W */
 .width-100px {

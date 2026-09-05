@@ -148,11 +148,11 @@ class ContentTypesConfig {
 
   /*
   **/
-  // public static function setup_directory_item() {
-  //   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['advanced_page']);
-  //   // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['marketing_block']);
-  //   // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
-  // }
+  public static function setup_directory_item() {
+    // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['advanced_page']);
+    // ContentTypesConfig::setup_content_type('directory_item', ContentTypesConfig::content_types['marketing_block']);
+    // ViewsConfig::setup_display_for('directory_item', 'teaser', ViewsConfig::default_teaser);
+  }
 
   /*
    * issue is same as advanced_page, but without image_hero.
@@ -168,10 +168,8 @@ class ContentTypesConfig {
   /*
   **/
   public static function setup_slide() {
-    $fields = DefaultFields::default_node_fields;
-    unset( $fields['field_image_hero'] );
-    $fields['field_icon']     = DefaultFields::file;
-    $fields['field_subtitle'] = DefaultFields::text;
+    $fields = DefaultFields::default_block_fields;
+    $fields['field_tags'] = DefaultFields::tags;
     self::setup_content_type('slide', $fields);
   }
 

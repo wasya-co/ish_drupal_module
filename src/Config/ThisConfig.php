@@ -168,9 +168,14 @@ class ThisConfig {
     BlocksConfig::create_block_type('section_callout_parallax', DefaultFields::default_block_fields);
     BlocksConfig::create_block_type('section_hero_video',       DefaultFields::default_block_fields);
     BlocksConfig::create_block_type('section_list_10',          DefaultFields::default_block_fields);
-    BlocksConfig::create_block_type('section_slider_images',    DefaultFields::default_block_fields);
 
-    BlocksConfig::setup_slider_images();
+
+    $fields = DefaultFields::default_block_fields;
+    $fields['field_view_ref'] = DefaultFields::view_ref;
+    BlocksConfig::create_block_type('section_slider', $fields);
+    BlocksConfig::create_block_type('section_slider_images', $fields);
+
+
     BlocksConfig::setup_hero_video();
     BlocksConfig::setup_callout_parallax();
 

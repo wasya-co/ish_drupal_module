@@ -23,6 +23,9 @@
 
   tail -f /var/log/apache2/error.log | sed 's/\\n/\n/g'
 
+  wco background
+    #F8F3E8
+
 = Test =
 
   export PATH="$PATH:/var/www/html/vendor/bin"

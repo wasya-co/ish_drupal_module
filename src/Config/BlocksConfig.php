@@ -371,23 +371,4 @@ class BlocksConfig {
     self::create_block_type($section_name, $fields);
   }
 
-  /*
-  **/
-  public static function setup_slider_images() {
-    $section_name = 'section_slider_images';
-    $fields = [
-      'field_class_name'  => DefaultFields::text,
-      'field_custom_css'  => DefaultFields::text_long,
-      'field_style'       => DefaultFields::select_3style,
-
-      'field_subtitle'    => DefaultFields::text,
-      'body'              => DefaultFields::body,
-      'field_view_ref'    => DefaultFields::view_ref,
-      'field_image_hero'  => DefaultFields::image_url,
-      'field_link_text'   => DefaultFields::text,
-      'field_link_url'    => DefaultFields::text,
-    ];
-    self::create_block_type($section_name, $fields);
-  }
-
 }

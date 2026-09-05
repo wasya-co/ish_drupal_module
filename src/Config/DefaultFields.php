@@ -159,6 +159,7 @@ class DefaultFields {
     'field_custom_css'  => DefaultFields::text_long,
 
     'field_icon'        => DefaultFields::file,
+    'field_image_hero'  => DefaultFields::image_url,
     'field_image_thumb' => DefaultFields::image,
 
     'field_link_text'   => DefaultFields::text,
