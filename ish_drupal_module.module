@@ -98,6 +98,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
+    'block__block_content__type__section_slider' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
     'block__block_content__type__section_slider_images' => [
       'base hook' => 'block',
       'path' => $path . '/templates/block',

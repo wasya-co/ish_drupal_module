@@ -21,8 +21,7 @@ function logg (a, b="", c=null) {
 };
 
 
-const $ = jQuery
-$(function () {
+jQuery(function () {
 
   /*
    * this was continuous scroll I think
@@ -63,25 +62,6 @@ $(function () {
     console.log('+++ initialized swiper once.')
   });
 
-  window.sr = ScrollReveal();
-  ScrollReveal().reveal('.fade-up', {
-    distance: '40px',
-    origin: 'bottom',
-    duration: 800,
-    easing: 'ease',
-    interval: 100,
-    reset: false,
-  })
-  ScrollReveal().reveal('.slide-right', {
-    distance: '40px',
-    opacity: 1,
-    origin: 'left',
-    duration: 800,
-    easing: 'ease',
-    interval: 100,
-    reset: false,
-  })
-
-  console.log('+++ loaded ish_drupal_module.js', $)
+  console.log('+++ loaded swiper_ctrl.js', $)
 })
 

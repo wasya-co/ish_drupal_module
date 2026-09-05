@@ -67,6 +67,14 @@ scrollreveal:
   js:
     vendor/js/scrollreveal@4.0.9.min.js: { minified: true }
 
+swiper:
+  css:
+    component:
+      vendor/js/swiper-bundle@12.min.css: {}
+  js:
+    vendor/js/swiper-bundle@12.min.js: {}
+    js/swiper_ctrl.js: {}
+
 
 swiper_cdn:
   css:
@@ -74,4 +82,5 @@ swiper_cdn:
       //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css: {}
   js:
     //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
+    js/swiper_ctrl.js: {}
 
