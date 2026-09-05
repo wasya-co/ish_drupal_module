@@ -22,9 +22,8 @@
   {% block content %}
     <h1>{{ content.field_subtitle }}</h1>
 
-    <div{{ content_attributes.addClass('content swiper fixed-container border-yellow ') }}>
+    <div{{ content_attributes.addClass('content swiper one-per-page fixed-container border-yellow ') }}>
       <div class='swiper-wrapper'>
-        {# {{ dump( content.field_view_ref ) }} #}
 
         {% set view = content.field_view_ref.0.contents['#view'] %}
         {% for row in view.result %}

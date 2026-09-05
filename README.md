@@ -198,6 +198,11 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
 
 
+    === Animations ===
+
+      .fade-up
+      .slide-right
+
     === Background ===
 
       @obsolete: We encourage defining/customizing (default: different grays) the following to distinguish between consecutive sections:
@@ -258,10 +263,17 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
         The slider is autoWidth by default.
 
-    === Animations ===
+    === Swiper ===
 
-      .fade-up
-      .slide-right
+      .swiper.continuous
+        .swiper-wrapper
+          .swiper-slide[]
+
+
+      .swiper.one-per-page
+        .swiper-wrapper
+          .swiper-slide[]
+
 
   == Page Presets ==
 
