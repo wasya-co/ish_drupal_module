@@ -20,29 +20,32 @@
   {{ title_suffix }}
 
   {% block content %}
-    <h1>{{ content.field_subtitle }}</h1>
+    <div class='section-sliderW'>
+      <h1>{{ content.field_subtitle }}</h1>
 
-    <div{{ content_attributes.addClass('content swiper one-per-page no-autoplay fixed-container border-yellow ') }}>
-      <div class='swiper-wrapper'>
+      <div{{ content_attributes.addClass('content swiper one-per-page no-autoplay fixed-container ') }}>
+        <div class='swiper-wrapper'>
 
-        {% set view = content.field_view_ref.0.contents['#view'] %}
-        {% for row in view.result %}
-          {% if row._entity %}
-            <div class=' swiper-slide width-200px d-flex justify-content-center align-items-center '>
-              {# {{ dump( row._entity ) }} #}
-              {{ drupal_entity('node', row._entity.id, 'card') }}
-            </div>
-          {% endif %}
-        {% endfor %}
+          {% set view = content.field_view_ref.0.contents['#view'] %}
+          {% for row in view.result %}
+            {% if row._entity %}
+              <div class=' swiper-slide width-200px d-flex justify-content-center align-items-center '>
+                {# {{ dump( row._entity ) }} #}
+                {{ drupal_entity('node', row._entity.id) }}
+              </div>
+            {% endif %}
+          {% endfor %}
 
+        </div>
+        <div class="swiper-progress-wrap">
+          <div class="swiper-progress"></div>
+        </div>
+        <div class="swiper-buttons">
+          <button class="swiper-prev">Prev</button>
+          <button class="swiper-next">Next</button>
+        </div>
       </div>
-      <div class="swiper-progress-wrap">
-        <div class="swiper-progress"></div>
-      </div>
-      <div class="swiper-buttons">
-        <button class="swiper-prev">Prev</button>
-        <button class="swiper-next">Next</button>
-      </div>
+
     </div>
   {% endblock %}
 

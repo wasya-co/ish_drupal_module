@@ -1,1 +1,5 @@
-.block-content-section_slider{min-height:80vh}
+.block-content-section_slider {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
