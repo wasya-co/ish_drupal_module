@@ -12,6 +12,25 @@ class OnecolAnywidthLayout extends LayoutDefault implements PluginFormInterface 
   /**
    * {@inheritdoc}
   **/
+  public function build(array $regions) {
+    $build = parent::build($regions);
+    $image = $build['#settings']['field_image_hero'] ?? '';
+    if (is_array($image) && !empty($image[0])) {
+      $file = File::load($image[0]);
+      $image = $file
+        ? \Drupal::service('file_url_generator')->generateString($file->getFileUri())
+        : '';
+    }
+    elseif (!is_string($image)) {
+      $image = '';
+    }
+    $build['#settings']['field_image_hero'] = $image;
+    return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+  **/
   public function defaultConfiguration() {
     return parent::defaultConfiguration() + [
       'field_class_name' => 'fixed-container',

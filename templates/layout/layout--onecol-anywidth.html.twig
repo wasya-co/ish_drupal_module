@@ -8,8 +8,8 @@
 ] %}
 {% if content %}
   <div class='w-1'
-    {% if settings.field_image_hero %} style="background-image: url('{{ settings.field_image_hero }}')" >{% endif %}
-  </div>
+    {% if settings.field_image_hero %} style="background-image: url('{{ settings.field_image_hero }}')" {% endif %}
+  ></div>
     <div {{ attributes.addClass(classes) }} >
       <div class='row'>
 
