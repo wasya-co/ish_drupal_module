@@ -225,47 +225,15 @@
 .container-2 {
   margin: auto; }
 
-.tns-outer > button {
-  display: none; }
+.swiper-progress-wrap {
+  height: 4px;
+  margin-top: 1em;
+  background-color: rgba(0, 0, 0, 0.12); }
 
-.tns-outer .tns-controls {
-  text-align: right;
-  margin-bottom: 0.5em; }
-  .tns-outer .tns-controls > button {
-    margin-right: 1em;
-    border-radius: 10px;
-    background: transparent; }
-
-.tns-slider .node,
-.tns-slider .node--type-slide {
-  border: 2px solid var(--text-color);
-  border-radius: 0.5em;
-  overflow: hidden;
-  margin: 0 1em 1em 0;
-  padding: 1em;
-  max-height: 70vh;
-  min-height: 200px;
-  max-width: 50vw;
-  min-width: 300px; }
-  .tns-slider .node img,
-  .tns-slider .node--type-slide img {
-    max-height: 300px;
-    height: auto;
-    max-width: 300px;
-    max-width: 90%;
-    width: auto; }
-
-.no-navigation .tns-outer > button {
-  display: none; }
-
-.no-navigation .tns-outer .tns-nav {
-  display: none; }
-
-.no-navigation .tns-outer .tns-controls {
-  display: none; }
-
-.continuous .tns-slicer {
-  transition-timing-function: linear !important; }
+.swiper-progress {
+  height: 100%;
+  width: 0;
+  background-color: var(--text-color, #333); }
 
 #header {
   z-index: 20; }
@@ -421,16 +389,6 @@ article.node--view-mode-full:not(.node--type-issue) {
 
 .block-content-section_slider_images article.node--type-slide > header {
   display: none; }
-
-.block-content-section_slider .swiper-autoplay-progress-wrap {
-  height: 4px;
-  margin-top: 1em;
-  background-color: rgba(0, 0, 0, 0.12); }
-
-.block-content-section_slider .swiper-autoplay-progress {
-  height: 100%;
-  width: 0;
-  background-color: var(--text-color, #333); }
 
 .sf-accordion-toggle {
   display: flex;

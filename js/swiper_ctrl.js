@@ -38,16 +38,17 @@ jQuery(function () {
     if (el.classList.contains('one-per-page')) {
       const prevEl = el.querySelector('.swiper-prev')
       const nextEl = el.querySelector('.swiper-next')
-      const progressEl = el.querySelector('.swiper-autoplay-progress')
-      const autoplayDelay = parseInt(el.dataset.autoplayDelay, 10) || 5000
+      const progressEl = el.querySelector('.swiper-progress')
+
+      const autoplay = el.classList.contains('no-autoplay') ? false : {
+        delay: parseInt(el.dataset.autoplayDelay, 10) || 5000,
+        disableOnInteraction: true,
+      }
 
       const swiper = new Swiper(el, {
         loop: true,
         slidesPerView: 1,
-        autoplay: {
-          delay: autoplayDelay,
-          disableOnInteraction: true,
-        },
+        autoplay,
         navigation: {
           nextEl: nextEl,
           prevEl: prevEl,

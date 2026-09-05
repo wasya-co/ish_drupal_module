@@ -270,7 +270,10 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
           .swiper-slide[]
 
 
-      .swiper.one-per-page
+      .swiper.one-per-page.no-autoplay
+        .swiper-prev
+        .swiper-next
+        .swiper-progress
         .swiper-wrapper
           .swiper-slide[]
 

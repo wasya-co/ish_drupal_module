@@ -22,7 +22,7 @@
   {% block content %}
     <h1>{{ content.field_subtitle }}</h1>
 
-    <div{{ content_attributes.addClass('content swiper one-per-page fixed-container border-yellow ') }}>
+    <div{{ content_attributes.addClass('content swiper one-per-page no-autoplay fixed-container border-yellow ') }}>
       <div class='swiper-wrapper'>
 
         {% set view = content.field_view_ref.0.contents['#view'] %}
@@ -36,8 +36,8 @@
         {% endfor %}
 
       </div>
-      <div class="swiper-autoplay-progress-wrap">
-        <div class="swiper-autoplay-progress"></div>
+      <div class="swiper-progress-wrap">
+        <div class="swiper-progress"></div>
       </div>
       <div class="swiper-buttons">
         <button class="swiper-prev">Prev</button>
