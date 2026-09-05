@@ -1,17 +1,1 @@
-.SectionAbout10 {
-  padding: 40px; }
-  .SectionAbout10 .container-2 {
-    padding: 0 40px 40px 40px; }
-    .SectionAbout10 .container-2 img {
-      max-width: 100%;
-      height: auto;
-      border: 1px dotted var(--text-color);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
-
-.pushup-80px {
-  margin-top: -120px;
-  background-color: var(--bg-color);
-  padding: 120px 40px 40px 40px;
-  z-index: 10;
-  position: relative; }
+.SectionAbout10{padding:40px}.SectionAbout10 .container-2{padding:0 40px 40px 40px}.SectionAbout10 .container-2 img{max-width:100%;height:auto;border:1px dotted var(--text-color);border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}.pushup-80px{margin-top:-120px;background-color:var(--bg-color);padding:120px 40px 40px 40px;z-index:10;position:relative}
