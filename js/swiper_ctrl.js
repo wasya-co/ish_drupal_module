@@ -38,13 +38,38 @@ jQuery(function () {
     if (el.classList.contains('one-per-page')) {
       const prevEl = el.querySelector('.swiper-prev')
       const nextEl = el.querySelector('.swiper-next')
-      new Swiper(el, {
+      const progressEl = el.querySelector('.swiper-autoplay-progress')
+      const autoplayDelay = parseInt(el.dataset.autoplayDelay, 10) || 5000
+
+      const swiper = new Swiper(el, {
         loop: true,
-        slidesPerView: 'auto',
-        spaceBetween: 16,
+        slidesPerView: 1,
+        autoplay: {
+          delay: autoplayDelay,
+          disableOnInteraction: true,
+        },
         navigation: {
           nextEl: nextEl,
           prevEl: prevEl,
+        },
+        on: {
+          autoplayTimeLeft(_swiper, _timeLeft, progress) {
+            if (progressEl) {
+              progressEl.style.width = `${progress * 100}%`
+            }
+          },
+          navigationNext() {
+            swiper.autoplay.stop()
+            if (progressEl) {
+              progressEl.style.width = '0'
+            }
+          },
+          navigationPrev() {
+            swiper.autoplay.stop()
+            if (progressEl) {
+              progressEl.style.width = '0'
+            }
+          },
         },
       })
 

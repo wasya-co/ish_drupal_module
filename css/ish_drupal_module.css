@@ -422,6 +422,16 @@ article.node--view-mode-full:not(.node--type-issue) {
 .block-content-section_slider_images article.node--type-slide > header {
   display: none; }
 
+.block-content-section_slider .swiper-autoplay-progress-wrap {
+  height: 4px;
+  margin-top: 1em;
+  background-color: rgba(0, 0, 0, 0.12); }
+
+.block-content-section_slider .swiper-autoplay-progress {
+  height: 100%;
+  width: 0;
+  background-color: var(--text-color, #333); }
+
 .sf-accordion-toggle {
   display: flex;
   justify-content: flex-end; }

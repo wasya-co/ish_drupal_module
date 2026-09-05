@@ -5,6 +5,7 @@ namespace Drupal\ish_drupal_module\Layout;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Layout\LayoutDefault;
 use Drupal\Core\Plugin\PluginFormInterface;
+use Drupal\file\Entity\File;
 
 class FourcolAnywidthLayout extends LayoutDefault implements PluginFormInterface {
 
