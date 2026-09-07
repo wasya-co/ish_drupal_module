@@ -26,7 +26,9 @@
 
       <div class='Card card-folder'>
         <div class='card-top-illu'>
-          {{ content.field_image_thumb }}
+          {% if node.field_image_thumb.entity %}
+            <img src="{{ file_url(node.field_image_thumb.entity.uri.value) }}" alt="{{ node.field_image_thumb.alt|default('') }}" />
+          {% endif %}
         </div>
       </div>
 

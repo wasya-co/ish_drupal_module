@@ -1,1 +1,33 @@
-.Card,.node--view-mode-card,.node--view-mode-teaser{border:1px solid var(--text-color);border-radius:0.4em;box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:1em;margin-right:1em;margin-bottom:1em;width:100%;background-color:var(--bg-color-2)}.node--type-issue.node--view-mode-card{display:flex;flex-direction:column;align-items:center}
+/*
+ * only make Card, Teaser nice. chips and tags can also be here.
+**/
+.Card,
+.node--view-mode-card,
+.node--view-mode-teaser {
+  background-color: var(--bg-color-2);
+  border: 1px solid var(--text-color);
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 2px rgba(40, 32, 16, 0.06), 0 6px 12px rgba(40, 32, 16, 0.08), 0 16px 32px rgba(40, 32, 16, 0.1);
+  padding: 1.25rem 1.1rem;
+  margin-bottom: 1.25rem;
+  width: 100%; }
+
+.card-folder .card-top-illu {
+  position: relative;
+  height: 3em;
+  margin-bottom: 1em; }
+  .card-folder .card-top-illu .card-top-illu img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform-origin: bottom right;
+    transition: transform 0.2s ease; }
+
+/*
+ * any card should be center-aligned and pretty?
+ * text above photo means, mostly reading. photo above text means, mostly watching
+**/
+.node--type-issue.node--view-mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
