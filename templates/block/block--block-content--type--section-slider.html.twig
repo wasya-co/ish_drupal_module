@@ -26,13 +26,13 @@
       <div{{ content_attributes.addClass('content swiper one-per-page no-autoplay fixed-container ') }}>
         <div class='swiper-wrapper'>
 
-          {% set view = content.field_view_ref.0.contents['#view'] %}
-          {{ dump( view ) }}
+          {% set view          = content.field_view_ref.0.contents['#view'] %}
+          {% set row_view_mode = view.rowPlugin.options.view_mode|default('default') %}
           {% for row in view.result %}
             {% if row._entity %}
               <div class=' swiper-slide width-200px d-flex justify-content-center align-items-center '>
                 {# {{ dump( row._entity ) }} #}
-                {{ drupal_entity('node', row._entity.id) }}
+                {{ drupal_entity('node', row._entity.id, row_view_mode) }}
               </div>
             {% endif %}
           {% endfor %}

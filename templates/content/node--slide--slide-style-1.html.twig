@@ -1,0 +1,53 @@
+
+{#
+ # two-col. left: half-Card for the image_thumb
+ # right: title, body, links
+##}
+
+{%
+  set classes = [
+    'container',
+
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{# {{ dump( content ) }} #}
+
+<article{{ attributes.addClass(classes) }}>
+
+  <div class='row'>
+    <div class='col-6'>
+
+      <div class='Card card-folder'>
+        <div class='card-top-illu'>
+          {{ content.field_image_thumb }}
+        </div>
+      </div>
+
+    </div>
+    <div class='col-6'>
+
+      {{ title_prefix }}
+      {% if label and not page %}
+        <h2{{ title_attributes }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+
+      <a class='btn btn-primary'
+         href="{{ content.field_link_url[0]['#context']['value'] }}"
+      >{{ content.field_link_text[0]['#context']['value'] }}</a>
+
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+
+</article>
