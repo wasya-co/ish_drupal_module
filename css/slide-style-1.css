@@ -1,0 +1,6 @@
+.node--view-mode-slide-style-1 .card-folder {
+  max-width: 300px; }
+
+.node--view-mode-slide-style-1 .first-col {
+  display: flex;
+  flex-direction: row-reverse; }
