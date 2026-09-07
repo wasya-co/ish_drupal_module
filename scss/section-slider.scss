@@ -6,5 +6,9 @@
   flex-direction: column;
   justify-content: center;
 
+  .swiper-slide {
+    overflow: visible;
+  }
+
 }
 

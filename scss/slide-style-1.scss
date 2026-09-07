@@ -6,10 +6,12 @@
   }
 
   .first-col {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: row-reverse;
+    overflow: visible;
   }
-
 
 }
 

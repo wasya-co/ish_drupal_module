@@ -6,8 +6,11 @@
   max-width: 300px; }
 
 .node--view-mode-slide-style-1 .first-col {
+  position: relative;
+  z-index: 2;
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+  overflow: visible; }
 
 .Card,
 .node--view-mode-card,
@@ -247,13 +250,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center; }
+  .block-content-section_slider .swiper-slide {
+    overflow: visible; }
 
 .node--view-mode-slide-style-1 .card-folder {
   max-width: 300px; }
 
 .node--view-mode-slide-style-1 .first-col {
+  position: relative;
+  z-index: 2;
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+  overflow: visible; }
 
 .swiper-progress-wrap {
   height: 4px;
