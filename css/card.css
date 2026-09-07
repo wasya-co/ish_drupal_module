@@ -1,15 +1,25 @@
 /*
  * only make Card, Teaser nice. chips and tags can also be here.
 **/
-.node--view-mode-slide-style-1 .card-folder {
-  max-width: 300px; }
-
-.node--view-mode-slide-style-1 .first-col {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: row-reverse;
-  overflow: visible; }
+.node--view-mode-slide-style-1 {
+  height: 400px; }
+  .node--view-mode-slide-style-1 .row {
+    height: 100%; }
+  .node--view-mode-slide-style-1 .card-folder {
+    max-width: 300px; }
+  .node--view-mode-slide-style-1 .first-col {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end; }
+  .node--view-mode-slide-style-1 .second-col {
+    margin-bottom: 1.25rem;
+    /* from Card margin-bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; }
+    .node--view-mode-slide-style-1 .second-col .field--name-body {
+      flex-grow: 1; }
 
 .Card,
 .node--view-mode-card,

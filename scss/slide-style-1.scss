@@ -1,16 +1,33 @@
 
 .node--view-mode-slide-style-1 {
 
+  height: 400px;
+  .row {
+    height: 100%;
+  }
+
   .card-folder {
     max-width: 300px;
   }
 
   .first-col {
-    position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: row-reverse;
-    overflow: visible;
+    align-items: flex-end;
+  }
+
+  .second-col {
+    margin-bottom: 1.25rem; /* from Card margin-bottom */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .field--name-body {
+      flex-grow: 1;
+    }
+
   }
 
 }
