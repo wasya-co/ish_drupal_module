@@ -425,6 +425,9 @@ article.node--view-mode-full:not(.node--type-issue) {
     content: "Login with Google";
   } */
 /* T */
+article.node--view-mode-teaser .field--name-field-image-thumb {
+  padding-top: 0.4em; }
+
 main#content .node--type-page .text-formatted img,
 main#content .node--type-article .text-formatted img,
 main#content .node--type-advanced-page .text-formatted img,

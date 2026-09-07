@@ -27,6 +27,7 @@
         <div class='swiper-wrapper'>
 
           {% set view = content.field_view_ref.0.contents['#view'] %}
+          {{ dump( view ) }}
           {% for row in view.result %}
             {% if row._entity %}
               <div class=' swiper-slide width-200px d-flex justify-content-center align-items-center '>

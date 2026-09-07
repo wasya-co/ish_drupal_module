@@ -276,6 +276,15 @@ article.node--view-mode-full:not(.node--type-issue) {
 
 /* T */
 
+article.node--view-mode-teaser {
+  h2 {
+    // padding-top: 0;
+  }
+  .field--name-field-image-thumb {
+    padding-top: 0.4em;
+  }
+}
+
 main#content {
   .node--type-page,
   .node--type-article,
