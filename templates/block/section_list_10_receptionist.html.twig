@@ -1,1 +1,112 @@
-<h1>receiptionist</h1>
+
+<div class='receptionist2W'>
+
+  <section class="section-receptionist">
+    <div class='slogan'>
+      <h1 class="display-1">{{ content.tagline }}</h1>
+      <p>&nbsp;</p>
+    </div>
+    <img class='receptionist' src="https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/09/07151926/receptionist-2.600x366-tiny.png" alt='receptionist' />
+  </section>
+
+  {# <h1>{{ dump( content.field_view_ref.0.contents['#view'] ) }}</h1> #}
+
+  <div class='container card-row'>
+    <div class='row'>
+
+      {% set view          = content.field_view_ref.0.contents['#view'] %}
+      {% set row_view_mode = view.rowPlugin.options.view_mode|default('default') %}
+      {% for row in view.result %}
+        {# <h1>{{ dump( row._entity ) }}</h1>  #}
+        {% if row._entity %}
+          <div class='col-6 col-md-3'>
+            {{ drupal_entity('node', row._entity.id, row_view_mode) }}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+    </div><!-- end row -->
+    <div class='row'>
+
+      <div class='col-12 text-right'>
+        <a href="{{ content.field_link_url[0]['#context']['value'] }}" class='btn btn-outline-secondary'>{{ content.field_link_text[0]['#context']['value'] }}</a>
+      </div>
+
+    </div><!-- end row -->
+  </div>
+</div><!-- end .receptionist2W -->
+
+
+
+{#
+<div class='container'>
+        <div{{ content_attributes.addClass('content row') }}>
+          <div class='col-12 col-lg-3'>
+            <div class='container-1 _pushup-80px fade-up'>
+              <h3>{{ content.field_subtitle }}</h3>
+              <div class='float-left'>{{ content.field_image_thumb }}</div>
+              {{ content.body }}
+              {% if content.field_link_url[0]['#context']['value'] is not empty %}
+                <a class='btn btn-primary'
+                  href="{{ content.field_link_url[0]['#context']['value'] }}"
+                >{{ content.field_link_text[0]['#context']['value'] |default('read more') }}</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class='col-12 col-lg-9'>
+            <div class='container-2 fade-up'>
+              {{ content.field_view_ref }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <a href='./index-wasyaco-ror.html'>
+        <div class='Card card-folder'>
+          <div class='card-top-illu' >
+            <img  src='./assets/ror-gem.200x200.png' alt='ror gem' />
+          </div>
+          <h5>Ruby on Rails</h5>
+          <div class='subtitle'>Web Application Development</div>
+        </div>
+      </a>
+    </div>
+    <div class='col-6 col-md-3'>
+      <a href='/services/reactjs'>
+        <div class='Card card-folder'>
+          <div class='card-top-illu' >
+            <img  src='./assets/react-atom.200x200.png' alt='ror gem' />
+          </div>
+          <h5>React Js</h5>
+          <div class='subtitle'>Custom, Well-Designed Frontends</div>
+        </div>
+      </a>
+    </div>
+    <div class='col-6 col-md-3'>
+      <a href='/services/reactjs'>
+        <div class='Card card-folder'>
+          <div class='card-top-illu' >
+            <img  src='./assets/robot-arm.200x200.png' alt='ror gem' />
+          </div>
+          <h5>AI & Automation</h5>
+          <div class='subtitle'>Giving you Competitive Frontier Technology</div>
+        </div>
+      </a>
+    </div>
+    <div class='col-6 col-md-3'>
+      <a href='/services/reactjs'>
+        <div class='Card card-folder'>
+          <div class='card-top-illu' >
+            <img  src='./assets/paintbrush.200x200.png' alt='ror gem' />
+          </div>
+          <h5>Graphic Design</h5>
+          <div class='subtitle'>If it's not attractive, it doesn't exist.</div>
+        </div>
+      </a>
+    </div>
+#}

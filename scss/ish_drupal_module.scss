@@ -7,8 +7,10 @@
 @import './section-callout-parallax.scss';
 @import './section-hero-video.scss';
 @import './section-list-10.scss';
+@import './section-list-10-receptionist.scss';
 @import './section-slider';
 @import './slide-style-1';
+@import './socials';
 @import './swiper';
 @import './z_indexes.scss';
 
@@ -51,6 +53,16 @@ article.node--type-advanced-page {
 .border-yellow {
   border: 2px solid yellow;
 }
+
+.bg-fixed {
+  background-attachment: fixed;
+
+  .w-1 {
+    background-attachment: fixed;
+  }
+
+}
+
 
 /* C */
 

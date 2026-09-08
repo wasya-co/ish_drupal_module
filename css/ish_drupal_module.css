@@ -44,6 +44,15 @@
     transform-origin: bottom right;
     transition: transform 0.2s ease; }
 
+.card-folder:hover h5 {
+  font-size: 1.4rem; }
+
+.card-folder:hover .card-top-illu img {
+  transform: scale(1.12); }
+
+.card-folder:hover .subtitle {
+  font-size: 1.1rem; }
+
 /*
  * any card should be center-aligned and pretty?
  * text above photo means, mostly reading. photo above text means, mostly watching
@@ -255,6 +264,70 @@
 .container-2 {
   margin: auto; }
 
+.receptionist2W {
+  border: 1px solid red; }
+  .receptionist2W .section-receptionist {
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url("../assets/paper-background.1920x1200.jpg") center/cover no-repeat; }
+    .receptionist2W .section-receptionist .display-1 {
+      font-family: Lobster, cursive;
+      color: #33cccc;
+      text-shadow: -3px 3px 0 #ffff00, -6px 6px 0 #ffff00, -8px 8px 2px #ffff00;
+      position: relative;
+      top: -1rem; }
+    .receptionist2W .section-receptionist .slogan {
+      position: relative;
+      z-index: 4;
+      color: white;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      margin-top: auto;
+      margin-bottom: 8vh; }
+    .receptionist2W .section-receptionist .receptionist {
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      bottom: -8vh;
+      max-width: none; }
+  .receptionist2W .card-row {
+    position: relative;
+    margin-top: -1em;
+    z-index: 6; }
+
+/*
+
+    .Card {
+      background: #fff;
+      border: 1px solid rgba(80, 64, 40, 0.1);
+      border-radius: 8px;
+      box-shadow:
+        0 1px 2px rgba(40, 32, 16, 0.06),
+        0 6px 12px rgba(40, 32, 16, 0.08),
+        0 16px 32px rgba(40, 32, 16, 0.1);
+      padding: 1.25rem 1.1rem;
+      margin-bottom: 1.25rem;
+      color: #3a3428;
+      transform: translateY(-3px);
+    }
+
+    .card-top-illu {
+      position: relative;
+      height: 3em;
+      margin-bottom: 1em;
+    }
+    .card-top-illu img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+*/
 .block-content-section_slider {
   min-height: 85vh;
   display: flex;
@@ -282,6 +355,38 @@
     align-items: flex-start; }
     .node--view-mode-slide-style-1 .second-col .field--name-body {
       flex-grow: 1; }
+
+.a202609-front-socials {
+  border: 5px solid magenta; }
+  .a202609-front-socials section.section-social {
+    border-top: 1px solid #3333ff;
+    border-bottom: 1px solid #3333ff;
+    padding: 2em 0 3em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  .a202609-front-socials .a1 .imgW img {
+    width: 400px;
+    border-radius: 2rem; }
+  .a202609-front-socials .row-social {
+    padding: 1rem 3rem 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end; }
+  .a202609-front-socials .item {
+    padding: 0 2rem 1rem 0;
+    position: relative;
+    transform-origin: bottom center;
+    transition: transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .a202609-front-socials .item img {
+    height: 2rem;
+    width: 2rem; }
+  .a202609-front-socials .item:hover {
+    z-index: 2;
+    transform: scale(1.45); }
+  .a202609-front-socials .item:has(+ .item:hover),
+  .a202609-front-socials .item:hover + .item {
+    transform: scale(1.18); }
 
 .swiper-progress-wrap {
   height: 4px;
@@ -335,6 +440,11 @@ article.node--type-advanced-page {
 
 .border-yellow {
   border: 2px solid yellow; }
+
+.bg-fixed {
+  background-attachment: fixed; }
+  .bg-fixed .w-1 {
+    background-attachment: fixed; }
 
 /* C */
 .block-system-main-block .content {

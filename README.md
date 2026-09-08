@@ -205,6 +205,11 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
 
     === Background ===
 
+      On a section, you can add:
+
+        .bg-fixed
+
+
       @obsolete: We encourage defining/customizing (default: different grays) the following to distinguish between consecutive sections:
 
         .background-1

@@ -1,0 +1,35 @@
+
+{%
+  set classes = [
+    'Card card-folder',
+
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{# <h1>{{ dump( content ) }}</h1> #}
+
+<a href='{{ content.field_link_url[0]['#context']['value'] }}' >
+  <article{{ attributes.addClass(classes) }}>
+    <div class='card-top-illu' >
+      {{ content.field_image_thumb }}
+    </div>
+
+    {{ title_prefix }}
+    {% if label and not page %}
+      <h5{{ title_attributes }}>
+        {{ label }}
+      </h5>
+    {% endif %}
+    {{ title_suffix }}
+
+    <div class='subtitle'>{{ content.field_subtitle }}</div>
+  </article>
+</a>
+
+

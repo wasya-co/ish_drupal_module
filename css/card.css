@@ -43,6 +43,15 @@
     transform-origin: bottom right;
     transition: transform 0.2s ease; }
 
+.card-folder:hover h5 {
+  font-size: 1.4rem; }
+
+.card-folder:hover .card-top-illu img {
+  transform: scale(1.12); }
+
+.card-folder:hover .subtitle {
+  font-size: 1.1rem; }
+
 /*
  * any card should be center-aligned and pretty?
  * text above photo means, mostly reading. photo above text means, mostly watching
