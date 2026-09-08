@@ -201,7 +201,12 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
     === Animations ===
 
       .fade-up
+
+      .heartbeat
+
       .slide-right
+
+
 
     === Background ===
 
@@ -228,6 +233,7 @@ _TODO: implement multiple styles of slider: continuous for image_thumbs only, an
       A bordered, padded container with a different background.
 
         .Card
+
 
     === Mobile vs Desktop ===
 

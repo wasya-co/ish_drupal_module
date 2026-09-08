@@ -12,3 +12,9 @@
 .tabs {
   position: relative;
   z-index: 10; }
+
+.receptionist {
+  z-index: 5; }
+
+.card-row {
+  z-index: 6; }

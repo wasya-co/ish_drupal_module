@@ -1,4 +1,6 @@
 
+/*
+
 function update_parallax() {
   var scroll_y = $(window).scrollTop()
   var receptionist_offset = scroll_y * 0.35
@@ -24,3 +26,5 @@ $(function() {
 
 
 console.log('+++ loaded effects_receptionist.js');
+
+*/

@@ -62,6 +62,19 @@
   flex-direction: column;
   align-items: center; }
 
+.heartbeat {
+  animation: heartbeat_shadow 1.4s ease-in-out infinite; }
+
+@keyframes heartbeat_shadow {
+  0%, 45%, 100% {
+    text-shadow: 0 0 0 rgba(180, 40, 40, 0); }
+  10% {
+    text-shadow: 0 0 8px rgba(180, 40, 40, 0.4); }
+  20% {
+    text-shadow: 0 0 2px rgba(180, 40, 40, 0.08); }
+  30% {
+    text-shadow: 0 0 10px rgba(180, 40, 40, 0.45); } }
+
 .SectionAbout10 {
   padding: 40px; }
   .SectionAbout10 .container-2 {
@@ -261,15 +274,13 @@
   .SectionHeroVideo .hero-image {
     display: block; } }
 
-.container-2 {
-  margin: auto; }
-
 .receptionist2W {
+  position: relative;
   border: 1px solid red; }
   .receptionist2W .section-receptionist {
     position: relative;
-    overflow: hidden;
-    min-height: 80vh;
+    overflow: visible;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -293,41 +304,18 @@
       position: absolute;
       z-index: 5;
       left: 50%;
-      bottom: -8vh;
+      bottom: -4vh;
+      transform: translateX(-50%);
       max-width: none; }
   .receptionist2W .card-row {
     position: relative;
-    margin-top: -1em;
+    margin-top: -1rem;
     z-index: 6; }
-
-/*
-
-    .Card {
-      background: #fff;
-      border: 1px solid rgba(80, 64, 40, 0.1);
-      border-radius: 8px;
-      box-shadow:
-        0 1px 2px rgba(40, 32, 16, 0.06),
-        0 6px 12px rgba(40, 32, 16, 0.08),
-        0 16px 32px rgba(40, 32, 16, 0.1);
-      padding: 1.25rem 1.1rem;
-      margin-bottom: 1.25rem;
-      color: #3a3428;
-      transform: translateY(-3px);
-    }
-
-    .card-top-illu {
+    .receptionist2W .card-row article.Card,
+    .receptionist2W .card-row .Card {
       position: relative;
-      height: 3em;
-      margin-bottom: 1em;
-    }
-    .card-top-illu img {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
+      z-index: 6; }
 
-*/
 .block-content-section_slider {
   min-height: 85vh;
   display: flex;
@@ -356,36 +344,35 @@
     .node--view-mode-slide-style-1 .second-col .field--name-body {
       flex-grow: 1; }
 
-.a202609-front-socials {
-  border: 5px solid magenta; }
-  .a202609-front-socials section.section-social {
-    border-top: 1px solid #3333ff;
-    border-bottom: 1px solid #3333ff;
-    padding: 2em 0 3em 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-  .a202609-front-socials .a1 .imgW img {
-    width: 400px;
-    border-radius: 2rem; }
-  .a202609-front-socials .row-social {
-    padding: 1rem 3rem 0 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end; }
-  .a202609-front-socials .item {
+.a202609-front-socials section.socials2W {
+  border-top: 1px solid #3333ff;
+  border-bottom: 1px solid #3333ff;
+  padding: 2em 0 3em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.a202609-front-socials .a1 .imgW img {
+  width: 400px;
+  border-radius: 2rem; }
+
+.a202609-front-socials .socials-row {
+  padding: 1rem 3rem 0 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .a202609-front-socials .socials-row .item {
     padding: 0 2rem 1rem 0;
     position: relative;
     transform-origin: bottom center;
     transition: transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1); }
-  .a202609-front-socials .item img {
-    height: 2rem;
-    width: 2rem; }
-  .a202609-front-socials .item:hover {
-    z-index: 2;
+    .a202609-front-socials .socials-row .item img {
+      height: 2rem;
+      width: 2rem; }
+  .a202609-front-socials .socials-row .item:hover {
     transform: scale(1.45); }
-  .a202609-front-socials .item:has(+ .item:hover),
-  .a202609-front-socials .item:hover + .item {
+  .a202609-front-socials .socials-row .item:has(+ .item:hover),
+  .a202609-front-socials .socials-row .item:hover + .item {
     transform: scale(1.18); }
 
 .swiper-progress-wrap {
@@ -412,6 +399,12 @@
 .tabs {
   position: relative;
   z-index: 10; }
+
+.receptionist {
+  z-index: 5; }
+
+.card-row {
+  z-index: 6; }
 
 /* A */
 article,

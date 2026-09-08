@@ -24,6 +24,10 @@
 
       {% include '@ish_drupal_module/block/section_list_10_receptionist.html.twig' %}
 
+    {% elseif 'socials' == content.field_style[0]['#markup'] %}
+
+      {% include '@ish_drupal_module/block/section_list_10_socials.html.twig' %}
+
     {% else %}
 
       <div class='container'>
