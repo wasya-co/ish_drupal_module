@@ -22,18 +22,8 @@
 <article{{ attributes.addClass(classes) }}>
 
   <div class='row'>
-    <div class='col-6 first-col'>
 
-      <div class='Card card-folder'>
-        <div class='card-top-illu'>
-          {% if node.field_image_thumb.entity %}
-            <img src="{{ file_url(node.field_image_thumb.entity.uri.value) }}" alt="{{ node.field_image_thumb.alt|default('') }}" />
-          {% endif %}
-        </div>
-      </div>
-
-    </div>
-    <div class='col-6 second-col'>
+    <div class='col-12 col-md-6 order-md-2 second-col'>
 
       {{ title_prefix }}
       {% if label and not page %}
@@ -48,6 +38,17 @@
       <a class='btn btn-primary'
          href="{{ content.field_link_url[0]['#context']['value'] }}"
       >{{ content.field_link_text[0]['#context']['value'] }}</a>
+
+    </div>
+    <div class='col-12 col-md-6 order-md-1 first-col'>
+
+      <div class='Card card-folder'>
+        <div class='card-top-illu'>
+          {% if node.field_image_thumb.entity %}
+            <img src="{{ file_url(node.field_image_thumb.entity.uri.value) }}" alt="{{ node.field_image_thumb.alt|default('') }}" />
+          {% endif %}
+        </div>
+      </div>
 
     </div>
   </div>

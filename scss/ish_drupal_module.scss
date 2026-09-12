@@ -98,8 +98,6 @@ article.node--type-advanced-page {
 
 
 /* what extends fixed-container? */
-
-// #header,
 #navbar-main,
 .site-footer__top {
   @extend .fixed-container;
@@ -164,6 +162,14 @@ div.site-footer__bottom {
   background-position: bottom;
 }
 
+
+.field--name-field-image-thumb {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 /* L */
 
 .layout--onecol {
@@ -193,6 +199,27 @@ ul.menu {
   li {
     cursor: pointer;
   }
+}
+
+ul.menu {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    a {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+}
+
+
+
+/* N */
+
+#navbar-main {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 /* superfish */
@@ -317,6 +344,32 @@ article.node--view-mode-full:not(.node--type-issue) {
   } */
 
 
+.layout .block-search { /* layout means its inside a layout-builder page */
+  .container-inline {
+    width: 100%;
+
+    form {
+      // border: 1px solid yellow;
+
+      padding: 0 0.5em;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      font-size: 2em;
+
+      div.form-item,
+      div.js-form-item {
+        flex-grow: 1;
+        padding-right: 0.5rem;
+
+        input[name="keys"] {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 
 /* T */
 
@@ -328,6 +381,16 @@ article.node--view-mode-teaser {
     padding-top: 0.4em;
   }
 }
+
+.view-terms-conditions {
+  display: flex;
+  justify-content: center;
+
+  .view-content {
+    padding: 0 1em;
+  }
+}
+
 
 main#content {
   .node--type-page,
@@ -344,12 +407,6 @@ main#content {
   }
 }
 
-.field--name-field-image-thumb {
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
 
 
 

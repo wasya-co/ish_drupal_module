@@ -1,13 +1,13 @@
 
+{# <h1>{{ dump( content.field_view_ref.0.contents['#view'] ) }}</h1> #}
+
 <section class='socials2W'>
 
   <div class='imgW'>
     {{ content.field_image_thumb }}
   </div>
-  <h4 class='title' >&nbsp;</h4>
-  <div class='field_subtitle mt-3 heartbeat'>Find us on the socials</div>
-
-  {# <h1>{{ dump( content.field_view_ref.0.contents['#view'] ) }}</h1> #}
+  <h4 class='tagline' >{{ content.field_tagline }}</h4>
+  <div class='field_subtitle mt-3 heartbeat'>{{ content.field_subtitle }}</div>
 
   <div class='container socials-row'>
 
@@ -27,7 +27,7 @@
 
   {% if content.field_link_url[0]['#context']['value'] %}
     <div class='row'>
-      <div class='col-12 text-right text-end'>
+      <div class='col-12'>
         <a href="{{ content.field_link_url[0]['#context']['value'] }}" class='btn btn-outline-secondary'>{{ content.field_link_text[0]['#context']['value'] }}</a>
       </div>
     </div>

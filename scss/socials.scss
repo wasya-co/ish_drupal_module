@@ -29,10 +29,12 @@
     justify-content: center;
 
     .item {
-      padding: 0 2rem 1rem 0;
+      padding: 0.5rem 1rem;
       position: relative;
       transform-origin: bottom center;
       transition: transform 0.18s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+      text-align: center;
 
       img {
         height: 2rem;
@@ -41,11 +43,11 @@
     }
     .item:hover {
       // z-index: 2;
-      transform: scale(1.45);
+      transform: scale(1.2);
     }
     .item:has(+ .item:hover),
     .item:hover + .item {
-      transform: scale(1.18);
+      transform: scale(1.1);
     }
   }
 
