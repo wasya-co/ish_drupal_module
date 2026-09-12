@@ -196,22 +196,28 @@ ul.menu {
 }
 
 /* superfish */
+
+
 ul.sf-menu {
   display: flex;
   justify-content: flex-end;
+
+  .sf-sub-indicator {
+    left: 0.5em;
+  }
 
   li > span.nolink {
     color: var(--header-link-color);
   }
 
   ul[role=menu] {
-    background: var(--header-bg);
+    background: var(--header-menu-hover-bg, var(--header-bg) );
   }
 }
 body.scrolled {
   ul.sf-menu {
     ul[role=menu] {
-      background: var(--header-bg-scrolled);
+      background: var(--header-menu-hover-bg-scrolled, var(--header-bg-scrolled) );
     }
   }
 }
