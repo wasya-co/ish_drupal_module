@@ -172,6 +172,9 @@ class DefaultFields {
     'field_image_hero'  => DefaultFields::image_url,
     'field_image_thumb' => DefaultFields::image,
     'field_tags'        => DefaultFields::tags,
+
+    'field_source_text' => DefaultFields::text,
+    'field_source_url'  => DefaultFields::text,
   ];
 
 }

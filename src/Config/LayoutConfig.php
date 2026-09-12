@@ -29,7 +29,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class LayoutConfig {
 
   /*
-   * clear
   **/
   public static function clear() {
     $theme = \Drupal::config('system.theme')->get('default');
@@ -42,7 +41,6 @@ class LayoutConfig {
   }
 
   /*
-   * setup_marketing_site
   **/
   public static function setup_marketing_site() {
     $theme = \Drupal::config('system.theme')->get('default');
@@ -150,11 +148,11 @@ class LayoutConfig {
 
   /*
   **/
-  public static function update_pagetitle_for_issue() {
+  public static function no_pagetitle_for_issue() {
     $theme = \Drupal::config('system.theme')->get('default');
     $block = Block::load("{$theme}_pagetitle");
     if (!$block) {
-      \Drupal::messenger()->addMessage('update_pagetitle_for_issue() did not find a pagetitle');
+      \Drupal::messenger()->addMessage('no_pagetitle_for_issue() did not find a pagetitle');
       return;
     }
     $block->setVisibilityConfig('entity_bundle:node', [

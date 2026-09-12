@@ -1,9 +1,1 @@
-.swiper-progress-wrap {
-  height: 4px;
-  margin-top: 1em;
-  background-color: rgba(0, 0, 0, 0.12); }
-
-.swiper-progress {
-  height: 100%;
-  width: 0;
-  background-color: var(--text-color, #333); }
+.swiper-progress-wrap{height:4px;margin-top:1em;background-color:rgba(0,0,0,0.12)}.swiper-progress{height:100%;width:0;background-color:var(--text-color, #333)}

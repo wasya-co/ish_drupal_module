@@ -1,7 +1,1 @@
-.block-content-section_slider {
-  min-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; }
-  .block-content-section_slider .swiper-slide {
-    overflow: visible; }
+.block-content-section_slider{min-height:85vh;display:flex;flex-direction:column;justify-content:center}.block-content-section_slider .swiper-slide{overflow:visible}

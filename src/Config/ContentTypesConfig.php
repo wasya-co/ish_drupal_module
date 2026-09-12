@@ -29,7 +29,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\Config\DefaultFields;
 
-/*
+/* alphabetized : )
 **/
 class ContentTypesConfig {
 
@@ -162,10 +162,11 @@ class ContentTypesConfig {
     unset( $fields['field_image_hero'] );
     self::setup_content_type('issue', $fields);
     self::enable_layout_builder_for('issue', 'full');
-    LayoutConfig::update_pagetitle_for_issue();
+    LayoutConfig::no_pagetitle_for_issue();
   }
 
   /*
+   * slide looks like a block, even though it's a node?
   **/
   public static function setup_slide() {
     $fields = DefaultFields::default_block_fields;
@@ -177,48 +178,3 @@ class ContentTypesConfig {
 
 
 
-
-
-/* paragraphs */
-/*
-  $storage = FieldStorageConfig::loadByName('node', 'field_paragraphs');
-  if (!$storage) {
-    $storage = FieldStorageConfig::create([
-      'field_name' => 'field_paragraphs',
-      'entity_type' => 'node',
-      'type' => 'entity_reference_revisions',
-      'cardinality' => -1,
-      'settings' => [
-        'target_type' => 'paragraph',
-      ],
-      'translatable' => TRUE,
-    ]);
-    $storage->save();
-  }
-  $field = FieldConfig::loadByName('node', 'advanced_page', 'field_paragraphs');
-  if (!$field) {
-    $field = FieldConfig::create([
-      'field_storage' => $storage,
-      'bundle' => 'advanced_page',
-      'label' => 'Paragraphs',
-      'description' => '',
-      'required' => FALSE,
-      'translatable' => TRUE,
-      'settings' => [],
-    ]);
-    $field->save();
-  }
-  $form_display ->setComponent('field_paragraphs', [
-    'type' => 'paragraphs',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-  $display->setComponent('body', [
-    'type' => 'entity_reference_revisions_entity_view',
-    'label' => 'hidden',
-    'weight' => 20,
-    'region' => 'content',
-    'settings' => [],
-  ])->save();
-*/

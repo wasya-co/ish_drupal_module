@@ -137,10 +137,12 @@ class ThisConfig {
     ThisConfig::setup_tags();
     ThisConfig::setup_views_config();
 
-    ContentTypesConfig::setup_issue();
-    ContentTypesConfig::setup_slide();
+
     ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
     ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
+    ContentTypesConfig::setup_content_type('article', DefaultFields::default_node_fields;);
+    ContentTypesConfig::setup_issue();
+    ContentTypesConfig::setup_slide();
 
 
     BlocksConfig::hours_of_operation();

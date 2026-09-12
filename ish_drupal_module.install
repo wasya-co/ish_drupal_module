@@ -22,15 +22,20 @@ function ish_drupal_module_update_9016() {
   ThisConfig::do_initial_setup();
 }
 
-function ish_drupal_module_update_9020() {
+function ish_drupal_module_update_9021() {
   // ContentTypesConfig::setup_slide();
 
-  $fields = DefaultFields::default_block_fields;
-  $fields['field_view_ref'] = DefaultFields::view_ref;
-  $fields['field_style']    = DefaultFields::select_3style;
-  BlocksConfig::create_block_type('section_slider', $fields);
-  BlocksConfig::create_block_type('section_slider_images', $fields);
-  BlocksConfig::create_block_type('section_list_10', $fields);
+  // $fields = DefaultFields::default_block_fields;
+  // $fields['field_view_ref'] = DefaultFields::view_ref;
+  // $fields['field_style']    = DefaultFields::select_3style;
+  // BlocksConfig::create_block_type('section_slider', $fields);
+  // BlocksConfig::create_block_type('section_slider_images', $fields);
+  // BlocksConfig::create_block_type('section_list_10', $fields);
+
+
+  $fields = DefaultFields::default_node_fields;
+  ContentTypesConfig::setup_content_type('article', $fields);
+
 }
 
 
