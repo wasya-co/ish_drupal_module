@@ -31,8 +31,8 @@ class DefaultFields {
   public const file = [
     'display' => 'file_url_plain',
     'field_config_settings' => [
-      'file_extensions' => 'mp4 webm ogv svg',
-      'description_field' => FALSE,
+      'file_extensions' => 'mp4 webm ogv svg glb',
+      'description_field' => true,
     ],
     'field_storage_config_settings' => [
       'target_type' => 'file',
@@ -51,6 +51,9 @@ class DefaultFields {
         'style_1' => 'style_1',
         'style_2' => 'style_2',
         'style_3' => 'style_3',
+        'socials' => 'socials',
+        'receptionist' => 'receptionist',
+        'object3d_rotating' => 'object3d_rotating',
       ],
     ],
     'form_display' => 'options_select',
