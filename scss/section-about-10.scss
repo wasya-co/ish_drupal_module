@@ -21,6 +21,13 @@
 }
 
 
+.Object3dRotating {
+  > .row {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .pushup-80px {
   margin-top: -120px;
   background-color: var(--bg-color);
