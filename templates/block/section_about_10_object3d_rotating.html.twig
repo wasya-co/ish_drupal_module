@@ -6,9 +6,11 @@
 
     <div class='col-sm-12 col-md-6'>
 
-      {{ content.field_icon }}
-
-      <div class='rotatingC' style="width:100%;aspect-ratio:1;min-height:240px;"></div>
+      <div
+        class='rotatingC'
+        data-model-url="{{ content.field_icon|render|striptags|trim|e('html_attr') }}"
+        style="width:100%;aspect-ratio:1;min-height:240px;"
+      ></div>
 
     </div>
     <div class='col-sm-12 col-md-6'>
@@ -29,32 +31,59 @@
 
 <script type='module'>
 import * as THREE from 'three'
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
 function init_rotating_c(container) {
+  const model_url = container.dataset.modelUrl
+  if (!model_url) {
+    return
+  }
+
   const width = container.clientWidth || 280
   const height = container.clientHeight || width
 
   const scene = new THREE.Scene()
-  scene.background = new THREE.Color(0xeeeeee)
 
   const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100)
   camera.position.z = 2.8
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true })
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  renderer.setClearColor(0x000000, 0)
   renderer.setSize(width, height)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   container.appendChild(renderer.domElement)
 
-  const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshStandardMaterial({ color: 0x4488cc })
-  )
-  scene.add(cube)
+  const controls = new OrbitControls(camera, renderer.domElement)
+  controls.enableDamping = true
+  controls.dampingFactor = 0.08
+  controls.target.set(0, 0, 0)
 
   scene.add(new THREE.AmbientLight(0xffffff, 0.55))
   const key_light = new THREE.DirectionalLight(0xffffff, 0.85)
   key_light.position.set(2, 4, 3)
   scene.add(key_light)
+
+  const loader = new GLTFLoader()
+  loader.load(
+    model_url,
+    (gltf) => {
+      const model = gltf.scene
+      const box = new THREE.Box3().setFromObject(model)
+      const center = box.getCenter(new THREE.Vector3())
+      const size = box.getSize(new THREE.Vector3())
+      model.position.sub(center)
+      const max_dim = Math.max(size.x, size.y, size.z)
+      if (max_dim > 0) {
+        model.scale.setScalar(1.8 / max_dim)
+      }
+      scene.add(model)
+    },
+    undefined,
+    (err) => {
+      console.error('GLB load failed', model_url, err)
+    }
+  )
 
   function resize() {
     const w = container.clientWidth || 280
@@ -66,8 +95,7 @@ function init_rotating_c(container) {
 
   function tick() {
     requestAnimationFrame(tick)
-    cube.rotation.x += 0.008
-    cube.rotation.y += 0.012
+    controls.update()
     renderer.render(scene, camera)
   }
 
