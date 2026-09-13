@@ -39,4 +39,4 @@
 3.1.0 :: 2026-08-25 :: only cleanup, continue.
                        groking old wasyaco_com with this very new module!
   v3.1.1 :: 2026-09-07 :: lets deploy staging.wasyaco.com
-
+3.2.0 :: 2026-09-13 :: start wiring threejs

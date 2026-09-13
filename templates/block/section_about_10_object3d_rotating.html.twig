@@ -1,5 +1,5 @@
 
-{{ attach_library('ish_drupal_module/threejs') }}
+{% include '@ish_drupal_module/threejs_importmap.html.twig' %}
 
 <div class='content'>
   <div class='row'>
@@ -7,6 +7,8 @@
     <div class='col-sm-12 col-md-6'>
 
       {{ content.field_icon }}
+
+      <div class='rotatingC' style="width:100%;aspect-ratio:1;min-height:240px;"></div>
 
     </div>
     <div class='col-sm-12 col-md-6'>
@@ -24,3 +26,54 @@
 
   </div>
 </div>
+
+<script type='module'>
+import * as THREE from 'three'
+
+function init_rotating_c(container) {
+  const width = container.clientWidth || 280
+  const height = container.clientHeight || width
+
+  const scene = new THREE.Scene()
+  scene.background = new THREE.Color(0xeeeeee)
+
+  const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 100)
+  camera.position.z = 2.8
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true })
+  renderer.setSize(width, height)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  container.appendChild(renderer.domElement)
+
+  const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshStandardMaterial({ color: 0x4488cc })
+  )
+  scene.add(cube)
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55))
+  const key_light = new THREE.DirectionalLight(0xffffff, 0.85)
+  key_light.position.set(2, 4, 3)
+  scene.add(key_light)
+
+  function resize() {
+    const w = container.clientWidth || 280
+    const h = container.clientHeight || w
+    camera.aspect = w / h
+    camera.updateProjectionMatrix()
+    renderer.setSize(w, h)
+  }
+
+  function tick() {
+    requestAnimationFrame(tick)
+    cube.rotation.x += 0.008
+    cube.rotation.y += 0.012
+    renderer.render(scene, camera)
+  }
+
+  window.addEventListener('resize', resize)
+  tick()
+}
+
+document.querySelectorAll('.rotatingC').forEach(init_rotating_c)
+</script>

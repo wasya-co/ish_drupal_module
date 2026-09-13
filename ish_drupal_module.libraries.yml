@@ -86,9 +86,3 @@ swiper_cdn:
   js:
     //cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js: {}
     js/swiper_ctrl.js: {}
-
-threejs:
-  js:
-    vendor/threejs/three.min.js: { minified: true }
-
-
