@@ -312,7 +312,7 @@
       left: 50%;
       bottom: -4vh;
       transform: translateX(-50%);
-      max-width: none; }
+      max-width: 95vw; }
   .receptionist2W .card-row {
     position: relative;
     margin-top: -1rem;
@@ -648,7 +648,8 @@ article.node--view-mode-teaser .field--name-field-image-thumb {
 
 .view-terms-conditions {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-wrap: wrap; }
   .view-terms-conditions .view-content {
     padding: 0 1em; }
 

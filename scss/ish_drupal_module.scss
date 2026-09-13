@@ -387,6 +387,7 @@ article.node--view-mode-teaser {
 .view-terms-conditions {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 
   .view-content {
     padding: 0 1em;
