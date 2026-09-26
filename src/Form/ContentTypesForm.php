@@ -4,6 +4,7 @@ namespace Drupal\ish_drupal_module\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ish_drupal_module\Config\ContentTypesConfig;
 use Drupal\ish_drupal_module\Config\DefaultFields;
 
 /*
@@ -128,7 +129,24 @@ class ContentTypesForm extends FormBase {
    * {@inheritdoc}
   **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    logg($form_state, 'form state');
+    // logg($form_state, 'form state');
+    $content_type = strtolower(trim($form_state->getValue('name')));
+    $content_type = preg_replace('/[^a-z0-9_]+/', '_', $content_type);
+    $content_type = substr(trim($content_type, '_'), 0, 32);
+    if ($content_type === '') {
+      return;
+    }
+
+    $fields = [];
+    foreach ($form_state->getValue('fields') ?? [] as $row) {
+      if (!is_array($row) || empty($row['name']) || !isset(DefaultFields::$list[$row['type']])) {
+        continue;
+      }
+      $fields[$row['name']] = DefaultFields::$list[$row['type']];
+    }
+
+    ContentTypesConfig::setup_content_type($content_type, $fields);
+    $this->messenger()->addStatus($this->t('Content type @type saved.', ['@type' => $content_type]));
   }
 
   /**
