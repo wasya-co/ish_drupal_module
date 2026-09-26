@@ -29,7 +29,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Drupal\ish_drupal_module\Config\DefaultFields;
 
-/* alphabetized : )
+/*
+ * alphabetized : )
 **/
 class ContentTypesConfig {
 
@@ -73,7 +74,7 @@ class ContentTypesConfig {
       NodeType::create([
         'type' => $content_type,
         'name' => $content_type,
-        'description' => $content_type,
+        'description'  => $content_type,
         'new_revision' => FALSE,
         'preview_mode' => DRUPAL_OPTIONAL,
         'display_submitted' => FALSE,
@@ -85,7 +86,7 @@ class ContentTypesConfig {
       $form_display = EntityFormDisplay::create([
         'targetEntityType' => 'node',
         'bundle' => $content_type,
-        'mode' => 'default',
+        'mode'   => 'default',
         'status' => TRUE,
       ]);
     }
@@ -95,7 +96,7 @@ class ContentTypesConfig {
       $display = EntityViewDisplay::create([
         'targetEntityType' => 'node',
         'bundle' => $content_type,
-        'mode' => 'full',
+        'mode'   => 'full',
         'status' => TRUE,
       ]);
     }
@@ -106,11 +107,11 @@ class ContentTypesConfig {
       $storage = FieldStorageConfig::loadByName('node', $field);
       if (!$storage) {
         $storage = FieldStorageConfig::create([
-          'field_name' => $field,
+          'field_name'  => $field,
           'entity_type' => 'node',
-          'type' => $field_c['type'],
+          'type'        => $field_c['type'],
           'cardinality' => $field_c['cardinality'] ?? 1,
-          'settings' => $field_c['field_storage_config_settings'] ?? [],
+          'settings'    => $field_c['field_storage_config_settings'] ?? [],
         ]);
         $storage->save();
       }
@@ -118,27 +119,27 @@ class ContentTypesConfig {
       if (!$field_cfg) {
         $field_cfg = FieldConfig::create([
           'field_storage' => $storage,
-          'bundle' => $content_type,
-          'label' => $field,
-          'required' => FALSE,
-          'translatable' => !!( $field_c['translatable'] ?? false ),
-          'settings' => $field_c['field_config_settings'] ?? [],
+          'bundle'        => $content_type,
+          'label'         => $field,
+          'required'      => FALSE,
+          'translatable'  => !!( $field_c['translatable'] ?? false ),
+          'settings'      => $field_c['field_config_settings'] ?? [],
         ])->save();
       }
 
       $form_display ->setComponent($field, [
-        'type' => $field_c['form_display'],
-        'weight' => 20,
-        'region' => 'content',
+        'type'     => $field_c['form_display'],
+        'weight'   => 20,
+        'region'   => 'content',
         'settings' => $field_c['form_display_settings'] ?? [],
       ])->save();
 
       if ($field_c['display'] ?? null) {
         $display->setComponent($field, [
-          'type' => $field_c['display'],
-          'label' => 'hidden',
-          'weight' => 20,
-          'region' => 'content',
+          'type'     => $field_c['display'],
+          'label'    => 'hidden',
+          'weight'   => 20,
+          'region'   => 'content',
           'settings' => [],
         ])->save();
       }

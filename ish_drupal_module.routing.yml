@@ -27,6 +27,14 @@ ish_drupal_module.admin_recreate_layout:
   requirements:
     _permission: 'administer content'
 
+ish_drupal_module.admin_content_types_edit:
+  path: '/admin/ish_drupal_module/content_types/edit'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\ContentTypesForm'
+    _title: 'Content Type New or Edit'
+  requirements:
+    _permission: 'administer content'
+
 
 
 ##

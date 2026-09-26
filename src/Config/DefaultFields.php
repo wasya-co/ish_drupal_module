@@ -6,6 +6,19 @@ namespace Drupal\ish_drupal_module\Config;
 **/
 class DefaultFields {
 
+  public static $list = [
+    'body' => self::body,
+    'file' => self::file,
+    'select_3style' => self::select_3style,
+    'toggle' => self::toggle,
+    'image' => self::image,
+    'image_url' => self::image_url,
+    'text' => self::text,
+    'text_long' => self::text_long,
+    'tags' => self::tags,
+    'view_ref' => self::view_ref,
+  ];
+
   public const body = [
     'field_config_settings' => [
       'display_summary' => TRUE,
@@ -112,7 +125,6 @@ class DefaultFields {
     'form_display' => 'string_textfield',
     'type' => 'string',
   ];
-
   public const text_long = [
     'display' => 'basic_string',
     'form_display' => 'string_textarea',
@@ -153,8 +165,9 @@ class DefaultFields {
 
   /* -=--- */
 
+
   public const default_block_fields = [
-    'field_tagline'    => DefaultFields::text,
+    'field_tagline'     => DefaultFields::text,
     'field_subtitle'    => DefaultFields::text,
     'body'              => DefaultFields::body,
 

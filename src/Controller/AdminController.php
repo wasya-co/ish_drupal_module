@@ -34,14 +34,16 @@ class AdminController extends ControllerBase {
           'title' => 'Settings',
           'url' => Url::fromRoute('ish_drupal_module.admin_settings')->toString(),
         ],
+        [
+          'title' => 'Content Types Form',
+          'url' => Url::fromRoute('ish_drupal_module.admin_content_types_edit')->toString(),
+        ],
       ],
       '#theme' => 'admin_home',
     ];
   }
 
 
-  /*
-  **/
   public function recreate_layout() {
     LayoutConfig::clear();
     LayoutConfig::setup_marketing_site();

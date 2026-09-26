@@ -21,10 +21,32 @@ function dumpp($object, $label=null) {
   dump($object);
 }
 
+/*
+ * this works but the one below is more compact
+ *
+ *   tail -f /var/log/apache2/error.log | sed 's/\\n/\n/g'
+ *
+**/
+// function logg($what, $label) {
+//   error_log("\n+++ +++ $label:\n" . print_r($what, true) . "\n\n");
+// }
 function logg($what, $label) {
-  error_log("\n+++ +++ $label:\n" . print_r($what, true)) . "\n\n";
+  if (is_object($what)) {
+    $data = ['__class' => get_class($what)];
+    foreach ((new ReflectionObject($what))->getProperties() as $property) {
+      $value = $property->getValue($what);
+      $data[$property->getName()] = is_object($value) ? get_class($value) : $value;
+    }
+    $output = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    if ($output === FALSE) {
+      $output = print_r($what, TRUE);
+    }
+  }
+  else {
+    $output = print_r($what, TRUE);
+  }
+  error_log("\n+++ +++ $label:\n" . $output . "\n\n");
 }
-
 
 
 /*
