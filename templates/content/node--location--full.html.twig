@@ -1,0 +1,193 @@
+
+<style>
+
+html, body { touch-action: manipulation }
+
+</style>
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+<article{{ attributes.addClass(classes) }}>
+
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div{{ content_attributes.addClass('maxwidth node__content') }}>
+    {{ content }}
+  </div>
+
+
+
+<div class='StudioW1'>
+  <div class='StudioW0'>
+
+    <div class='ctrl-row header-row'>
+      <b>Studio FPS</b>
+      <div class='item'>
+        <select class='studio'></select>
+        <em>Status:</em><span id='status'>pending</span>
+      </div>
+      <button id='fullScreen' />fullScrn</button>
+
+      <div class='item'>
+        <label>
+          <input type="radio" name="ctrl-type" value="touch"> Touch
+        </label>
+        <label>
+          <input type="radio" name="ctrl-type" value="fps"> FPS
+        </label>
+      </div>
+
+      <div class='item'>
+        <label>
+          <input type="checkbox" class='weapon-ctrl' name="weaponCtrl" value="on" checked>
+          Use Weapons
+        </label>
+      </div>
+
+    </div>
+
+
+
+    <div class='rotatingW'>
+      <div id="rotatingC" class="r2" style="position: relative;
+        border: 1px solid red;
+        text-align: center; " >
+        <div style="position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;pointer-events:none;z-index:2;">
+          <div style="position:absolute;left:50%;top:0;width:2px;height:100%;margin-left:-1px;background:#fff;"></div>
+          <div style="position:absolute;top:50%;left:0;height:2px;width:100%;margin-top:-1px;background:#fff;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class='ctrl-row'>
+      <button id='createDoor'>Door+</button>
+      <div class='item'>
+        <label>
+          <input type="checkbox" name="doorHelper" value="on">
+          move door
+        </label>
+      </div>
+      <div class='item'>
+        <label>
+          <input type="checkbox" name="doorRotate" value="on">
+          rotate door
+        </label>
+      </div>
+    </div>
+
+    <div class='ctrl-row'>
+      <div class='item'>
+        <label>
+          <input type="radio" name="head" value="1" checked>
+          head 1
+        </label>
+      </div>
+      <div class='item'>
+        <label>
+          <input type="radio" name="head" value="2">
+          head 2
+        </label>
+      </div>
+      <div class='item'>
+          <label>
+          <input type="radio" name="head" value="3">
+          head 3
+        </label>
+      </div>
+      <div class='item'>
+        <button id='speak'>Speak</button>
+      </div>
+      <div class='item'>
+        <select class='gestures' ><option></option></select>
+        <button id='jesture'>Jesture</button>
+      </div>
+    </div>
+
+    <div id='avatar_1'></div><div id='avatar_2'></div><div id='avatar_3'></div>
+    <div id='loading'>&nbsp;</div>
+
+    <div class='d-flex heads ctrl-row'>
+      <div class='item'>
+        head 1
+        <select class='avatar' data-uid="1" ><option></option></select>
+      </div>
+      <div class='item'>
+        head 2
+        <select class='avatar' data-uid='2' ><option></option></select>
+      </div>
+      <div class='item'>
+        head 3
+        <select class='avatar' data-uid='3' ><option></option></select>
+      </div>
+    </div>
+
+    <div class='d-flex cameras ctrl-row'>
+      <label>
+        <input type="radio" name="camera" value="wide" checked>
+        cam wide
+      </label>
+      <label>
+        <input type="radio" name="camera" value="av_1">
+        cam 1
+      </label>
+      <label>
+        <input type="radio" name="camera" value="av_2">
+        cam 2
+      </label>
+      <label>
+        <input type="radio" name="camera" value="av_3">
+        cam 3
+      </label>
+
+    </div>
+
+    <div class='ctrl-row lights'>
+      <label>
+        <input type="checkbox" class='light-ctrl' name="ambientLight" value="on" checked>
+        ambientLight
+      </label>
+      <label>
+        <input type="checkbox" class='light-ctrl' name="hemiLight" value="on" checked>
+        hemiLight
+      </label>
+      <label>
+        <input type="checkbox" class='light-ctrl' name="keyLight" value="on" checked>
+        keyLight
+      </label>
+      <label class='border-yellow'>
+        <input type="checkbox" id='is_shadows' name="shadows" value="on" checked>
+        cast shadows
+      </label>
+      <label>
+        <input type="checkbox" class='light-ctrl' name="fillLight" value="on" checked>
+        fillLight
+      </label>
+      <label>
+        <input type="checkbox" class='light-ctrl' name="rimLight" value="on" checked>
+        rimLight
+      </label>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+  <div class="clearfix"></div>
+
+</article>

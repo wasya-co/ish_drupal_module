@@ -94,6 +94,9 @@ class ContentTypesForm extends FormBase {
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
+      '#attributes' => [
+        'onclick' => "return confirm('" . $this->t('Are you sure you want to create this content type?') . "');",
+      ],
     ];
 
     return $form;
