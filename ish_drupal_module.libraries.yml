@@ -70,6 +70,13 @@ scrollreveal:
   js:
     vendor/js/scrollreveal@4.0.9.min.js: { minified: true }
 
+studio:
+  css:
+    component:
+      css/studio.css: {}
+  js:
+    js/studio_fps.js: {}
+
 swiper:
   css:
     component:

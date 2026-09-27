@@ -1,0 +1,1 @@
+html,body{touch-action:manipulation}body{background:#ccc}.ctrl-row{display:flex;flex-wrap:wrap}.ctrl-row>*{margin-right:2em}.rotatingW{display:flex;justify-content:center}.StudioW1{border:1px solid red;height:100%;display:flex;justify-content:center}.StudioW1 .StudioW0{border:1px solid blue;background:#bbb;display:block;z-index:5}
