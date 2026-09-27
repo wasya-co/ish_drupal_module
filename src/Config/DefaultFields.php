@@ -10,30 +10,21 @@ class DefaultFields {
     'body' => self::body,
     'file' => self::file,
     'select_3style' => self::select_3style,
-    'toggle' => self::toggle,
-    'image' => self::image,
+    'toggle'    => self::toggle,
+    'image'     => self::image,
     'image_url' => self::image_url,
-    'text' => self::text,
-    'text_long' => self::text_long,
-    'tags' => self::tags,
-    'view_ref' => self::view_ref,
+    'text'      => self::text,
+    'text_long' => self::text_long, // use body instead?
+    'tags'      => self::tags,
+    'view_ref'  => self::view_ref,
   ];
 
   public const body = [
-    'field_config_settings' => [
-      'display_summary' => TRUE,
-      'required_summary' => FALSE,
-    ],
-    'field_storage_config_settings' => [
-      'display_summary' => TRUE,
-      'required_summary' => FALSE,
-    ],
     'form_display' => 'text_textarea_with_summary',
     'form_display_settings' => [
       'rows' => 9,
       'summary_rows' => 3,
       'placeholder' => '',
-      'show_summary' => true,
     ],
     'default_value' =>[[ 'value' => '', 'format' => 'full_html' ]],
     'display' => 'text_default',
@@ -125,6 +116,7 @@ class DefaultFields {
     'form_display' => 'string_textfield',
     'type' => 'string',
   ];
+  /* _TODO: @deprecated? use 'body' ? */
   public const text_long = [
     'display' => 'basic_string',
     'form_display' => 'string_textarea',
@@ -191,6 +183,16 @@ class DefaultFields {
 
     'field_source_text' => DefaultFields::text,
     'field_source_url'  => DefaultFields::text,
+  ];
+  /* _TODO: the default_node_fields can be replaced with this one, with a bit of refactoring. */
+  public const default_node_fields_list = [
+    'body'              => 'body',
+    'field_image_hero'  => 'image_url',
+    'field_image_thumb' => 'image',
+    'field_tags'        => 'tags',
+
+    'field_source_text' => 'text',
+    'field_source_url'  => 'text',
   ];
 
 }

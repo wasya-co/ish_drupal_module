@@ -36,7 +36,7 @@ class ContentTypesForm extends FormBase {
       $form_state->set('field_rows', $rows);
     }
 
-    $type_options = array_combine(
+    $type_options = ['nil' => ''] + array_combine(
       array_keys(DefaultFields::$list),
       array_keys(DefaultFields::$list)
     );
@@ -133,23 +133,23 @@ class ContentTypesForm extends FormBase {
   **/
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // logg($form_state, 'form state');
-    $content_type = strtolower(trim($form_state->getValue('name')));
-    $content_type = preg_replace('/[^a-z0-9_]+/', '_', $content_type);
-    $content_type = substr(trim($content_type, '_'), 0, 32);
-    if ($content_type === '') {
+    $name = strtolower(trim($form_state->getValue('name')));
+    $name = preg_replace('/[^a-z0-9_]+/', '_', $name);
+    $name = substr(trim($name, '_'), 0, 32);
+    if ($name === '') {
       return;
     }
 
     $fields = [];
-    foreach ($form_state->getValue('fields') ?? [] as $row) {
-      if (!is_array($row) || empty($row['name']) || !isset(DefaultFields::$list[$row['type']])) {
+    foreach ($form_state->getValue('fields') ?? [] as $field) {
+      if (!is_array($field) || empty($field['name']) || !isset(DefaultFields::$list[$field['type']])) {
         continue;
       }
-      $fields[$row['name']] = DefaultFields::$list[$row['type']];
+      $fields[$field['name']] = DefaultFields::$list[$field['type']];
     }
 
-    ContentTypesConfig::setup_content_type($content_type, $fields);
-    $this->messenger()->addStatus($this->t('Content type @type saved.', ['@type' => $content_type]));
+    ContentTypesConfig::setup_content_type($name, $fields);
+    $this->messenger()->addStatus($this->t('Content type `@type` saved.', ['@type' => $name]));
   }
 
   /**
@@ -157,10 +157,10 @@ class ContentTypesForm extends FormBase {
   **/
   protected function defaultRows() {
     $rows = [];
-    foreach (DefaultFields::default_node_fields as $name => $definition) {
+    foreach (DefaultFields::default_node_fields_list as $name => $type) {
       $rows[] = [
         'name' => $name,
-        'type' => $name,
+        'type' => $type,
       ];
     }
     return $rows;
