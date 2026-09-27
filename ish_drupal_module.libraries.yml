@@ -75,7 +75,9 @@ studio:
     component:
       css/studio.css: {}
   js:
-    js/studio_fps.js: {}
+    js/studio_fps.js:
+      attributes:
+        type: module
 
 swiper:
   css:
