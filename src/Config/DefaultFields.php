@@ -25,6 +25,7 @@ class DefaultFields {
       'rows' => 9,
       'summary_rows' => 3,
       'placeholder' => '',
+      'show_summary' => FALSE,
     ],
     'default_value' =>[[ 'value' => '', 'format' => 'full_html' ]],
     'display' => 'text_default',

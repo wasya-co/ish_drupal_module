@@ -248,7 +248,8 @@ class BlocksConfig {
         ])->save();
       }
       $form_display->setComponent($field_name, [
-        'type' => $field_c['form_display'],
+        'type'     => $field_c['form_display'],
+        'settings' => $field_c['form_display_settings'] ?? [],
       ])->save();
       $display->setComponent($field_name, [
         'label' => 'hidden',
