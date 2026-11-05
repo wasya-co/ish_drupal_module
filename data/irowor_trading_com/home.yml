@@ -1,0 +1,47 @@
+---
+
+
+- info: 'main_hero'
+  type: 'section_callout_parallax'
+  meta:
+    replace: false
+  fields:
+    field_image_hero: 'https://cityad-all-prod.s3.amazonaws.com/s3fs-public/2026-04/bull-bear-0.1500x600.jpg'
+    field_class_name: 'a2026_main_hero'
+    field_custom_css: |
+      .a2026_main_hero { height: 650px; }
+
+
+_TODO
+_TODO
+_TODO
+- create view: "blog"
+  display: frontpage
+
+
+- path: /home
+  type: 'issue'
+  meta:
+    replace: true
+  fields:
+    title: 'Home'
+  sections:
+    - type: 'layout_onecol_any'
+      fields:
+        field_class_name: _
+      regions:
+        first:
+          - 'section_callout_parallax:main_hero'
+    - type: 'section_about_10'
+      fields:
+        title: Trading the Right Way
+        body: This derivatives trading platform is built around a few very specific strategies. It is designed to assist the trader in correct decision-making, show risk-reward clearly, and enable fundamental statistical analysis in a streamlined interface.
+        link_text: Read Story
+        link_url: '/our-story'
+
+    _TODO
+    _TODO
+    _TODO
+    - type: view
+      view_id: blog
+
