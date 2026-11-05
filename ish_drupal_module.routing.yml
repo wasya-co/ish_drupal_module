@@ -4,7 +4,7 @@ ish_drupal_module.admin_home:
   path: '/admin/ish_drupal_module'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\AdminController::index'
-    _title: 'admin home | ish_drupal_module'
+    _title: 'ish_drupal_module | home'
   requirements:
     _permission: 'administer content'
 
@@ -17,7 +17,14 @@ ish_drupal_module.admin_put_content:
   requirements:
     _permission: 'administer content'
 
-
+## the form to upload a yml that adds fields to a content_type
+ish_drupal_module.admin_content_types_edit:
+  path: '/admin/ish_drupal_module/content_types/edit'
+  defaults:
+    _form: '\Drupal\ish_drupal_module\Form\ContentTypesForm'
+    _title: 'Content Type New or Edit'
+  requirements:
+    _permission: 'administer content'
 
 ish_drupal_module.admin_recreate_layout:
   path: '/admin/ish_drupal_module/recreate_layout'
@@ -27,15 +34,14 @@ ish_drupal_module.admin_recreate_layout:
   requirements:
     _permission: 'administer content'
 
-ish_drupal_module.admin_content_types_edit:
-  path: '/admin/ish_drupal_module/content_types/edit'
+## kitchensink
+ish_drupal_module.admin_sections:
+  path: '/admin/ish_drupal_module/sections'
   defaults:
-    _form: '\Drupal\ish_drupal_module\Form\ContentTypesForm'
-    _title: 'Content Type New or Edit'
+    _controller: '\Drupal\ish_drupal_module\Controller\AdminController::sections'
+    _title: 'ish_drupal_module | sections'
   requirements:
     _permission: 'administer content'
-
-
 
 ##
 ## API keys, attached libraries
