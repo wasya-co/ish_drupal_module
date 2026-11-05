@@ -66,64 +66,35 @@ class ThisConfig {
     if (!$handlers->has('email_admin')) {
       $handler_manager = \Drupal::service('plugin.manager.webform.handler');
       $handler = $handler_manager->createInstance('email', [
-        'id' => 'email_admin',
-        'label' => 'Admin email',
+        'id' => 'email',
+        'label' => 'Email admin',
         'handler_id' => 'email_admin',
         'status' => TRUE,
         'weight' => 0,
         'settings' => [
-          'to_mail' => 'poxlovi@gmail.com',
-          'subject' => 'New submission',
-          'body' => '[webform_submission:values]',
+          'states' => ['completed'],
+          'to_mail' => \Drupal::config('system.site')->get('mail'),
+          'to_options' => [],
+          'cc_mail' => '',
+          'cc_options' => [],
+          'bcc_mail' => '',
+          'bcc_options' => [],
+          'from_mail' => 'default',
+          'from_options' => [],
+          'from_name' => 'default',
+          'reply_to' => '',
+          'return_path' => '',
+          'subject' => '[webform_submission:created] :: [site:name] :: [webform:title] :: New webform submission',
+          'body' => "A new submission has been received.\n\n[webform_submission:values]",
+          'excluded_elements' => [],
+          'attachments' => FALSE,
+          'html' => FALSE,
+          'twig' => FALSE,
+          'debug' => FALSE,
         ],
       ]);
       $webform->addWebformHandler($handler);
     }
-
-    $handlers->addHandler([
-      'id' => 'email',
-      'handler_id' => 'email_admin',
-      'label' => 'Email admin',
-      'category' => 'Notification',
-      'status' => TRUE,
-      'weight' => 0,
-      'settings' => [
-        'states' => [
-          'completed' => [
-            'completed' => TRUE,
-          ],
-        ],
-        'to_mail' => \Drupal::config('system.site')->get('mail'),
-        'to_options' => [],
-        'cc_mail' => '',
-        'cc_options' => [],
-        'bcc_mail' => '',
-        'bcc_options' => [],
-        'from_mail' => '',
-        'from_options' => [],
-        'from_name' => '',
-        'reply_to' => '',
-        'return_path' => '',
-        'sender_mail' => '',
-        'sender_name' => '',
-        'subject' => '[webform_submission:created] :: [site:name] :: [webform:title] :: New webform submission',
-        'body' => "A new submission has been received.\n\n[webform_submission:values]",
-        'excluded_elements' => [],
-        'included_elements' => [],
-        'exclude_empty' => FALSE,
-        'exclude_empty_checkbox' => FALSE,
-        'exclude_unset' => FALSE,
-        'exclude_markup' => FALSE,
-        'exclude_options' => FALSE,
-        'exclude_access' => FALSE,
-        'exclude_sensitive' => FALSE,
-        'attachments' => FALSE,
-        'html' => FALSE,
-        'twig' => FALSE,
-      ],
-    ]);
-
-    $webform->save();
   }
 
 
