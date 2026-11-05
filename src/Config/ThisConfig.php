@@ -39,6 +39,14 @@ use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 use Drupal\ish_drupal_module\Content\NodesContent;
 
+function fwritee($what) {
+  return;
+  // fwrite(STDOUT, "+++ +++ $what \n");
+  // fflush(STDOUT);
+  // \Drush\Drush::output()->writeln('+++ ++1 here?!');
+  // // error_log("+++ +++ $what \n");
+}
+
 /*
 **/
 class ThisConfig {
@@ -55,9 +63,21 @@ class ThisConfig {
     }
 
     $handlers = $webform->getHandlers();
-    if ($handlers->get('email_admin')) {
-      \Drupal::messenger()->addMessage('+++ +++ hadler email_admin not found.');
-      return;
+    if (!$handlers->has('email_admin')) {
+      $handler_manager = \Drupal::service('plugin.manager.webform.handler');
+      $handler = $handler_manager->createInstance('email', [
+        'id' => 'email_admin',
+        'label' => 'Admin email',
+        'handler_id' => 'email_admin',
+        'status' => TRUE,
+        'weight' => 0,
+        'settings' => [
+          'to_mail' => 'poxlovi@gmail.com',
+          'subject' => 'New submission',
+          'body' => '[webform_submission:values]',
+        ],
+      ]);
+      $webform->addWebformHandler($handler);
     }
 
     $handlers->addHandler([
@@ -117,6 +137,7 @@ class ThisConfig {
       if (!$editor) { continue; }
       $settings = $editor->getSettings();
 
+      $settings['toolbar']['items'] ??= [];
       if (!in_array('alignment', $settings['toolbar']['items'])) {
         $settings['toolbar']['items'][] = 'alignment';
       }
@@ -130,19 +151,35 @@ class ThisConfig {
   /*
   **/
   public static function do_initial_setup() {
+
+    // $config_factory = \Drupal::configFactory();
+    // $config_factory->getEditable('devel.settings')->delete();
+    // $config_factory->getEditable('devel.toolbar.settings')->delete();
+    // $config_factory->getEditable('system.menu.devel')->delete();
+
     ModulesConfig::install_modules();
+    fwritee("Done ModulesConfig::install_modules();");
     ThisConfig::configure_text_editor();
+    fwritee("Done ThisConfig::configure_text_editor();");
     ThisConfig::setup_permissions();
+    fwritee("Done ThisConfig::setup_permissions();");
     ThisConfig::setup_view_modes();
+    fwritee("Done ThisConfig::setup_view_modes();");
     ThisConfig::setup_tags();
+    fwritee("Done ThisConfig::setup_tags();");
     ThisConfig::setup_views_config();
+    fwritee("Done ThisConfig::setup_views_config();");
 
 
     ContentTypesConfig::setup_content_type('advanced_page', DefaultFields::default_node_fields );
     ContentTypesConfig::enable_layout_builder_for('advanced_page', 'full');
-    ContentTypesConfig::setup_content_type('article', DefaultFields::default_node_fields;);
+    fwritee("Done advanced_page");
+    ContentTypesConfig::setup_content_type('article', DefaultFields::default_node_fields);
+    fwritee("Done article");
     ContentTypesConfig::setup_issue();
+    fwritee("Done issue");
     ContentTypesConfig::setup_slide();
+    fwritee("Done slide");
 
 
     BlocksConfig::hours_of_operation();

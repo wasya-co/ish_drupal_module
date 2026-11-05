@@ -11,18 +11,25 @@ use Drupal\ish_drupal_module\Config\ViewsConfig;
 
 /*
  * reset the counter:
- *   drush -l wco.local php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
+ *   drush -l iro.local php:eval "\Drupal::keyValue('system.schema')->delete('ish_drupal_module');"
  * check the counter:
- *   drush -l wco.local php:eval "print \Drupal::keyValue('system.schema')->get('ish_drupal_module');"
+ *   drush -l iro.local php:eval "print \Drupal::keyValue('system.schema')->get('ish_drupal_module');"
+ *
+ *
+ *
+ * drush -l iro.local config:delete devel.settings -y
+ * drush -l iro.local config:delete devel.toolbar.settings -y
+ * drush -l iro.local config:delete system.menu.devel -y
+ *
 **/
 
 /*
 **/
-function ish_drupal_module_update_9016() {
+function ish_drupal_module_update_9002() {
   ThisConfig::do_initial_setup();
 }
 
-function ish_drupal_module_update_9021() {
+function ish_drupal_module_update_9003() {
   // ContentTypesConfig::setup_slide();
 
   // $fields = DefaultFields::default_block_fields;
@@ -33,8 +40,8 @@ function ish_drupal_module_update_9021() {
   // BlocksConfig::create_block_type('section_list_10', $fields);
 
 
-  $fields = DefaultFields::default_node_fields;
-  ContentTypesConfig::setup_content_type('article', $fields);
+  // $fields = DefaultFields::default_node_fields;
+  // ContentTypesConfig::setup_content_type('article', $fields);
 
 }
 
