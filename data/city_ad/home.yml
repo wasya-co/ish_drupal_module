@@ -2,9 +2,8 @@
 create_content:
 
   - type: 'issue'
-    # entity_type: 'node'
     fields:
-      title: 'Home3 Issue'
+      title: 'Home Issue'
     path: '/home'
     sections:
       - type: 'layout_onecol_any'

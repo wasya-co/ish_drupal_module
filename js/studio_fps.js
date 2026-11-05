@@ -8,7 +8,6 @@ const logg = (a, b="", c=null) => {
   console.log(`+++ ${b}:`, a) // eslint-disable-line no-console
 }
 
-// const MODELS_ROOT = '/vendor/models'
 // const MODELS_ROOT = "https://cdn.jsdelivr.net/gh/wasya-co/ishlib3js@0.4.0/public/vendor/models"
 const SCENE_STOR = 'studio'
 const scenes = await fetch('https://cdn.jsdelivr.net/gh/wasya-co/ishlib3js@0.4.3/public/vendor/models/scenes/index.json').then(r => r.json())
