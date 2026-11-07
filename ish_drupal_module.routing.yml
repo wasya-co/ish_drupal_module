@@ -4,7 +4,7 @@ ish_drupal_module.admin_home:
   path: '/admin/ish_drupal_module'
   defaults:
     _controller: '\Drupal\ish_drupal_module\Controller\AdminController::index'
-    _title: 'ish_drupal_module | home'
+    _title: 'ish_drupal_module'
   requirements:
     _permission: 'administer content'
 

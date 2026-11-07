@@ -101,6 +101,8 @@ class PutContentForm extends FormBase {
         default:
           throw new \Exception('zz3 - Not implemented');
       }
+
+      \Drupal::messenger()->addMessage('Churned a content yaml.');
     }
 
   }

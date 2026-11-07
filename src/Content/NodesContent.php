@@ -110,6 +110,11 @@ class NodesContent {
                 case 'basic':
                 case 'advanced_block':
                 case 'section_callout_parallax':
+
+                  break;
+                case 'view':
+
+                  break;
                 default:
 
 

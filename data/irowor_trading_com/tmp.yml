@@ -1,8 +1,0 @@
----
-- type: 'view'
-  view_id: 'directory_tmp'
-  display_name: 'frontpage_block'
-
-  display_plugin: 'block'
-  label: 'Directory. Front Page.'
-  # entity_type: 'view'
