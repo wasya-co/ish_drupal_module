@@ -37,5 +37,5 @@
         field_class_name: _
       regions:
         first:
-          - 'view:articles_frontpage_block'
+          - 'view:articles2:frontpage_block_2'
 

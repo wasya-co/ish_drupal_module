@@ -113,6 +113,7 @@ class NodesContent {
 
                   break;
                 case 'view':
+                  [$view_id, $display_name] = explode(':', $name, 2);
 
                   break;
                 default:
