@@ -10,7 +10,7 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Serialization\Yaml;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Url;
 
 use Drupal\editor\Entity\Editor;
@@ -48,7 +48,7 @@ class ViewsConfig {
         ->getPath('ish_drupal_module') . '/config/install/views.view.master.yml';
       $defaults = Yaml::decode(file_get_contents($path));
       $defaults['id'] = $view_id;
-      $defaults['label'] = $config['label'] || $view_id;
+      $defaults['label'] = $config['label'] ?? $view_id;
 
       $view = View::create($defaults);
       $view->save();
@@ -60,17 +60,17 @@ class ViewsConfig {
     // if ($config['default']['display_options']['filters']) {
     //   $display['default']['display_options']['filters'] = $config['default']['display_options']['filters'];
     // }
-    $display[$display_name] = [
-      'id' => $display_name,
-      'display_options' => $config['display_options']??[],
-      'display_plugin' => $config['display_plugin']??'block',
-      'display_title' => $display_name,
-      'defaults' => $config['defaults']??[],
-    ];
-    $view->set('display', $display);
-
-    $view->addDisplay($config['display_plugin'] ?? 'block', "title: $display_name", $display_name);
-    $view->save();
+    if (!isset($display[$display_name])) {
+      $display[$display_name] = [
+        'id' => $display_name,
+        'display_options' => $config['display_options']??[],
+        'display_plugin' => $config['display_plugin']??'block',
+        'display_title' => $display_name,
+        'defaults' => $config['defaults']??[],
+      ];
+      $view->set('display', $display);
+      $view->save();
+    }
   }
 
 }
