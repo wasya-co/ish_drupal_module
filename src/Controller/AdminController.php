@@ -43,6 +43,12 @@ class AdminController extends ControllerBase {
     ];
   }
 
+  public function sections() {
+    return [
+      '#theme' => 'admin_sections',
+    ];
+  }
+
 
   public function recreate_layout() {
     LayoutConfig::clear();

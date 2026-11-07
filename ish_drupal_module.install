@@ -39,13 +39,17 @@ function ish_drupal_module_update_9003() {
   // BlocksConfig::create_block_type('section_slider_images', $fields);
   // BlocksConfig::create_block_type('section_list_10', $fields);
 
-
   // $fields = DefaultFields::default_node_fields;
   // ContentTypesConfig::setup_content_type('article', $fields);
-
 }
 
-
+function ish_drupal_module_update_9004() {
+  $item = [
+    'view_id' => 'articles',
+    'display_name' => 'articles-0',
+  ];
+  ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
+}
 
 
 

@@ -38,10 +38,7 @@ _TODO
         body: This derivatives trading platform is built around a few very specific strategies. It is designed to assist the trader in correct decision-making, show risk-reward clearly, and enable fundamental statistical analysis in a streamlined interface.
         link_text: Read Story
         link_url: '/our-story'
-
-    _TODO
-    _TODO
-    _TODO
     - type: view
-      view_id: blog
+      view_id: directory_tmp
+      display_id: frontpage_block
 

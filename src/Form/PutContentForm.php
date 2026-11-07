@@ -19,6 +19,7 @@ use Drupal\webform\Entity\Webform;
 
 use Drupal\ish_drupal_module\Config\BlocksConfig;
 use Drupal\ish_drupal_module\Config\ThisConfig;
+use Drupal\ish_drupal_module\Config\ViewsConfig;
 use Drupal\ish_drupal_module\Content\NodesContent;
 
 /*
@@ -93,9 +94,9 @@ class PutContentForm extends FormBase {
           NodesContent::create_webform($item);
           break;
 
-        // case 'view':
-        //   ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
-        //   break;
+        case 'view':
+          ViewsConfig::create_view($item['view_id'], $item['display_name'], $item);
+          break;
 
         default:
           throw new \Exception('zz3 - Not implemented');

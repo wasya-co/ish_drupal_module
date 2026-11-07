@@ -93,7 +93,7 @@ class BlocksConfig {
    * and this doesn't place the block?! but only creates it.
   **/
   public static function create_block($config) {
-    logg($config, 'create_block()');
+    logg($config, 'BlocksConfig.create_block()');
     if (!$config['info']) {
       throw new \Exception("create_block() expects key 'info'.");
     }
@@ -102,7 +102,7 @@ class BlocksConfig {
     }
 
     $is_replace = $config['meta']['replace'] ?? false;
-    $is_update = $config['meta']['update'] ?? false;
+    $is_update  = $config['meta']['update']  ?? false;
 
     $storage = \Drupal::entityTypeManager()->getStorage('block_content');
     $existing = $storage->loadByProperties([ 'type' => $config['type'], 'info' => $config['info'] ]);

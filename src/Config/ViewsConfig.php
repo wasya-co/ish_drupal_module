@@ -69,8 +69,63 @@ class ViewsConfig {
     // ];
     // $view->set('display', $display);
 
-    $view->addDisplay($config['display_plugin'], "title: $display_name", $display_name);
+    $view->addDisplay($config['display_plugin'] ?? 'block', "title: $display_name", $display_name);
     $view->save();
+  }
+
+  /*
+   * 2026-11-05 continue
+  **/
+  public static function setup_display_for($content_type, $display_mode, $conf) {
+    $fields = $conf['fields'];
+
+    $display = EntityViewDisplay::load("node.$content_type.$display_mode");
+    if (!$display) {
+      $display = EntityViewDisplay::create([
+        'targetEntityType' => 'node',
+        'bundle' => $content_type,
+        'mode' => $display_mode,
+        'status' => TRUE,
+      ]);
+
+      foreach($fields as $field => $field_c) {
+        // $storage = FieldStorageConfig::loadByName('node', $field);
+        // if (!$storage) {
+        //   $storage = FieldStorageConfig::create([
+        //     'field_name' => $field,
+        //     'entity_type' => 'node',
+        //     'type' => $field_c['type'],
+        //     'cardinality' => $field_c['cardinality'] ?? 1,
+        //     'settings' => $field_c['field_storage_config_settings'] ?? [],
+        //   ]);
+        //   $storage->save();
+        // }
+        // $field_cfg = FieldConfig::loadByName('node', $content_type, $field);
+        // if (!$field_cfg) {
+        //   $field_cfg = FieldConfig::create([
+        //     'field_storage' => $storage,
+        //     'bundle' => $content_type,
+        //     'label' => $field,
+        //     'required' => FALSE,
+        //     'translatable' => !!$field_c['translatable'],
+        //     'settings' => $field_c['field_config_settings'] ?? [],
+        //   ])->save();
+        // }
+        if ($field_c['display'] ?? null) {
+          $display->setComponent($field, [
+            'type' => $field_c['display'],
+            'label' => 'hidden',
+            'weight' => 20,
+            'region' => 'content',
+            'settings' => $field_c['display_settings'] ?? [],
+          ])->save();
+        }
+
+      } // end fields loop
+
+
+    }
+
   }
 
 }

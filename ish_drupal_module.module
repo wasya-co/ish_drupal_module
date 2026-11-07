@@ -78,6 +78,9 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       ],
       'template' => 'admin_home',
     ],
+    'admin_sections' => [
+      'template' => 'admin/sections',
+    ],
     'article_translate' => [
       'path' => $path . '/templates/articles',
       'render element' => 'children',

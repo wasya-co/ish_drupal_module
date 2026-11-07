@@ -1,0 +1,25 @@
+---
+
+- path: /home2
+  type: 'issue'
+  meta:
+    replace: true
+  fields:
+    title: 'Home 2'
+  sections:
+    - type: 'layout_onecol_any'
+      fields:
+        field_class_name: _
+      regions:
+        first:
+          - 'section_callout_parallax:main_hero'
+    - type: 'section_about_10'
+      fields:
+        title: Trading the Right Way
+        body: This derivatives trading platform is built around a few very specific strategies. It is designed to assist the trader in correct decision-making, show risk-reward clearly, and enable fundamental statistical analysis in a streamlined interface.
+        link_text: Read Story
+        link_url: '/our-story'
+    - type: view
+      view_id: directory_tmp
+      display_id: frontpage_block
+
