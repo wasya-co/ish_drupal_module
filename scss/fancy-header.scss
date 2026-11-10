@@ -1,19 +1,55 @@
 
 :root {
-  // --header-bg: #ddd;
-  // --header-bg-scrolled: #ccc;
-
   --header-height: 92px;
   --image-hero-height: 250px; // 250px + height of h1.title ?
 }
 
+.system-branding {
+  .site-logo {
+    display: none;
+  }
+  .logo-lod {
+    display: block;
+  }
+  .logo-dol {
+    display: none;
+  }
+}
+body.scrolled .system-branding {
+  .logo-lod {
+    display: none;
+  }
+  .logo-dol {
+    display: block;
+  }
+}
 
 #header {
-  background-color: var(--header-bg);
+  // background-color: var(--header-bg);   /* for min-width: 767px only?! */
   a {
     color: var(--header-link-color);
   }
 }
+@media (max-width: 767px) {
+  #header {
+    background-color: var(--header-scrolled-bg);
+    a {
+      color: var(--header-scrolled-link-color);
+    }
+    .system-branding {
+      .logo-lod { display: none; }
+      .logo-dol { display: block; }
+    }
+  }
+}
+body.scrolled #header {
+  background-color: var(--header-scrolled-bg);
+  a {
+    color: var(--header-scrolled-link-color);
+  }
+}
+
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -65,11 +101,11 @@ button.navbar-toggler {
       height: var(--header-height);
     }
     .navbar-collapse.show ul.navbar-nav {
-      background-color: var(--header-bg-scrolled);
+      background-color: var(--header-scrolled-bg);
       padding-left: 1em;
     }
     #header {
-      background: var(--header-bg-scrolled);
+      background: var(--header-scrolled-bg);
       position: sticky;
       top: 0;
 
