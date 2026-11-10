@@ -131,6 +131,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'base hook' => 'block',
       'path' => $path . '/templates/block',
     ],
+    'block__system_branding_block' => [
+      'base hook' => 'block',
+      'path' => $path . '/templates/block',
+    ],
 
     'node__card_folder' => [
       'base hook' => 'node',

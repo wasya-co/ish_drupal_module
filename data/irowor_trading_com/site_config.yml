@@ -3,9 +3,9 @@
   logo: 'https://cityad-all-prod.s3.amazonaws.com/s3fs-public/irowor-lod.280x38_1.png'
 
 - type: menu
-  id: 'main_menu'
+  id: 'main'
   links:
-    - link_url: '<front>'
+    - link_url: '/'
       link_text: 'Home'
       weight: 0
     - link_url: '/features'

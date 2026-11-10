@@ -12,12 +12,13 @@
 - info: 'trading_right_way'
   type: 'section_about_10'
   meta:
-    replace: false
+    replace: true
   fields:
     body: This derivatives trading platform is built around a few very specific strategies. It is designed to assist the trader in correct decision-making, show risk-reward clearly, and enable fundamental statistical analysis in a streamlined interface.
     field_subtitle: Trading the Right Way
     field_link_text: Read Story
     field_link_url: '/our-story'
+    field_image_thumb: 'https://d15g8hc4183yn4.cloudfront.net/wp-content/uploads/2026/11/10124757/trading-station-zerohedge.jpeg'
 
 
 - path: /home
