@@ -52,14 +52,13 @@
     echo('+++ $response');
     var_dump($response);
 
-  == test more ==
+  == 2026-11-10 this works ==
 
     install: composer require --dev drupal/core-dev -W
     verify: ./vendor/bin/phpunit --version
+    modify phpunit.xml to have the SIMPLE_DB connection string.
 
-    ./vendor/bin/phpunit \
-      -c web/core/phpunit.xml.dist \
-      web/modules/ish_drupal_module/tests/src/Kernel/NodesContentTest.php
+    cd web ; ../vendor/bin/phpunit -c core/phpunit.xml modules/ish_drupal_module/tests/src/Kernel/NodesContentTest.php
 
 = Deploy =
 
