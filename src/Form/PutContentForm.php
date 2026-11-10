@@ -78,6 +78,7 @@ class PutContentForm extends FormBase {
 
           break;
         case 'issue':
+        case 'slide':
           NodesContent::create_node($item);
 
           break;

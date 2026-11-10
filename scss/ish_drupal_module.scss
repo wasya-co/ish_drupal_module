@@ -147,6 +147,11 @@ div.site-footer__bottom {
 
 #header {
   padding: 0 1em; // just for the smallest screens
+
+  .site-logo,
+  .logo-lod {
+    display: none;
+  }
 }
 
 /* I */

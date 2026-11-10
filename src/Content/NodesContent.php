@@ -32,13 +32,15 @@ class NodesContent {
   public static function create_node($item) {
     logg($item, 'create_node()');
 
-    $node = self::get_node_by_path($item['path']);
-    if ($node) {
-      if ($item['meta']['replace'] ?? false) {
-        $node->delete();
-      } else {
-        \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
-        return;
+    if ($item['path']) {
+      $node = self::get_node_by_path($item['path']);
+      if ($node) {
+        if ($item['meta']['replace'] ?? false) {
+          $node->delete();
+        } else {
+          \Drupal::messenger()->addStatus("Node `${item['path']}` already exists.");
+          return;
+        }
       }
     }
 

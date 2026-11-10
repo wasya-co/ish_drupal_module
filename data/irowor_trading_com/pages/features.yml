@@ -1,9 +1,36 @@
 ---
+- type: 'slide'
+  meta:
+    replace: false
+  fields:
+    title: Histogram of Price Action
+    field_subtitle: Look at price action as a histogram in 1-mo, 3-mo, 6-mo and 1-yr time windows
+    field_image_thumb: https://cityad-all-prod.s3.amazonaws.com/s3fs-public/styles/large/public/2026-07/1-irowor-screens.png?itok=amI2Vhwt
+    field_link_url: '/features/histogram-price-action'
+    field_link_text: 'Read More'
+    field_tags: [ 'main-features']
+
+- type: 'slide'
+  meta:
+    replace: false
+  fields:
+    title: Integration with Charles Schwab
+    field_subtitle: We support Charles Schwab as the backend broker-dealer.
+    field_image_thumb: https://cityad-all-prod.s3.amazonaws.com/s3fs-public/styles/large/public/2026-07/charles-schwab.jpg?itok=hso8dMmr
+    field_link_url: '/features/schwab-integration'
+    field_link_text: 'Read More'
+    field_tags: [ 'main-features']
+
+- type: view
+  meta:
+    replace: false
+  id: main_features
+  display_name: 'frontpage_block'
+
 - path: /features
   type: 'issue'
   meta:
     replace: true
-    add_to_menu: true # 'main_menu'
   fields:
     title: 'Features'
   sections:
@@ -12,5 +39,4 @@
         field_class_name: _
       regions:
         first:
-          - 'section_feature:feature_histogram'
-          - 'section_feature:feature_schwab_integration'
+          - 'view:main_features:frontpage_block'
