@@ -23,8 +23,8 @@
 
 - type: view
   meta:
-    replace: false
-  view_id: main_features
+    replace: true
+  view_id: features
   display_name: 'frontpage_block'
 
 - path: /features
@@ -36,7 +36,7 @@
   sections:
     - type: 'layout_onecol_any'
       fields:
-        field_class_name: _
+        field_class_name: fixed-container
       regions:
         first:
           - 'view:main_features:frontpage_block'

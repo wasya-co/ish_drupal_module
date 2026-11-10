@@ -149,6 +149,10 @@ function ish_drupal_module_theme($existing, $type, $theme, $path) {
       'path' => $path . '/templates/content',
     ],
 
+    'node__slide__feature' => [
+      'base hook' => 'node',
+      'path' => $path . '/templates/content',
+    ],
     'node__slide__slide_style_1' => [
       'base hook' => 'node',
       'path' => $path . '/templates/content',

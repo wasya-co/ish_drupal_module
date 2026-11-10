@@ -21,6 +21,7 @@ use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 
 use Drupal\ish_drupal_module\Config\BlocksConfig;
+use Drupal\ish_drupal_module\Models\Taxonomy;
 
 /*
 **/
@@ -319,12 +320,38 @@ class NodesContent {
         $values[$field_name] = self::image_field_from_url($field_name, $field_value);
         continue;
       }
+      if ($field_name === 'field_tags' && is_array($field_value)) {
+        $values[$field_name] = self::prepare_tag_values($field_value);
+        continue;
+      }
       if ($field_name === 'body' && is_array($field_value) && !isset($field_value['format'])) {
         $field_value['format'] = 'basic_html';
       }
       $values[$field_name] = $field_value;
     }
     return $values;
+  }
+
+  /**
+   * Resolve tag names to taxonomy term references on the tags vocabulary.
+   *
+   * @param array $tag_names
+   *   Tag names, e.g. ['main-features'].
+   *
+   * @return array
+   *   Entity reference values keyed for Node::create().
+   */
+  public static function prepare_tag_values(array $tag_names): array {
+    $refs = [];
+    foreach ($tag_names as $tag_name) {
+      if (is_array($tag_name) && isset($tag_name['target_id'])) {
+        $refs[] = $tag_name;
+        continue;
+      }
+      $term = Taxonomy::findOrCreateByName((string) $tag_name, 'tags');
+      $refs[] = ['target_id' => $term->id()];
+    }
+    return $refs;
   }
 
   /*

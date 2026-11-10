@@ -351,13 +351,14 @@ class ThisConfig {
 
 
   /*
-   * view_modes: Card, ImageThumb, Section
+   * view_modes: Card, Feature, ImageThumb, Section
   **/
   public static function setup_view_modes() {
     $config_factory = \Drupal::configFactory();
 
     $view_modes = [
       'card' => 'Card',
+      'feature' => 'Feature',
       'image_thumb' => 'Image Thumb',
       'section' => 'Section',
     ];
