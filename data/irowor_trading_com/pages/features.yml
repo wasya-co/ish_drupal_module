@@ -24,7 +24,7 @@
 - type: view
   meta:
     replace: false
-  id: main_features
+  view_id: main_features
   display_name: 'frontpage_block'
 
 - path: /features

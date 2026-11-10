@@ -52,6 +52,15 @@
     echo('+++ $response');
     var_dump($response);
 
+  == test more ==
+
+    install: composer require --dev drupal/core-dev -W
+    verify: ./vendor/bin/phpunit --version
+
+    ./vendor/bin/phpunit \
+      -c web/core/phpunit.xml.dist \
+      web/modules/ish_drupal_module/tests/src/Kernel/NodesContentTest.php
+
 = Deploy =
 
   * tag, push to wasya-co remote:
