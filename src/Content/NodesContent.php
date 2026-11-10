@@ -115,6 +115,16 @@ class NodesContent {
                 case 'view':
                   [$view_id, $display_name] = explode(':', $name, 2);
 
+                  $extra = [
+                    'id' => "views_block:{$view_id}-{$display_name}",
+                    'label' => $name,
+                    'label_display' => FALSE,
+                    'provider' => 'views',
+                  ];
+                  $uuid = \Drupal::service('uuid')->generate();
+                  $component = new SectionComponent($uuid, $region_name, $extra);
+                  $section->appendComponent($component);
+
                   break;
                 default:
 

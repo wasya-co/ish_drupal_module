@@ -68,6 +68,7 @@ class PutContentForm extends FormBase {
         case 'advanced_block':
         case 'basic':
         case 'section_callout_parallax':
+        case 'section_about_10':
           BlocksConfig::create_block($item);
 
           break;
@@ -99,7 +100,7 @@ class PutContentForm extends FormBase {
           break;
 
         default:
-          throw new \Exception('zz3 - Not implemented');
+          throw new \Exception('zz3 - Not implemented - '.$item['type'] );
       }
 
       \Drupal::messenger()->addMessage('Churned a content yaml.');

@@ -27,14 +27,14 @@
 
     - type: 'layout_onecol_any'
       fields:
-        field_class_name: _
+        field_class_name: fixed-container
       regions:
         first:
           - 'section_about_10:trading_right_way'
 
     - type: 'layout_onecol_any'
       fields:
-        field_class_name: _
+        field_class_name: fixed-container
       regions:
         first:
           - 'view:articles2:frontpage_block_2'
