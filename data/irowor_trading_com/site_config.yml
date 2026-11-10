@@ -1,0 +1,19 @@
+---
+- type: 'theme_config'
+  logo: 'https://cityad-all-prod.s3.amazonaws.com/s3fs-public/irowor-lod.280x38_1.png'
+
+- type: menu
+  id: 'main_menu'
+  links:
+    - link_url: '<front>'
+      link_text: 'Home'
+      weight: 0
+    - link_url: '/features'
+      link_text: 'Features'
+    - link_url: '/pricing'
+      link_text: 'Pricing'
+    - link_url: '/contact'
+      link_text: 'Contact Us'
+
+- type: site_config
+  front_page: '/home'

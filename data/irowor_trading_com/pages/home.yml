@@ -1,4 +1,13 @@
 ---
+- info: 'main_hero'
+  type: 'section_callout_parallax'
+  meta:
+    replace: true
+  fields:
+    field_image_hero: 'https://cityad-all-prod.s3.amazonaws.com/s3fs-public/2026-04/bull-bear-0.1500x600.jpg'
+    field_class_name: 'a2026_main_hero'
+    field_custom_css: |
+      .a2026_main_hero { height: 650px; }
 
 - info: 'trading_right_way'
   type: 'section_about_10'
@@ -11,7 +20,7 @@
     field_link_url: '/our-story'
 
 
-- path: /home2
+- path: /home
   type: 'issue'
   meta:
     replace: true
@@ -31,11 +40,7 @@
       regions:
         first:
           - 'section_about_10:trading_right_way'
-
-    - type: 'layout_onecol_any'
-      fields:
-        field_class_name: fixed-container
-      regions:
-        first:
           - 'view:articles2:frontpage_block_2'
+
+
 

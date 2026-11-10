@@ -21,6 +21,8 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 
+use Drupal\system\Entity\Menu;
+
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
@@ -253,25 +255,49 @@ class ThisConfig {
   /*
   **/
   public static function put_menu_links($menu_name, $links) {
+    if (!Menu::load($menu_name)) {
+      Menu::create([
+        'id' => $menu_name,
+        'label' => $menu_name,
+      ])->save();
+    }
+
     foreach($links as $c) {
+      $title = $c['title'] ?? $c['link_text'];
+      $url   = $c['url'] ?? $c['link_url'];
+
       $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
       $existing = $storage->loadByProperties([
-        'title' => $c['title'],
+        'title' => $title,
         'menu_name' => $menu_name,
       ]);
       if (!$existing) {
         $link = \Drupal\menu_link_content\Entity\MenuLinkContent::create([
-          'title' => $c['title'],
+          'title' => $title,
           'link' => [
-            'uri' => str_starts_with($c['url'], 'http') ? $c['url'] : "internal:{$c['url']}",
+            'uri' => str_starts_with($url, 'http') ? $url : "internal:{$url}",
           ],
           'menu_name' => $menu_name,
         ]);
         $link->save();
       }
     }
-    \Drupal::messenger()->addMessage('finished');
+    \Drupal::messenger()->addMessage('done put_menu_links()');
   }
+
+  /*
+  **/
+  public static function put_site_config($config) {
+    if ($config['front_page']) {
+      \Drupal::configFactory()
+        ->getEditable('system.site')
+        ->set('page.front', $config['front_page'])
+        ->save();
+    }
+
+    \Drupal::messenger()->addMessage('finished put_site_config');
+  }
+
 
   /*
   **/

@@ -1,0 +1,17 @@
+---
+- path: /pricing
+  type: 'issue'
+  meta:
+    replace: true
+    add_to_menu:
+      'main_menu': { weight: 10 }
+  fields:
+    title: 'Features'
+  sections:
+    - type: 'layout_onecol_any'
+      fields:
+        field_class_name: _
+      regions:
+        first:
+          - 'section_feature:feature_histogram'
+          - 'section_feature:feature_schwab_integration'

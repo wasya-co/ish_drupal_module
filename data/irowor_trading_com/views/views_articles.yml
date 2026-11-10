@@ -1,7 +1,6 @@
 ---
 - type: 'view'
-  view_id: 'articles2'
-  display_name: 'frontpage_block_2'
-
+  view_id: 'articles'
+  display_name: 'frontpage_block'
   display_plugin: 'block'
-  label: 'Articles on the Front Page 2'
+  label: 'Articles on the Front Page'

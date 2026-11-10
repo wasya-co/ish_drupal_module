@@ -86,6 +86,11 @@ class PutContentForm extends FormBase {
           ThisConfig::put_menu_links($item['id'], $item['links']);
 
           break;
+        case 'site_config':
+
+            ThisConfig::put_site_config($item);
+
+            break;
         case 'theme_config':
 
           ThisConfig::put_theme_config($item);

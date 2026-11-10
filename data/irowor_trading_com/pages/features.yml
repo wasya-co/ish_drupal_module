@@ -1,0 +1,16 @@
+---
+- path: /features
+  type: 'issue'
+  meta:
+    replace: true
+    add_to_menu: true # 'main_menu'
+  fields:
+    title: 'Features'
+  sections:
+    - type: 'layout_onecol_any'
+      fields:
+        field_class_name: _
+      regions:
+        first:
+          - 'section_feature:feature_histogram'
+          - 'section_feature:feature_schwab_integration'

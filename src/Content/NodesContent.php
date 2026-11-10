@@ -106,10 +106,10 @@ class NodesContent {
                   $section->appendComponent($component);
 
 
-                  break;
-                case 'basic':
-                case 'advanced_block':
-                case 'section_callout_parallax':
+                //   break;
+                // case 'basic':
+                // case 'advanced_block':
+                // case 'section_callout_parallax':
 
                   break;
                 case 'view':
