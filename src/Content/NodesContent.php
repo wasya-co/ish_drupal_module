@@ -47,11 +47,13 @@ class NodesContent {
     $values = [
       'type' => $item['type'],
       'status' => 1,
-      'path' => [
+    ];
+    if ($item['path']) {
+      $values['path'] = [
         'alias' => $item['path'],
         'pathauto' => 0,
-      ],
-    ];
+      ];
+    }
     $values = array_merge($values, self::prepare_field_values($item['fields']));
     $node = Node::create($values);
     $node->save();

@@ -8,7 +8,7 @@
     field_image_thumb: https://cityad-all-prod.s3.amazonaws.com/s3fs-public/styles/large/public/2026-07/1-irowor-screens.png?itok=amI2Vhwt
     field_link_url: '/features/histogram-price-action'
     field_link_text: 'Read More'
-    field_tags: [ 'main-features']
+    field_tags: [ 'main-features' ]
 
 - type: 'slide'
   meta:
@@ -19,7 +19,7 @@
     field_image_thumb: https://cityad-all-prod.s3.amazonaws.com/s3fs-public/styles/large/public/2026-07/charles-schwab.jpg?itok=hso8dMmr
     field_link_url: '/features/schwab-integration'
     field_link_text: 'Read More'
-    field_tags: [ 'main-features']
+    field_tags: [ 'main-features' ]
 
 - type: view
   meta:

@@ -8,9 +8,7 @@ use Drupal\KernelTests\KernelTestBase;
 /**
  * @group ish_drupal_module
 
-  ./vendor/bin/phpunit \
-    -c web/core/phpunit.xml.dist \
-    web/modules/custom/ish_drupal_module/tests/src/Kernel/NodesContentTest.php
+  cd web ; ../vendor/bin/phpunit -c core/phpunit.xml modules/ish_drupal_module/tests/src/Kernel/NodesContentTest.php
 
  *
 **/
